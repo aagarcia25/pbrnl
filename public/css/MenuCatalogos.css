@@ -1,0 +1,358 @@
+.CentrarImagen {
+    margin: auto;
+    display: block;
+}
+
+.TituloCatalogo2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.5vw;
+    font-weight: bold;
+    color: black;
+    margin-top: 12px;
+    margin-left: -10px;
+    padding-top: 10px;
+    vertical-align: bottom;
+}
+
+.FontMenuInicio2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5vw;
+    font-weight: bolder;
+
+}
+
+.FontMenuInicio3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1vw; /*16px;*/
+    font-weight: bold;
+}
+
+.LogoCatalogos {
+    width: 20%;
+}
+
+.LogoCatalogosTop {
+    width: 80%;
+}
+
+.ImgAdmin {
+    width: 70%;
+    /*height: 20%;*/
+    background-image: url('../Recursos/icono Administrativo.svg');
+    background-repeat: no-repeat;
+}
+
+.ImgProgram {
+    width: 70%;
+    /*height: 20%;*/
+    background-image: url('../Recursos/icono Programático.svg');
+    background-repeat: no-repeat;
+}
+
+.ImgPlanea {
+    width: 70%;
+    /*height: 20%;*/
+    background-image: url('../Recursos/icono Planeación.svg');
+    background-repeat: no-repeat;
+}
+
+.ImgBeneficiarios {
+    width: 70%;
+    background-image: url('../Recursos/icono beneficiarios.svg');
+    background-repeat: no-repeat;
+}
+
+.BotonAdmin {
+    width: 130px;
+    height: 130px;
+    background-image: url('../Recursos/boton Admin.svg');
+    background-repeat: no-repeat;
+}
+    .BotonAdmin:hover {
+        background-image: url('../Recursos/boton AdminActivo.svg');
+    }
+
+.BotonProg {
+    width: 130px;
+    height: 130px;
+    background-image: url('../Recursos/boton Programático.svg');
+    background-repeat: no-repeat;
+}
+    .BotonProg:hover {
+        background-image: url('../Recursos/boton Programático activo.svg');
+    }
+
+
+.BotonPlan {
+    width: 130px;
+    height: 130px;
+    background-image: url('../Recursos/boton Planeación.svg');
+    background-repeat: no-repeat;
+}
+    .BotonPlan:hover {
+        background-image: url('../Recursos/boton Planeación activo.svg');
+        background-repeat: no-repeat;
+    }
+
+.BotonBeneficiarios {
+    width: 130px;
+    height: 130px;
+    background-image: url('../Recursos/boton beneficiarios.svg');
+    background-repeat: no-repeat;
+}
+    .BotonBeneficiarios:hover {
+        background-image: url('../Recursos/boton beneficiarios activo.svg');
+        background-repeat: no-repeat;
+    }
+
+.BotonConac {
+    width: 50px;
+    height: 50px;
+    background-image: url('../Recursos/icono CONAC administrativa off.svg');
+    background-repeat: no-repeat;
+}
+    .BotonConac:hover {
+        background-image: url('../Recursos/icono administrativa.svg');
+    }
+
+.BotonSecretaria {
+    width: 50px;
+    height: 50px;
+    background-image: url('../Recursos/icono Secretarias off.svg');
+    background-repeat: no-repeat;
+}
+    .BotonSecretaria:hover {
+        background-image: url('../Recursos/LogoSecretarias.svg');
+    }
+
+.BotonUA {
+    width: 50px;
+    height: 50px;
+    background-image: url('../Recursos/icono unidades admvas off.svg');
+    background-repeat: no-repeat;
+}
+    .BotonUA:hover {
+        background-image: url('../Recursos/icono unidades admvas.svg');
+    }
+
+.BotonFuncional {
+    width: 50px;
+    height: 50px;
+    background-image: url('../Recursos/icono CONAC funcional off.svg');
+    background-repeat: no-repeat;
+}
+    .BotonFuncional:hover {
+        background-image: url('../Recursos/icono funcional.svg');
+    }
+
+.BotonTipologia {
+    width: 50px;
+    height: 50px;
+    background-image: url('../Recursos/icono CONAC tipologia off.svg');
+    background-repeat: no-repeat;
+}
+    .BotonTipologia:hover {
+        background-image: url('../Recursos/icono tipologia.svg');
+    }
+
+.BotonPPs {
+    width: 50px;
+    height: 50px;
+    background-image: url('../Recursos/icono programas presupuestarios off.svg');
+    background-repeat: no-repeat;
+}
+    .BotonPPs:hover {
+        background-image: url('../Recursos/icono programas presupuestarios.svg');
+    }
+
+.BotonAIs {
+    width: 50px;
+    height: 50px;
+    background-image: url('../Recursos/icono actividades institucionales off.svg');
+    background-repeat: no-repeat;
+}
+    .BotonAIs:hover {
+        background-image: url('../Recursos/icono actividades institucionales.svg');
+    }
+
+
+.BotonPIs {
+    width: 50px;
+    height: 50px;
+    background-image: url('../Recursos/icono proyectos de inversion off.svg');
+    background-repeat: no-repeat;
+}
+    .BotonPIs:hover {
+        background-image: url('../Recursos/icono proyectos de inversion.svg');
+    }
+
+.BotonEje {
+    width: 40px;
+    height: 40px;
+    background-image: url('../Recursos/icono eje off.svg');
+    background-repeat: no-repeat;
+}
+    .BotonEje:hover {
+        background-image: url('../Recursos/icono eje.svg');
+    }
+
+.BotonTema {
+    width: 40px;
+    height: 40px;
+    background-image: url('../Recursos/icono tema off.svg');
+    background-repeat: no-repeat;
+}
+    .BotonTema:hover {
+        background-image: url('../Recursos/icono tema.svg');
+    }
+
+.BotonObjetivo {
+    width: 40px;
+    height: 40px;
+    background-image: url('../Recursos/icono objetivo off.svg');
+    background-repeat: no-repeat;
+}
+    .BotonObjetivo:hover {
+        background-image: url('../Recursos/icono objetivo.svg');
+    }
+
+.BotonEstrategias {
+    width: 40px;
+    height: 40px;
+    background-image: url('../Recursos/icono estrategia off.svg');
+    background-repeat: no-repeat;
+}
+    .BotonEstrategias:hover {
+        background-image: url('../Recursos/icono estrategias.svg');
+    }
+
+.BotonLineaAccion {
+    width: 40px;
+    height: 40px;
+    background-image: url('../Recursos/icono lineas de accion off.svg');
+    background-repeat: no-repeat;
+}
+    .BotonLineaAccion:hover {
+        background-image: url('../Recursos/icono lineas de accion.svg');
+    }
+
+.BotonOds {
+    width: 40px;
+    height: 40px;
+    background-image: url('../Recursos/icono ODS off.svg');
+    background-repeat: no-repeat;
+}
+    .BotonOds:hover {
+        background-image: url('../Recursos/icono ODS.svg');
+    }
+
+.BotonMetaOds {
+    width: 40px;
+    height: 40px;
+    background-image: url('../Recursos/meta ODS off.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+    .BotonMetaOds:hover {
+        background-image: url('../Recursos/meta ODS.svg');
+    }
+
+.IconoConacAdm {
+    font-family: 'Poppins', sans-serif;
+    background-image: url('../Recursos/icono CONAC administrativa off.svg');
+    background-repeat: no-repeat;
+    /*width: 40%;*/
+}
+    .IconoConacAdm:hover {
+        background-image: url('../Recursos/icono administrativa.svg');
+        z-index: 100;
+        background-repeat: no-repeat;
+    }
+
+.IconoAdmSecre {
+    font-family: 'Poppins', sans-serif;
+    background-image: url('../Recursos/icono Secretarias off.svg');
+    background-repeat: no-repeat;
+    /*width: 40%;*/
+}
+    .IconoAdmSecre:hover {
+        background-image: url('../Recursos/LogoSecretarias.svg');
+        z-index: 100;
+        background-repeat: no-repeat;
+    }
+
+.IconoUA {
+    font-family: 'Poppins', sans-serif;
+    background-image: url('../Recursos/icono unidades admvas off.svg');
+    background-repeat: no-repeat;
+    /*width: 40%;*/
+}
+    .IconoUA:hover {
+        background-image: url('../Recursos/icono unidades admvas.svg');
+        z-index: 100;
+        background-repeat: no-repeat;
+    }
+
+.IconoConacF {
+    font-family: 'Poppins', sans-serif;
+    background-image: url('../Recursos/icono CONAC funcional off.svg');
+    background-repeat: no-repeat;
+    /*width: 40%;*/
+}
+    .IconoConacF:hover {
+        background-image: url('../Recursos/icono funcional.svg');
+        z-index: 100;
+        background-repeat: no-repeat;
+    }
+
+.IconoConacT {
+    font-family: 'Poppins', sans-serif;
+    background-image: url('../Recursos/icono CONAC tipologia off.svg');
+    background-repeat: no-repeat;
+    /*width: 40%;*/
+}
+    .IconoConacT:hover {
+        background-image: url('../Recursos/icono tipologia.svg');
+        z-index: 100;
+        background-repeat: no-repeat;
+    }
+
+.IconoPPs {
+    font-family: 'Poppins', sans-serif;
+    background-image: url('../Recursos/icono programas presupuestarios off.svg');
+    background-repeat: no-repeat;
+    /*width: 40%;*/
+}
+    .IconoPPs:hover {
+        background-image: url('../Recursos/icono programas presupuestarios.svg');
+        z-index: 100;
+        background-repeat: no-repeat;
+    }
+
+.IconoAIs {
+    font-family: 'Poppins', sans-serif;
+    background-image: url('../Recursos/icono actividades institucionales off.svg');
+    background-repeat: no-repeat;
+    /*width: 40%;*/
+}
+
+    .IconoAIs:hover {
+        background-image: url('../Recursos/icono actividades institucionales.svg');
+        z-index: 100;
+        background-repeat: no-repeat;
+    }
+
+.IconoPIs {
+    font-family: 'Poppins', sans-serif;
+    background-image: url('../Recursos/icono proyectos de inversion off.svg');
+    background-repeat: no-repeat;
+    /*width: 40%;*/
+}
+
+    .IconoPIs:hover {
+        background-image: url('../Recursos/icono proyectos de inversion.svg');
+        z-index: 100;
+        background-repeat: no-repeat;
+    }
+
+        

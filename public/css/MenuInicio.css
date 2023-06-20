@@ -1,0 +1,62 @@
+.FontMenuInicio {
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    /*Era de 23px */
+    font-weight: bolder;
+}
+
+.BotonImagen1 {
+    width: 170px;
+    height: 170px;
+    /*Era de 190 */
+}
+
+    .BotonImagen1:hover {
+        background-image: url("../img/CatalogosActivo.svg");
+    }
+
+.BotonImagen2 {
+    width: 170px;
+    height: 170px;
+    background-image: url("../img/boton clasificacion programatica desactivado.svg");
+}
+
+    .BotonImagen2:hover {
+        background-image: url("../img/boton clasificacion programatica desactivado");
+    }
+
+.BotonImagen3 {
+    width: 170px;
+    height: 170px;
+}
+
+    .BotonImagen3:hover {
+        background-image: url("../img/boton admin usuarios activo.svg");
+    }
+
+.BotonImagen4 {
+    width: 170px;
+    height: 170px;
+}
+
+    .BotonImagen4:hover {
+        background-image: url("../img/BotonMIRActivo.svg");    
+    }
+
+.BotonImagen5 {
+    width: 170px;
+    height: 170px;
+}
+
+    .BotonImagen5:hover {
+        background-image: url('../img/boton beneficiarios activo.svg');
+    }
+
+.BotonImagen6 {
+    width: 170px;
+    height: 170px;
+}
+
+    .BotonImagen6:hover {
+        background-image: url("../img/boton signo desactivado.svg");
+    }
