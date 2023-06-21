@@ -45,15 +45,15 @@ if (!Session::has('sesion')) {
         <div class="container-fluid">
         <div class="d-flex justify-content-between">
             <a class="navbar-brand mx-5" href="/Menu">
-                <img src="img/logo-tesoreria.svg" alt="Logo de tesorería de Nuevo León" width="200">
+                <img src="img/logo-tesoreria.svg" alt="Logo de tesorería de Nuevo León" width="180">
             </a>
         </div>
         <div class="d-flex justify-content-between align-items-center MarginRight">
             <div class="navbar-brand">
-                <img src="img/LogoEvalua.svg" width="200" alt="Logo evalua PbR NL">
+                <img src="img/LogoEvalua.svg" width="180" alt="Logo evalua PbR NL">
             </div>
             <div class="dropdown_usuario">
-                <img src="img/iconousuario2.svg" width="40" alt="Usuario" class="border-none" type="button" id="dropdownMenuButton" data-mdb-toggle="dropdown" aria-expanded="false">
+                <img src="img/iconousuario2.svg" width="35" alt="Usuario" class="border-none" type="button" id="dropdownMenuButton" data-mdb-toggle="dropdown" aria-expanded="false">
                     <ul class="dropdown-menu mt-1 pt-3 UsuarioBG-0" aria-labelledby="dropdownMenuButton">
                         <li class="dropdown-item UsuarioBG fw-bold text-uppercase">
                              @php echo session('id_usuario'); @endphp<br>@php echo session('nombre') . " " . session('ap_paterno'); @endphp

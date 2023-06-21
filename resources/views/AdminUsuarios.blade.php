@@ -101,10 +101,10 @@
                                 <input type="text" class="form-control TextBoxUsr" id="apmaterno_usuario" maxlength="45" required>
                                 <label for="apmaterno_usuario" class="form-labelUsr">Apellido Materno <span class="text-red">*</span></label>
                             </div>
-                            <div class="col-md-2 FontMsg CheckBoxGral">
-                                <label class="toggle CheckBoxGral">
-                                    <input id="check_Activo" class="toggle-checkbox CheckBoxGral" type="checkbox">
-                                    <div class="toggle-switch CheckBoxGral"></div>
+                            <div class="col-md-2 FontMsg">
+                                <label class="toggle">
+                                    <input id="check_Activo" class="toggle-checkbox" type="checkbox">
+                                    <div class="toggle-switch"></div>
                                     <span class="toggle-label text-bold">Activo</span>
                                 </label>
                             </div>
