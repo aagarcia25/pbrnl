@@ -46,11 +46,11 @@ return [
         'mysql' => [
             'driver' => 'mysql',
             'url' => env('DATABASE_URL'),
-            'host' => env('DB_HOST', 'a2nlmysql13plsk.secureserver.net'),           /*  '10.200.4.111'),  */
+            'host' => env('DB_HOST', '10.200.4.111'),           /*  '10.200.4.111'),  */
             'port' => env('DB_PORT', '3306'),
             'database' => env('DB_DATABASE', 'pbrnl_db_pruebas'),
             'username' => env('DB_USERNAME', 'DBAdminPruebas'),
-            'password' => env('DB_PASSWORD', 'PbR#Iegfip*2220'),                /* 'xQRA0xBC87Gs'), */
+            'password' => env('DB_PASSWORD', 'xQRA0xBC87Gs'),                /* 'xQRA0xBC87Gs'), */
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
