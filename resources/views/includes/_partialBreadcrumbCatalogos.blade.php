@@ -1,4 +1,4 @@
-<!-- <div id="MenuLeft" class="container-fluid mt-5">
+<div id="MenuLeft" class="container-fluid mt-5">
     <div class="row">
         <div class="col-lg-1">
             <div class="card bg-transparent border border-0">
@@ -15,11 +15,11 @@
             </div>
         </div>
     </div>
-</div> -->
-<div class="container pagetitle">
-    <div class="row mb-3 mt-4">
+</div>
+<div class="container pagetitle mt-3">
+    <div class="row mb-3">
         <div class="col-1">
-            <img id="icon-catalog-ods" class="icon-cat-secretaria" src="/img/@php echo $img; @endphp" width="80" height="80">
+            <img id="icon-cat-ods" class="icon-cat-secretaria" src="/img/@php echo $img; @endphp" width="80" height="80">
         </div>
         <div class="col-11">
             <h1 class="TituloCatalogo">@php echo $view; @endphp</h1>

@@ -144,11 +144,3 @@ function SetDDMMYYYY_YYYYMMDD(Fecha){
     var Fechas = Fecha.split("/");
     return FechaFinal = Fechas[2] + "-" + Fechas[1] + "-" + Fechas[0];
 }
-
-function img_over(id, nombre) {
-    $("#" + id).attr('src', nombre);
-}
-
-function img_out(id, nombre) {
-    $("#" + id).attr('src', nombre);
-}

@@ -10,7 +10,7 @@ function Funciones_Iniciales() {
 }
 
 function GetOds() {
-    // Func_Cargando();
+    Func_Cargando();
     repository.Ods.GetOds()
         .then(ResponseGetOds);
 }
