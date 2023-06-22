@@ -277,4 +277,4 @@ if (Session::has('sesion')) {
 
 </body>
 
-</html>
+</html> 

@@ -118,7 +118,7 @@ function Func_Cargando(Mensaje = "Cargando...") {
         allowOutsideClick: false,
         didOpen: function() {
             swal.showLoading()
-        }
+        } 
     });
 }
 

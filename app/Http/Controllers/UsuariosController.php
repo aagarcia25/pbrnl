@@ -77,7 +77,7 @@ class UsuariosController extends Controller
 
             $correo_usuario = $usuario->eMail;
             $nombre_usuario = $usuario->Nombre . " " . $usuario->APaterno;
-            $enlace = "http://evalua-pbr.nl.gob.mx:81/RecuperacionCredencial/".$request->id_usuario;
+            $enlace = "http://127.0.0.1:8000/RecuperacionCredencial/".$request->id_usuario;
             
             $remitente = "testeoevaluapbrnl@gmail.com";
             $passowrd = "jhzgzzrhbpagbqlf";
@@ -217,7 +217,7 @@ class UsuariosController extends Controller
     public function delete(Request $request)
     {
 
-        try {
+        try { 
             
             $delete = Usuarios::select()
                     ->where('idUsuario', '=', $request->id_usuario)

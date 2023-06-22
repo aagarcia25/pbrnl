@@ -7,7 +7,7 @@
 <link rel="stylesheet" type="text/css" href="/css/EstilosPbR.css" />
 
 <div id="MenuLeft" class="mt-5 ms-2">
-    <div class="row">
+    <div class="row mt-3">
         <div class="col-md-1">
             <div class="card bg-transparent border border-0 ms-4">
                 <a href="/MenuAdmin">

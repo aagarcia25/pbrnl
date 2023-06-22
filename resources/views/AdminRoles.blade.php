@@ -72,14 +72,14 @@
                                     </div>
                                     <div class="col">
                                         <label class="toggle">
-                                            <input id="check_CapturaAnadir" class="toggle-checkbox" type="checkbox">
+                                            <input id="check_EnlaceEditar" class="toggle-checkbox" type="checkbox">
                                             <div class="toggle-switch"></div>
                                             <span class="toggle-label text-bold">Editar</span>
                                         </label>
                                     </div>
                                     <div class="col">
                                         <label class="toggle">
-                                            <input id="check_CapturaEditar" class="toggle-checkbox" type="checkbox">
+                                            <input id="check_EnlaceEditarMir" class="toggle-checkbox" type="checkbox">
                                             <div class="toggle-switch"></div>
                                             <span class="toggle-label text-bold">Editar Datos</span>
                                         </label>
