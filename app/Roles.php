@@ -13,7 +13,8 @@ class Roles extends Model
         'RolEdit',
         'RolDel',
         'RolRevisar',
-        'RolAutorizar'
+        'RolAutorizar',
+        'RolEditDatosMir'
     ];
     protected $table = 'ROL';
     public $timestamps = false;

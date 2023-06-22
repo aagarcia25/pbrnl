@@ -4,21 +4,23 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Objetivos extends Model
+class LineasAccion extends Model
 {
     protected $fillable = [
         'IdEje',
     	'IdTema',
         'IdObjetivo',
+        'IdEstrategias',
+        'IdLineaAccion',
         'Descripcion',
         'Activo'
     ];
-    protected $table = 'OBJETIVO';
+    protected $table = 'ESTRATEGIAS';
     public $timestamps = false;
-    protected $primaryKey = ['IdEje', 'IdTema', 'IdObjetivo'];
+    protected $primaryKey = ['IdEje', 'IdTema', 'IdObjetivo', 'IdEstrategias', 'IdLineaAccion'];
     public $incrementing = false;
 
     public function getKeyName(){
-        return "IdObjetivo";
+        return "IdLineaAccion";
     }
 }
