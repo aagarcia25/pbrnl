@@ -12,10 +12,10 @@
     }
 </style>
 
-<div class="Margin-Top">
+<div >
     @include('includes._partialBreadcrumbCatalogos')
 
-    <section class="container section">
+    <section class="container section Margin-TopUsr">
         <div class="row">
             <div class="col-lg-12">
                 <div class="card bg-transparent border border-0">

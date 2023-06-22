@@ -15,7 +15,7 @@
 
 <div id="MenuLeft" class="mt-5 ms-5">
     <div class="row">
-        <div class="col-md-1">
+        <div class="col-lg-1">
             <div class="card bg-transparent border border-0">
                 <a href="/MenuMIR">
                     <img class="IconoRegresar ms-2" alt="" src="img/icono regresar.svg" style="width: 30%" />
@@ -24,7 +24,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-1">
+        <div class="col-lg-1">
             <div class="card bg-transparent border border-0">
                 <label class="FontNavega fw-bold">Regresar</label>
             </div>
@@ -32,7 +32,7 @@
     </div>
 </div>
 
-<div class="container">
+<div class="container Margin-Top">
     <!-- @include('includes._partialBreadcrumbCatalogos') -->
     <section class="section">
         <div class="row">

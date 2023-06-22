@@ -10,7 +10,7 @@ function Funciones_Iniciales() {
 }
 
 function GetConacAdministrativo() {
-    Func_Cargando();
+    // Func_Cargando();
     repository.ConacAdministrativo.GetConacAdministrativo()
         .then(ResponseGetSecretarias);
 }

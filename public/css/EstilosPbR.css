@@ -4,7 +4,7 @@
 }
 
 .classTable {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Poppins', sans-serif;   
 }
 
 .dropbtn {
@@ -2042,7 +2042,7 @@ TextBox1:not(:placeholder-shown).TextBox1:not(:focus) ~ .form-label1 {
 }    
 
 .Margin-TopUsrs {
-    margin-top: -160px;
+    margin-top: -60px;
 }    
 
 .IconoRolUsr {

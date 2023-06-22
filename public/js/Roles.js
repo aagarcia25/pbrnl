@@ -10,7 +10,7 @@ function Funciones_Iniciales() {
 }
 
 function GetRoles(){
-    Func_Cargando();
+    // Func_Cargando();
     repository.Roles.GetRoles()
         .then(ResponseGetRoles);
 }
@@ -51,6 +51,14 @@ function ResponseGetRoles(response){
         
         if (response.data[4].RolEdit == "1"){
             $("#check_AutorizacionEditar").prop("checked", true);
+        }
+
+        if (response.data[5].RolEdit == "1"){
+            $("#check_EnlaceEditar").prop("checked", true);
+        }
+        
+        if (response.data[5].RolEditDatosMir == "1"){
+            $("#check_EnlaceEditarMir").prop("checked", true);
         }
         
         swal.close();
@@ -99,12 +107,19 @@ function BtnGuardarSecretaria() {
                 AccesoTotal: 0,
                 Anadir: $("#check_AutorizacionAnadir").prop("checked"),
                 Editar: $("#check_AutorizacionEditar").prop("checked")
+            },
+            { // Enlace PbR
+                Id: 6,
+                AccesoTotal: 0,
+                Editar: $("#check_EnlaceEditar").prop("checked"),
+                EditarMir: $("#check_EnlaceEditarMir").prop("checked")
             }
+
         ];
         
         Func_DespliegaConfirmacion("Guardar", "¿Deseas guardar la información de los roles?", "question", "Aceptar", "Cancelar", function(response) {
             if (response) {
-                Func_Cargando();
+                // Func_Cargando();
                 var error = false;
                 
                 for (let i = 0; i < request.length; i++) {

@@ -10,7 +10,7 @@ $(document).ready(function() {
 });
 
 function Funciones_Iniciales() {
-    Func_Cargando();
+    // Func_Cargando();
     GetSecretarias();
     Datepicker();
     Mask();
@@ -247,7 +247,7 @@ function BtnNotificarUsuario(){
 function ResponseSaveNotificacion(response){
     if (!response.error) {
         Func_Toast("success", "Usuario notificado.", "Se ha enviado un correo electrónico con la notificación al usuario.");
-        Func_Cargando();
+        // Func_Cargando();
         GetUsuarios();
     } else {
         console.log(response)
@@ -477,7 +477,7 @@ function ResponseAddUsuario(response) {
         $("#Modal").modal("hide");
         Func_LimpiarModal();
         Func_Toast("success", "Usuario agregado.", "El usuario fue agregado exitosamente.");
-        Func_Cargando();
+        // Func_Cargando();
         GetUsuarios();
     } else {
         console.log(response.result)
@@ -490,7 +490,7 @@ function ResponseEditUsuario(response) {
         $("#Modal").modal("hide");
         Func_LimpiarModal();
         Func_Toast("success", "Usuario editado.", "El usuario fue editado exitosamente.");
-        Func_Cargando();
+        // Func_Cargando();
         GetUsuarios();
     } else {
         console.log(response.result)
@@ -501,7 +501,7 @@ function ResponseEditUsuario(response) {
 function ResponseDeleteUsuario(response) {
     if (!response.error) {
         Func_Toast("success", "Usuario dado de baja.", "El usuario fue dado de baja exitosamente.");
-        Func_Cargando();
+        // Func_Cargando();
         GetUsuarios();
     } else {
         console.log(response.result)

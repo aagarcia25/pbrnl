@@ -124,7 +124,7 @@ Route::get('GetAllObjetivos','ObjetivosController@all');
 // ========================================
 
 // Programas presupuestales
-Route::get('/ProgramasPresupuestable', function () {
+Route::get('/ProgramasPresupuestarios', function () {
     return view('CatProgramasPresupuestales'); // En resources -> views - index.php -- Así se llama la vista principal donde entraran 
 });
 Route::get('GetAllProgramasP','ProgramasPresupuestalesController@all');

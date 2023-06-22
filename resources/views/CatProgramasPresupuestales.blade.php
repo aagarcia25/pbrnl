@@ -1,5 +1,5 @@
 @php
-   $view = "Programas presupuestarios";
+   $view = "Programas Presupuestarios";
    $img = "icono programas presupuestarios.svg";
 @endphp
 
@@ -13,12 +13,45 @@
     }
 </style>
 
-<div class="Margin-Top">
+<div class="mt-3">
     @include('includes._partialBreadcrumbCatalogos')
 
-    <section class="container section">
+    <section class="container-fluid section">
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-2 MenuLeft FontNavega ms-5">
+                <div class="row mt-1">
+                    <div class="col-md-1">
+                        <a href="/Catalogos" class="d-flex align-items-center justify-content-center">
+                            <img id="icon-regresarProg" onmouseover="img_over('icon-regresarProg', '/img/icono regresar activo.svg')" onmouseout="img_out('icon-regresarProg', '/img/icono regresar.svg')" src="img/icono regresar.svg" alt="Logo de tesorería de Nuevo León" width="50" height="50">
+                        </a>
+                        <div class="d-flex align-items-center justify-content-center text-center">
+                            <h6 class="FontNavega"><b>Regresar</b></h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-1">
+                    <div class="col-md-1">
+                        <a href="/ActividadesInstitucionales" class="d-flex align-items-center justify-content-center">
+                            <img id="icon-cat-act-instituc" class="icon-cat-secretaria" onmouseover="img_over('icon-cat-act-instituc', '/img/icono actividades institucionales.svg')" onmouseout="img_out('icon-cat-act-instituc', 'img/icono actividades institucionales off.svg')" src="img/icono actividades institucionales off.svg" width="50" height="50">
+                        </a>
+                        <div class="d-flex align-items-center justify-content-center text-center">
+                            <h6 class="FontNavega"><b>Actividades Institucionales Específicas</b></h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-1">
+                    <div class="col-md-1">
+                        <a href="/ProgramasProyectosInversion" class="d-flex align-items-center justify-content-center">
+                            <img id="icon-cat-program-proyect" class="icon-cat-administrativas" onmouseover="img_over('icon-cat-program-proyect', '/img/icono proyectos de inversion.svg')" onmouseout="img_out('icon-cat-program-proyect', '/img/icono proyectos de inversion off.svg')" src="img/icono proyectos de inversion off.svg" width="50" height="50">
+                        </a>
+                        <div class="d-flex align-items-center justify-content-center text-center">
+                            <h6 class="FontNavega"><b>Programas y Proyectos de Inversión</b></h6>
+                        </div>
+                    </div>
+                </div>
+            </div>   <!-- ***END COL-2 -->
+
+            <div class="col-8">
                 <div class="card">
                     <div class="card-body">
                         <div class="row">
@@ -55,9 +88,9 @@
                         </div>
                         <!-- End Table with stripped rows -->
                     </div>
-                </div>
-    
-            </div>
+                </div> 
+            </div> <!-- END COL-8 -->    
+            <div class="col-2"></div>
         </div>
     </section>
 
