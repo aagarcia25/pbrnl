@@ -9,7 +9,7 @@
     <meta content="" name="keywords">
     <!-- Vendor CSS Files -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('/vendor/bootstrap/css/bootstrap.min.css) }} " />
+    <link rel="stylesheet" type="text/css" href="{{ asset('/vendor/bootstrap/css/bootstrap.min.css') }} " />
     <link rel="stylesheet" type="text/css" href="{{ asset('/vendor/bootstrap-icons/bootstrap-icons.css') }} " />
     <link rel="stylesheet" type="text/css" href="{{ asset('css/login.css') }}"  />
     <link rel="stylesheet" type="text/css" href="{{ asset('css/EstilosPbR.css') }}" />
