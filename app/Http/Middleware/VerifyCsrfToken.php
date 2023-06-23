@@ -13,6 +13,7 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         'stripe/*',
-        'http://evalua-pbr.nl.gob.mx:81/*'
+        'http://evalua-pbr.nl.gob.mx:81/*',
+        'http://evalua-pbr.nl.gob.mx/interfaz/'
     ];
 }
