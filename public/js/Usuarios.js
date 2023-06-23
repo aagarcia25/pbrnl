@@ -10,7 +10,7 @@ $(document).ready(function() {
 });
 
 function Funciones_Iniciales() {
-    Func_Cargando();
+    // Func_Cargando();
     GetSecretarias();
     Datepicker();
     Mask();

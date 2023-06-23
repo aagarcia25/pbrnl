@@ -13,7 +13,7 @@ function Funciones_Iniciales() {
 }
 
 function GetEjes() {
-    Func_Cargando();
+    // Func_Cargando();
     repository.Eje.GetEjes()
         .then(ResponseGetEjes);
 }

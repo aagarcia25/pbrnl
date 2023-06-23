@@ -77,12 +77,12 @@ class UsuariosController extends Controller
 
             $correo_usuario = $usuario->eMail;
             $nombre_usuario = $usuario->Nombre . " " . $usuario->APaterno;
-            $enlace = "http://127.0.0.1:8000/RecuperacionCredencial/".$request->id_usuario;
+            $enlace = "http://evalua-pbr.nl.gob.mx/RecuperacionCredencial/".$request->id_usuario;
             
-            $remitente = "testeoevaluapbrnl@gmail.com";
-            $passowrd = "jhzgzzrhbpagbqlf";
-            $host = "smtp.gmail.com";
-            $port = 465;
+            $remitente = "evalua.pbrnl@nuevoleon.gob.mx";
+            $passowrd = "*Ev4035*";
+            $host = "correo.nl.gob.mx";
+            $port = 25;
 
             //Load Composer's autoloader
             require base_path("vendor/autoload.php");
@@ -108,7 +108,7 @@ class UsuariosController extends Controller
             //Content
             $mail->isHTML(true);                                  //Set email format to HTML
             $mail->Subject = "Bienvenido a Interfaz Evalua PbR NL";
-            $mail->Body    = "<h2>Interfaz Eval&uacute;a PbR NL</h2><br><b>Estimado $nombre_usuario,</b><br><br><br>Bienvenido a Interfaz Eval&uacute;a PbR NL.<br><br>Para ingresar, siga el siguiente enlace que se muestra a continuaci&oacute;n, donde se pedir&aacute; que actualice su contrase&ntilde;a:<br><a href='$enlace'>Actualizar contrase&ntilde;a</a><br><br><b>Saludos cordiales,<br><br>Interfaz Eval&uacute;a PbR NL</b>";
+            $mail->Body    = "<h2>Interfaz Eval&uacute;a PbR NL</h2><br><b>Estimado(a) $nombre_usuario,</b><br><br><br>Bienvenido a Interfaz Eval&uacute;a PbR NL.<br><br>Para ingresar, siga el siguiente enlace que se muestra a continuaci&oacute;n, donde se pedir&aacute; que actualice su contrase&ntilde;a:<br><a href='$enlace'>Actualizar contrase&ntilde;a</a><br><br><b>Saludos cordiales,<br><br>Interfaz Eval&uacute;a PbR NL</b>";
         
             if( !$mail->send() ) {
                 return response()->json(array('error' => false, 'result' => "La notificación no ha podido ser enviada, favor de intentarlo de nuevo.", 'code' => 200));

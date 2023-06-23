@@ -48,8 +48,8 @@ return [
             'url' => env('DATABASE_URL'),
             'host' => env('DB_HOST', '10.200.4.111'),           /*  '10.200.4.111'),  */
             'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'pbrnl_db_pruebas'),
-            'username' => env('DB_USERNAME', 'DBAdminPruebas'),
+            'database' => env('DB_DATABASE', 'pbrnl_db'),
+            'username' => env('DB_USERNAME', 'DBAdmin'),
             'password' => env('DB_PASSWORD', 'xQRA0xBC87Gs'),                /* 'xQRA0xBC87Gs'), */
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
