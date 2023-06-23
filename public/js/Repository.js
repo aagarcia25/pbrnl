@@ -37,7 +37,7 @@ class Repository {
 
     constructor() {
         // Local
-        this.Url = "http://evalua-pbr.nl.gob.mx:81";
+        this.Url = "http://evalua-pbr.nl.gob.mx/interfaz";
 
         this._secretarias = null;
         this._conacadmin = null;
