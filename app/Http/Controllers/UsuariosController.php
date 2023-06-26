@@ -77,7 +77,7 @@ class UsuariosController extends Controller
 
             $correo_usuario = $usuario->eMail;
             $nombre_usuario = $usuario->Nombre . " " . $usuario->APaterno;
-            $enlace = "http://evalua-pbr.nl.gob.mx:81//RecuperacionCredencial/".$request->id_usuario;
+            $enlace = "http://evalua-pbr.nl.gob.mx:81/RecuperacionCredencial/".$request->id_usuario;
             
             $remitente = "evalua.pbrnl@nuevoleon.gob.mx";
             $passowrd = "*Ev4035*";
