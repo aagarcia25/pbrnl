@@ -12,7 +12,7 @@ class EjeController extends Controller
 {
     public function index()
     {
-        $query = "SELECT * FROM EJE WHERE Activo = 'S';";
+        $query = "SELECT * FROM EJE WHERE Activo = 'S' ORDER BY IdEje DESC;";
         $informacion = DB::select($query);
         return response()->json(array('error' => false, 'data' => $informacion, 'code' => 200));
     }

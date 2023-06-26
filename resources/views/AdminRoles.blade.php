@@ -3,6 +3,7 @@
    $img = "icono rol usuario.svg";
 @endphp
 
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet" />
 @include('includes._partialHeader')
 <link rel="stylesheet" type="text/css" href="/css/EstilosPbR.css" />
 
@@ -52,13 +53,13 @@
                     <div class="card-body">
                         <form id="form_roles" autocomplete="off">
                             <div class="row background rounded-1 mx-2 mt-3 CuadroBase01">
-                                <div class="row my-3 mx-4 align-items-center">
+                                <div class="row my-3 mx-4 align-items-center BgRolWhite">
                                     <div class="col">
                                         <h6 class="text-bold">ADMINISTRACIÓN</h6>
                                     </div>
                                     <div class="col">
                                         <label class="toggle">
-                                            <input id="check_AdministracionAccesoTotal" class="toggle-checkbox" type="checkbox">
+                                            <input id="check_AdministracionAccesoTotal" class="toggle-checkbox RolChkBox" type="checkbox" style="width: 95%; height: 35px;">
                                             <div class="toggle-switch"></div>
                                             <span class="toggle-label text-bold">Acceso total</span>
                                         </label>
@@ -66,7 +67,7 @@
                                     <div class="col">
                                     </div>
                                 </div>
-                                <div class="row my-3 mx-4 align-items-center">
+                                <div class="row my-3 mx-4 align-items-center BgRolWhite">
                                     <div class="col">
                                         <h6 class="text-bold">ENLACE PBR</h6>
                                     </div>
@@ -79,13 +80,13 @@
                                     </div>
                                     <div class="col">
                                         <label class="toggle">
-                                            <input id="check_EnlaceEditarMir" class="toggle-checkbox" type="checkbox">
+                                            <input id="check_EnlaceEditarDatos" class="toggle-checkbox" type="checkbox">
                                             <div class="toggle-switch"></div>
                                             <span class="toggle-label text-bold">Editar Datos</span>
                                         </label>
                                     </div>
                                 </div>
-                                <div class="row my-3 mx-4 align-items-center">
+                                <div class="row my-3 mx-4 align-items-center BgRolWhite">
                                     <div class="col">
                                         <h6 class="text-bold">CAPTURA</h6>
                                     </div>
@@ -104,7 +105,7 @@
                                         </label>
                                     </div>
                                 </div>
-                                <div class="row my-3 mx-4 align-items-center">
+                                <div class="row my-3 mx-4 align-items-center BgRolWhite">
                                     <div class="col">
                                         <h6 class="text-bold">REVISIÓN</h6>
                                     </div>
@@ -123,7 +124,7 @@
                                         </label>
                                     </div>
                                 </div>
-                                <div class="row my-3 mx-4 align-items-center">
+                                <div class="row my-3 mx-4 align-items-center BgRolWhite">
                                     <div class="col">
                                         <h6 class="text-bold">CAPTURA Y REVISIÓN</h6>
                                     </div>
@@ -142,7 +143,7 @@
                                         </label>
                                     </div>
                                 </div>
-                                <div class="row my-3 mx-4 align-items-center">
+                                <div class="row my-3 mx-4 align-items-center BgRolWhite">
                                     <div class="col">
                                         <h6 class="text-bold">AUTORIZACIÓN</h6>
                                     </div>

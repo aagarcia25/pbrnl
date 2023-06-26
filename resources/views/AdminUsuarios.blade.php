@@ -1,13 +1,14 @@
 @php
-   $view = "Administrar usuarios";
+   $view = "Administrar Usuarios";
    $img = "AdminUsuariosInt.svg";
 @endphp
 
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet" />
 @include('includes._partialHeader')
 <link rel="stylesheet" type="text/css" href="/css/EstilosPbR.css" />
 
 <div id="MenuLeft" class="mt-5 ms-2">
-    <div class="row mt-3">
+    <div class="row">
         <div class="col-md-1">
             <div class="card bg-transparent border border-0 ms-4">
                 <a href="/MenuAdmin">
@@ -90,7 +91,7 @@
                                 <label for="id_usuario" class="form-labelUsrDis">Id Usuario <span class="text-red">*</span></label>
                             </div>
                             <div class="col-md-2 FormUsr">
-                                <input type="text" class="form-control TextBoxUsr" id="nombre_usuario" maxlength="45" required>
+                                <input type="text" class="form-control TextBoxUsr text-uppercase" id="nombre_usuario" maxlength="45" required>
                                 <label for="nombre_usuario" class="form-labelUsr">Nombre <span class="text-red">*</span></label>
                             </div>
                             <div class="col-md-3 FormUsr">
@@ -101,10 +102,10 @@
                                 <input type="text" class="form-control TextBoxUsr" id="apmaterno_usuario" maxlength="45" required>
                                 <label for="apmaterno_usuario" class="form-labelUsr">Apellido Materno <span class="text-red">*</span></label>
                             </div>
-                            <div class="col-md-2 FontMsg">
-                                <label class="toggle">
+                            <div class="col-md-2 FontMsg ">
+                                <label class="toggle ">
                                     <input id="check_Activo" class="toggle-checkbox" type="checkbox">
-                                    <div class="toggle-switch"></div>
+                                    <div class="toggle-switch "></div>
                                     <span class="toggle-label text-bold">Activo</span>
                                 </label>
                             </div>
@@ -162,7 +163,7 @@
                             </div>
                         </div>
                         <div class="row mb-2 g-3 align-items-center FontMsgChecks">
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <label for="select_roles" class="form-label">Rol</label>
                                 <select id="select_roles" class="selectpicker show-tick form-control" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="5" data-live-search="true" data-actions-box="true">
                                 </select>
@@ -174,7 +175,7 @@
                                     <span class="toggle-label text-bold">Catálogo PbR</span>
                                 </label>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <label class="toggle">
                                     <input id="check_Clasificacion" class="toggle-checkbox" type="checkbox">
                                     <div class="toggle-switch"></div>

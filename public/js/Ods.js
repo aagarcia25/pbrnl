@@ -76,7 +76,7 @@ function BtnEditarCatalogo() {
         var data = table.row(index).data();
 
         if (!table.rows('.selected').any()) {
-            Func_Aviso("Atención", "Para continuar favor de seleccionar un registro.", "info");
+            Func_Aviso("Atención", "Para continuar favor de seleccionar un ODS.", "info");
             return false;
         }
         
@@ -96,11 +96,11 @@ function BtnEliminarCatalogo() {
         var data = table.row(index).data();
 
         if (!table.rows('.selected').any()) {
-            Func_Aviso("Atención", "Para continuar favor de seleccionar un registro.", "info");
+            Func_Aviso("Atención", "Para continuar favor de seleccionar un ODS.", "info");
             return false;
         }
 
-        Func_DespliegaConfirmacion("Eliminar " + data[1], "¿Deseas eliminar el registro seleccionado?", "question", "Aceptar", "Cancelar", function(response) {
+        Func_DespliegaConfirmacion("Eliminar " + data[1], "¿Deseas eliminar el ODS seleccionado?", "question", "Aceptar", "Cancelar", function(response) {
             if (response) {
                 var Id = data[0];
                 var request = {
@@ -126,18 +126,26 @@ function BtnGuardarOds() {
                 descripcion_larga: $("#descripcion_larga").val()
             };
 
-            Func_DespliegaConfirmacion("Guardar", "¿Deseas guardar la información del ODS?", "question", "Aceptar", "Cancelar", function(response) {
-                if (response) {
-                    Func_Cargando();
-                    if ($("#modal_accion").text() == "Editar") {
-                        repository.Ods.EditOds(request)
-                            .then(ResponseEditOds);
-                    } else {
-                        repository.Ods.AddOds(request)
-                            .then(ResponseAddOds);
-                    }
-                }
-            });
+            if ($("#modal_accion").text() == "Editar") {
+                repository.Ods.EditOds(request)
+                    .then(ResponseEditOds);
+            } else {
+                repository.Ods.AddOds(request)
+                    .then(ResponseAddOds);
+            }
+
+            // Func_DespliegaConfirmacion("Guardar", "¿Deseas guardar la información del ODS?", "question", "Aceptar", "Cancelar", function(response) {
+            //     if (response) {
+            //         Func_Cargando();
+            //         if ($("#modal_accion").text() == "Editar") {
+            //             repository.Ods.EditOds(request)
+            //                 .then(ResponseEditOds);
+            //         } else {
+            //             repository.Ods.AddOds(request)
+            //                 .then(ResponseAddOds);
+            //         }
+            //     }
+            // });
         }
     });
 }
@@ -146,7 +154,7 @@ function ResponseAddOds(response) {
     if (!response.error) {
         $("#Modal").modal("hide");
         Func_LimpiarModal();
-        Func_Toast("success", "ODS agregado.", "El ods fue agregado exitosamente.");
+        Func_Toast("success", "ODS agregado.", "El ODS fue agregado con éxito.");
         GetOds();
     } else {
         console.log(response.result)
@@ -158,7 +166,7 @@ function ResponseEditOds(response) {
     if (!response.error) {
         $("#Modal").modal("hide");
         Func_LimpiarModal();
-        Func_Toast("success", "ODS editado.", "El ods fue editado exitosamente.");
+        Func_Toast("success", "ODS editado.", "El ODS ha sido modificado.");
         GetOds();
     } else {
         console.log(response.result)
@@ -168,7 +176,7 @@ function ResponseEditOds(response) {
 
 function ResponseDeleteOds(response) {
     if (!response.error) {
-        Func_Toast("success", "Ods eliminado.", "El ods fue eliminado exitosamente.");
+        Func_Toast("success", "Ods eliminado.", "El ODS ha sido eliminado de Interfaz PbR.");
         GetOds();
     } else {
         console.log(response.result)

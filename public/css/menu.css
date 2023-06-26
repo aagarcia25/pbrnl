@@ -54,6 +54,7 @@ table.dataTable tbody tr.selected>* {
     height: 50px;
     margin-top: -20px;
     align-content: center;
+    border: 2px;
 }
 
 .UsuarioBG-0 {
@@ -65,6 +66,8 @@ table.dataTable tbody tr.selected>* {
     margin-top: -20px;
     margin-left: -60px;
     align-content: center;
+    border: 2px;
+    border-color: #736357;
 }
 
 .MarginRight {
@@ -135,10 +138,16 @@ table.dataTable tbody tr.selected>* {
 
 .dropdown_usuario:hover>.dropdown-menu {
     display: block;
+    border: thin;
+    border-color: #736357;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
 .dropdown_usuario>.dropdown-toggle:active {
     pointer-events: none;
+    border: thin;
+    border-color: #736357;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
 .text-bold {

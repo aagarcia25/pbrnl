@@ -5,6 +5,7 @@
 
 @include('includes._partialHeader')
 
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" type="text/css" href="/css/EstilosPbR.css" />
 
 <style>
@@ -14,12 +15,19 @@
 </style>
 
 <div class="mt-3">
-    @include('includes._partialBreadcrumbCatalogos')
+    {{-- @include('includes._partialBreadcrumbCatalogos') --}}
 
     <section class="container-fluid section">
-        <div class="row ms-5">
-            <div class="col-2">
+        <div class="row">
+            <div class="col-2 MenuLeft FontNavega ms-5">
                 <div class="row mt-1">
+                    <div class="col-md-1">
+                        <a class="d-flex align-items-center justify-content-center">
+                            <img id="icon-imgAdmin"src="img/icono Planeación.svg" alt="Logo de tesorería de Nuevo León" width="60" height="60">
+                        </a>
+                    </div>
+                </div>    
+                <div class="row mt-3">
                     <div class="col-md-1">
                         <a href="/Catalogos" class="d-flex align-items-center justify-content-center">
                             <img id="icon-regresarPlan" onmouseover="img_over('icon-regresarPlan', '/img/icono regresar activo.svg')" onmouseout="img_out('icon-regresarPlan', '/img/icono regresar.svg')" src="img/icono regresar.svg" alt="Logo de tesorería de Nuevo León" width="50" height="50">
@@ -41,7 +49,7 @@
                 </div>
                 <div class="row mt-1">              
                     <div class="col-1">
-                        <a href="/Objetivo" class="d-flex align-items-center justify-content-center">
+                        <a href="/Objetivos" class="d-flex align-items-center justify-content-center">
                             <img id="icon-cat-objetivo" class="icon-cat-secretaria" onmouseover="img_over('icon-cat-objetivo', '/img/icono objetivo.svg')" onmouseout="img_out('icon-cat-objetivo', 'img/icono objetivo off.svg')" src="img/icono objetivo off.svg" width="50" height="50">
                         </a>
                         <div class="d-flex align-items-center justify-content-center text-center">
@@ -90,8 +98,17 @@
                     </div>
                 </div>
             </div>  <!-- ***END COL-2 -->
-
             <div class="col-8">
+                <div class="container pagetitle mt-3">
+                    <div class="row mb-3">
+                        <div class="col-1">
+                            <img id="icon-cat-ods" class="icon-cat-secretaria" src="/img/@php echo $img; @endphp" width="80" height="80">
+                        </div>
+                        <div class="col-11 mt-4">
+                            <h1 class="TituloCatalogo">@php echo $view; @endphp</h1>
+                        </div>
+                    </div>
+                </div>
                 <div class="card">
                     <div class="card-body">
                         <!-- Botones de accion -->
@@ -110,9 +127,9 @@
                         </div>
                         <!-- End Table with stripped rows -->
                     </div>
-                </div>    
+                </div>
+    
             </div>
-            <div class="col-2"></div>
         </div>
     </section>
 
@@ -138,8 +155,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        <input type="submit" id="BtnGuardarEje" class="btn btn-primary" value="Guardar">
+                        <input type="submit" id="BtnGuardarEje" class="buttonOutlineSucces" value="Guardar">
+                        <button type="button" class="buttonCloseModal" data-bs-dismiss="modal">Cerrar</button>
                     </div>
                 </form>
             </div>

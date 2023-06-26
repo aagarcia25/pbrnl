@@ -120,7 +120,7 @@ function BtnEditarCatalogo(){
         var data = table.row(index).data();
 
         if (!table.rows('.selected').any()) {
-            Func_Aviso("Atención", "Para continuar favor de seleccionar un registro.", "info");
+            Func_Aviso("Atención", "Para continuar favor de seleccionar una Meta ODS.", "info");
             return false;
         }
 
@@ -140,11 +140,11 @@ function BtnEliminarCatalogo(){
         var data = table.row(index).data();
 
         if (!table.rows('.selected').any()) {
-            Func_Aviso("Atención", "Para continuar favor de seleccionar un registro.", "info");
+            Func_Aviso("Atención", "Para continuar favor de seleccionar una Meta ODS.", "info");
             return false;
         }
 
-        Func_DespliegaConfirmacion("Eliminar meta" + data[1], "¿Deseas eliminar el registro seleccionado?", "question", "Aceptar", "Cancelar", function(response) {
+        Func_DespliegaConfirmacion("Eliminar Meta ODS" + data[2], "¿Deseas eliminar la Meta ODS seleccionada?", "question", "Aceptar", "Cancelar", function(response) {
             if (response) {
                 var id_ods = data[0];
                 var id_metaods = data[1];
@@ -172,18 +172,27 @@ function BtnGuardarMetaOds(){
                 descripcion: $("#descripcion").val()
             };
 
-            Func_DespliegaConfirmacion("Guardar", "¿Deseas guardar la información de la meta ODS?", "question", "Aceptar", "Cancelar", function(response) {
-                if (response) {
-                    Func_Cargando();
-                    if ($("#modal_accion").text() == "Editar") {
-                        repository.MetaOds.EditMetaOds(request)
-                            .then(ResponseEditMetaOds);
-                    } else {
-                        repository.MetaOds.AddMetaOds(request)
-                            .then(ResponseAddMetaOds);
-                    }
-                }
-            });
+            if ($("#modal_accion").text() == "Editar") {
+                repository.MetaOds.EditMetaOds(request)
+                    .then(ResponseEditMetaOds);
+            } else {
+                repository.MetaOds.AddMetaOds(request)
+                    .then(ResponseAddMetaOds);
+            }
+            Func_Cargando();
+
+            // Func_DespliegaConfirmacion("Guardar", "¿Deseas guardar la información de la Meta ODS?", "question", "Aceptar", "Cancelar", function(response) {
+            //     if (response) {
+            //         Func_Cargando();
+            //         if ($("#modal_accion").text() == "Editar") {
+            //             repository.MetaOds.EditMetaOds(request)
+            //                 .then(ResponseEditMetaOds);
+            //         } else {
+            //             repository.MetaOds.AddMetaOds(request)
+            //                 .then(ResponseAddMetaOds);
+            //         }
+            //     }
+            // });
         }
     });
 }
@@ -192,7 +201,7 @@ function ResponseAddMetaOds(response) {
     if (!response.error) {
         $("#Modal").modal("hide");
         Func_LimpiarModal();
-        Func_Toast("success", "Meta ODS agregada.", "La meta ODS fue agregada exitosamente.");
+        Func_Toast("success", "Meta ODS agregada.", "La Meta ODS fue agregada con éxito.");
         GetMetaOds();
     } else {
         console.log(response.result)
@@ -204,7 +213,7 @@ function ResponseEditMetaOds(response) {
     if (!response.error) {
         $("#Modal").modal("hide");
         Func_LimpiarModal();
-        Func_Toast("success", "Meta ODS editada.", "La meta ODS fue editada exitosamente.");
+        Func_Toast("success", "Meta ODS editada.", "La Meta ODS ha sido modificada.");
         GetMetaOds();
     } else {
         console.log(response.result)
@@ -214,7 +223,7 @@ function ResponseEditMetaOds(response) {
 
 function ResponseDeleteMetaOds(response) {
     if (!response.error) {
-        Func_Toast("success", "Meta ODS eliminada.", "La meta ODS fue eliminada exitosamente.");
+        Func_Toast("success", "Meta ODS eliminada.", "La Meta ODS ha sido eliminada de Interfaz PbR.");
         GetMetaOds();
     } else {
         console.log(response.result)

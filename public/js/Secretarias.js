@@ -10,7 +10,7 @@ function Funciones_Iniciales() {
 }
 
 function GetConacAdministrativo(){
-    // Func_Cargando();
+    Func_Cargando();
     repository.ConacAdministrativo.GetConacAdministrativo()
         .then(ResponseGetConacAdministrativo);
 }
@@ -122,7 +122,7 @@ function BtnEliminarCatalogo() {
             return false;
         }
 
-        Func_DespliegaConfirmacion("Eliminar " + data[2], "¿Deseas eliminar el registro seleccionado?", "question", "Aceptar", "Cancelar", function(response) {
+        Func_DespliegaConfirmacion("Eliminar " + data[2], "¿Deseas eliminar la Secretaría seleccionada?", "question", "Aceptar", "Cancelar", function(response) {
             if (response) {
                 var Id = data[0];
                 var request = {
@@ -148,18 +148,26 @@ function BtnGuardarSecretaria() {
                 descripcion: $("#descripcion").val()
             };
 
-            Func_DespliegaConfirmacion("Guardar", "¿Deseas guardar la información de la secretaría?", "question", "Aceptar", "Cancelar", function(response) {
-                if (response) {
-                    Func_Cargando();
-                    if ($("#modal_accion").text() == "Editar") {
-                        repository.Secretarias.EditSecretaria(request)
-                            .then(ResponseEditSecretaria);
-                    } else {
-                        repository.Secretarias.AddSecretaria(request)
-                            .then(ResponseAddSecretaria);
-                    }
-                }
-            });
+            if ($("#modal_accion").text() == "Editar") {
+                repository.Secretarias.EditSecretaria(request)
+                    .then(ResponseEditSecretaria);
+            } else {
+                repository.Secretarias.AddSecretaria(request)
+                    .then(ResponseAddSecretaria);
+            }
+
+            // Func_DespliegaConfirmacion("Guardar", "¿Deseas guardar la información de la secretaría?", "question", "Aceptar", "Cancelar", function(response) {
+            //     if (response) {
+            //         Func_Cargando();
+            //         if ($("#modal_accion").text() == "Editar") {
+            //             repository.Secretarias.EditSecretaria(request)
+            //                 .then(ResponseEditSecretaria);
+            //         } else {
+            //             repository.Secretarias.AddSecretaria(request)
+            //                 .then(ResponseAddSecretaria);
+            //         }
+            //     }
+            // });
         }
     });
 }

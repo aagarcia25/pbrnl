@@ -59,7 +59,7 @@ function justNumbers(e) {
     return /\d/.test(String.fromCharCode(keynum));
 }
 
-function Func_Moneda(amount, decimals) {
+function Func_FormatoMoneda(amount, decimals) {
     amount += '';
     Monto = amount;
     amount = parseFloat(amount.replace(/[^0-9\.]/g, ''));
@@ -98,7 +98,9 @@ function Func_DespliegaConfirmacion(title, text, icon, btnConfirm, btnCancel, ne
         confirmButtonText: btnConfirm,
         allowOutsideClick: false,
         allowEscapeKey: false,
-        reverseButtons: true
+        reverseButtons: true,
+        focusConfirm: false,
+        focusCancel: false
     }).then((function(result) {
         next(result.value)
     }));
@@ -118,7 +120,7 @@ function Func_Cargando(Mensaje = "Cargando...") {
         allowOutsideClick: false,
         didOpen: function() {
             swal.showLoading()
-        } 
+        }
     });
 }
 
@@ -131,7 +133,8 @@ function Func_Toast(icon, title, text, time = 5000) {
         hideAfter: time,
         position: 'top-right',
         bgColor: '#C8B294',
-        loaderBg: '#B58E5A'
+        loaderBg: '#B58E5A',
+        textColor: 'white'
     })
 }
 
@@ -143,4 +146,21 @@ function SetYYYYMMDD_DDMMYYYY(Fecha){
 function SetDDMMYYYY_YYYYMMDD(Fecha){
     var Fechas = Fecha.split("/");
     return FechaFinal = Fechas[2] + "-" + Fechas[1] + "-" + Fechas[0];
+}
+
+$(document).ready(function () {
+    $('#Modal').on('hidden.bs.modal', function () {
+        $("body").removeAttr("style");
+    });
+    $('#ModalActualizacion').on('hidden.bs.modal', function () {
+        $("body").removeAttr("style");
+    });
+});
+
+function img_over(id, nombre) {
+    $("#" + id).attr('src', nombre);
+}
+
+function img_out(id, nombre) {
+    $("#" + id).attr('src', nombre);
 }

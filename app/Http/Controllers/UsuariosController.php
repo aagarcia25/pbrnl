@@ -82,7 +82,7 @@ class UsuariosController extends Controller
             $remitente = "evalua.pbrnl@nuevoleon.gob.mx";
             $passowrd = "*Ev4035*";
             $host = "correo.nl.gob.mx";
-            $port = 25;
+            $port = 587;
 
             //Load Composer's autoloader
             require base_path("vendor/autoload.php");
@@ -101,13 +101,13 @@ class UsuariosController extends Controller
             $mail->Port       = $port;                                  //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
         
             //Recipients
-            $mail->setFrom($remitente, 'Evalua PBRNL');
+            $mail->setFrom($remitente, 'Evalúa PbR NL');
             $mail->addAddress($correo_usuario, $nombre_usuario);       //Add a recipient
             $mail->addBCC('lvilleba@hotmail.com', 'Luis VG');    // CCO
         
             //Content
             $mail->isHTML(true);                                  //Set email format to HTML
-            $mail->Subject = "Bienvenido a Interfaz Evalua PbR NL";
+            $mail->Subject = "Bienvenido a Interfaz Evalúa PbR NL";
             $mail->Body    = "<h2>Interfaz Eval&uacute;a PbR NL</h2><br><b>Estimado(a) $nombre_usuario,</b><br><br><br>Bienvenido a Interfaz Eval&uacute;a PbR NL.<br><br>Para ingresar, siga el siguiente enlace que se muestra a continuaci&oacute;n, donde se pedir&aacute; que actualice su contrase&ntilde;a:<br><a href='$enlace'>Actualizar contrase&ntilde;a</a><br><br><b>Saludos cordiales,<br><br>Interfaz Eval&uacute;a PbR NL</b>";
         
             if( !$mail->send() ) {

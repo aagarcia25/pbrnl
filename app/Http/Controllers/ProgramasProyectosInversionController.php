@@ -11,14 +11,14 @@ class ProgramasProyectosInversionController extends Controller
 {
     public function all()
     {
-        $query = "SELECT A.* FROM PROGRAMATICO AS A INNER JOIN SECRETARIAS AS B ON A.idSecretaria = B.idSecretaria WHERE A.idClasificacion IN ('I' , 'E', 'O');";
+        $query = "SELECT A.* FROM PROGRAMATICO AS A INNER JOIN SECRETARIAS AS B ON A.idSecretaria = B.idSecretaria WHERE A.idClasificacion IN ('I' , 'E', 'O') ORDER BY CAST(A.Consecutivo AS SIGNED);";
         $informacion = DB::select($query);
         return response()->json(array('error' => false, 'data' => $informacion, 'code' => 200));
     }
 
     public function index(Request $request)
     {
-        $query = "SELECT A.* FROM PROGRAMATICO AS A INNER JOIN SECRETARIAS AS B ON A.idSecretaria = B.idSecretaria WHERE A.idClasificacion IN ('I' , 'E', 'O') AND A.idSecretaria = '$request->id_secretaria';";
+        $query = "SELECT A.* FROM PROGRAMATICO AS A INNER JOIN SECRETARIAS AS B ON A.idSecretaria = B.idSecretaria WHERE A.idClasificacion IN ('I' , 'E', 'O') AND A.idSecretaria = '$request->id_secretaria' ORDER BY CAST(A.Consecutivo AS SIGNED);";
         $informacion = DB::select($query);
         return response()->json(array('error' => false, 'data' => $informacion, 'code' => 200));
     }
@@ -40,7 +40,7 @@ class ProgramasProyectosInversionController extends Controller
     public function components(Request $request)
     {
         $query = "SELECT A.idUA, B.Descripcion, A.Componente, A.DescripcionComponente
-                FROM PROGRAMATICO_AI_COMP AS A
+                FROM PROGRAMATICO_PI_COMP AS A
                 INNER JOIN UNIDADES AS B ON A.idUA = B.idUnidad AND A.idSecretaria = B.idSecretaria
                 WHERE A.idSecretaria = '$request->id_secretaria' AND A.idObjetivoPED = '$request->id_objetivo' AND A.idClasificacion = '$request->id_clasificacion' AND A.Consecutivo = '$request->consecutivo';";
         $informacion = DB::select($query);
@@ -51,7 +51,7 @@ class ProgramasProyectosInversionController extends Controller
     {
         
         try {
-            $update = DB::table('PROGRAMATICO_AI_COMP')
+            $update = DB::table('PROGRAMATICO_PI_COMP')
                 ->where('idObjetivoPED', '=', $request->id_objetivo)
                 ->where('idSecretaria', '=', $request->id_secretaria)
                 ->where('idClasificacion', '=', $request->id_clasificacion)

@@ -1,6 +1,6 @@
 @php
-   $view = "Tema";
-   $img = "icono tema.svg";
+   $view = "Objetivo";
+   $img = "icono objetivo.svg";
 @endphp
 
 @include('includes._partialHeader')
@@ -27,7 +27,7 @@
                         </a>
                     </div>
                 </div>    
-                <div class="row mt-1">
+                <div class="row mt-3">
                     <div class="col-md-1">
                         <a href="/Catalogos" class="d-flex align-items-center justify-content-center">
                             <img id="icon-regresarPlan" onmouseover="img_over('icon-regresarPlan', '/img/icono regresar activo.svg')" onmouseout="img_out('icon-regresarPlan', '/img/icono regresar.svg')" src="img/icono regresar.svg" alt="Logo de tesorería de Nuevo León" width="50" height="50">
@@ -49,11 +49,11 @@
                 </div>
                 <div class="row mt-1">              
                     <div class="col-1">
-                        <a href="/Objetivos" class="d-flex align-items-center justify-content-center">
-                            <img id="icon-cat-objetivo" class="icon-cat-secretaria" onmouseover="img_over('icon-cat-objetivo', '/img/icono objetivo.svg')" onmouseout="img_out('icon-cat-objetivo', 'img/icono objetivo off.svg')" src="img/icono objetivo off.svg" width="50" height="50">
+                        <a href="/Tema" class="d-flex align-items-center justify-content-center">
+                            <img id="icon-cat-tema" class="icon-cat-secretaria" onmouseover="img_over('icon-cat-tema', '/img/icono tema.svg')" onmouseout="img_out('icon-cat-tema', 'img/icono tema off.svg')" src="img/icono tema off.svg" width="50" height="50">
                         </a>
                         <div class="d-flex align-items-center justify-content-center text-center">
-                            <h6 class="FontNavega"><b>Objetivo</b></h6>
+                            <h6 class="FontNavega"><b>Tema</b></h6>
                         </div>
                     </div>
                 </div>
@@ -69,7 +69,7 @@
                 </div>
                 <div class="row mt-1">              
                     <div class="col-1">
-                        <a href="/Catalogos" class="d-flex align-items-center justify-content-center">
+                        <a href="/LineasAccion" class="d-flex align-items-center justify-content-center">
                             <img id="icon-cat-lineas-accion" class="icon-cat-secretaria" onmouseover="img_over('icon-cat-lineas-accion', '/img/icono lineas de accion.svg')" onmouseout="img_out('icon-cat-lineas-accion', 'img/icono lineas de accion off.svg')" src="img/icono lineas de accion off.svg" width="50" height="50">
                         </a>
                         <div class="d-flex align-items-center justify-content-center text-center">
@@ -111,7 +111,7 @@
                 </div>
                 <div class="card">
                     <div class="card-body">
-                        <div class="row mb-2">
+                        <div class="row">
                             <div class="col-12">
                                 <div class="row DDLFont">
                                     <label for="select_eje" class="col-1 col-form-label col-form-label-sm DDLFont">Eje</label>
@@ -119,17 +119,25 @@
                                     </select>
                                 </div>
                             </div>
+                            <div class="col-12 mt-2 mb-2">
+                                <div class="row DDLFont">
+                                    <label for="select_tema" class="col-1 col-form-label col-form-label-sm DDLFont">Tema</label>
+                                    <select id="select_tema" class="col-11 selectpicker show-tick form-control W95" title="Seleccione..." data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                         <!-- Botones de accion -->
                         @include('includes._partialBotonesAccion')
                         <!-- Botones de accion -->
-                        <div class="table-response">
+                        <div class="table-response mt-1">
                             <table id="table" class="table table-striped table-hover">
                                 <thead>
                                     <tr class="table-header text-center">
                                         <th scope="col" width="10%">Id eje</th>
                                         <th scope="col" width="10%">Id tema</th>
-                                        <th scope="col" width="80%">Descripción</th>
+                                        <th scope="col" width="10%">Id objetivo</th>
+                                        <th scope="col" width="70%">Descripción</th>
                                     </tr>
                                 </thead>
                                 <tbody></tbody>
@@ -150,17 +158,21 @@
                     <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
                     <input type="hidden" id="id"></input>
                     <div class="modal-header">
-                        <h5 class="modal-title"><span id="modal_accion"></span> unidad administrativa</h5>
+                        <h5 class="modal-title"><span id="modal_accion"></span> objetivo</h5>
                     </div>
                     <div class="modal-body">
                         <div class="row g-3">
                             <div class="col-md-4">
                                 <label for="id_eje" class="form-label">Id eje</label>
-                                <input type="text" class="form-control" id="id_eje" disabled style="background: white;">
+                                <input type="text" class="form-control" id="id_eje" disabled style="background: white;" required>
                             </div>
                             <div class="col-md-4">
                                 <label for="id_tema" class="form-label">Id tema</label>
-                                <input type="text" class="form-control" id="id_tema" maxlength="45" required>
+                                <input type="text" class="form-control" id="id_tema" disabled style="background: white;" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="id_objetivo" class="form-label">Id objetivo</label>
+                                <input type="text" class="form-control" id="id_objetivo" maxlength="2" required>
                             </div>
                             <div class="col-md-12">
                                 <label for="descripcion" class="form-label">Descripción</label>
@@ -169,7 +181,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <input type="submit" id="BtnGuardarTema" class="buttonOutlineSucces" value="Guardar">
+                        <input type="submit" class="buttonOutlineSucces" value="Guardar">
                         <button type="button" class="buttonCloseModal" data-bs-dismiss="modal">Cerrar</button>
                     </div>
                 </form>
@@ -180,7 +192,7 @@
 
 @include('includes._partialFooter')
 <script src="/js/Repository.js"></script>
-<script src="/js/Tema.js"></script>
+<script src="/js/Objetivos.js"></script>
 
 </body>
 

@@ -940,10 +940,10 @@
 .BotonesGrid2 {
     background: #a69c95; /* #1F618D; #333;*/
     color: white; /*#ccc;*/
-    width: 120px;
+    width: 130px;
     height: 20px;
     border: none;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: normal;
     /*text-shadow: 2px;*/
     /*border-radius: 4px;*/
@@ -1426,6 +1426,12 @@
 
 .DDLFont {
     font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    /*font-weight: bold;*/
+}
+
+.DDLFont2 {
+    font-family: 'Poppins', sans-serif;
     font-size: 14px;
     /*font-weight: bold;*/
 }
@@ -1549,17 +1555,28 @@ TextBox1:not(:placeholder-shown).TextBox1:not(:focus) ~ .form-label1 {
     width: 99%;
 }
 
-.form-labelUsr {
+/* .form-labelUsr {
     font-family: 'Poppins', sans-serif;
     font-size: 12px;
     font-weight: bold;
     color: gray;
     position: absolute;
-    top: 0.9rem;
+    top: 0.7rem;
+    left: 1.4rem;
+    cursor: text;
+    transition: top 100ms ease-in, left 100ms ease-in, font-size 100ms ease-in;
+} */
+
+.form-labelUsr {
+    font-family: 'Poppins', sans-serif;
+    color: red;
+    position: absolute;
+    top: 1.2rem;
     left: 1.4rem;
     cursor: text;
     transition: top 100ms ease-in, left 100ms ease-in, font-size 100ms ease-in;
 }
+
 
 .form-labelUsrRequired {
     font-family: 'Poppins', sans-serif;
@@ -2005,7 +2022,7 @@ TextBox1:not(:placeholder-shown).TextBox1:not(:focus) ~ .form-label1 {
 .BotonesGrid2 {
     background: #a69c95; /* #1F618D; #333;*/
     color: white; /*#ccc;*/
-    width: 150px;
+    width: 170px;
     height: 30px;
     border: none;
     font-size: 11px;
@@ -2055,4 +2072,22 @@ TextBox1:not(:placeholder-shown).TextBox1:not(:focus) ~ .form-label1 {
     background-image: url("../img/AdminRol2.svg");
     z-index:100;
     background-repeat: no-repeat;
+}
+
+.BgRolWhite {
+    background-color: white;
+    width: 95%;
+}
+
+.RolChkBox {
+    font-size: medium;
+    transform: scale(0.2);
+}
+
+.W95 {
+    width: 91%;
+}
+
+.W90 {
+    width: 83%;
 }

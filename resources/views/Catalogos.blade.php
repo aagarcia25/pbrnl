@@ -9,11 +9,18 @@ $view = "Menu de catálogos";
 
 
 
-<div class="container-fluid">
+<div class="container-fluid ms-2">
     <div class="row">
-        <div class="col-2 MenuLeft FontNavega">
+        <div class="col-2 MenuLeft FontNavega ms-5 mt-4">
             <div id="opcAdministrativo" class="d-none grupo-catalogos">
                 <div class="row mt-1">
+                    <div class="col-md-1">
+                        <a class="d-flex align-items-center justify-content-center">
+                            <img id="icon-imgAdmin"src="img/icono Administrativo.svg" alt="Logo de tesorería de Nuevo León" width="60" height="60">
+                        </a>
+                    </div>
+                </div>
+                <div class="row mt-3">
                     <div class="col-md-1">
                         <a href="/Menu" class="d-flex align-items-center justify-content-center">
                             <img id="icon-regresar" onmouseover="img_over('icon-regresar', '/img/icono regresar activo.svg')" onmouseout="img_out('icon-regresar', '/img/icono regresar.svg')" src="img/icono regresar.svg" alt="Logo de tesorería de Nuevo León" width="50" height="50">
@@ -77,6 +84,13 @@ $view = "Menu de catálogos";
             <div id="opcProgramatico" class="d-none grupo-catalogos">
                 <div class="row mt-1">
                     <div class="col-md-1">
+                        <a class="d-flex align-items-center justify-content-center">
+                            <img id="icon-imgProgram"src="img/icono Programático.svg" alt="Logo de tesorería de Nuevo León" width="60" height="60">
+                        </a>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-1">
                         <a href="/Menu" class="d-flex align-items-center justify-content-center">
                             <img id="icon-regresarProg" onmouseover="img_over('icon-regresarProg', '/img/icono regresar activo.svg')" onmouseout="img_out('icon-regresarProg', '/img/icono regresar.svg')" src="img/icono regresar.svg" alt="Logo de tesorería de Nuevo León" width="50" height="50">
                         </a>
@@ -120,6 +134,13 @@ $view = "Menu de catálogos";
             <div id="opcPlaneacion" class="d-none grupo-catalogos">
                 <div class="row mt-1">
                     <div class="col-md-1">
+                        <a class="d-flex align-items-center justify-content-center">
+                            <img id="icon-imPlanea"src="img/icono Planeación.svg" alt="Logo de tesorería de Nuevo León" width="60" height="60">
+                        </a>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-1">
                         <a href="/Menu" class="d-flex align-items-center justify-content-center">
                             <img id="icon-regresarPlan" onmouseover="img_over('icon-regresarPlan', '/img/icono regresar activo.svg')" onmouseout="img_out('icon-regresarPlan', '/img/icono regresar.svg')" src="img/icono regresar.svg" alt="Logo de tesorería de Nuevo León" width="50" height="50">
                         </a>
@@ -150,7 +171,7 @@ $view = "Menu de catálogos";
                 </div>
                 <div class="row mt-1">              
                     <div class="col-1">
-                        <a href="/Objetivo" class="d-flex align-items-center justify-content-center">
+                        <a href="/Objetivos" class="d-flex align-items-center justify-content-center">
                             <img id="icon-cat-objetivo" class="icon-cat-secretaria" onmouseover="img_over('icon-cat-objetivo', '/img/icono objetivo.svg')" onmouseout="img_out('icon-cat-objetivo', 'img/icono objetivo off.svg')" src="img/icono objetivo off.svg" width="50" height="50">
                         </a>
                         <div class="d-flex align-items-center justify-content-center text-center">
@@ -170,7 +191,7 @@ $view = "Menu de catálogos";
                 </div>
                 <div class="row mt-1">              
                     <div class="col-1">
-                        <a href="/Catalogos" class="d-flex align-items-center justify-content-center">
+                        <a href="/LineasAccion" class="d-flex align-items-center justify-content-center">
                             <img id="icon-cat-lineas-accion" class="icon-cat-secretaria" onmouseover="img_over('icon-cat-lineas-accion', '/img/icono lineas de accion.svg')" onmouseout="img_out('icon-cat-lineas-accion', 'img/icono lineas de accion off.svg')" src="img/icono lineas de accion off.svg" width="50" height="50">
                         </a>
                         <div class="d-flex align-items-center justify-content-center text-center">
@@ -216,7 +237,7 @@ $view = "Menu de catálogos";
                 </div>
                 <div class="col-md-3 col-12">
                     <div onclick="ver_opciones('opcAdministrativo');" class="d-flex align-items-center justify-content-center">
-                        <img class="bd-placeholder-img rounded-circle round-section cursor-pointer" src="img/boton Admin.svg" alt="Logo de tesorería de Nuevo León" width="140" height="140">
+                        <img class="bd-placeholder-img BotonAdmin cursor-pointer" src="img/boton Admin.svg" alt="Logo de tesorería de Nuevo León" width="140" height="140">
                     </div>
                     <div class="d-flex align-items-center justify-content-center text-center">
                         <h4><b>Administrativo</b></h4>
@@ -224,7 +245,7 @@ $view = "Menu de catálogos";
                 </div>
                 <div class="col-md-3 col-12">
                     <div onclick="ver_opciones('opcProgramatico');" class="d-flex align-items-center justify-content-center">
-                        <img class="bd-placeholder-img rounded-circle round-section cursor-pointer" src="img/boton Programatico.svg" alt="Logo de tesorería de Nuevo León" width="140" height="140">
+                        <img class="bd-placeholder-img BotonProg cursor-pointer" src="img/boton Programatico.svg" alt="Logo de tesorería de Nuevo León" width="140" height="140">  {{-- rounded-circle round-section  --}}
                     </div>
                     <div class="d-flex align-items-center justify-content-center text-center">
                         <h4><b>Programático</b></h4>
@@ -232,7 +253,7 @@ $view = "Menu de catálogos";
                 </div>
                 <div class="col-md-3 col-12">
                     <div onclick="ver_opciones('opcPlaneacion');" class="d-flex align-items-center justify-content-center">
-                        <img class="bd-placeholder-img rounded-circle round-section cursor-pointer" src="img/boton Planeacion.svg" alt="Logo de tesorería de Nuevo León" width="140" height="140">
+                        <img class="bd-placeholder-img BotonPlan cursor-pointer" src="img/boton Planeacion.svg" alt="Logo de tesorería de Nuevo León" width="140" height="140">
                     </div>
                     <div class="d-flex align-items-center justify-content-center text-center">
                         <h4><b>Planeación</b></h4>
@@ -241,7 +262,7 @@ $view = "Menu de catálogos";
                 <div class="col-md-3 col-12">
                     <div class="d-flex align-items-center justify-content-center">
                         <a href="/Beneficiarios">
-                            <img class="bd-placeholder-img rounded-circle round-section cursor-pointer" src="img/boton beneficiarios.svg" alt="Logo de tesorería de Nuevo León" width="140" height="140">
+                            <img class="bd-placeholder-img BotonBeneficiarios cursor-pointer" src="img/boton beneficiarios.svg" alt="Logo de tesorería de Nuevo León" width="140" height="140">
                         </a>
                     </div>
                     <div class="d-flex align-items-center justify-content-center text-center">
@@ -397,9 +418,9 @@ $view = "Menu de catálogos";
 <?php
 
 ?>
-<!-- 
+
 @include('includes._partialFooter')
- -->
+ 
  
  <script src="/js/Catalogos.js"></script>
 

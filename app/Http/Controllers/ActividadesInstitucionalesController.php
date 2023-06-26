@@ -11,14 +11,14 @@ class ActividadesInstitucionalesController extends Controller
 {
     public function all()
     {
-        $query = "SELECT A.* FROM PROGRAMATICO AS A INNER JOIN SECRETARIAS AS B ON A.idSecretaria = B.idSecretaria WHERE A.idClasificacion IN ('AI');";
+        $query = "SELECT A.* FROM PROGRAMATICO AS A INNER JOIN SECRETARIAS AS B ON A.idSecretaria = B.idSecretaria WHERE A.idClasificacion IN ('AI') ORDER BY A.Consecutivo;";
         $informacion = DB::select($query);
         return response()->json(array('error' => false, 'data' => $informacion, 'code' => 200));
     }
 
     public function index(Request $request)
     {
-        $query = "SELECT A.* FROM PROGRAMATICO AS A INNER JOIN SECRETARIAS AS B ON A.idSecretaria = B.idSecretaria WHERE A.idClasificacion IN ('AI') AND A.idSecretaria = '$request->id_secretaria';";
+        $query = "SELECT A.* FROM PROGRAMATICO AS A INNER JOIN SECRETARIAS AS B ON A.idSecretaria = B.idSecretaria WHERE A.idClasificacion IN ('AI') AND A.idSecretaria = '$request->id_secretaria' ORDER BY A.Consecutivo;";
         $informacion = DB::select($query);
         return response()->json(array('error' => false, 'data' => $informacion, 'code' => 200));
     }
@@ -31,7 +31,7 @@ class ActividadesInstitucionalesController extends Controller
                 INNER JOIN SECRETARIAS AS B ON A.idSecretaria = B.idSecretaria
                 INNER JOIN TIPOLOGIA AS C ON A.idTipologia = C.IdTipologia
                 INNER JOIN OBJETIVO AS D ON A.idObjetivoPED = D.IdObjetivo
-                WHERE A.idClasificacion IN ('AI') AND A.idSecretaria = '$request->id_secretaria' AND A.idObjetivoPED = '$request->id_objetivo' AND A.idClasificacion = '$request->id_clasificacion' AND A.Consecutivo = '$request->consecutivo';";
+                WHERE A.idClasificacion IN ('AI') AND A.idSecretaria = '$request->id_secretaria' AND A.idObjetivoPED = '$request->id_objetivo' AND A.idClasificacion = '$request->id_clasificacion' AND A.Consecutivo = '$request->consecutivo'  ORDER BY A.Consecutivo;";
         $informacion = DB::select($query);
 
         return response()->json(array('error' => false, 'data' => $informacion, 'code' => 200));

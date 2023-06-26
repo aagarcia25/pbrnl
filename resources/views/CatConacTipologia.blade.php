@@ -5,6 +5,7 @@
 
 @include('includes._partialHeader')
 
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" type="text/css" href="/css/EstilosPbR.css" />
 
 <style>
@@ -14,7 +15,7 @@
 </style>
 
 <div class="mt-3">
-    @include('includes._partialBreadcrumbCatalogos')
+    {{-- @include('includes._partialBreadcrumbCatalogos') --}}
 
     <section class="container-fluid section">
         <div class="row">
@@ -74,6 +75,16 @@
             </div>  <!-- ***END COL-2 -->
 
             <div class="col-8">
+                <div class="container pagetitle mt-3">
+                    <div class="row mb-3">
+                        <div class="col-1">
+                            <img id="icon-cat-ods" class="icon-cat-secretaria" src="/img/@php echo $img; @endphp" width="80" height="80">
+                        </div>
+                        <div class="col-11 mt-4">
+                            <h1 class="TituloCatalogo">@php echo $view; @endphp</h1>
+                        </div>
+                    </div>
+                </div>
                 <div class="card">
                     <div class="card-body">
                         <!-- Table with stripped rows -->
@@ -81,7 +92,7 @@
                             <table id="table" class="table table-striped table-hover">
                                 <thead>
                                     <tr class="table-header text-center">
-                                        <th scope="col" width="20%">Id conac</th>
+                                        <th scope="col" width="20%">Id CONAC</th>
                                         <th scope="col" width="80%">Descripción</th>
                                     </tr>
                                 </thead>

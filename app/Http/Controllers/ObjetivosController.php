@@ -11,14 +11,14 @@ class ObjetivosController extends Controller
 {
     public function all()
     {
-        $query = "SELECT * FROM OBJETIVO WHERE Activo = 'S';";
+        $query = "SELECT * FROM OBJETIVO WHERE Activo = 'S' ORDER BY IdObjetivo;";
         $informacion = DB::select($query);
         return response()->json(array('error' => false, 'data' => $informacion, 'code' => 200));
     }
 
     public function index(Request $request)
     {
-        $query = "SELECT * FROM OBJETIVO WHERE IdEje = '$request->id_eje' AND IdTema = '$request->id_tema' AND Activo = 'S';";
+        $query = "SELECT * FROM OBJETIVO WHERE IdEje = '$request->id_eje' AND IdTema = '$request->id_tema' AND Activo = 'S' ORDER BY IdObjetivo;";
         $informacion = DB::select($query);
         return response()->json(array('error' => false, 'data' => $informacion, 'code' => 200));
     }

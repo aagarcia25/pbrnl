@@ -4,7 +4,9 @@
 @endphp
 @include('includes._partialHeader')
 
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" type="text/css" href="/css/EstilosPbR.css" />
+<link rel="stylesheet" type="text/css" href="Content/MenuCatalogos.css" />
 
 <style>
     .input-background-white {
@@ -12,10 +14,10 @@
     }
 </style>
 
-<div >
+<div class="Margin-Top">
     @include('includes._partialBreadcrumbCatalogos')
 
-    <section class="container section Margin-TopUsr">
+    <section class="container section">
         <div class="row">
             <div class="col-lg-12">
                 <div class="card bg-transparent border border-0">
@@ -47,7 +49,7 @@
                                         <th scope="col" width="70%">Población o Área de Enfoque</th>
                                     </tr>
                                 </thead>
-                                <tbody></tbody>
+                                <tbody class="text-uppercase"></tbody>
                             </table>
                         </div>
                         <!-- End Table with stripped rows -->
@@ -64,28 +66,28 @@
                     <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
                     <input type="hidden" id="id"></input>
                     <div class="modal-header">
-                        <h5 class="modal-title"><span id="modal_accion"></span> beneficiario</h5>
+                        <h5 class="modal-title"><span id="modal_accion"></span> Beneficiario</h5>
                     </div>
                     <div class="modal-body">
                         <div class="row g-3">
                             <div class="col-md-4">
-                                <label for="select_TipoBeneficiarioModal" class="form-label">Tipo de beneficiario</label>
+                                <label for="select_TipoBeneficiarioModal" class="form-label">Tipo de Beneficiario</label>
                                 <select id="select_TipoBeneficiarioModal" class="selectpicker show-tick form-control" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
                                 </select>
                             </div>
                             <div class="col-md-4">
-                                <label for="id_Beneficiario" class="form-label">Id beneficiario</label>
+                                <label for="id_Beneficiario" class="form-label">Id Beneficiario</label>
                                 <input type="text" class="form-control" id="id_Beneficiario" disabled style="background: white;" disabled>
                             </div>
                             <div class="col-md-12">
                                 <label for="descripcion" class="form-label">Descripción</label>
-                                <textarea class="form-control input-bold" id="descripcion" required maxlength="200" rows="3"></textarea>
+                                <textarea class="form-control input-bold  text-uppercase" id="descripcion" required maxlength="200" rows="3"></textarea>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        <input type="submit" id="BtnGuardarBeneficiario" class="btn btn-primary" value="Guardar">
+                        <input type="submit" id="BtnGuardarBeneficiario" class="buttonOutlineSucces" value="Guardar">
+                        <button type="button" class="buttonCloseModal" data-bs-dismiss="modal">Cerrar</button>
                     </div>
                 </form>
             </div>
@@ -99,23 +101,23 @@
                     <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
                     <input type="hidden" id="id"></input>
                     <div class="modal-header">
-                        <h5 class="modal-title"><span id="modal_acciontipobeneficiario"></span> tipo de beneficiario</h5>
+                        <h5 class="modal-title"><span id="modal_acciontipobeneficiario"></span> Tipo de Beneficiario</h5>
                     </div>
                     <div class="modal-body">
                         <div class="row g-3">
                             <div class="col-md-4">
-                                <label for="id_tipobeneficiario" class="form-label">Tipo beneficiario</label>
+                                <label for="id_tipobeneficiario" class="form-label">Tipo Beneficiario</label>
                                 <input type="text" class="form-control" id="id_tipobeneficiario" required maxlength="2">
                             </div>
                             <div class="col-md-12">
                                 <label for="descripcion_tipobeneficiario" class="form-label">Descripción</label>
-                                <input type="text" class="form-control" id="descripcion_tipobeneficiario" required maxlength="50">
+                                <input type="text" class="form-control text-uppercase" id="descripcion_tipobeneficiario" required maxlength="50">
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        <input type="submit" class="btn btn-primary" value="Guardar">
+                        <input type="submit" class="buttonOutlineSucces" value="Guardar">
+                        <button type="button" class="buttonCloseModal" data-bs-dismiss="modal">Cerrar</button>
                     </div>
                 </form>
             </div>

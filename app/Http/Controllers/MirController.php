@@ -15,29 +15,82 @@ class MirController extends Controller
 
         if ($request->id_secretaria == 0 && $request->id_ua == 0){
             
-            $query = "SELECT * FROM MIR_CARATULA_View;";
+            $query = "SELECT * FROM MIR_CARATULA_View ORDER BY Consecutivo;";
             $informacion = DB::select($query);
             return response()->json(array('error' => false, 'data' => $informacion, 'code' => 200));
 
         }else if ($request->id_secretaria != 0 && $request->id_ua == 0){
             
-            $query = "SELECT * FROM MIR_CARATULA_View WHERE idSecretaria = '$request->id_secretaria' ;";
+            $query = "SELECT * FROM MIR_CARATULA_View WHERE idSecretaria = '$request->id_secretaria' ORDER BY Consecutivo;";
             $informacion = DB::select($query);
             return response()->json(array('error' => false, 'data' => $informacion, 'code' => 200));
 
         }else if ($request->id_secretaria == 0 && $request->id_ua != 0){
             
-            $query = "SELECT * FROM MIR_CARATULA_View WHERE idUA = '$request->id_ua';";
+            $query = "SELECT * FROM MIR_CARATULA_View WHERE idUA = '$request->id_ua' ORDER BY Consecutivo;";
             $informacion = DB::select($query);
             return response()->json(array('error' => false, 'data' => $informacion, 'code' => 200));
 
         }else{
 
-            $query = "SELECT * FROM MIR_CARATULA_View WHERE idSecretaria = '$request->id_secretaria' AND idUA = '$request->id_ua';";
+            $query = "SELECT * FROM MIR_CARATULA_View WHERE idSecretaria = '$request->id_secretaria' AND idUA = '$request->id_ua' ORDER BY Consecutivo;";
             $informacion = DB::select($query);
             return response()->json(array('error' => false, 'data' => $informacion, 'code' => 200));
 
         }
+    }
+
+    public function caratula(Request $request)
+    {
+        $info = DB::table('MIR_CARATULA_View')
+            ->where('Consecutivo', $request->consecutivo)
+            ->where('EjercicioFiscal', $request->ejercicio)->first();
+
+        return response()->json(array('error' => false, 'data' => $info, 'code' => 200));
+    }
+
+    public function fin(Request $request)
+    {
+        $info = DB::table('FIN1')
+            ->where('ClasProgramatica', $request->consecutivo)->first();
+
+        return response()->json(array('error' => false, 'data' => $info, 'code' => 200));
+    }
+
+    public function proposito(Request $request)
+    {
+        $info = DB::table('PROPOSITO')
+            ->where('ClasProgramatica', $request->consecutivo)->first();
+
+        return response()->json(array('error' => false, 'data' => $info, 'code' => 200));
+    }
+
+    public function componentes(Request $request)
+    {
+        $query = "SELECT * FROM COMPONENTE1 WHERE ClasProgramatica = '$request->consecutivo';";
+        $info = DB::select($query);
+        return response()->json(array('error' => false, 'data' => $info, 'code' => 200));
+    }
+
+    public function actividades(Request $request)
+    {
+        $query = "SELECT * FROM ACTIVIDAD WHERE ClasProgramatica = '$request->consecutivo';";
+        $info = DB::select($query);
+        return response()->json(array('error' => false, 'data' => $info, 'code' => 200));
+    }
+
+    public function auditoriacarga(Request $request)
+    {
+        $query = "SELECT * FROM LogCargaMIR WHERE Consecutivo = '$request->consecutivo';";
+        $info = DB::select($query);
+        return response()->json(array('error' => false, 'data' => $info, 'code' => 200));
+    }
+
+    public function auditoriaformulas(Request $request)
+    {
+        $query = "SELECT * FROM LogFormulasMIR WHERE Consecutivo = '$request->consecutivo';";
+        $info = DB::select($query);
+        return response()->json(array('error' => false, 'data' => $info, 'code' => 200));
     }
 
     /*

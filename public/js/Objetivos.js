@@ -168,7 +168,7 @@ function BtnEditarCatalogo(){
         var data = table.row(index).data();
 
         if (!table.rows('.selected').any()) {
-            Func_Aviso("Atención", "Para continuar favor de seleccionar un registro.", "info");
+            Func_Aviso("Atención", "Para continuar favor de seleccionar un Objetivo.", "info");
             return false;
         }
 
@@ -189,7 +189,7 @@ function BtnEliminarCatalogo(){
         var data = table.row(index).data();
 
         if (!table.rows('.selected').any()) {
-            Func_Aviso("Atención", "Para continuar favor de seleccionar un registro.", "info");
+            Func_Aviso("Atención", "Para continuar favor de seleccionar un Objetivo.", "info");
             return false;
         }
 
@@ -197,7 +197,7 @@ function BtnEliminarCatalogo(){
         var id_tema = data[1];
         var id_objetivo = data[2];
 
-        Func_DespliegaConfirmacion("Eliminar", "¿Deseas eliminar el registro seleccionado?", "question", "Aceptar", "Cancelar", function(response) {
+        Func_DespliegaConfirmacion("Eliminar", "¿Deseas eliminar el Objetivo seleccionado?", "question", "Aceptar", "Cancelar", function(response) {
             if (response) {
                 var request = {
                     id_eje: id_eje,
@@ -224,18 +224,26 @@ function BtnGuardarObjetivo(){
             descripcion: $("#descripcion").val()
         };
 
-        Func_DespliegaConfirmacion("Guardar", "¿Deseas guardar la información de la objetivo?", "question", "Aceptar", "Cancelar", function(response) {
-            if (response) {
-                Func_Cargando();
-                if ($("#modal_accion").text() == "Editar") {
-                    repository.Objetivos.EditObjetivo(request)
-                        .then(ResponseEditObjetivo);
-                } else {
-                    repository.Objetivos.AddObjetivo(request)
-                        .then(ResponseAddObjetivo);
-                }
-            }
-        });
+        if ($("#modal_accion").text() == "Editar") {
+            repository.Objetivos.EditObjetivo(request)
+                .then(ResponseEditObjetivo);
+        } else {
+            repository.Objetivos.AddObjetivo(request)
+                .then(ResponseAddObjetivo);
+        }
+
+        // Func_DespliegaConfirmacion("Guardar", "¿Deseas guardar la información del Objetivo?", "question", "Aceptar", "Cancelar", function(response) {
+        //     if (response) {
+        //         Func_Cargando();
+        //         if ($("#modal_accion").text() == "Editar") {
+        //             repository.Objetivos.EditObjetivo(request)
+        //                 .then(ResponseEditObjetivo);
+        //         } else {
+        //             repository.Objetivos.AddObjetivo(request)
+        //                 .then(ResponseAddObjetivo);
+        //         }
+        //     }
+        // });
     });
 }
 
@@ -243,7 +251,7 @@ function ResponseAddObjetivo(response) {
     if (!response.error) {
         $("#Modal").modal("hide");
         Func_LimpiarModal();
-        Func_Toast("success", "Objetivo agregado.", "El objetivo fue agregado exitosamente.");
+        Func_Toast("success", "Objetivo agregado.", "El Objetivo fue agregado con éxito.");
         Func_Cargando();
         GetObjetivos();
     } else {
@@ -256,7 +264,7 @@ function ResponseEditObjetivo(response) {
     if (!response.error) {
         $("#Modal").modal("hide");
         Func_LimpiarModal();
-        Func_Toast("success", "Objetivo editado.", "El objetivo fue editado exitosamente.");
+        Func_Toast("success", "Objetivo editado.", "El objetivo ha sido modificado.");
         Func_Cargando();
         GetObjetivos();
     } else {
@@ -267,7 +275,7 @@ function ResponseEditObjetivo(response) {
 
 function ResponseDeleteObjetivo(response) {
     if (!response.error) {
-        Func_Toast("success", "Objetivo eliminado.", "La objetivo fue eliminado exitosamente.");
+        Func_Toast("success", "Objetivo eliminado.", "El Objetivo ha sido eliminado de Interfaz PbR.");
         Func_Cargando();
         GetObjetivos();
     } else {

@@ -5,6 +5,7 @@
 
 @include('includes._partialHeader')
 
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" type="text/css" href="/css/EstilosPbR.css" />
 
 <style>
@@ -14,13 +15,20 @@
 </style>
 
 <div class="mt-3">
-    @include('includes._partialBreadcrumbCatalogos')
+    {{-- @include('includes._partialBreadcrumbCatalogos') --}}
 
     <section class="container-fluid section">
         <div class="row">
             <div class="col-2 MenuLeft FontNavega ms-5">
                 <div id="opcAdministrativo" class="grupo-catalogos">
                     <div class="row mt-1">
+                        <div class="col-md-1">
+                            <a class="d-flex align-items-center justify-content-center">
+                                <img id="icon-imgAdmin"src="img/icono Administrativo.svg" alt="Logo de tesorería de Nuevo León" width="60" height="60">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
                         <div class="col-md-1">
                             <a href="/Catalogos" class="d-flex align-items-center justify-content-center">
                                 <img id="icon-regresar" onmouseover="img_over('icon-regresar', '/img/icono regresar activo.svg')" onmouseout="img_out('icon-regresar', '/img/icono regresar.svg')" src="img/icono regresar.svg" alt="Logo de tesorería de Nuevo León" width="50" height="50">
@@ -75,6 +83,16 @@
 
 
             <div class="col-8">
+                <div class="container pagetitle mt-3">
+                    <div class="row mb-3">
+                        <div class="col-1">
+                            <img id="icon-cat-ods" class="icon-cat-secretaria" src="/img/@php echo $img; @endphp" width="80" height="80">
+                        </div>
+                        <div class="col-11 mt-4">
+                            <h1 class="TituloCatalogo">@php echo $view; @endphp</h1>
+                        </div>
+                    </div>
+                </div>
                 <div class="card">
                     <div class="card-body">
                         <!-- Table with stripped rows -->

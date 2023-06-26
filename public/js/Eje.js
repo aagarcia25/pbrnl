@@ -74,7 +74,7 @@ function BtnEditarCatalogo() {
         var data = table.row(index).data();
 
         if (!table.rows('.selected').any()) {
-            Func_Aviso("Atención", "Para continuar favor de seleccionar un registro.", "info");
+            Func_Aviso("Atención", "Para continuar favor de seleccionar un Eje.", "info");
             return false;
         }
         
@@ -97,7 +97,7 @@ function BtnEliminarCatalogo() {
             return false;
         }
 
-        Func_DespliegaConfirmacion("Eliminar " + data[1], "¿Deseas eliminar el registro seleccionado?", "question", "Aceptar", "Cancelar", function(response) {
+        Func_DespliegaConfirmacion("Eliminar " + data[1], "¿Deseas eliminar el Eje seleccionado?", "question", "Aceptar", "Cancelar", function(response) {
             if (response) {
                 var Id = data[0];
                 var request = {
@@ -122,18 +122,26 @@ function BtnGuardarEje() {
                 descripcion: $("#descripcion").val()
             };
 
-            Func_DespliegaConfirmacion("Guardar", "¿Deseas guardar la información del eje?", "question", "Aceptar", "Cancelar", function(response) {
-                if (response) {
-                    Func_Cargando();
-                    if ($("#modal_accion").text() == "Editar") {
-                        repository.Eje.EditEje(request)
-                            .then(ResponseEditEje);
-                    } else {
-                        repository.Eje.AddEje(request)
-                            .then(ResponseAddEje);
-                    }
-                }
-            });
+            if ($("#modal_accion").text() == "Editar") {
+                repository.Eje.EditEje(request)
+                    .then(ResponseEditEje);
+            } else {
+                repository.Eje.AddEje(request)
+                    .then(ResponseAddEje);
+            }
+
+            // Func_DespliegaConfirmacion("Guardar", "¿Deseas guardar la información del eje?", "question", "Aceptar", "Cancelar", function(response) {
+            //     if (response) {
+            //         Func_Cargando();
+            //         if ($("#modal_accion").text() == "Editar") {
+            //             repository.Eje.EditEje(request)
+            //                 .then(ResponseEditEje);
+            //         } else {
+            //             repository.Eje.AddEje(request)
+            //                 .then(ResponseAddEje);
+            //         }
+            //     }
+            // });
         }
     });
 }

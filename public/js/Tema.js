@@ -13,7 +13,7 @@ function Funciones_Iniciales() {
 }
 
 function GetEjes() {
-    // Func_Cargando();
+    Func_Cargando();
     repository.Eje.GetEjes()
         .then(ResponseGetEjes);
 }
@@ -120,7 +120,7 @@ function BtnEditarCatalogo(){
         var data = table.row(index).data();
 
         if (!table.rows('.selected').any()) {
-            Func_Aviso("Atención", "Para continuar favor de seleccionar un registro.", "info");
+            Func_Aviso("Atención", "Para continuar favor de seleccionar una Unidad Administrativa.", "info");
             return false;
         }
 
@@ -140,11 +140,11 @@ function BtnEliminarCatalogo(){
         var data = table.row(index).data();
 
         if (!table.rows('.selected').any()) {
-            Func_Aviso("Atención", "Para continuar favor de seleccionar un registro.", "info");
+            Func_Aviso("Atención", "Para continuar favor de seleccionar una Unidad Administrativa.", "info");
             return false;
         }
 
-        Func_DespliegaConfirmacion("Eliminar " + data[1], "¿Deseas eliminar el registro seleccionado?", "question", "Aceptar", "Cancelar", function(response) {
+        Func_DespliegaConfirmacion("Eliminar " + data[2], "¿Deseas eliminar la Unidad Administrativa seleccionada?", "question", "Aceptar", "Cancelar", function(response) {
             if (response) {
                 var id_eje = data[0];
                 var id_tema = data[1];
@@ -172,18 +172,26 @@ function BtnGuardarTema(){
                 descripcion: $("#descripcion").val()
             };
 
-            Func_DespliegaConfirmacion("Guardar", "¿Deseas guardar la información el tema?", "question", "Aceptar", "Cancelar", function(response) {
-                if (response) {
-                    Func_Cargando();
-                    if ($("#modal_accion").text() == "Editar") {
-                        repository.Tema.EditTema(request)
-                            .then(ResponseEditTema);
-                    } else {
-                        repository.Tema.Addtema(request)
-                            .then(ResponseAddTema);
-                    }
-                }
-            });
+            if ($("#modal_accion").text() == "Editar") {
+                repository.Tema.EditTema(request)
+                    .then(ResponseEditTema);
+            } else {
+                repository.Tema.Addtema(request)
+                    .then(ResponseAddTema);
+            }
+
+            // Func_DespliegaConfirmacion("Guardar", "¿Deseas guardar la información el tema?", "question", "Aceptar", "Cancelar", function(response) {
+            //     if (response) {
+            //         Func_Cargando();
+            //         if ($("#modal_accion").text() == "Editar") {
+            //             repository.Tema.EditTema(request)
+            //                 .then(ResponseEditTema);
+            //         } else {
+            //             repository.Tema.Addtema(request)
+            //                 .then(ResponseAddTema);
+            //         }
+            //     }
+            // });
         }
     });
 }
@@ -192,7 +200,7 @@ function ResponseAddTema(response) {
     if (!response.error) {
         $("#Modal").modal("hide");
         Func_LimpiarModal();
-        Func_Toast("success", "Tema agregado.", "El tema fue agregado exitosamente.");
+        Func_Toast("success", "Tema agregado.", "El Tema fue agregado con éxito.");
         GetTemas();
     } else {
         console.log(response.result)
@@ -204,7 +212,7 @@ function ResponseEditTema(response) {
     if (!response.error) {
         $("#Modal").modal("hide");
         Func_LimpiarModal();
-        Func_Toast("success", "Tema editado.", "El tema fue editado exitosamente.");
+        Func_Toast("success", "Tema editado.", "El Tema ha sido guardado con éxito.");
         GetTemas();
     } else {
         console.log(response.result)
@@ -214,7 +222,7 @@ function ResponseEditTema(response) {
 
 function ResponseDeleteTema(response) {
     if (!response.error) {
-        Func_Toast("success", "Tema eliminado.", "El tema fue eliminado exitosamente.");
+        Func_Toast("success", "Tema eliminado.", "El Tema ha sido eliminado de Interfaz PbR.");
         GetTemas();
     } else {
         console.log(response.result)

@@ -139,7 +139,7 @@ function BtnEditarCatalogo(){
         var data = table.row(index).data();
 
         if (!table.rows('.selected').any()) {
-            Func_Aviso("Atención", "Para continuar favor de seleccionar un registro.", "info");
+            Func_Aviso("Atención", "Para continuar favor de seleccionar un Beneficiario.", "info");
             return false;
         }
 
@@ -159,11 +159,11 @@ function BtnEliminarCatalogo(){
         var data = table.row(index).data();
 
         if (!table.rows('.selected').any()) {
-            Func_Aviso("Atención", "Para continuar favor de seleccionar un registro.", "info");
+            Func_Aviso("Atención", "Para continuar favor de seleccionar un Beneficiario.", "info");
             return false;
         }
 
-        Func_DespliegaConfirmacion("Eliminar", "¿Deseas eliminar el registro seleccionado?", "question", "Aceptar", "Cancelar", function(response) {
+        Func_DespliegaConfirmacion("Eliminar " + data[2], "¿Deseas eliminar el Beneficiario seleccionado?", "question", "Aceptar", "Cancelar", function(response) {
             if (response) {
                 var id_beneficiario = data[0];
                 var request = {
@@ -187,19 +187,27 @@ function BtnGuardarBeneficiario(){
             id_beneficiario: $("#id_Beneficiario").val(),
             descripcion: $("#descripcion").val()
         };
-        
-        Func_DespliegaConfirmacion("Guardar", "¿Deseas guardar la información del beneficiario?", "question", "Aceptar", "Cancelar", function(response) {
-            if (response) {
-                Func_Cargando();
-                if ($("#modal_accion").text() == "Editar") {
-                    repository.Beneficiarios.EditBeneficiario(request)
-                        .then(ResponseEditBeneficiario);
-                } else {
-                    repository.Beneficiarios.AddBeneficiario(request)
-                        .then(ResponseAddBeneficiario);
-                }
-            }
-        });
+
+        if ($("#modal_accion").text() == "Editar") {
+            repository.Beneficiarios.EditBeneficiario(request)
+                .then(ResponseEditBeneficiario);
+        } else {
+            repository.Beneficiarios.AddBeneficiario(request)
+                .then(ResponseAddBeneficiario);
+        }
+
+        // Func_DespliegaConfirmacion("Guardar", "¿Deseas guardar la información del Beneficiario?", "question", "Aceptar", "Cancelar", function(response) {
+        //     if (response) {
+        //         Func_Cargando();
+        //         if ($("#modal_accion").text() == "Editar") {
+        //             repository.Beneficiarios.EditBeneficiario(request)
+        //                 .then(ResponseEditBeneficiario);
+        //         } else {
+        //             repository.Beneficiarios.AddBeneficiario(request)
+        //                 .then(ResponseAddBeneficiario);
+        //         }
+        //     }
+        // });
     });
 }
 
@@ -207,7 +215,7 @@ function ResponseAddBeneficiario(response) {
     if (!response.error) {
         $("#Modal").modal("hide");
         Func_LimpiarModal();
-        Func_Toast("success", "Beneficiario agregado.", "El beneficiario fue agregado exitosamente.");
+        Func_Toast("success", "Beneficiario agregado.", "El Beneficiario fue agregado con éxito.");
         Func_Cargando();
         GetBeneficiarios();
     } else {
@@ -220,7 +228,7 @@ function ResponseEditBeneficiario(response) {
     if (!response.error) {
         $("#Modal").modal("hide");
         Func_LimpiarModal();
-        Func_Toast("success", "Beneficiario editado.", "El beneficiario fue editado exitosamente.");
+        Func_Toast("success", "Beneficiario editado.", "El beneficiario ha sido modificado.");
         Func_Cargando();
         GetBeneficiarios();
     } else {
@@ -231,7 +239,7 @@ function ResponseEditBeneficiario(response) {
 
 function ResponseDeleteBeneficiario(response) {
     if (!response.error) {
-        Func_Toast("success", "Beneficiario eliminado.", "El beneficiario fue eliminado exitosamente.");
+        Func_Toast("success", "Beneficiario eliminado.", "El beneficiario fue eliminado de Interfaz PbR.");
         Func_Cargando();
         GetBeneficiarios();
     } else {
@@ -281,19 +289,27 @@ function BtnGuardarTipoBeneficiario() {
             id_tipobeneficiario: $("#id_tipobeneficiario").val(),
             descripcion: $("#descripcion_tipobeneficiario").val()
         };
-        
-        Func_DespliegaConfirmacion("Guardar", "¿Deseas guardar la información del tipo de beneficiario?", "question", "Aceptar", "Cancelar", function(response) {
-            if (response) {
-                Func_Cargando();
-                if ($("#modal_acciontipobeneficiario").text() == "Editar") {
-                    repository.Beneficiarios.EditTipoBeneficiario(request)
-                        .then(ResponseEditTipoBeneficiario);
-                } else {
-                    repository.Beneficiarios.AddTipoBeneficiario(request)
-                        .then(ResponseAddTipoBeneficiario);
-                }
-            }
-        });
+
+        if ($("#modal_acciontipobeneficiario").text() == "Editar") {
+            repository.Beneficiarios.EditTipoBeneficiario(request)
+                .then(ResponseEditTipoBeneficiario);
+        } else {
+            repository.Beneficiarios.AddTipoBeneficiario(request)
+                .then(ResponseAddTipoBeneficiario);
+        }
+
+        // Func_DespliegaConfirmacion("Guardar", "¿Deseas guardar la información del Tipo de Beneficiario?", "question", "Aceptar", "Cancelar", function(response) {
+        //     if (response) {
+        //         Func_Cargando();
+        //         if ($("#modal_acciontipobeneficiario").text() == "Editar") {
+        //             repository.Beneficiarios.EditTipoBeneficiario(request)
+        //                 .then(ResponseEditTipoBeneficiario);
+        //         } else {
+        //             repository.Beneficiarios.AddTipoBeneficiario(request)
+        //                 .then(ResponseAddTipoBeneficiario);
+        //         }
+        //     }
+        // });
     });
 }
 
@@ -302,7 +318,7 @@ function ResponseEditTipoBeneficiario(response) {
     if (!response.error) {
         $("#Modal_TipoBeneficiario").modal("hide");
         Func_LimpiarModal();
-        Func_Toast("success", "Tipo de beneficiario editado.", "El tipo beneficiario fue editado exitosamente.");
+        Func_Toast("success", "Tipo de beneficiario editado.", "El Tipo Beneficiario ha sido modificado.");
         Func_Cargando();
         GetTipoBeneficiarioRefresh();
     } else {
@@ -315,7 +331,7 @@ function ResponseAddTipoBeneficiario(response) {
     if (!response.error) {
         $("#Modal_TipoBeneficiario").modal("hide");
         Func_LimpiarModal();
-        Func_Toast("success", "Tipo de beneficiario agregado.", "El tipo beneficiario fue agregado exitosamente.");
+        Func_Toast("success", "Tipo de beneficiario agregado.", "El tipo beneficiario fue agregado con éxito.");
         Func_Cargando();
         GetTipoBeneficiarioRefresh();
     } else {

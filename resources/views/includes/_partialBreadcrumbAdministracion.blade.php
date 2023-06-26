@@ -22,7 +22,7 @@
             <img id="icon-cat-ods" class="icon-cat-secretaria" src="/img/@php echo $img; @endphp" width="80" height="80">
         </div>
         <div class="col-11">
-            <h1 class="TituloCatalogo">@php echo $view; @endphp</h1>
+            <h1 class="TituloCatalogo mt-4">@php echo $view; @endphp</h1>
             <!--nav-- class="mt-3" aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="/Menu">Inicio</a></li>

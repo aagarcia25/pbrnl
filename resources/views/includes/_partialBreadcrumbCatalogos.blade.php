@@ -1,16 +1,16 @@
 <div id="MenuLeft" class="container-fluid mt-5">
     <div class="row">
         <div class="col-lg-1">
-            <div class="card bg-transparent border border-0">
+            <div class="card bg-transparent border border-0 mt-5">
                 <a href="/Catalogos">
-                    <img class="IconoRegresar ms-2" alt="" src="img/icono regresar.svg" style="width: 30%" />
+                    <img class="IconoRegresar ms-2" alt="" src="img/icono regresar.svg" style="width: 50px" />
                 </a>                    
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col-lg-1">
-            <div class="card bg-transparent border border-0">
+            <div class="card bg-transparent border border-0 ms-2">
                 <label class="FontNavega fw-bold">Regresar</label>
             </div>
         </div>

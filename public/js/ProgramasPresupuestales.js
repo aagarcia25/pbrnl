@@ -84,6 +84,7 @@ function ResponseGetAllProgramasP(response) {
             for (var i = 0; i < response.data.length; i++) {
                 $("#table > tbody").append(`
                     <tr>
+                        <td class="d-none">${response.data[i].idSecretaria}</td>
                         <td>${response.data[i].idClasificacion}</td>
                         <td>${response.data[i].idObjetivoPED}</td>
                         <td>${response.data[i].Anticorrupcion}</td>
@@ -164,6 +165,7 @@ function ResponseGetProgramasP(response) {
             for (var i = 0; i < response.data.length; i++) {
                 $("#table > tbody").append(`
                     <tr>
+                        <td class="d-none">${response.data[i].idSecretaria}</td>
                         <td>${response.data[i].idClasificacion}</td>
                         <td>${response.data[i].idObjetivoPED}</td>
                         <td>${response.data[i].Anticorrupcion}</td>
@@ -189,26 +191,20 @@ function BtnComponentes(){
         var index = table.row('.selected').index();
         var data = table.row(index).data();
 
-        if ($("#select_secretaria").val() == ""){
-            Func_Aviso("Atención", "Para continuar favor de seleccionar una secretaría.", "info");
-            return false;
-        }
-
         if (!table.rows('.selected').any()) {
-            Func_Aviso("Atención", "Para continuar favor de seleccionar un registro.", "info");
+            Func_Aviso("Atención", "Para continuar favor de seleccionar un Programa Presupuestario.", "info");
             return false;
         }
 
         $("#informacion_componente").addClass("d-none");
         var request = {
-            "id_secretaria": $("#select_secretaria").val(),
-            "id_objetivo": data[1],
-            "id_clasificacion": data[0],
-            "consecutivo": data[4]
+            "id_secretaria": data[0],
+            "id_objetivo": data[2],
+            "id_clasificacion": data[1],
+            "consecutivo": data[5]
         }
         Func_Cargando();
         GetInfoComponentes(request);
-
     });
 }
 
@@ -283,7 +279,7 @@ function BtnEditarComponente() {
         var data = table.row(index).data();
 
         if (!table.rows('.selected').any()) {
-            Func_Aviso("Atención", "Para continuar favor de seleccionar un registro.", "info");
+            Func_Aviso("Atención", "Para continuar favor de seleccionar un Componente.", "info");
             return false;
         }
 
@@ -373,12 +369,7 @@ function BtnActualizarPP() {
         var table = $('#table').DataTable();
         var index = table.row('.selected').index();
         var data = table.row(index).data();
-
-        if ($("#select_secretaria").val() == ""){
-            Func_Aviso("Atención", "Para continuar favor de seleccionar una secretaría.", "info");
-            return false;
-        }
-
+        
         if (!table.rows('.selected').any()) {
             Func_Aviso("Atención", "Para continuar favor de seleccionar un registro.", "info");
             return false;
@@ -418,13 +409,13 @@ function BtnActualizarPP() {
         $('#select_objetivopp').selectpicker();
 
         
-        let id_secretaria = $("#select_secretaria").val();
-        let id_clasificacion = data[0];
-        let id_objetivo = data[1];
-        let id_anticorrupcion = data[2];
-        let id_tipologia = data[3];
-        let consecutivo = data[4];
-        let descripcion = data[5];
+        let id_secretaria = data[0];
+        let id_clasificacion = data[1];
+        let id_objetivo = data[2];
+        let id_anticorrupcion = data[3];
+        let id_tipologia = data[4];
+        let consecutivo = data[5];
+        let descripcion = data[6];
 
         $("#id_secretariapp").val(id_secretaria);
         $("#select_secretariapp").selectpicker("val", id_secretaria);
@@ -475,7 +466,7 @@ function GuardarActualizarPP(){
 
         }
 
-        Func_DespliegaConfirmacion("Guardar", "¿Deseas actualizar la información del programa presupuestario?", "question", "Aceptar", "Cancelar", function(response) {
+        Func_DespliegaConfirmacion("Guardar", "¿Deseas actualizar la información del Programa Presupuestario?", "question", "Aceptar", "Cancelar", function(response) {
             if (response) {
                 Func_Cargando();
                 repository.ProgramasPresupuestales.EditProgramaPresupuestal(request)
@@ -488,12 +479,16 @@ function GuardarActualizarPP(){
 
 function ResponseEditProgramaPresupuestal(response) {
     if (!response.error) {
-        Func_Toast("success", "Programa editado.", "El programa presupuestal fue actualizado exitosamente.");
+        Func_Toast("success", "Programa editado.", "El Programa Presupuestario fue actualizado exitosamente.");
         swal.close();
         let id_secretaria = $("#select_secretaria").val();
         let descripcion = $("#descripcionpp").val();
         $("#descriptivopp").val(descripcion);
-        GetProgramasP(id_secretaria);
+        if (id_secretaria == ""){
+            GetAllProgramasP()
+        }else{
+            GetProgramasP(id_secretaria);
+        }
     } else {
         console.log(response.result)
         Func_Aviso("Anomalía detectada", response.result, "error");

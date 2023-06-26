@@ -15,7 +15,7 @@ function Funciones_Iniciales() {
 }
 
 function GetConacFuncional() {
-    // Func_Cargando();
+    Func_Cargando();
     repository.ConacFuncional.GetConacFuncional()
         .then(ResponseGetConacFuncional);
 }
@@ -151,7 +151,7 @@ function BtnEditarCatalogo(){
         var data = table.row(index).data();
 
         if (!table.rows('.selected').any()) {
-            Func_Aviso("Atención", "Para continuar favor de seleccionar un registro.", "info");
+            Func_Aviso("Atención", "Para continuar favor de seleccionar una Unidad Administrativa.", "info");
             return false;
         }
 
@@ -177,7 +177,7 @@ function BtnEliminarCatalogo(){
             return false;
         }
 
-        Func_DespliegaConfirmacion("Eliminar " + data[2], "¿Deseas eliminar el registro seleccionado?", "question", "Aceptar", "Cancelar", function(response) {
+        Func_DespliegaConfirmacion("Eliminar " + data[3], "¿Deseas eliminar la Unidad Administrativa seleccionada?", "question", "Aceptar", "Cancelar", function(response) {
             if (response) {
                 var id_secretaria = data[1];
                 var id_ua = data[2];
