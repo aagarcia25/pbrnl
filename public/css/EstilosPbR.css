@@ -2157,3 +2157,10 @@ TextBox1:not(:placeholder-shown).TextBox1:not(:focus) ~ .form-label1 {
 .Rows4 {
     height: 80px;
 }
+
+.LetretosFont {
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    position: relative;
+    /* width: 100%;     */
+}

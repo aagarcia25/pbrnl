@@ -725,13 +725,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-3 mb-1">
-                                    <label for="id_componente" class="form-label">Id componente</label>
-                                    <input type="text" class="form-control" id="id_componente">
+                                <div class="col-2 mb-1 FormUsr FontMsg mt-3">
+                                    <label for="id_componente" class="form-labelUsr4">Id Componente</label>
+                                    <input type="text" class="TextBoxUsrReadOnly w-100 H-50 text-center" id="id_componente" readonly>
                                 </div>
-                                <div class="col-8 mb-1">
-                                    <label for="nombre_componente" class="form-label">Componente</label>
-                                    <input type="text" class="form-control" id="nombre_componente">
+                                <div class="col-9 mb-1 FormUsr FontMsg mt-3">
+                                    <label for="nombre_componente" class="form-labelUsr4">Componente</label>
+                                    <input type="text" class="TextBoxUsr w-100 H-50" id="nombre_componente">
                                 </div>
                             </div>
                             <div class="row">
@@ -748,116 +748,150 @@
                             </div>
                             <div id="componentesuno">
                                 <div class="row">
-                                    <div class="col-2 mb-1">
-                                        <label for="claveindicador_componente" class="form-label">Clave indicador</label>
-                                        <input type="text" class="form-control" id="claveindicador_componente">
+                                    <div class="col-2 mb-1 FormUsr FontMsg mt-3">
+                                        <label for="claveindicador_componente" class="form-labelUsr4">Clave Indicador</label>
+                                        <input type="text" class="TextBoxUsr w-100 H-50" id="claveindicador_componente">
                                     </div>
-                                    <div class="col-10 mb-1">
-                                        <label for="nombreindicar_componente" class="form-label">Nombre del indicador</label>
-                                        <textarea class="form-control" id="nombreindicar_componente" required maxlength="300" rows="2"></textarea>
+                                    <div class="col-10 mb-1 FormUsr FontMsg mt-3">
+                                        <label for="nombreindicar_componente" class="form-labelUsr4">Nombre del Indicador</label>
+                                        <textarea class="TextBoxUsr w-100 H-50" id="nombreindicar_componente" required maxlength="300" rows="2"></textarea>
                                     </div>
-                                    <div class="col-12 mb-1">
-                                        <label for="descripcionformula_componente" class="form-label">Descripción de la fórmula</label>
-                                        <textarea class="form-control" id="descripcionformula_componente" required maxlength="300" rows="2"></textarea>
+                                    <div class="col-12 mb-1 FormUsr FontMsg mt-3">
+                                        <label for="descripcionformula_componente" class="form-labelUsr4">Descripción de la Fórmula</label>
+                                        <textarea class="TextBoxUsr w-100 H-50" id="descripcionformula_componente" required maxlength="300" rows="2"></textarea>
                                     </div>
-                                    <div class="col-3 mb-1">
-                                        <label for="variable1_componente" class="form-label">Variable 1 (V1)</label>
-                                        <textarea class="form-control" id="variable1_componente" required maxlength="300" rows="4"></textarea>
+                                    <div class="col-3 mb-1 FormUsr FontMsg mt-3">
+                                        <label for="variable1_componente" class="form-labelUsr4">Variable 1 (V1)</label>
+                                        <textarea class="TextBoxUsr w-100" id="variable1_componente" required maxlength="300" rows="5"></textarea>
                                     </div>
-                                    <div class="col-3 mb-1">
-                                        <label for="variable2_componente" class="form-label">Variable 2 (V2)</label>
-                                        <textarea class="form-control" id="variable2_componente" required maxlength="300" rows="4"></textarea>
+                                    <div class="col-3 mb-1 FormUsr FontMsg mt-3">
+                                        <label for="variable2_componente" class="form-labelUsr4">Variable 2 (V2)</label>
+                                        <textarea class="TextBoxUsr w-100" id="variable2_componente" required maxlength="300" rows="5"></textarea>
                                     </div>
-                                    <div class="col-3 mb-1">
-                                        <label for="variable3_componente" class="form-label">Variable 3 (V3)</label>
-                                        <textarea class="form-control" id="variable3_componente" required maxlength="300" rows="4"></textarea>
+                                    <div class="col-3 mb-1 FormUsr FontMsg mt-3">
+                                        <label for="variable3_componente" class="form-labelUsr4">Fórmula</label>
+                                        <textarea class="TextBoxUsr w-100" id="variable3_componente" required maxlength="300" rows="5"></textarea>
                                     </div>
-                                    <div class="col-3 mb-1">
+                                    <div class="col-3 mb-1 FormUsr FontMsg mt-3">
                                         <div class="row">
                                             <div class="col-12">
-                                                <label for="select_unidadmedida_componente" class="form-label">Unidad de medida</label>
-                                                <select id="select_unidadmedida_componente" class="selectpicker unidad-medida show-tick form-control" data-tipo="componente" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                                <label for="select_unidadmedida_componente" class="form-labelUsr3">Unidad de Medida</label>
+                                                <select id="select_unidadmedida_componente" class="TextBoxUsr unidad-medida select-mir w-100" data-tipo="componente" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
                                                     <option value="-">-</option>
                                                     <option value="PORCENTAJE">PORCENTAJE</option>
                                                     <option value="ABSOLUTO">ABSOLUTO</option>
                                                 </select>
                                             </div>
-                                            <div id="d-descripcionunidadmedida_componente" class="col-12 d-none">
-                                                <label for="descripcionunidadmedida_componente" class="form-label">Descripción</label>
-                                                <input type="text" class="form-control" id="descripcionunidadmedida_componente">
+                                            <div id="d-descripcionunidadmedida_componente" class="col-12 d-none FormUsr FontMsg mt-3">
+                                                <label for="descripcionunidadmedida_componente" class="form-labelUsr4">Descripción</label>
+                                                <input type="text" class="form-control TextBoxUsr w-100 H-50" id="descripcionunidadmedida_componente">
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-3 mb-1">
-                                        <label for="ejecerciciofisca_componente" class="form-label">Ejercicio fiscal:</label>
-                                        <select id="ejecerciciofisca_componente" class="selectpicker show-tick form-control" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
-                                            <option value="-">-</option>
-                                            <option value="2020">2020</option>
-                                            <option value="2021">2021</option>
-                                        </select>
+                                    <div class="col-6 mb-1 FormUsr FontMsg mt-3 border border-1 border-black rounded H-60">
+                                        <div class="row mt-2">
+                                            <div class="col-6">
+                                                <div class="row">
+                                                    <div class="col-6 mt-2">
+                                                        <label for="ejecerciciofisca_componente" class="form-label">Ejercicio Fiscal:</label>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <select id="ejecerciciofisca_componente" class="selectpicker show-tick form-control" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                                            <option value="-">-</option>
+                                                            <option value="2020">2020</option>
+                                                            <option value="2021">2021</option>
+                                                        </select>                
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="row">
+                                                    <div class="col-6 mt-2">
+                                                        <label for="lineabase_componente1" class="form-label">Línea Base</label>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <input type="text" class="form-control" id="lineabase_componente1">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="col-3 mb-1">
-                                        <label for="lineabase_componente1" class="form-label">Línea base</label>
-                                        <input type="text" class="form-control" id="lineabase_componente1">
-                                    </div>
-                                    <div class="col-3 mb-1">
-                                        <label for="lineabaseV1_componente" class="form-label">V1</label>
-                                        <input type="text" class="form-control" id="lineabaseV1_componente">
-                                    </div>
-                                    <div class="col-3 mb-1">
-                                        <label for="lineabaseV2_componente" class="form-label">V2</label>
-                                        <input type="text" class="form-control" id="lineabaseV2_componente">
-                                    </div>
-                                    <div class="col-8">
-                                        <b>El Usuario deberá capturar los datos de las variables de cada semestre o trimestre. El interfaz calculará los datos acumulados a la frecuencia capturada.</b>
-                                    </div>
-                                    <div class="col-4">
-                                        <b>D: Dato del Semestre/Trimestre.</b><br>
-                                        <b>A: Acumulado. Cálculo que hace el Interfaz.</b>
+                                    <div class="col-5 mb-1 FormUsr FontMsg ms-5 mt-3 border border-1 border-black rounded H-60">
+                                        <div class="row mt-2">
+                                            <div class="col-6">
+                                                <div class="row">
+                                                    <div class="col-3 mt-2">
+                                                        <label for="lineabaseV1_componente" class="form-label">V1</label>
+                                                    </div>
+                                                    <div class="col-9">
+                                                        <input type="text" class="form-control" id="lineabaseV1_componente">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="row">
+                                                    <div class="col-3 mt-2">
+                                                        <label for="lineabaseV2_componente" class="form-label">V2</label>
+                                                    </div>
+                                                    <div class="col-9">
+                                                        <input type="text" class="form-control" id="lineabaseV2_componente">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="row mb-1">
-                                    <div class="col-2">
-                                        <label for="metaanual_componente" class="form-label">Meta anual</label>
-                                        <input type="text" class="form-control" disabled="" style="background: white; color: gray;" id="metaanual_componente">
+                                <div class="row mt-2">
+                                    <div class="col-8 LetretosFont fw-bold">
+                                        <b>El Usuario deberá capturar los datos de las variables de cada semestre o trimestre. El interfaz calculará los datos acumulados a la frecuencia capturada.</b>
                                     </div>
-                                    <div class="col-2">
-                                        <label for="selectfrecuencia_componente" class="form-label">Frecuencia</label>
-                                        <select id="selectfrecuencia_componente" class="selectpicker select-frecuencia show-tick form-control" data-tipo="componente" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                    <div class="col-4 LetretosFont fw-bold">
+                                        <b>D: Dato del Semestre/Trimestre.</b><br>
+                                        <b>A: Acumulado. Cálculo que hace el Interfaz.</b>
+                                    </div>    
+                                </div>
+                                <div class="row mb-1">
+                                    <div class="col-2 FormUsr FontMsg mt-3">
+                                        <label for="metaanual_componente" class="form-labelUsr4">Meta Anual</label>
+                                        <input type="text" class="TextBoxUsr w-100 H-50" disabled="" style="background: white; color: gray;" id="metaanual_componente">
+                                    </div>
+                                    <div class="col-2 FormUsr FontMsg mt-3">
+                                        <label for="selectfrecuencia_componente" class="form-labelUsr3">Frecuencia</label>
+                                        <select id="selectfrecuencia_componente" class="TextBoxUsr unidad-medida select-mir w-100" data-tipo="componente" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
                                             <option value="-">-</option>
                                             <option value="TRIMESTRAL">TRIMESTRAL</option>
                                             <option value="SEMESTRAL">SEMESTRAL</option>
                                         </select>
                                     </div>
-                                    <div class="col-4 d-none d-metasemestral-componente">
-                                        <label for="metasemestral1_componente" class="form-label">Meta semestral I</label>
-                                        <input type="text" class="form-control" disabled="" style="background: white; color: gray;" id="metasemestral1_componente">
+                                    <div class="col-4 d-none d-metasemestral-componente FormUsr FontMsg mt-3">
+                                        <label for="metasemestral1_componente" class="form-labelUsr4">Meta Semestre I</label>
+                                        <input type="text" class="TextBoxUsr w-100 H-50" disabled="" style="background: white; color: gray;" id="metasemestral1_componente">
                                     </div>
-                                    <div class="col-4 d-none d-metasemestral-componente">
-                                        <label for="metasemestral2_componente" class="form-label">Meta semestral II</label>
-                                        <input type="text" class="form-control" disabled="" style="background: white; color: gray;" id="metasemestral2_componente">
+                                    <div class="col-4 d-none d-metasemestral-componente FormUsr FontMsg mt-3">
+                                        <label for="metasemestral2_componente" class="form-labelUsr4">Meta Semestre II</label>
+                                        <input type="text" class="TextBoxUsr w-100 H-50" disabled="" style="background: white; color: gray;" id="metasemestral2_componente">
                                     </div>
-                                    <div class="col-2 d-none d-trimestral-componente">
-                                        <label for="metatrimestral1_componente" class="form-label">Meta trimestral I</label>
-                                        <input type="text" class="form-control" disabled="" style="background: white; color: gray;" id="metatrimestral1_componente">
+                                    <div class="col-2 d-none d-trimestral-componente FormUsr FontMsg mt-3">
+                                        <label for="metatrimestral1_componente" class="form-labelUsr4">Meta Trimestre I</label>
+                                        <input type="text" class="TextBoxUsr w-100 H-50" disabled="" style="background: white; color: gray;" id="metatrimestral1_componente">
                                     </div>
-                                    <div class="col-2 d-none d-trimestral-componente">
-                                        <label for="metatrimestral2_componente" class="form-label">Meta trimestral II</label>
-                                        <input type="text" class="form-control" disabled="" style="background: white; color: gray;" id="metatrimestral2_componente">
+                                    <div class="col-2 d-none d-trimestral-componente FormUsr FontMsg mt-3">
+                                        <label for="metatrimestral2_componente" class="form-labelUsr4">Meta Trimestre II</label>
+                                        <input type="text" class="TextBoxUsr w-100 H-50" disabled="" style="background: white; color: gray;" id="metatrimestral2_componente">
                                     </div>
-                                    <div class="col-2 d-none d-trimestral-componente">
-                                        <label for="metatrimestral3_componente" class="form-label">Meta trimestral III</label>
-                                        <input type="text" class="form-control" disabled="" style="background: white; color: gray;" id="metatrimestral3_componente">
+                                    <div class="col-2 d-none d-trimestral-componente FormUsr FontMsg mt-3">
+                                        <label for="metatrimestral3_componente" class="form-labelUsr4">Meta Trimestre III</label>
+                                        <input type="text" class="TextBoxUsr w-100 H-50" disabled="" style="background: white; color: gray;" id="metatrimestral3_componente">
                                     </div>
-                                    <div class="col-2 d-none d-trimestral-componente">
-                                        <label for="metatrimestral4_componente" class="form-label">Meta trimestral IV</label>
-                                        <input type="text" class="form-control" disabled="" style="background: white; color: gray;" id="metatrimestral4_componente">
+                                    <div class="col-2 d-none d-trimestral-componente FormUsr FontMsg mt-3">
+                                        <label for="metatrimestral4_componente" class="form-labelUsr4">Meta Trimestre IV</label>
+                                        <input type="text" class="TextBoxUsr w-100 H-50" disabled="" style="background: white; color: gray;" id="metatrimestral4_componente">
                                     </div>
                                 </div>
                                 <div class="row mb-1">
-                                    <div class="col-2">
-                                        <label for="variableV1_componente" class="form-label">V1</label>
-                                        <input type="text" class="form-control" id="variableV1_componente">
+                                    <div class="col-2 FormUsr FontMsg mt-3">
+                                        <label for="variableV1_componente" class="form-labelUsr4">V1</label>
+                                        <input type="text" class="TextBoxUsr w-100 H-50" id="variableV1_componente">
                                     </div>
                                     <div class="col-2">
                                         
@@ -1008,9 +1042,9 @@
                                     </div>
                                 </div>
                                 <div class="row mb-1">
-                                    <div class="col-2">
-                                        <label for="variableV2_componente" class="form-label">V2</label>
-                                        <input type="text" class="form-control" id="variableV2_componente">
+                                    <div class="col-2 FormUsr FontMsg mt-3">
+                                        <label for="variableV2_componente" class="form-label4">V2</label>
+                                        <input type="text" class="TextBoxUsr w-100 H-50" id="variableV2_componente">
                                     </div>
                                     <div class="col-2">
                                         
@@ -1601,7 +1635,7 @@
                                     <div class="row mb-1">
                                     <div class="col-2">
                                         <label for="variableV2_actividad" class="form-label">V2</label>
-                                        <input type="text" class="form-control" id="variableV2_actividad">
+                                        <input type="text" class="TextBoxUsr w-100 H-50" id="variableV2_actividad">
                                     </div>
                                     <div class="col-2">
                                         
