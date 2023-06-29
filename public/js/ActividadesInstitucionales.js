@@ -13,7 +13,7 @@ $(document).ready(function() {
 });
 
 function Funciones_Iniciales() {
-    // Func_Cargando();
+    Func_Cargando();
     GetSecretarias();
 }
 
@@ -84,6 +84,7 @@ function ResponseGetAllActividadesI(response) {
             for (var i = 0; i < response.data.length; i++) {
                 $("#table > tbody").append(`
                     <tr>
+                        <td class="d-none">${response.data[i].idSecretaria}</td>
                         <td>${response.data[i].idClasificacion}</td>
                         <td>${response.data[i].idObjetivoPED}</td>
                         <td>${response.data[i].Anticorrupcion}</td>
@@ -94,13 +95,29 @@ function ResponseGetAllActividadesI(response) {
                 `);
             }
         }
-        Func_DataTable("table");
+        Func_DataTable("table", true, true, true, 5);
+        GetAllCountActividadesAI();
+    } else {
         swal.close();
+        console.log(response.result)
+        Func_Aviso("Anomalía detectada", "Ha ocurrido una anomalía al obtener la información del módulo, favor de intentarlo nuevamente.", "error");
+    }
+}
+
+function GetAllCountActividadesAI(){
+    repository.ActividadesInstitucionales.GetAllCountActividadesAI()
+        .then(ResponseGetAllCountActividadesAI);
+}
+
+function ResponseGetAllCountActividadesAI(response) {
+    swal.close();
+    if (!response.error) {
+        $("#contador_programas").text(response.data[0]['Programas']);
+        $("#contador_componentes").text(response.data[0]['Componentes']);
     } else {
         console.log(response.result)
         Func_Aviso("Anomalía detectada", "Ha ocurrido una anomalía al obtener la información del módulo, favor de intentarlo nuevamente.", "error");
     }
-    swal.close();
 }
 
 function Eventos() {
@@ -164,6 +181,7 @@ function ResponseGetActividadesI(response) {
             for (var i = 0; i < response.data.length; i++) {
                 $("#table > tbody").append(`
                     <tr>
+                        <td class="d-none">${response.data[i].idSecretaria}</td>
                         <td>${response.data[i].idClasificacion}</td>
                         <td>${response.data[i].idObjetivoPED}</td>
                         <td>${response.data[i].Anticorrupcion}</td>
@@ -174,13 +192,32 @@ function ResponseGetActividadesI(response) {
                 `);
             }
         }
-        Func_DataTable("table");
+        Func_DataTable("table", true, true, true, 5);
+        GetCountActividadesAI();
+    } else {
         swal.close();
+        console.log(response.result)
+        Func_Aviso("Anomalía detectada", "Ha ocurrido una anomalía al obtener la información del módulo, favor de intentarlo nuevamente.", "error");
+    }
+}
+
+function GetCountActividadesAI(){
+    var request = {
+        "id_secretaria": $("#select_secretaria").val()
+    }
+    repository.ActividadesInstitucionales.GetCountActividadesAI(request)
+        .then(ResponseGetCountActividadesAI);
+}
+
+function ResponseGetCountActividadesAI(response) {
+    swal.close();
+    if (!response.error) {
+        $("#contador_programas").text(response.data[0]['Programas']);
+        $("#contador_componentes").text(response.data[0]['Componentes']);
     } else {
         console.log(response.result)
         Func_Aviso("Anomalía detectada", "Ha ocurrido una anomalía al obtener la información del módulo, favor de intentarlo nuevamente.", "error");
     }
-    swal.close();
 }
 
 function BtnComponentes(){
@@ -189,11 +226,6 @@ function BtnComponentes(){
         var index = table.row('.selected').index();
         var data = table.row(index).data();
 
-        if ($("#select_secretaria").val() == ""){
-            Func_Aviso("Atención", "Para continuar favor de seleccionar una secretaría.", "info");
-            return false;
-        }
-
         if (!table.rows('.selected').any()) {
             Func_Aviso("Atención", "Para continuar favor de seleccionar un registro.", "info");
             return false;
@@ -201,10 +233,10 @@ function BtnComponentes(){
 
         $("#informacion_componente").addClass("d-none");
         var request = {
-            "id_secretaria": $("#select_secretaria").val(),
-            "id_objetivo": data[1],
-            "id_clasificacion": data[0],
-            "consecutivo": data[4]
+            "id_secretaria": data[0],
+            "id_objetivo": data[2],
+            "id_clasificacion": data[1],
+            "consecutivo": data[5]
         }
         Func_Cargando();
         GetInfoComponentesAI(request);
@@ -232,7 +264,7 @@ function ResponseGetInfoComponentesAI(response){
             $("#descripcion").val(data['DescripcionPrograma']);
 
             var request = {
-                "id_secretaria": $("#select_secretaria").val(),
+                "id_secretaria": data['idSecretaria'],
                 "id_objetivo": data['IdObjetivo'],
                 "id_clasificacion": data['idClasificacion'],
                 "consecutivo": data['Consecutivo']
@@ -374,11 +406,6 @@ function BtnActualizarPP() {
         var index = table.row('.selected').index();
         var data = table.row(index).data();
 
-        if ($("#select_secretaria").val() == ""){
-            Func_Aviso("Atención", "Para continuar favor de seleccionar una secretaría.", "info");
-            return false;
-        }
-
         if (!table.rows('.selected').any()) {
             Func_Aviso("Atención", "Para continuar favor de seleccionar un registro.", "info");
             return false;
@@ -418,13 +445,13 @@ function BtnActualizarPP() {
         $('#select_objetivopp').selectpicker();
 
         
-        let id_secretaria = $("#select_secretaria").val();
-        let id_clasificacion = data[0];
-        let id_objetivo = data[1];
-        let id_anticorrupcion = data[2];
-        let id_tipologia = data[3];
-        let consecutivo = data[4];
-        let descripcion = data[5];
+        let id_secretaria = data[0];
+        let id_clasificacion = data[1];
+        let id_objetivo = data[2];
+        let id_anticorrupcion = data[3];
+        let id_tipologia = data[4];
+        let consecutivo = data[5];
+        let descripcion = data[6];
 
         $("#id_secretariapp").val(id_secretaria);
         $("#select_secretariapp").selectpicker("val", id_secretaria);
@@ -475,7 +502,7 @@ function GuardarActualizarPP(){
 
         }
 
-        Func_DespliegaConfirmacion("Guardar", "¿Deseas actualizar la información del programa presupuestario?", "question", "Aceptar", "Cancelar", function(response) {
+        Func_DespliegaConfirmacion("Guardar", "¿Deseas actualizar la información de la Actividad Institucional?", "question", "Aceptar", "Cancelar", function(response) {
             if (response) {
                 Func_Cargando();
                 repository.ActividadesInstitucionales.EditActividadInstitucional(request)
@@ -488,12 +515,16 @@ function GuardarActualizarPP(){
 
 function ResponseEditActividadInstitucional(response) {
     if (!response.error) {
-        Func_Toast("success", "Programa editado.", "El programa presupuestal fue actualizado exitosamente.");
+        Func_Toast("success", "Programa editado.", "La Actividad Institucional ha sido actualizada.");
         swal.close();
         let id_secretaria = $("#select_secretaria").val();
         let descripcion = $("#descripcionpp").val();
         $("#descriptivopp").val(descripcion);
-        GetActividadesI(id_secretaria);
+        if (id_secretaria == ""){
+            GetAllActividadesI();
+        }else{
+            GetActividadesI(id_secretaria);
+        }
     } else {
         console.log(response.result)
         Func_Aviso("Anomalía detectada", response.result, "error");

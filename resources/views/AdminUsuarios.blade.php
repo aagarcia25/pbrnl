@@ -163,26 +163,26 @@
                             </div>
                         </div>
                         <div class="row mb-2 g-3 align-items-center FontMsgChecks">
-                            <div class="col-md-2">
+                            <div class="col-3 bg-warning">
                                 <label for="select_roles" class="form-label">Rol</label>
                                 <select id="select_roles" class="selectpicker show-tick form-control" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="5" data-live-search="true" data-actions-box="true">
                                 </select>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-2 bg-danger">
                                 <label class="toggle">
                                     <input id="check_CatalogoPbR" class="toggle-checkbox" type="checkbox">
                                     <div class="toggle-switch"></div>
                                     <span class="toggle-label text-bold">Catálogo PbR</span>
                                 </label>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-4 bg-success">
                                 <label class="toggle">
-                                    <input id="check_Clasificacion" class="toggle-checkbox" type="checkbox">
+                                    <input id="check_Clasificacion ms-2" class="toggle-checkbox" type="checkbox">
                                     <div class="toggle-switch"></div>
-                                    <span class="toggle-label text-bold">Clasificación programatica NL</span>
+                                    <span class="toggle-label text-bold">Clasificación Programática NL</span>    
                                 </label>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-3 bg-primary">
                                 <label class="toggle">
                                     <input id="check_Mir" class="toggle-checkbox" type="checkbox">
                                     <div class="toggle-switch"></div>

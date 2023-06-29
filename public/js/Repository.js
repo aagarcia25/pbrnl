@@ -20,11 +20,11 @@ async function Requests(method = '', url = '', data = null) {
 
     if (response.status == 404) {
         console.log(response)
-        Func_Aviso("Error 404", "La petición que estas intentando realizar no puede ser encontrada en el servidor.", "error");
+        Func_Aviso("Error 404", "La petición que está intentando realizar no puede ser encontrada en el servidor.", "error");
         return;
     } else if (response.status == 500) {
         console.log(response)
-        Func_Aviso("Error 500", "La petición que estas intentando realizar ha tenido un error interno en el servidor.", "error");
+        Func_Aviso("Error 500", "La petición que está intentando realizar ha tenido un error interno en el servidor.", "error");
         return;
     } else {
         const info = await response.json();
@@ -37,7 +37,7 @@ class Repository {
 
     constructor() {
         // Local
-        this.Url = "http://evalua-pbr.nl.gob.mx:81";
+        this.Url = "http://127.0.0.1:8000";
 
         this._secretarias = null;
         this._conacadmin = null;
@@ -57,6 +57,9 @@ class Repository {
         this._objetivos = null;
         this._tiposbeneficiarios = null;
         this._beneficiarios = null;
+        this._mir = null;
+        this._estrategias = null;
+        this._lineasaccion = null;
     }
 
     get Secretarias() {
@@ -201,6 +204,30 @@ class Repository {
         }
 
         return this._beneficiarios;
+    }
+
+    get Mir() {
+        if (!this._mir) {
+            this._mir = new MirController(this.Url);
+        }
+
+        return this._mir;
+    }
+
+    get Estrategias() {
+        if (!this._estrategias) {
+            this._estrategias = new EstrategiasController(this.Url);
+        }
+
+        return this._estrategias;
+    }
+
+    get LineasAccion() {
+        if (!this._lineasaccion) {
+            this._lineasaccion = new LineasAccionController(this.Url);
+        }
+
+        return this._lineasaccion;
     }
 
 }
@@ -354,6 +381,10 @@ class TemaController {
         this.Url = url;
     }
 
+    GetAllTemas(request) {
+        return Requests('GET', this.Url + "/GetAllTemas", request);
+    }
+
     GetTemas(request) {
         return Requests('POST', this.Url + "/GetTemas", request);
     }
@@ -436,23 +467,31 @@ class ProgramasPresupuestalesController {
     }
 
     GetAllProgramasP() {
-        return Requests('GET', this.Url + "/GetAllProgramasP");
+        return Requests('GET', this.Url + "/GetAllProgramasPP");
+    }
+
+    GetAllCountProgramasP() {
+        return Requests('GET', this.Url + "/GetAllCountProgramasP");
+    }
+
+    GetCountProgramasP(request) {
+        return Requests('POST', this.Url + "/GetCountProgramasP", request);
     }
 
     GetProgramasP(request) {
-        return Requests('POST', this.Url + "/GetProgramasP", request);
+        return Requests('POST', this.Url + "/GetProgramasPP", request);
     }
 
     GetInfoComponentes(request) {
-        return Requests('POST', this.Url + "/GetInfoComponentes", request);
+        return Requests('POST', this.Url + "/GetInfoComponentesPP", request);
     }
 
     GetComponentes(request) {
-        return Requests('POST', this.Url + "/GetComponentes", request);
+        return Requests('POST', this.Url + "/GetComponentesPP", request);
     }
 
     EditComponente(request) {
-        return Requests('POST', this.Url + "/EditComponente", request);
+        return Requests('POST', this.Url + "/EditComponentePP", request);
     }
 
     EditProgramaPresupuestal(request) {
@@ -466,11 +505,19 @@ class ActividadesInstitucionalesController {
     }
 
     GetAllActividadesI() {
-        return Requests('GET', this.Url + "/GetAllActividadesI");
+        return Requests('GET', this.Url + "/GetAllActividadesAI");
+    }
+
+    GetAllCountActividadesAI() {
+        return Requests('GET', this.Url + "/GetAllCountActividadesAI");
+    }
+
+    GetCountActividadesAI(request) {
+        return Requests('POST', this.Url + "/GetCountActividadesAI", request);
     }
 
     GetActividadesI(request) {
-        return Requests('POST', this.Url + "/GetActividadesI", request);
+        return Requests('POST', this.Url + "/GetActividadesAI", request);
     }
 
     GetInfoComponentesAI(request) {
@@ -499,6 +546,14 @@ class ProgramasProyectosInversionController {
         return Requests('GET', this.Url + "/GetAllPPI");
     }
 
+    GetAllCountPPI() {
+        return Requests('GET', this.Url + "/GetAllCountPPI");
+    }
+
+    GetCountPPI(request) {
+        return Requests('POST', this.Url + "/GetCountPPI", request);
+    }
+
     GetPPI(request) {
         return Requests('POST', this.Url + "/GetPPI", request);
     }
@@ -507,16 +562,16 @@ class ProgramasProyectosInversionController {
         return Requests('POST', this.Url + "/GetInfoComponentesPPI", request);
     }
 
-    GetComponentes(request) {
-        return Requests('POST', this.Url + "/GetComponentes", request);
+    GetComponentesPPI(request) {
+        return Requests('POST', this.Url + "/GetComponentesPPI", request);
     }
 
-    EditComponente(request) {
-        return Requests('POST', this.Url + "/EditComponente", request);
+    EditComponentePPI(request) {
+        return Requests('POST', this.Url + "/EditComponentePPI", request);
     }
 
-    EditActividadInstitucional(request) {
-        return Requests('POST', this.Url + "/EditActividadInstitucional", request);
+    EditProgramaPresupuestoInversion(request) {
+        return Requests('POST', this.Url + "/EditProgramaPresupuestoInversion", request);
     }
 }
 
@@ -528,6 +583,82 @@ class ObjetivosController {
     GetAllObjetivos() {
         return Requests('GET', this.Url + "/GetAllObjetivos");
     }
+
+    GetObjetivos(request) {
+        return Requests('POST', this.Url + "/GetObjetivos", request);
+    }
+
+    AddObjetivo(request) {
+        return Requests('POST', this.Url + "/AddObjetivo", request);
+    }
+
+    EditObjetivo(request) {
+        return Requests('POST', this.Url + "/EditObjetivo", request);
+    }
+
+    DeleteObjetivo(id) {
+        return Requests('POST', this.Url + "/DeleteObjetivo", id);
+    }
+}
+
+class EstrategiasController {
+    constructor(url = '') {
+        this.Url = url;
+    }
+
+    GetAllEstretegias() {
+        return Requests('GET', this.Url + "/GetAllEstretegias");
+    }
+
+    GetEstrategias(request) {
+        return Requests('POST', this.Url + "/GetEstretegias", request);
+    }
+
+    GetEstrategiasObjetivos(request) {
+        return Requests('POST', this.Url + "/GetEstrategiasObjetivos", request);
+    }
+
+    GetEstrategiasTemas(request) {
+        return Requests('POST', this.Url + "/GetEstrategiasTemas", request);
+    }
+
+    AddEstrategia(request) {
+        return Requests('POST', this.Url + "/AddEstrategia", request);
+    }
+
+    EditEstrategia(request) {
+        return Requests('POST', this.Url + "/EditEstrategia", request);
+    }
+
+    DeleteEstrategia(request) {
+        return Requests('POST', this.Url + "/DeleteEstrategia", request);
+    }
+}
+
+class LineasAccionController {
+    constructor(url = '') {
+        this.Url = url;
+    }
+
+    GetAllLineasAccion() {
+        return Requests('GET', this.Url + "/GetAllLineasAccion");
+    }
+
+    GetLineasAccion(request) {
+        return Requests('POST', this.Url + "/GetLineasAccion", request);
+    }
+
+    AddLineaAccion(request) {
+        return Requests('POST', this.Url + "/AddLineaAccion", request);
+    }
+
+    EditLineaAccion(request) {
+        return Requests('POST', this.Url + "/EditLineaAccion", request);
+    }
+
+    DeleteLineaAccion(request) {
+        return Requests('POST', this.Url + "/DeleteLineaAccion", request);
+    }
 }
 
 class BeneficiariosController {
@@ -537,6 +668,10 @@ class BeneficiariosController {
 
     GetTiposBeneficiarios() {
         return Requests('GET', this.Url + "/GetTiposBeneficiarios");
+    }
+
+    GetAllBeneficiarios() {
+        return Requests('GET', this.Url + "/GetAllBeneficiarios");
     }
 
     GetBeneficiarios(request) {
@@ -564,6 +699,46 @@ class BeneficiariosController {
     }
 }
 
+class MirController {
+    constructor(url = '') {
+        this.Url = url;
+    }
 
+    GetMir(request) {
+        return Requests('POST', this.Url + "/GetMir", request);
+    }
+
+    GetMirCaratula(request) {
+        return Requests('POST', this.Url + "/GetMirCaratula", request);
+    }
+
+    GetMirFin(request) {
+        return Requests('POST', this.Url + "/GetMirFin", request);
+    }
+
+    GetMirProposito(request) {
+        return Requests('POST', this.Url + "/GetMirProposito", request);
+    }
+
+    GetMirComponentes(request) {
+        return Requests('POST', this.Url + "/GetMirComponentes", request);
+    }
+
+    GetMirActividades(request) {
+        return Requests('POST', this.Url + "/GetMirActividades", request);
+    }
+    
+    GetMirAutoriaCarga(request) {
+        return Requests('POST', this.Url + "/GetMirAutoriaCarga", request);
+    }
+    
+    GetMirAutoriaFormulas(request) {
+        return Requests('POST', this.Url + "/GetMirAutoriaFormulas", request);
+    }
+    
+    SaveMir(request) {
+        return Requests('POST', this.Url + "/SaveMir", request);
+    }
+}
 
 

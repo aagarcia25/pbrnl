@@ -1243,6 +1243,23 @@
         font-weight: bold;
     }
 
+    .buttonOutlineSucces150 {
+        background-color: #cfe1b9;
+        border:none; /*#588157;*/
+        color: black;
+        width: 150px;
+        height: 35px;
+    }
+    
+        .buttonOutlineSucces150:hover {
+            background-color: #97a97c;
+            border-color: #588157;
+            cursor: pointer;
+            color: white;
+            font-weight: bold;
+        }
+    
+
 .buttonAdminUser {
     background-color: #E6E6E6;
     border: solid;
@@ -1542,6 +1559,17 @@ TextBox1:not(:placeholder-shown).TextBox1:not(:focus) ~ .form-label1 {
     /* width: 100%; */
 }
 
+.TextBoxUsrReadOnly {
+    font-family: 'Poppins', sans-serif;
+    border: 1px solid grey;
+    border-radius: 5px;
+    outline: none;
+    background: none;
+    padding: 10px;
+    color: #808080;
+    /* width: 100%; */
+}
+
 
 .CuadroCaratula {
     border: 1px dotted #C89D24;
@@ -1678,6 +1706,23 @@ TextBox1:not(:placeholder-shown).TextBox1:not(:focus) ~ .form-label1 {
 /***************************************/
 .form-labelUsr3 {
     font-family: 'Poppins', sans-serif;
+    background: white !important;
+    border-left: 1px solid rgb(165, 163, 163);
+    border-right: 1px solid rgb(165, 163, 163);
+    padding-left: 5px;
+    padding-right: 5px;
+    color: gray;
+    font-size: 11px;
+    position: absolute;
+    top: -0.4rem;
+    left: 1.4rem;
+    cursor: text;
+    transition: top 100ms ease-in, left 100ms ease-in, font-size 100ms ease-in;
+    z-index: 100;
+}
+
+.form-labelUsr4 {
+    font-family: 'Poppins', sans-serif;
     background: white;
     border-left: 1px solid rgb(165, 163, 163);
     border-right: 1px solid rgb(165, 163, 163);
@@ -1686,7 +1731,7 @@ TextBox1:not(:placeholder-shown).TextBox1:not(:focus) ~ .form-label1 {
     color: gray;
     font-size: 11px;
     position: absolute;
-    top: 1.2rem;
+    top: -0.3rem;
     left: 1.4rem;
     cursor: text;
     transition: top 100ms ease-in, left 100ms ease-in, font-size 100ms ease-in;
@@ -1933,6 +1978,7 @@ TextBox1:not(:placeholder-shown).TextBox1:not(:focus) ~ .form-label1 {
 .LabelContador {
     font-family: 'Poppins', sans-serif;
     font-size: 10px;
+    background-color: white !important;
 }
 
 .CuadroRight {
@@ -2090,4 +2136,24 @@ TextBox1:not(:placeholder-shown).TextBox1:not(:focus) ~ .form-label1 {
 
 .W90 {
     width: 83%;
+}
+
+.WLabel {
+    font-size: 15px;
+    padding-top: 8px;
+}
+
+.MT-Menos {
+    margin-top: -40px;
+}
+
+.H-50 {
+    height: 50px !important;
+}
+
+.H-60 {
+    height: 60px !important;
+}
+.Rows4 {
+    height: 80px;
 }

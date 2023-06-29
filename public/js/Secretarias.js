@@ -98,7 +98,7 @@ function BtnEditarCatalogo() {
         var data = table.row(index).data();
 
         if (!table.rows('.selected').any()) {
-            Func_Aviso("Atención", "Para continuar favor de seleccionar un registro.", "info");
+            Func_Aviso("Atención", "Para continuar favor de seleccionar una Secretaría.", "info");
             return false;
         }
 
@@ -118,7 +118,7 @@ function BtnEliminarCatalogo() {
         var data = table.row(index).data();
 
         if (!table.rows('.selected').any()) {
-            Func_Aviso("Atención", "Para continuar favor de seleccionar un registro.", "info");
+            Func_Aviso("Atención", "Para continuar favor de seleccionar una Secretaría.", "info");
             return false;
         }
 
@@ -145,7 +145,7 @@ function BtnGuardarSecretaria() {
             var request = {
                 id_secretaria: $("#id_secretaria").val(),
                 id_conac: $("#id_conac").val(),
-                descripcion: $("#descripcion").val()
+                descripcion: $("#descripcion").val().toUpperCase()
             };
 
             if ($("#modal_accion").text() == "Editar") {
@@ -176,7 +176,7 @@ function ResponseAddSecretaria(response) {
     if (!response.error) {
         $("#ModalSecretaria").modal("hide");
         Func_LimpiarModal();
-        Func_Toast("success", "Secretaría agregada.", "La secretaría fue agregada exitosamente.");
+        Func_Toast("success", "Secretaría agregada.", "La secretaría ha sido agregada con éxito.");
         GetSecretarias();
     } else {
         console.log(response.result)
@@ -188,7 +188,7 @@ function ResponseEditSecretaria(response) {
     if (!response.error) {
         $("#ModalSecretaria").modal("hide");
         Func_LimpiarModal();
-        Func_Toast("success", "Secretaría editada.", "La secretaría fue editada exitosamente.");
+        Func_Toast("success", "Secretaría editada.", "La secretaría ha sido modificada.");
         GetSecretarias();
     } else {
         console.log(response.result)
@@ -198,7 +198,7 @@ function ResponseEditSecretaria(response) {
 
 function ResponseDeleteSecretaria(response) {
     if (!response.error) {
-        Func_Toast("success", "Secretaría eliminada.", "La secretaría fue eliminada exitosamente.");
+        Func_Toast("success", "Secretaría eliminada.", "La secretaría ha sido eliminada de Interfaz PbR.");
         GetSecretarias();
     } else {
         console.log(response.result)

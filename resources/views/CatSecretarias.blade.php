@@ -101,8 +101,8 @@
                             <table id="tableSecretarias" class="table table-striped table-hover">
                                 <thead>
                                     <tr class="table-header text-center">
-                                        <th scope="col" width="20%">Id secretaría</th>
-                                        <th scope="col" width="25%">Id conac</th>
+                                        <th scope="col" width="20%">Id Secretaría</th>
+                                        <th scope="col" width="25%">Id CONAC</th>
                                         <th scope="col" width="55%">Descripción</th>
                                     </tr>
                                 </thead>
@@ -125,7 +125,7 @@
                     <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
                     <input type="hidden" id="id"></input>
                     <div class="modal-header">
-                        <h5 class="modal-title"><span id="modal_accion"></span> secretaría</h5>
+                        <h5 class="modal-title"><span id="modal_accion"></span> Secretaría</h5>
                     </div>
                     <div class="modal-body">
                         <div class="row g-3">
@@ -140,7 +140,7 @@
                             </div>
                             <div class="col-md-12">
                                 <label for="descripcion" class="form-label">Descripción</label>
-                                <input type="text" class="form-control" id="descripcion" required maxlength="80">
+                                <input type="text" class="form-control text-uppercase" id="descripcion" required maxlength="80">
                             </div>
                         </div>
                     </div>

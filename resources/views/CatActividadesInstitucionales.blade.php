@@ -64,7 +64,14 @@
                             <img id="icon-cat-ods" class="icon-cat-secretaria" src="/img/@php echo $img; @endphp" width="80" height="80">
                         </div>
                         <div class="col-11">
-                            <h1 class="TituloCatalogo">@php echo $view; @endphp</h1>
+                            <div class="row"">
+                                <div class="col-12">
+                                    <h1 class="TituloCatalogo mx-3">@php echo $view; @endphp</h1>
+                                </div>
+                                <div class="col-12">
+                                    <h6 class="mx-3"><span id="contador_programas">0</span> PROGRAMAS - <span id="contador_componentes">0</span> COMPONENTES</h6>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

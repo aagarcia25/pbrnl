@@ -84,6 +84,7 @@ function ResponseGetAllPPI(response) {
             for (var i = 0; i < response.data.length; i++) {
                 $("#table > tbody").append(`
                     <tr>
+                        <td class="d-none">${response.data[i].idSecretaria}</td>
                         <td>${response.data[i].idClasificacion}</td>
                         <td>${response.data[i].idObjetivoPED}</td>
                         <td>${response.data[i].Anticorrupcion}</td>
@@ -94,13 +95,29 @@ function ResponseGetAllPPI(response) {
                 `);
             }
         }
-        Func_DataTable("table");
+        Func_DataTable("table", true, true, true, 5);
+        GetAllCountPPI();
+    } else {
         swal.close();
+        console.log(response.result)
+        Func_Aviso("Anomalía detectada", "Ha ocurrido una anomalía al obtener la información del módulo, favor de intentarlo nuevamente.", "error");
+    }
+}
+
+function GetAllCountPPI(){
+    repository.ProgramasProyectosInversion.GetAllCountPPI()
+        .then(ResponseGetAllCountPPI);
+}
+
+function ResponseGetAllCountPPI(response) {
+    swal.close();
+    if (!response.error) {
+        //$("#contador_programas").text(response.data[0]['Programas']);
+        $("#contador_componentes").text(response.data[0]['Componentes']);
     } else {
         console.log(response.result)
         Func_Aviso("Anomalía detectada", "Ha ocurrido una anomalía al obtener la información del módulo, favor de intentarlo nuevamente.", "error");
     }
-    swal.close();
 }
 
 function Eventos() {
@@ -164,6 +181,7 @@ function ResponseGetPPI(response) {
             for (var i = 0; i < response.data.length; i++) {
                 $("#table > tbody").append(`
                     <tr>
+                        <td class="d-none">${response.data[i].idSecretaria}</td>
                         <td>${response.data[i].idClasificacion}</td>
                         <td>${response.data[i].idObjetivoPED}</td>
                         <td>${response.data[i].Anticorrupcion}</td>
@@ -175,12 +193,31 @@ function ResponseGetPPI(response) {
             }
         }
         Func_DataTable("table");
+        GetCountPPI();
+    } else {
         swal.close();
+        console.log(response.result)
+        Func_Aviso("Anomalía detectada", "Ha ocurrido una anomalía al obtener la información del módulo, favor de intentarlo nuevamente.", "error");
+    }
+}
+
+function GetCountPPI(){
+    var request = {
+        "id_secretaria": $("#select_secretaria").val()
+    }
+    repository.ProgramasProyectosInversion.GetCountPPI(request)
+        .then(ResponseGetCountPPI);
+}
+
+function ResponseGetCountPPI(response) {
+    swal.close();
+    if (!response.error) {
+        $("#contador_programas").text(response.data[0]['Programas']);
+        $("#contador_componentes").text(response.data[0]['Componentes']);
     } else {
         console.log(response.result)
         Func_Aviso("Anomalía detectada", "Ha ocurrido una anomalía al obtener la información del módulo, favor de intentarlo nuevamente.", "error");
     }
-    swal.close();
 }
 
 function BtnComponentes(){
@@ -189,22 +226,18 @@ function BtnComponentes(){
         var index = table.row('.selected').index();
         var data = table.row(index).data();
 
-        if ($("#select_secretaria").val() == ""){
-            Func_Aviso("Atención", "Para continuar favor de seleccionar una secretaría.", "info");
-            return false;
-        }
-
         if (!table.rows('.selected').any()) {
             Func_Aviso("Atención", "Para continuar favor de seleccionar un registro.", "info");
             return false;
         }
 
         $("#informacion_componente").addClass("d-none");
+        
         var request = {
-            "id_secretaria": $("#select_secretaria").val(),
-            "id_objetivo": data[1],
-            "id_clasificacion": data[0],
-            "consecutivo": data[4]
+            "id_secretaria": data[0],
+            "id_objetivo": data[2],
+            "id_clasificacion": data[1],
+            "consecutivo": data[5]
         }
         Func_Cargando();
         GetInfoComponentesPPI(request);
@@ -232,7 +265,7 @@ function ResponseGetInfoComponentesPPI(response){
             $("#descripcion").val(data['DescripcionPrograma']);
 
             var request = {
-                "id_secretaria": $("#select_secretaria").val(),
+                "id_secretaria": data['idSecretaria'],
                 "id_objetivo": data['IdObjetivo'],
                 "id_clasificacion": data['idClasificacion'],
                 "consecutivo": data['Consecutivo']
@@ -374,11 +407,6 @@ function BtnActualizarPP() {
         var index = table.row('.selected').index();
         var data = table.row(index).data();
 
-        if ($("#select_secretaria").val() == ""){
-            Func_Aviso("Atención", "Para continuar favor de seleccionar una secretaría.", "info");
-            return false;
-        }
-
         if (!table.rows('.selected').any()) {
             Func_Aviso("Atención", "Para continuar favor de seleccionar un registro.", "info");
             return false;
@@ -418,13 +446,13 @@ function BtnActualizarPP() {
         $('#select_objetivopp').selectpicker();
 
         
-        let id_secretaria = $("#select_secretaria").val();
-        let id_clasificacion = data[0];
-        let id_objetivo = data[1];
-        let id_anticorrupcion = data[2];
-        let id_tipologia = data[3];
-        let consecutivo = data[4];
-        let descripcion = data[5];
+        let id_secretaria = data[0];
+        let id_clasificacion = data[1];
+        let id_objetivo = data[2];
+        let id_anticorrupcion = data[3];
+        let id_tipologia = data[4];
+        let consecutivo = data[5];
+        let descripcion = data[6];
 
         $("#id_secretariapp").val(id_secretaria);
         $("#select_secretariapp").selectpicker("val", id_secretaria);
@@ -493,7 +521,11 @@ function ResponseEditProgramaPresupuestoInversion(response) {
         let id_secretaria = $("#select_secretaria").val();
         let descripcion = $("#descripcionpp").val();
         $("#descriptivopp").val(descripcion);
-        GetPPI(id_secretaria);
+        if (id_secretaria == ""){
+            GetAllPPI();
+        }else{
+            GetPPI(id_secretaria);
+        }
     } else {
         console.log(response.result)
         Func_Aviso("Anomalía detectada", response.result, "error");

@@ -96,12 +96,28 @@ function ResponseGetAllProgramasP(response) {
             }
         }
         Func_DataTable("table");
+        GetAllCountProgramasP();
+    } else {
         swal.close();
+        console.log(response.result)
+        Func_Aviso("Anomalía detectada", "Ha ocurrido una anomalía al obtener la información del módulo, favor de intentarlo nuevamente.", "error");
+    }
+}
+
+function GetAllCountProgramasP(){
+    repository.ProgramasPresupuestales.GetAllCountProgramasP()
+        .then(ResponseGetAllCountProgramasP);
+}
+
+function ResponseGetAllCountProgramasP(response) {
+    swal.close();
+    if (!response.error) {
+        $("#contador_programas").text(response.data[0]['Programas']);
+        $("#contador_componentes").text(response.data[0]['Componentes']);
     } else {
         console.log(response.result)
         Func_Aviso("Anomalía detectada", "Ha ocurrido una anomalía al obtener la información del módulo, favor de intentarlo nuevamente.", "error");
     }
-    swal.close();
 }
 
 function Eventos() {
@@ -177,12 +193,31 @@ function ResponseGetProgramasP(response) {
             }
         }
         Func_DataTable("table");
+        GetCountProgramasP();
+    } else {
         swal.close();
+        console.log(response.result)
+        Func_Aviso("Anomalía detectada", "Ha ocurrido una anomalía al obtener la información del módulo, favor de intentarlo nuevamente.", "error");
+    }
+}
+
+function GetCountProgramasP(){
+    var request = {
+        "id_secretaria": $("#select_secretaria").val()
+    }
+    repository.ProgramasPresupuestales.GetCountProgramasP(request)
+        .then(ResponseGetCountProgramasP);
+}
+
+function ResponseGetCountProgramasP(response) {
+    swal.close();
+    if (!response.error) {
+        $("#contador_programas").text(response.data[0]['Programas']);
+        $("#contador_componentes").text(response.data[0]['Componentes']);
     } else {
         console.log(response.result)
         Func_Aviso("Anomalía detectada", "Ha ocurrido una anomalía al obtener la información del módulo, favor de intentarlo nuevamente.", "error");
     }
-    swal.close();
 }
 
 function BtnComponentes(){
@@ -192,7 +227,7 @@ function BtnComponentes(){
         var data = table.row(index).data();
 
         if (!table.rows('.selected').any()) {
-            Func_Aviso("Atención", "Para continuar favor de seleccionar un Programa Presupuestario.", "info");
+            Func_Aviso("Atención", "Para continuar favor de seleccionar un registro.", "info");
             return false;
         }
 
@@ -228,7 +263,7 @@ function ResponseGetInfoComponentes(response){
             $("#descripcion").val(data['DescripcionPrograma']);
 
             var request = {
-                "id_secretaria": $("#select_secretaria").val(),
+                "id_secretaria": data['idSecretaria'],
                 "id_objetivo": data['IdObjetivo'],
                 "id_clasificacion": data['idClasificacion'],
                 "consecutivo": data['Consecutivo']
@@ -279,7 +314,7 @@ function BtnEditarComponente() {
         var data = table.row(index).data();
 
         if (!table.rows('.selected').any()) {
-            Func_Aviso("Atención", "Para continuar favor de seleccionar un Componente.", "info");
+            Func_Aviso("Atención", "Para continuar favor de seleccionar un registro.", "info");
             return false;
         }
 
@@ -466,7 +501,7 @@ function GuardarActualizarPP(){
 
         }
 
-        Func_DespliegaConfirmacion("Guardar", "¿Deseas actualizar la información del Programa Presupuestario?", "question", "Aceptar", "Cancelar", function(response) {
+        Func_DespliegaConfirmacion("Guardar", "¿Deseas actualizar la información del programa presupuestario?", "question", "Aceptar", "Cancelar", function(response) {
             if (response) {
                 Func_Cargando();
                 repository.ProgramasPresupuestales.EditProgramaPresupuestal(request)
@@ -479,7 +514,7 @@ function GuardarActualizarPP(){
 
 function ResponseEditProgramaPresupuestal(response) {
     if (!response.error) {
-        Func_Toast("success", "Programa editado.", "El Programa Presupuestario fue actualizado exitosamente.");
+        Func_Toast("success", "Programa editado.", "El programa presupuestal fue actualizado exitosamente.");
         swal.close();
         let id_secretaria = $("#select_secretaria").val();
         let descripcion = $("#descripcionpp").val();

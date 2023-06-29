@@ -16,7 +16,7 @@
         </div>
     </div>
 </div>
-<div class="container pagetitle mt-3">
+<div class="container pagetitle">
     <div class="row mb-3">
         <div class="col-1">
             <img id="icon-cat-ods" class="icon-cat-secretaria" src="/img/@php echo $img; @endphp" width="80" height="80">

@@ -96,9 +96,11 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12">
-                                <label for="select_secretaria" class="form-label">Secretaría</label>
-                                <select id="select_secretaria" class="selectpicker show-tick form-control" title="Seleccione..." data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
-                                </select>
+                                <div class="row DDLFont">
+                                    <label for="select_secretaria" class="col-1 col-form-label col-form-label-sm DDLFont WLabel">Secretaría</label>
+                                    <select id="select_secretaria" class="col-11 selectpicker show-tick form-control W95" title="Seleccione..." data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                         <!-- Botones de accion -->
@@ -147,7 +149,7 @@
                             </div>
                             <div class="col-md-2">
                                 <label for="id_ua" class="form-label mt-4">Id UA</label>
-                                <input type="text" class="form-control" id="id_ua" maxlength="45" required>
+                                <input type="text" class="form-control" id="id_ua" maxlength="7" required>
                             </div>
                             <div class="col-md-6">
                                 <label for="id_conacfuncional" class="form-label mt-4">Id CONAC Funcional</label>
@@ -156,7 +158,7 @@
                             </div>
                             <div class="col-md-12">
                                 <label for="descripcion" class="form-label">Descripción</label>
-                                <textarea class="form-control input-bold" id="descripcion" required maxlength="200" rows="3"></textarea>
+                                <textarea class="form-control input-bold text-uppercase" id="descripcion" required maxlength="200" rows="3"></textarea>
                             </div>
                         </div>
                     </div>

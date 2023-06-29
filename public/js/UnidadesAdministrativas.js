@@ -202,22 +202,30 @@ function BtnGuardarUnidadAdministrativa(){
             var request = {
                 id_secretaria: $("#id_secretaria").val(),
                 id_unidad: $("#id_ua").val(),
-                descripcion: $("#descripcion").val(),
+                descripcion: $("#descripcion").val().toUpperCase(),
                 id_conacfuncional: $("#id_conacfuncional").val()
             };
 
-            Func_DespliegaConfirmacion("Guardar", "¿Deseas guardar la información de la unidad administrativa?", "question", "Aceptar", "Cancelar", function(response) {
-                if (response) {
-                    Func_Cargando();
-                    if ($("#modal_accion").text() == "Editar") {
-                        repository.UnidadesAdministrativas.EditUnidadAdministrativa(request)
-                            .then(ResponseEditUnidadeAdministrativa);
-                    } else {
-                        repository.UnidadesAdministrativas.AddUnidadAdministrativa(request)
-                            .then(ResponseAddUnidadeAdministrativa);
-                    }
-                }
-            });
+            if ($("#modal_accion").text() == "Editar") {
+                repository.UnidadesAdministrativas.EditUnidadAdministrativa(request)
+                    .then(ResponseEditUnidadeAdministrativa);
+            } else {
+                repository.UnidadesAdministrativas.AddUnidadAdministrativa(request)
+                    .then(ResponseAddUnidadeAdministrativa);
+            }
+
+            // Func_DespliegaConfirmacion("Guardar", "¿Deseas guardar la información de la unidad administrativa?", "question", "Aceptar", "Cancelar", function(response) {
+            //     if (response) {
+            //         Func_Cargando();
+            //         if ($("#modal_accion").text() == "Editar") {
+            //             repository.UnidadesAdministrativas.EditUnidadAdministrativa(request)
+            //                 .then(ResponseEditUnidadeAdministrativa);
+            //         } else {
+            //             repository.UnidadesAdministrativas.AddUnidadAdministrativa(request)
+            //                 .then(ResponseAddUnidadeAdministrativa);
+            //         }
+            //     }
+            // });
         }
     });
 }
@@ -226,7 +234,7 @@ function ResponseAddUnidadeAdministrativa(response) {
     if (!response.error) {
         $("#Modal").modal("hide");
         Func_LimpiarModal();
-        Func_Toast("success", "Unidad administrativa agregada.", "La unidad administrativa fue agregada exitosamente.");
+        Func_Toast("success", "Unidad administrativa agregada.", "La unidad administrativa ha sido agregada con éxito.");
         GetUnidadesAdministrativas();
     } else {
         console.log(response.result)
@@ -238,7 +246,7 @@ function ResponseEditUnidadeAdministrativa(response) {
     if (!response.error) {
         $("#Modal").modal("hide");
         Func_LimpiarModal();
-        Func_Toast("success", "Unidad administrativa editada.", "La unidad administrativa fue editada exitosamente.");
+        Func_Toast("success", "Unidad administrativa editada.", "La unidad administrativa ha sido modificada.");
         GetUnidadesAdministrativas();
     } else {
         console.log(response.result)
@@ -248,7 +256,7 @@ function ResponseEditUnidadeAdministrativa(response) {
 
 function ResponseDeleteUnidadeAdministrativa(response) {
     if (!response.error) {
-        Func_Toast("success", "Unidad administrativa eliminada.", "La unidad administrativa fue eliminada exitosamente.");
+        Func_Toast("success", "Unidad administrativa eliminada.", "La unidad administrativa ha sido eliminada de Interfaz PbR.");
         GetSecretarias();
     } else {
         console.log(response.result)
