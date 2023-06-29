@@ -9,6 +9,13 @@ use Illuminate\Support\Facades\DB;
 
 class TemaController extends Controller
 {
+    public function all()
+    {
+        $query = "SELECT * FROM TEMA WHERE Activo = 'S';";
+        $informacion = DB::select($query);
+        return response()->json(array('error' => false, 'data' => $informacion, 'code' => 200));
+    }
+
     public function index(Request $request)
     {
         $query = "SELECT * FROM TEMA WHERE IdEje = '$request->id_eje' AND Activo = 'S';";
