@@ -229,8 +229,8 @@ if (Session::has('sesion')) {
                     </div>
                 </div>
                 <p class="FooterDir1 mt-2">
-                    Dirección de Presupuesto y Control Presupuestal <br />
-                    Subsecretaría de Egresos <br />
+                    Dirección de Presupuesto y Control Presupuestal<br />
+                    Subsecretaría de Egresos y Planeación Financiera<br />
                     Secretaría de Finanzas y Tesorería General del Estado
                 </p>
                 <div class="row d-flex justify-content-center">
