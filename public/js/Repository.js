@@ -37,7 +37,7 @@ class Repository {
 
     constructor() {
         // Local
-        this.Url = "http://evalua-pbr.nl.gob.mx:81/";       /* "http://127.0.0.1:8000";   */
+        this.Url = "http://evalua-pbr.nl.gob.mx:81";       /* "http://127.0.0.1:8000";   */
 
         this._secretarias = null;
         this._conacadmin = null;
@@ -408,7 +408,7 @@ class LoginController {
     }
 
     Login(request) {
-        return Requests('POST', "http://evalua-pbr.nl.gob.mx:81/AccessLogin", request);
+        return Requests('POST', this.Url + "/AccessLogin", request);
     }
 
     Recuperar(request) {
