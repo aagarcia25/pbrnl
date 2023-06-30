@@ -6,12 +6,12 @@ $(document).ready(function() {
 });
 
 function Funciones_Iniciales() {
-    GetConacTipologia();
+    GetConacFuncional();
 }
 
-function GetConacTipologia() {
+function GetConacFuncional() {
     Func_Cargando();
-    repository.ConacTipologia.GetConacTipologia()
+    repository.ConacFuncional.GetConacFuncional()
         .then(ResponseGetSecretarias);
 }
 
@@ -23,7 +23,7 @@ function ResponseGetSecretarias(response) {
             for (var i = 0; i < response.data.length; i++) {
                 $("#table > tbody").append(`
                     <tr>
-                        <td>${response.data[i].IdTipologia}</td>
+                        <td>${response.data[i].IdConac}</td>
                         <td>${response.data[i].Descripcion}</td>
                     </tr>
                 `);

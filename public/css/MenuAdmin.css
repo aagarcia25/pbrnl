@@ -1,1206 +1,309 @@
-        /******************************************************/
-        .dropbtn {
-            font-family: 'Poppins', sans-serif;
-            background-color: white; /*#4CAF50;*/
-            color: black;
-            padding: 16px;
-            font-size: 16px;
-            border: none;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        /*The container <div> - needed to position the dropdown content*/
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-        /*Dropdown Content (Hidden by Default)*/
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #f9f9f9;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-        }
-
-            /*Links inside the dropdown*/
-            .dropdown-content a {
-                font-family: 'Poppins', sans-serif;
-                color: black;
-                padding: 12px 16px;
-                text-decoration: none;
-                display: block;
-                font-weight: bold;
-            }
-
-                /*Change color of dropdown links on hover*/
-                .dropdown-content a:hover {
-                    font-family: 'Poppins', sans-serif;
-                    background-color: #f1f1f1;
-                    color: #AE8A55;
-                    text-decoration: none;
-                }
-
-        /*Show the dropdown menu on hover*/
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-
-        /*Change the background color of the dropdown button when the dropdown content is shown*/
-        .dropdown:hover .dropbtn {
-            background-color: white; /*#3e8e41;*/
-            border-bottom: ridge;
-            border-bottom-color: #AE8A55;
-            color: #AE8A55;
-        }
-        /********* 2° Boton***********************/
-        .dropbtn2 {
-            font-family: 'Poppins', sans-serif;
-            background-color: white; /*#4CAF50;*/
-            color: black;
-            padding: 16px;
-            font-size: 16px;
-            border: none;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        /*The container <div> - needed to position the dropdown content*/
-        .dropdown2 {
-            position: relative;
-            display: inline-block;
-        }
-
-        /*Dropdown Content (Hidden by Default)*/
-        .dropdown-content2 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 16px;
-            /*font-weight: normal;*/
-            display: none;
-            position: absolute;
-            margin-top: -50px;
-            margin-left: 140px;
-            background-color: #f9f9f9;
-            /*min-width: 210px;*/
-            width: 250px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-        }
-
-            /*Links inside the dropdown*/
-            .dropdown-content2 a {
-                font-family: 'Poppins', sans-serif;
-                /*font-weight: normal;*/
-                color: black;
-                padding: 12px 16px;
-                text-decoration: none;
-                display: block;
-                /*font-weight: bold;*/
-            }
-
-                /*Change color of dropdown links on hover*/
-                .dropdown-content2 a:hover {
-                    background-color: #f1f1f1;
-                    color: #AE8A55;
-                    text-decoration: none;
-                }
-
-        /*Show the dropdown menu on hover*/
-        .dropdown2:hover .dropdown-content2 {
-            display: block;
-        }
-
-        /*Change the background color of the dropdown button when the dropdown content is shown*/
-        .dropdown2:hover .dropbtn2 {
-            background-color: #f1f1f1; /*white; #3e8e41;*/
-            /*border-bottom: ridge;
-            border-bottom-color: #AE8A55;*/
-            color: #AE8A55;
-        }
-
-        /*************** 3r Boton******************/
-        .dropbtn3 {
-            font-family: 'Poppins', sans-serif;
-            background-color: white; /*#4CAF50;*/
-            color: black;
-            padding: 16px;
-            font-size: 16px;
-            border: none;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        /*The container <div> - needed to position the dropdown content*/
-        .dropdown3 {
-            position: relative;
-            display: inline-block;
-        }
-
-        /*Dropdown Content (Hidden by Default)*/
-        .dropdown-content3 {
-            font-family: 'Poppins', sans-serif;
-            display: none;
-            font-size: 16px;
-            /*font-weight: normal;*/
-            position: absolute;
-            margin-top: -50px;
-            margin-left: 140px;
-            background-color: #f9f9f9;
-            /*min-width: 230px;*/
-            width: 270px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-        }
-
-            /*Links inside the dropdown*/
-            .dropdown-content3 a {
-                font-family: 'Poppins', sans-serif;
-                /*font-weight: normal;*/
-                color: black;
-                padding: 12px 16px;
-                text-decoration: none;
-                display: block;
-                /*font-weight: bold;*/
-            }
-
-                /*Change color of dropdown links on hover*/
-                .dropdown-content3 a:hover {
-                    background-color: #f1f1f1;
-                    color: #AE8A55;
-                    text-decoration: none;
-                }
-
-        /*Show the dropdown menu on hover*/
-        .dropdown3:hover .dropdown-content3 {
-            display: block;
-        }
-
-        /*Change the background color of the dropdown button when the dropdown content is shown*/
-        .dropdown3:hover .dropbtn3 {
-            background-color: #f1f1f1; /*white; #3e8e41;*/
-            /*            border-bottom: ridge;
-            border-bottom-color: #AE8A55;*/
-            color: #AE8A55;
-        }
-
-        /*****************************************/
-        /*************** 4° Boton******************/
-        .dropbtn4 {
-            font-family: 'Poppins', sans-serif;
-            background-color: white; /*#4CAF50;*/
-            color: black;
-            padding: 16px;
-            font-size: 16px;
-            border: none;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        /*The container <div> - needed to position the dropdown content*/
-        .dropdown4 {
-            position: relative;
-            display: inline-block;
-        }
-
-        /*Dropdown Content (Hidden by Default)*/
-        .dropdown-content4 {
-            font-family: 'Poppins', sans-serif;
-            display: none;
-            font-size: 16px;
-            /*font-weight: normal;*/
-            position: absolute;
-            margin-top: -50px;
-            margin-left: 140px;
-            background-color: #f9f9f9;
-            /*min-width: 200px;*/
-            width: 230px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-        }
-
-            /*Links inside the dropdown*/
-            .dropdown-content4 a {
-                font-family: 'Poppins', sans-serif;
-                /*font-weight: normal;*/
-                color: black;
-                padding: 12px 16px;
-                text-decoration: none;
-                display: block;
-            }
-
-                /*Change color of dropdown links on hover*/
-                .dropdown-content4 a:hover {
-                    font-family: 'Poppins', sans-serif;
-                    background-color: #f1f1f1;
-                    color: #AE8A55;
-                    text-decoration: none;
-                }
-
-        /*Show the dropdown menu on hover*/
-        .dropdown4:hover .dropdown-content4 {
-            display: block;
-        }
-
-        /*Change the background color of the dropdown button when the dropdown content is shown*/
-        .dropdown4:hover .dropbtn4 {
-            background-color: #f1f1f1; /*#3e8e41;*/
-            /*border-bottom: ridge;
-            border-bottom-color: #AE8A55;*/
-            color: #AE8A55;
-        }
-
-        /*****************************************/
-        /*************** 5° Boton******************/
-        .dropbtn5 {
-            font-family: 'Poppins', sans-serif;
-            background-color: white; /*#4CAF50;*/
-            color: black;
-            padding: 16px;
-            font-size: 16px;
-            border: none;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        /*The container <div> - needed to position the dropdown content*/
-        .dropdown5 {
-            position: relative;
-            display: inline-block;
-        }
-
-        /*Dropdown Content (Hidden by Default)*/
-        .dropdown-content5 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 16px;
-            font-weight: bold;
-            text-align: left;
-            display: none;
-            position: absolute;
-            background-color: #f9f9f9;
-            min-width: 150px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 100;
-        }
-
-            /*Links inside the dropdown*/
-            .dropdown-content5 a {
-                font-family: 'Poppins', sans-serif;
-                color: black;
-                padding: 12px 16px;
-                text-decoration: none;
-                display: block;
-                font-weight: bold;
-            }
-
-                /*Change color of dropdown links on hover*/
-                .dropdown-content5 a:hover {
-                    font-family: 'Poppins', sans-serif;
-                    background-color: #f1f1f1;
-                    color: #AE8A55;
-                    text-decoration: none;
-                }
-
-        /*Show the dropdown menu on hover*/
-        .dropdown5:hover .dropdown-content5 {
-            display: block;
-        }
-
-        /*Change the background color of the dropdown button when the dropdown content is shown*/
-        .dropdown5:hover .dropbtn5 {
-            font-family: 'Poppins', sans-serif;
-            background-color: white; /*#3e8e41;*/
-            border-bottom: ridge;
-            border-bottom-color: #AE8A55;
-            color: #AE8A55;
-        }
-        /*****************************************/
-        /*************** 6° Boton******************/
-        .dropbtnExit {
-            font-family: 'Poppins', sans-serif;
-            background-color: white; /*#4CAF50;*/
-            color: black;
-            padding: 16px;
-            font-size: 16px;
-            border: none;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        /*The container <div> - needed to position the dropdown content*/
-        .dropdownExit {
-            position: relative;
-            display: inline-block;
-        }
-
-        /*Dropdown Content (Hidden by Default)*/
-        .dropdown-contentExit {
-            display: none;
-            position: absolute;
-            background-color: #f9f9f9;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-        }
-
-            /*Links inside the dropdown*/
-            .dropdown-contentExit a {
-                font-family: 'Poppins', sans-serif;
-                color: black;
-                padding: 12px 16px;
-                text-decoration: none;
-                display: block;
-                font-weight: bold;
-            }
-
-                /*Change color of dropdown links on hover*/
-                .dropdown-contentExit a:hover {
-                    font-family: 'Poppins', sans-serif;
-                    background-color: #f1f1f1;
-                    color: #AE8A55;
-                    text-decoration: none;
-                }
-
-        /*Show the dropdown menu on hover*/
-        .dropdownExit:hover .dropdown-contentExit {
-            display: block;
-        }
-
-        /*Change the background color of the dropdown button when the dropdown content is shown*/
-        .dropdownExit:hover .dropbtnExit {
-            font-family: 'Poppins', sans-serif;
-            background-color: white; /*#3e8e41;*/
-            border-bottom: ridge;
-            border-bottom-color: #AE8A55;
-            color: #AE8A55;
-        }
-        /*****************************************/
-        /*************** Usuario Boton******************/
-        .dropbtn0 {
-            font-family: 'Poppins', sans-serif;
-            background-color: white; /*#4CAF50;*/
-            color: black;
-            padding: 16px;
-            font-size: 16px;
-            border: none;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        /*The container <div> - needed to position the dropdown content*/
-        .dropdown0 {
-            position: relative;
-            display: inline-block;
-        }
-
-        /*Dropdown Content (Hidden by Default)*/
-        .dropdown-content0 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 16px;
-            font-weight: bold;
-            text-align: left;
-            display: none;
-            border: none;
-            position: absolute;
-            background-color: #f9f9f9;
-            margin-left: -45px;
-            min-width: 170px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 100;
-        }
-
-            /*Links inside the dropdown*/
-            .dropdown-content0 a {
-                font-family: 'Poppins', sans-serif;
-                color: black;
-                padding: 12px 16px;
-                text-decoration: none;
-                display: block;
-                font-weight: bold;
-            }
-
-                /*Change color of dropdown links on hover*/
-                .dropdown-content0 a:hover {
-                    font-family: 'Poppins', sans-serif;
-                    background-color: #f1f1f1;
-                    color: #AE8A55;
-                    text-decoration: none;
-                }
-
-        /*Show the dropdown menu on hover*/
-        .dropdown0:hover .dropdown-content0 {
-            display: block;
-        }
-
-        /*Change the background color of the dropdown button when the dropdown content is shown*/
-        .dropdown0:hover .dropbtn0 {
-            font-family: 'Poppins', sans-serif;
-            background-color: white; /*#3e8e41;*/
-            color: #AE8A55;
-        }
-        /*****************************************/
-
-        .UsuarioBG {
-            font-family: 'Poppins', sans-serif;
-            background-color: #C8B294;
-            text-align: center;
-            color: black;
-            height: 50px;
-            margin-top: -20px;
-            align-content: center;
-        }
-
-
-        /* BOTON NUEVO*/
-        .button2 {
-            font-family: 'Source Sans Pro', sans-serif;
-            font-size: 1.25rem;
-            line-height: 1;
-            /* -moz-appearance: none; */
-            /* -webkit-appearance: none; */
-            vertical-align: middle;
-            display: inline-block;
-            color: #fff;
-            text-transform: uppercase;
-            font-weight: 900;
-            font-style: italic;
-            margin: 0 auto;
-            padding: 0.75em 1.5em;
-            /*button colors below*/
-            background: linear-gradient(rgba(133, 155, 108, 0.8), rgba(72, 84, 59,0.5)), linear-gradient(-60deg, rgba(104, 201, 164,1), rgba(152, 226, 174,1));
-            background-clip: padding-box, border-box;
-            background-size: 100% 100%, calc(100% + var(--border-width) + var(--border-width)) calc(100% + var(--border-width) + var(--border-width));
-            background-position: 0 0, calc(var(--border-width) * -1) calc(var(--border-width) * -1);
-            border-radius: 2em;
-            border: var(--border-width) solid transparent;
-            /*button drop-shadow colors below*/
-            box-shadow: 0 0.125em 0.25em rgb(173, 219, 164), 0 0 2em rgb(72, 84, 59);
-            cursor: pointer;
-            transition: box-shadow 0.3s ease-out, transform 0.3s ease-out;
-        }
-            /*button drop-shadow colors below on hover*/
-            .button2:hover {
-                box-shadow: 0 0.25em 0.75em rgb(173, 219, 164), 0 0.125em 2em rgba(72, 84, 59,0.7);
-                transform: translateY(-0.125em);
-            }
-
-
-        /* Boton nuevo 2*/
-        .button3 {
-            background: gainsboro; /* #1F618D; #333;*/
-            color: darkgreen; /*#ccc;*/
-            width: 200px;
-            height: 50px;
-            border: thin;
-            font-size: small;
-            font-weight: bold;
-            text-shadow: 2px;
-            border-radius: 4px;
-            font-family: 'Raleway', sans-serif;
-            transition: .6s;
-            overflow: hidden;
-            outline: 0;
-        }
-
-            .button3:before {
-                content: '';
-                display: block;
-                position: absolute;
-                background-color: gainsboro; /*rgba(255,255,255,0.5);*/
-                color: darkgreen;
-                width: 60px;
-                height: 100%;
-                left: 0;
-                top: 0;
-                opacity: .5;
-                filter: blur(30px);
-                transform: translateX(-100px) skewX(-15deg);
-            }
-
-            .button3:after {
-                content: '';
-                display: block;
-                position: absolute;
-                background: gainsboro; /*rgba(255,255,255,0.2);*/
-                width: 30px;
-                height: 100%;
-                left: 30px;
-                top: 0;
-                opacity: 0;
-                filter: blur(5px);
-                transform: translateX(-100px) skewX(-15deg);
-            }
-
-            .button3:hover {
-                background-color: seagreen;
-                color: white;
-                cursor: pointer;
-            }
-
-                .button3:hover before {
-                    transform: translateX(300px) skewX(-15deg);
-                    opacity: 0.6;
-                    transition: .7s;
-                }
-
-                .button3:hover after {
-                    transform: translateX(300px) skewX(-15deg);
-                    opacity: 1;
-                    transition: .7s;
-                }
-
-        /* Boton 4*/
-        .button4 {
-            background-color: gainsboro; /*#333;*/
-            color: darkred; /*#ccc;*/
-            width: 200px;
-            height: 50px;
-            border: thin;
-            font-size: small;
-            font-weight: bold;
-            text-shadow: 2px;
-            border-radius: 4px;
-            font-family: 'Raleway', sans-serif;
-            transition: .6s;
-            overflow: hidden;
-            outline: 0;
-        }
-
-            .button4:before {
-                content: '';
-                display: block;
-                position: absolute;
-                background-color: gainsboro; /*rgba(255,255,255,0.5);*/
-                color: darkred;
-                width: 60px;
-                height: 100%;
-                left: 0;
-                top: 0;
-                opacity: .5;
-                filter: blur(30px);
-                transform: translateX(-100px) skewX(-15deg);
-            }
-
-            .button4:after {
-                content: '';
-                display: block;
-                position: absolute;
-                background: gainsboro; /*rgba(255,255,255,0.2);*/
-                width: 30px;
-                height: 100%;
-                left: 30px;
-                top: 0;
-                opacity: 0;
-                filter: blur(5px);
-                transform: translateX(-100px) skewX(-15deg);
-            }
-
-            .button4:hover {
-                background-color: orangered;
-                color: white;
-                cursor: pointer;
-            }
-
-                .button4:hover before {
-                    transform: translateX(300px) skewX(-15deg);
-                    opacity: 0.6;
-                    transition: .7s;
-                }
-
-                .button4:hover after {
-                    transform: translateX(300px) skewX(-15deg);
-                    opacity: 1;
-                    transition: .7s;
-                }
-        /********/
-        .buttonOK {
-            background-image: url('../Recursos/btSave02.png');
-            background-repeat: no-repeat;
-            background-size: contain;
-            background-color: gainsboro;
-            height: 45px;
-            width: 116px;
-            border: thin;
-            border-color: seagreen;
-        }
-
-            .buttonOK:hover {
-                background-color: silver;
-                border-color: darkgreen;
-                cursor: pointer;
-            }
-
-
-        .TextBoxStyle {
-            width: 1000px;
-            height: 100px;
-            color: red;
-            background: rgba(255,255,255,0.2);
-        }
-        /*    os/btSave01.png');
+.footer {
+    background: #3e4551;
+}
+
+.background-logo {
+    background-color: #FA4238;
+}
+
+.background {
+    background-color: #f2f2f2;
+}
+
+.round-section:hover {
+    border: 2px solid #f6b047;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.card {
+    background: #f2f2f2;
+    border: none;
+}
+
+tr {
+    border: 2px solid white;
+}
+
+td {
+    border: 2px white solid;
+    height: 8px;
+    min-height: 8px;
+}
+
+th {
+    border: 2px white solid;
+    height: 10px;
+}
+
+table.dataTable tbody tr.selected>* {
+    box-shadow: inset 0 0 0 9999px #C8B294 !important;
+}
+/* table.dataTable tbody tr.selected>* {
+    background-color: #C8B294 !important; 
+  } */
+
+
+  .UsuarioBG {
+    font-family: 'Poppins', sans-serif;
+    background-color: #C8B294;
+    text-align: center;
+    color: black;
+    height: 50px;
+    margin-top: -20px;
+    align-content: center;
+    border: 2px;
+}
+
+.UsuarioBG-0 {
+    font-family: 'Poppins', sans-serif;
+    background-color: #C8B294;
+    text-align: center;
+    color: black;
+    height: 50px;
+    margin-top: -20px;
+    margin-left: -60px;
+    align-content: center;
+    border: 2px;
+    border-color: #736357;
+}
+
+.MarginRight {
+    margin-right: 90px;
+}
+
+.BtnLogout {
+    /* margin-top: -25px; */
+    background-color: white;
+    color: black;
+    border: none;
+    border-radius: 0%;
+    height: 50px;
+    width: 100%;
+    font-weight: bold;
+    /*align-items: center; */
+    /* width: 272px; */
+}
+
+    .BtnLogout:hover {
+        background: #F1F1F1;
+        color: #AE8A55;
+        border: none;
+        border-radius: 0%;
+        /*border: black;*/
+        /*border-width: 1px;*/
     }
-*/
 
-        .TextBoxStyle {
-            width: 1000px;
-            height: 100px;
-            color: red;
-            background: rgba(255,255,255,0.2);
-        }
 
-        .buttonAll {
-            background-color: lightslategrey; /*#333;*/
-            color: white; /*#ccc;*/
-            width: 50px;
-            height: 20px;
-            border: none;
-            font-size: 10px;
-            font-weight: normal;
-            border-radius: 4px;
-            font-family: 'Raleway', sans-serif;
-            transition: .6s;
-            overflow: hidden;
-            margin-top: 25px;
-            margin-left: 10px;
-        }
+.button-crud {
+    background: #a69c95;
+    color: white;
+    height: auto;
+    width: auto;
 
-            .buttonAll:hover {
-                background-color: white; /*#333;*/
-                color: seagreen;
-                border-color: seagreen;
-                border: thin;
-                border-style: solid;
-            }
-
-        .buttonNone {
-            background-color: tomato; /*#333;*/
-            color: white; /*#ccc;*/
-            width: 50px;
-            height: 20px;
-            border: none;
-            font-size: 10px;
-            font-weight: lighter;
-            border-radius: 4px;
-            font-family: 'Raleway', sans-serif;
-            transition: .6s;
-            overflow: hidden;
-            outline: 0;
-            margin-top: 25px;
-        }
-
-        .buttonNone {
-            background-color: tomato; /*#333;*/
-            color: white; /*#ccc;*/
-            width: 50px;
-            height: 20px;
-            border: none;
-            font-size: 10px;
-            font-weight: lighter;
-            border-radius: 4px;
-            font-family: 'Raleway', sans-serif;
-            transition: .6s;
-            overflow: hidden;
-            outline: 0;
-            margin-top: 25px;
-        }
-
-            .buttonNone:hover {
-                background-color: white; /*#333;*/
-                color: tomato;
-                border-color: tomato;
-                border: thin;
-                border-style: solid;
-            }
-
-        .DivRight {
-            font-family: 'Poppins', sans-serif;
-            background-color: #EBEDEF;
-            border: ridge;
-            border-radius: 4px;
-            border-color: #D6DBDF;
-            margin-top: -400px;
-            margin-left: 350px;
-            position: center;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-        }
-
-        .DivRight2 {
-            background-color: whitesmoke;
-            border: ridge;
-            border-radius: 4px;
-            border-color: #AF8C55;
-            position: relative;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-        }
-
-        .DivLeft {
-            width: auto;
-            display: flex;
-            align-content: center;
-            justify-content: center;
-        }
-
-        .TextBox500 {
-            width: 500px;
-        }
-
-        .Mensaje {
-            background-color: white;
-            border: thin;
-            position: relative;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-        }
-
-        .MensajeDelete {
-            background-color: white;
-            border: thin;
-            position: relative;
-            width: 500px;
-            margin-top: -400px;
-            margin-left: 400px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-        }
-
-        .Back1 {
-            display: block;
-            margin: 0px auto;
-            width: 50%;
-        }
-
-        .Main {
-            /*background-image: url('/Recursos/logo-tesoreria.svg');*/
-            background-color: #f2f2f2;
-            width: 100%;
-            height: 100%;
-        }
-
-        .LogoTesoreria {
-            background-image: url('/Recursos/logo-tesoreria.svg');
-            width: 100%;
-            height: 100%;
-            background-repeat: no-repeat;
-        }
-
-        .LogoNL {
-            background-image: url('/Recursos/logo-nl.svg');
-            width: 60%;
-            height: 60%;
-            background-repeat: no-repeat;
-            vertical-align: bottom;
-        }
-
-        .TituloCatalogo {
-            font-family: 'Poppins', sans-serif;
-            font-size: 28px;
-            font-weight: bold;
-            color: black;
-            margin-top: 12px;
-            margin-left: 20px;
-            padding-top: 10px;
-            vertical-align: bottom;
-        }
-
-        .Cintilla {
-            background-color: white;
-            align-content: end;
-            /*text-align: right;*/
-        }
-
-        .LogoForm {
-            margin-top: -15px;
-            width: 90px;
-            height: 82px;
-            align-content: baseline;
-        }
-
-        /* width */
-        ::-webkit-scrollbar {
-            background-color: #E1E0DE;
-            width: auto;
-        }
-
-        ::-webkit-scrollbar-button {
-            background-color: #E1E0DE;
-            color: #4E4C4D;
-            scrollbar-arrow-color: #4E4C4D;
-        }
-
-        /* Track */
-        ::-webkit-scrollbar-track {
-            background-color: #E1E0DE;
-            /*  box-shadow: inset 0 0 5px grey; 
-  border-radius: 10px;*/
-        }
-
-        /* Handle */
-        ::-webkit-scrollbar-thumb {
-            background: #8E8E8C;
-            /*  border-radius: 10px;*/
-        }
-
-            /* Handle on hover */
-            ::-webkit-scrollbar-thumb:hover {
-                background: #4F4F4F;
-            }
-
-        /*::-webkit-scrollbar-button:single-button:vertical:decrement {
-  background-image: url(Recursos/Arrow.png);
-  background-size:contain;
-  background-repeat: no-repeat;
+    font-size: 12px;
+    font-weight: normal;
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+    outline: 0;
+    margin-top: -5px;
+    ;
 }
 
-::-webkit-scrollbar-button:single-button:vertical:increment {
-  background-image: url(Recursos/ArrowDown.png);
-  background-size:contain;
-  background-repeat: no-repeat;
+.button-crud:hover {
+    background-color: #736357;
+    color: white;
+    cursor: pointer;
 }
 
-::-webkit-scrollbar-button:single-button:horizontal:decrement {
-  background-image: url(Recursos/ArrowLeft.png);
-  background-size:contain;
-  background-repeat: no-repeat;
+.table-header {
+    background-color: #B58E5A;
+    color: white;
 }
 
-::-webkit-scrollbar-button:single-button:horizontal:increment {
-  background-image: url(Recursos/ArrowRight.png);
-  background-size:contain;
-  background-repeat: no-repeat;
+.input-bold {
+    font-weight: bold;
 }
-*/
-        .GridFont {
-            font-family: 'Poppins', sans-serif;
-            font-size: 14px;
-            background-color: #a69c95;
-            width: 1200px;
-            margin-top: 15px;
-        }
 
-            .GridFont::-webkit-scrollbar-thumb {
-                scrollbar-arrow-color: red;
-            }
+.modal-header {
+    background-color: #D8BEA2;
+    font-weight: bold;
+}
 
-        .GridFont2 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 14px;
-            background-color: #a69c95;
-            width: 1200px;
-            margin-top: 20px;
-        }
+.dropdown-toggle {
+    border: 1px solid black;
+}
 
-            .GridFont2::-webkit-scrollbar-thumb {
-                scrollbar-arrow-color: red;
-            }
+.select-mir>.dropdown-toggle {
+    border: 0px;
+}
 
+.dropdown_usuario:hover>.dropdown-menu {
+    display: block;
+    border: thin;
+    border-color: #736357;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
 
+.dropdown_usuario>.dropdown-toggle:active {
+    pointer-events: none;
+    border: thin;
+    border-color: #736357;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
 
-        .BotonesGrid2 {
-            background: #a69c95; /* #1F618D; #333;*/
-            color: white; /*#ccc;*/
-            width: 60px;
-            height: 20px;
-            border: none;
-            font-size: 11px;
-            font-weight: normal;
-            /*text-shadow: 2px;*/
-            /*border-radius: 4px;*/
-            font-family: 'Poppins', sans-serif;
-            overflow: hidden;
-            outline: 0;
-        }
+.text-bold {
+    font-weight: bold;
+}
 
-            .BotonesGrid2:hover {
-                background-color: #736357;
-                color: white;
-                cursor: pointer;
-            }
+.btn-guardar {
+    background-color: #cfe1b9;
+    color: black;
+}
 
-        .BotonesGrid {
-            background: #a69c95; /* #1F618D; #333;*/
-            color: white; /*#ccc;*/
-            width: 60px;
-            height: 20px;
-            border: none;
-            font-size: 11px;
-            font-weight: normal;
-            /*text-shadow: 2px;*/
-            /*border-radius: 4px;*/
-            font-family: 'Poppins', sans-serif;
-            transition: .6s;
-            overflow: hidden;
-            outline: 0;
-        }
+.text-red {
+    color: red;
+}
 
-            .BotonesGrid:before {
-                content: '';
-                display: block;
-                position: absolute;
-                background-color: #a69c95; /*rgba(255,255,255,0.5);*/
-                color: white;
-                width: 60px;
-                height: 100%;
-                left: 0;
-                top: 0;
-                opacity: .5;
-                filter: blur(30px);
-                transform: translateX(-100px) skewX(-15deg);
-            }
+/* Radio button */
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
 
-            .BotonesGrid:after {
-                content: '';
-                display: block;
-                position: absolute;
-                background: #a69c95; /*rgba(255,255,255,0.2);*/
-                width: 30px;
-                height: 100%;
-                left: 30px;
-                top: 0;
-                opacity: 0;
-                filter: blur(5px);
-                transform: translateX(-100px) skewX(-15deg);
-            }
+body {
+    font-family: -apple-system, ".SFNSText-Regular", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;
+}
 
-            .BotonesGrid:hover {
-                background-color: #736357;
-                color: white;
-                cursor: pointer;
-            }
+.toggle {
+    cursor: pointer;
+    display: inline-block;
+}
 
-                .BotonesGrid:hover before {
-                    transform: translateX(300px) skewX(-15deg);
-                    opacity: 0.6;
-                    transition: .7s;
-                }
+.toggle-switch {
+    display: inline-block;
+    background: #ccc;
+    border-radius: 16px;
+    width: 58px;
+    height: 32px;
+    position: relative;
+    vertical-align: middle;
+    transition: background 0.25s;
+}
 
-                .BotonesGrid:hover after {
-                    transform: translateX(300px) skewX(-15deg);
-                    opacity: 1;
-                    transition: .7s;
-                }
+.toggle-switch:before,
+.toggle-switch:after {
+    content: "";
+}
 
-        .HeaderGrid {
-            background-color: #B08C55;
-            color: white;
-            font-family: 'Poppins', sans-serif;
-            font-size: 14px;
-            font-weight: bold;
-            height: 80px;
-            width: 1000px;
-            text-align: center;
-            margin-left: 1px;
-        }
+.toggle-switch:before {
+    display: block;
+    background: linear-gradient(to bottom, #fff 0%, #eee 100%);
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25);
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    transition: left 0.25s;
+}
 
-        .BorderHeader {
-            border-top: solid;
-            border-left: solid;
-            border-right: solid;
-            border-bottom: none;
-            border-top-width: 5px;
-            border-left-width: 5px;
-            border-right-width: 5px;
-            border-bottom-width: 0px;
-            border-color: #F2F2F2;
-            text-align: center;
-        }
+.toggle:hover .toggle-switch:before {
+    background: linear-gradient(to bottom, #fff 0%, #fff 100%);
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.5);
+}
 
-        .BorderHeader2 {
-            border-top: solid;
-            border-left: solid;
-            border-right: solid;
-            border-bottom: none;
-            border-top-width: 5px;
-            border-left-width: 2px;
-            border-right-width: 5px;
-            border-bottom-width: 0px;
-            border-color: #F2F2F2;
-            text-align: center;
-            /*margin-left: 8px;*/
-        }
+.toggle-checkbox:checked+.toggle-switch {
+    background: #ab8d52;
+}
 
+.toggle-checkbox:checked+.toggle-switch:before {
+    left: 30px;
+}
 
-        .Freezing {
-            margin-top: -31px;
-            margin-left: -7px;
-            position: absolute;
-            width: 1200px;
-            /*            height:20px;*/
-            /*            top: expression(this.offsetParent.scrollTop);
-            z-index: 10;*/
-        }
+.toggle-checkbox {
+    position: absolute;
+    visibility: hidden;
+}
 
-        .Freezing2 {
-            margin-top: -45px;
-            margin-left: -7px;
-            position: absolute;
-            width: 1200px;
-            /*            height:20px;*/
-            /*            top: expression(this.offsetParent.scrollTop);
-            z-index: 10;*/
-        }
+.toggle-label {
+    margin-left: 5px;
+    position: relative;
+    top: 2px;
+}
 
+/*The container <div> - needed to position the dropdown content*/
+.dropdown0 {
+    position: relative;
+    display: inline-block;
+}
 
+/*Dropdown Content (Hidden by Default)*/
+.dropdown-content0 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: left;
+    display: none;
+    border: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    margin-left: -45px;
+    min-width: 170px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+}
 
-        .HeaderBotonesGrid {
-            background-color: #F2F2F2;
-            height: 40px;
-            width: 1188px;
-            /*padding-right: 85px;*/
-            position: relative;
-            text-align: end;
-        }
-        /*********************************************/
+/*Links inside the dropdown*/
+.dropdown-content0 a {
+    font-family: 'Poppins', sans-serif;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-weight: bold;
+}
 
-        .AlNoventaPorc {
-            position: center center;
-            justify-content: center;
-            width: 80%;
-            margin: auto;
-            align-items: center;
-        }
+/*Change color of dropdown links on hover*/
+.dropdown-content0 a:hover {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f1f1f1;
+    color: #AE8A55;
+    text-decoration: none;
+}
 
-        .PanelFijo {
-            position: absolute;
-            Width: 1200px;
-            Height: 420px;
-            z-index: 1;
-        }
+/*Show the dropdown menu on hover*/
+.dropdown0:hover .dropdown-content0 {
+    display: block;
+}
 
-        .TituloMsg {
-            font-family: 'Poppins', sans-serif;
-            font-size: 18px;
-            font-weight: bold;
-            background-color: #D8BEA2;
-            color: black;
-        }
+/*Change the background color of the dropdown button when the dropdown content is shown*/
+.dropdown0:hover .dropbtn0 {
+    font-family: 'Poppins', sans-serif;
+    background-color: white;
+    /*#3e8e41;*/
+    color: #AE8A55;
+}
 
-        .FontMsg {
-            font-family: 'Poppins', sans-serif;
-            font-size: 14px;
-        }
+/*****************************************/
+.CuadroBase01 {
+    background-color: #F2F2F2;
+    border: solid;
+    border-width: thin;
+    border-radius: 6px;
+    border-color: #DFDFDF;
+}
 
-        .FontMenuInicio {
-            font-family: 'Poppins', sans-serif;
-            font-size: 20px;
-            /*Era de 23px */
-            font-weight: bolder;
-        }
-
-        .FondoTransparente {
-            background-color: transparent;
-        }
-
-        .buttonOutlineSucces {
-            background-color: #cfe1b9;
-            border: none; /*#588157;*/
-            color: black;
-            width: 100px;
-            height: 35px;
-        }
-
-            .buttonOutlineSucces:hover {
-                background-color: #97a97c;
-                border-color: #588157;
-                cursor: pointer;
-                color: white;
-                font-weight: bold;
-            }
-
-        .buttonCloseModal {
-            background-color: #adb5bd;
-            border: none;
-            color: black;
-            width: 100px;
-            height: 35px;
-        }
-
-            .buttonCloseModal:hover {
-                background-color: #adb5bd;
-                border: solid;
-                border-color: #a6a2a2; /*#495057;*/
-                cursor: pointer;
-                font-weight: bold;
-            }
-
-        .InicioBoton1 {
-            background-image: url("../Recursos/Catalogos.svg");
-            background-repeat: no-repeat;
-            position: center center;
-            align-items: stretch;
-        }
-
-            .InicioBoton1:hover {
-                background-image: url("../Recursos/CatalogosActivo.svg");
-            }
-
-        .CentrarImagen {
-            margin: auto;
-            display: block;
-        }
-
-        .BotonImagen1 {
-            width: 170px;
-            height: 170px;
-            /*Era de 190 */
-        }
-
-            .BotonImagen1:hover {
-                background-image: url("../Recursos/CatalogosActivo.svg");
-            }
-
-        .BotonImagen2 {
-            width: 170px;
-            height: 170px;
-        }
-
-            .BotonImagen2:hover {
-                background-image: url("../Recursos/ProgramaticaActivo.svg");
-            }
-
-        .BotonImagen3 {
-            width: 170px;
-            height: 170px;
-        }
-
-            .BotonImagen3:hover {
-                background-image: url("../Recursos/boton admin usuarios activo.svg");
-            }
-
-        .BotonImagen4 {
-            width: 170px;
-            height: 170px;
-        }
-
-            .BotonImagen4:hover {
-                background-image: url("../Recursos/BotonMIRActivo.svg");
-            }
-
-        .AlineaVertical {
-            margin-top: 95px;
-            display: table-cell;
-            height: auto;
-            vertical-align: middle;
-        }
-
-        .AnchoColumna {
-            width: 260px;
-            /*Era de 350*/
-        }
-
-        .AnchoColumna2 {
-            width: 317px;
-        }
-
-        .ContainerMenuInicial {
-            margin-right: 4%;
-            width: 80%;
-            /*    width: 85%;*/
-        }
-
-        .DDLFont {
-            font-family: 'Poppins', sans-serif;
-            font-size: 14px;
-            /*font-weight: bold;*/
-        }
-
-        .TituloSeccion {
-            font-family: 'Poppins', sans-serif;
-            font-size: 36px;
-            font-weight: bold;
-            align-content: center;
-        }
+.CuadroAdminUser {
+    background-color: #F2F2F2;
+    width: 95%;
+    height: 380px;
+    border: solid;
+    border-width: thin;
+    border-radius: 6px;
+    border-color: #DFDFDF;
+}

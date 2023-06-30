@@ -95,7 +95,7 @@ function ResponseGetAllProgramasP(response) {
                 `);
             }
         }
-        Func_DataTable("table");
+        Func_DataTable("table", true, true, true, 5);
         GetAllCountProgramasP();
     } else {
         swal.close();
@@ -238,7 +238,7 @@ function BtnComponentes(){
             "id_clasificacion": data[1],
             "consecutivo": data[5]
         }
-        Func_Cargando();
+        // Func_Cargando();
         GetInfoComponentes(request);
     });
 }
@@ -321,7 +321,7 @@ function BtnEditarComponente() {
         unidad_componente = data[0];
         descripcion_componente = data[3];
         id_componente = data[2];
-        Func_Cargando();
+        // Func_Cargando();
         var request = {
             id_Secretaria: $("#id_secretaria").val()
         }
@@ -367,13 +367,16 @@ function GuardarComponente(){
             consecutivo: $("#consecutivo").val()
         }
 
-        Func_DespliegaConfirmacion("Guardar", "¿Deseas guardar la información del actualizada del componente?", "question", "Aceptar", "Cancelar", function(response) {
-            if (response) {
-                Func_Cargando();
-                repository.ProgramasPresupuestales.EditComponente(request)
-                    .then(ResponseEditComponente);
-            }
-        });
+        repository.ProgramasPresupuestales.EditComponente(request)
+            .then(ResponseEditComponente);
+
+        // Func_DespliegaConfirmacion("Guardar", "¿Deseas guardar la información del actualizada del componente?", "question", "Aceptar", "Cancelar", function(response) {
+        //     if (response) {
+        //         Func_Cargando();
+        //         repository.ProgramasPresupuestales.EditComponente(request)
+        //             .then(ResponseEditComponente);
+        //     }
+        // });
         
     });
 }

@@ -136,6 +136,10 @@ table.dataTable tbody tr.selected>* {
     border: 1px solid black;
 }
 
+.select-mir>.dropdown-toggle {
+    border: 0px;
+}
+
 .dropdown_usuario:hover>.dropdown-menu {
     display: block;
     border: thin;

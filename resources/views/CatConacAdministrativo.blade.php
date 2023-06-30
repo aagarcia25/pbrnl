@@ -100,7 +100,7 @@
                             <table id="table" class="table table-striped table-hover">
                                 <thead>
                                     <tr class="table-header text-center">
-                                        <th scope="col" width="20%">Id conac</th>
+                                        <th scope="col" width="20%">Id CONAC</th>
                                         <th scope="col" width="80%">Descripción</th>
                                     </tr>
                                 </thead>

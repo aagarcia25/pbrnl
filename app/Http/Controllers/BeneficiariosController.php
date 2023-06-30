@@ -18,6 +18,20 @@ class BeneficiariosController extends Controller
         return response()->json(array('error' => false, 'data' => $informacion, 'code' => 200));
     }
     
+    public function all(Request $request)
+    {
+        try {
+            $query = "SELECT * FROM CAT_BENEFICIARIO;";
+            $informacion = DB::select($query);
+            return response()->json(array('error' => false, 'data' => $informacion, 'code' => 200));
+
+        }catch (Exception $e) {
+            return response()->json(array('error' => true , 'result' => $e->getMessage(), 'code' => 500));
+        }
+
+        return response()->json(array('error' => false, 'result' => $informacion , 'code' => 200));
+    }
+    
     public function index(Request $request)
     {
         try {

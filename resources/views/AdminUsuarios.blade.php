@@ -87,19 +87,19 @@
                     <div class="modal-body FontMsg">
                         <div class="row mb-2 g-3 align-items-center">
                             <div class="col-md-2 FormUsrDis">
-                                <input type="text" class="form-control TextBoxUsrDis" id="id_usuario" style="background: white;">
+                                <input type="text" class="form-control TextBoxUsrDis text-uppercase" id="id_usuario" style="background: white;" readonly>
                                 <label for="id_usuario" class="form-labelUsrDis">Id Usuario <span class="text-red">*</span></label>
                             </div>
                             <div class="col-md-2 FormUsr">
-                                <input type="text" class="form-control TextBoxUsr text-uppercase" id="nombre_usuario" maxlength="45" required>
+                                <input type="text" class="form-control TextBoxUsr text-uppercase calc_id" id="nombre_usuario" maxlength="45" required>
                                 <label for="nombre_usuario" class="form-labelUsr">Nombre <span class="text-red">*</span></label>
                             </div>
                             <div class="col-md-3 FormUsr">
-                                <input type="text" class="form-control TextBoxUsr" id="appaterno_usuario" maxlength="45" required>
+                                <input type="text" class="form-control TextBoxUsr text-uppercase calc_id" id="appaterno_usuario" maxlength="45" required>
                                 <label for="appaterno_usuario" class="form-labelUsr">Apellido Paterno <span class="text-red">*</span></label>
                             </div>
                             <div class="col-md-3 FormUsr">
-                                <input type="text" class="form-control TextBoxUsr" id="apmaterno_usuario" maxlength="45" required>
+                                <input type="text" class="form-control TextBoxUsr text-uppercase calc_id" id="apmaterno_usuario" maxlength="45" required>
                                 <label for="apmaterno_usuario" class="form-labelUsr">Apellido Materno <span class="text-red">*</span></label>
                             </div>
                             <div class="col-md-2 FontMsg ">
@@ -112,11 +112,11 @@
                         </div>
                         <div class="row mb-2 g-3 align-items-center mt-3">
                             <div class="col-md-4 FormUsr">
-                                <input type="text" class="form-control fecha TextBoxUsr" id="fechanacimiento_usuario">
+                                <input type="text" class="form-control fecha TextBoxUsr calc_id" id="fechanacimiento_usuario">
                                 <label for="fechanacimiento_usuario" class="form-labelUsr">Fecha de Nacimiento</label>
                             </div>
                             <div class="col-md-4 FormUsr">
-                                <input type="text" class="form-control TextBoxUsr" id="rfc_usuario" maxlength="13" required>
+                                <input type="text" class="form-control TextBoxUsr text-uppercase " id="rfc_usuario" maxlength="13" required>
                                 <label for="rfc_usuario" class="form-labelUsr">RFC <span class="text-red">*</span></label>
                             </div>
                             <div class="col-md-4 FormUsr">
@@ -151,38 +151,38 @@
                                 <label for="ua_usuario" class="form-labelUsrDis">Id UA</label>
                             </div>
                             <div class="col-md-10 FormUsr FontMsg">
-                                <label for="select_ua" class="form-labelUsr2">Descripción Unidad Administrativa</label>
+                                <label for="select_ua" class="form-labelUsr3">Descripción Unidad Administrativa</label>
                                 <select id="select_ua" class="selectpicker show-tick form-control TextBoxUsr" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="5" data-live-search="true" data-actions-box="true" data-window-padding="top">
                                 </select>
                             </div>
                         </div>
                         <div class="row mb-2 g-3 align-items-center mt-3">
                             <div class="col FormUsr FontMsg">
-                                <input type="text" class="form-control TextBoxUsr" id="puesto_usuario" maxlength="100" required>
+                                <input type="text" class="form-control TextBoxUsr text-uppercase " id="puesto_usuario" maxlength="100" required>
                                 <label for="puesto_usuario" class="form-labelUsr">Puesto</label>
                             </div>
                         </div>
-                        <div class="row mb-2 g-3 align-items-center FontMsgChecks">
-                            <div class="col-3 bg-warning">
-                                <label for="select_roles" class="form-label">Rol</label>
-                                <select id="select_roles" class="selectpicker show-tick form-control" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="5" data-live-search="true" data-actions-box="true">
+                        <div class="row mt-2 mb-2 g-3 align-items-center">
+                            <div class="col-3 FormUsr FontMsg">
+                                <label for="select_roles" class="form-labelUsr3">Rol</label>
+                                <select id="select_roles" class="selectpicker show-tick form-control TextBoxUsr" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="5" data-live-search="true" data-actions-box="true">
                                 </select>
                             </div>
-                            <div class="col-2 bg-danger">
+                            <div class="col-2 ">
                                 <label class="toggle">
                                     <input id="check_CatalogoPbR" class="toggle-checkbox" type="checkbox">
                                     <div class="toggle-switch"></div>
                                     <span class="toggle-label text-bold">Catálogo PbR</span>
                                 </label>
                             </div>
-                            <div class="col-4 bg-success">
+                            <div class="col-4">
                                 <label class="toggle">
-                                    <input id="check_Clasificacion ms-2" class="toggle-checkbox" type="checkbox">
+                                    <input id="check_Clasificacion" class="toggle-checkbox" type="checkbox">
                                     <div class="toggle-switch"></div>
                                     <span class="toggle-label text-bold">Clasificación Programática NL</span>    
                                 </label>
                             </div>
-                            <div class="col-3 bg-primary">
+                            <div class="col-3">
                                 <label class="toggle">
                                     <input id="check_Mir" class="toggle-checkbox" type="checkbox">
                                     <div class="toggle-switch"></div>

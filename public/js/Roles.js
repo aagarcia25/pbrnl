@@ -58,7 +58,7 @@ function ResponseGetRoles(response){
         }
         
         if (response.data[5].RolEditDatosMir == "1"){
-            $("#check_EnlaceEditarMir").prop("checked", true);
+            $("#check_EnlaceEditarDatos").prop("checked", true);
         }
         
         swal.close();
@@ -81,57 +81,88 @@ function BtnGuardarSecretaria() {
                 Id: 1,
                 AccesoTotal: $("#check_AdministracionAccesoTotal").prop("checked"),
                 Anadir: 1,
-                Editar: 0
+                Editar: 0,
+                EditarDatosMir: 0
             }
             ,
             { // Captura
                 Id: 2,
                 AccesoTotal: 0,
                 Anadir: $("#check_CapturaAnadir").prop("checked"),
-                Editar: $("#check_CapturaEditar").prop("checked")
+                Editar: $("#check_CapturaEditar").prop("checked"),
+                EditarDatosMir: 0
             },
             { // Revision
                 Id: 3,
                 AccesoTotal: 0,
                 Anadir: $("#check_RevisionAnadir").prop("checked"),
-                Editar: $("#check_RevisionEditar").prop("checked")
+                Editar: $("#check_RevisionEditar").prop("checked"),
+                EditarDatosMir: 0
             },
             { // Captura y revision
                 Id: 4,
                 AccesoTotal: 0,
                 Anadir: $("#check_CapturaRevisionAnadir").prop("checked"),
-                Editar: $("#check_CapturaRevisionEditar").prop("checked")
+                Editar: $("#check_CapturaRevisionEditar").prop("checked"),
+                EditarDatosMir: 0
             },
             { // Autorizacion
                 Id: 5,
                 AccesoTotal: 0,
                 Anadir: $("#check_AutorizacionAnadir").prop("checked"),
-                Editar: $("#check_AutorizacionEditar").prop("checked")
+                Editar: $("#check_AutorizacionEditar").prop("checked"),
+                EditarDatosMir: 0
+            },
+
+            { // Enlace PbR
+                Id: 6,
+                AccesoTotal: 0,
+                Anadir: $("#check_EnlaceEditar").prop("checked"),
+                Editar: $("#check_EnlaceEditar").prop("checked"),
+                EditarDatosMir: $("#check_EnlaceEditarDatos").prop("checked")
             }
         ];
-        
-        Func_DespliegaConfirmacion("Guardar", "¿Deseas guardar la información de los roles?", "question", "Aceptar", "Cancelar", function(response) {
-            if (response) {
-                Func_Cargando();
-                var error = false;
-                
-                for (let i = 0; i < request.length; i++) {
-                    const element = request[i];
 
-                    if (request.length-1 != i){
-                        repository.Roles.UpdateRoles(element)
-                        .then(function(response){
-                            if (response.error) {
-                                error = true;
-                            }
-                        });
-                    }else{
-                        repository.Roles.UpdateRoles(element)
-                            .then(ResponseRoles);
+        var error = false;
+                
+        for (let i = 0; i < request.length; i++) {
+            const element = request[i];
+
+            if (request.length-1 != i){
+                repository.Roles.UpdateRoles(element)
+                .then(function(response){
+                    if (response.error) {
+                        error = true;
                     }
-                }
+                });
+            }else{
+                repository.Roles.UpdateRoles(element)
+                    .then(ResponseRoles);
             }
-        });
+        }
+
+        // Func_DespliegaConfirmacion("Guardar", "¿Deseas guardar la información de los roles?", "question", "Aceptar", "Cancelar", function(response) {
+        //     if (response) {
+        //         Func_Cargando();
+        //         var error = false;
+                
+        //         for (let i = 0; i < request.length; i++) {
+        //             const element = request[i];
+
+        //             if (request.length-1 != i){
+        //                 repository.Roles.UpdateRoles(element)
+        //                 .then(function(response){
+        //                     if (response.error) {
+        //                         error = true;
+        //                     }
+        //                 });
+        //             }else{
+        //                 repository.Roles.UpdateRoles(element)
+        //                     .then(ResponseRoles);
+        //             }
+        //         }
+        //     }
+        // });
     });
 }
 

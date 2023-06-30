@@ -25,9 +25,10 @@ class RolesController extends Controller
         }
         
         try {
-            $update->RolAdmin   = $request->AccesoTotal;
-            $update->RolAdd     = $request->Anadir;
-            $update->RolEdit    = $request->Editar;
+            $update->RolAdmin           = $request->AccesoTotal;
+            $update->RolAdd             = $request->Anadir;
+            $update->RolEdit            = $request->Editar;
+            $update->RolEditDatosMir    = $request->EditarDatosMir;
             $update->save();
         }catch (Exception $e) {
             return response()->json(array('error' => true , 'result' => $e->getMessage(), 'code' => 500));

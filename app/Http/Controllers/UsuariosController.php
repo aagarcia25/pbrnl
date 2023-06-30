@@ -15,7 +15,7 @@ class UsuariosController extends Controller
 {
     public function index()
     {
-        $query = "SELECT * FROM USUARIOS;";
+        $query = "SELECT * FROM USUARIOS WHERE Estatus = 'A';";
         $informacion = DB::select($query);
         return response()->json(array('error' => false, 'data' => $informacion, 'code' => 200));
     }
@@ -77,12 +77,18 @@ class UsuariosController extends Controller
 
             $correo_usuario = $usuario->eMail;
             $nombre_usuario = $usuario->Nombre . " " . $usuario->APaterno;
-            $enlace = "http://evalua-pbr.nl.gob.mx:81/RecuperacionCredencial/".$request->id_usuario;
+            $enlace = "http://evalua-pbr.nl.gob.mx/RecuperacionCredencial/".$request->id_usuario;
             
+            $remitente = "testeoevaluapbrnl@gmail.com";
+            $passowrd = "jhzgzzrhbpagbqlf";
+            $host = "smtp.gmail.com";
+            $port = 465;
+            /*
             $remitente = "evalua.pbrnl@nuevoleon.gob.mx";
             $passowrd = "*Ev4035*";
             $host = "correo.nl.gob.mx";
             $port = 587;
+            */
 
             //Load Composer's autoloader
             require base_path("vendor/autoload.php");
@@ -100,15 +106,15 @@ class UsuariosController extends Controller
             $mail->SMTPSecure = "ssl";                                  //Enable implicit TLS encryption
             $mail->Port       = $port;                                  //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
         
-            //Recipients
-            $mail->setFrom($remitente, 'Evalúa PbR NL');
-            $mail->addAddress($correo_usuario, $nombre_usuario);       //Add a recipient
-            $mail->addBCC('lvilleba@hotmail.com', 'Luis VG');    // CCO
         
             //Content
             $mail->isHTML(true);                                  //Set email format to HTML
-            $mail->Subject = "Bienvenido a Interfaz Evalúa PbR NL";
-            $mail->Body    = "<h2>Interfaz Eval&uacute;a PbR NL</h2><br><b>Estimado(a) $nombre_usuario,</b><br><br><br>Bienvenido a Interfaz Eval&uacute;a PbR NL.<br><br>Para ingresar, siga el siguiente enlace que se muestra a continuaci&oacute;n, donde se pedir&aacute; que actualice su contrase&ntilde;a:<br><a href='$enlace'>Actualizar contrase&ntilde;a</a><br><br><b>Saludos cordiales,<br><br>Interfaz Eval&uacute;a PbR NL</b>";
+            $mail->setFrom($remitente, utf8_decode('Evalúa PbR NL'));
+            //Recipients
+            $mail->addAddress($correo_usuario, $nombre_usuario);       //Add a recipient
+            $mail->addBCC('lvilleba@hotmail.com', 'Luis VG');    // CCO
+            $mail->Subject = utf8_decode("Bienvenido a Interfaz Evalúa PbR NL");
+            $mail->Body    = utf8_decode("<h2>Interfaz Eval&uacute;a PbR NL</h2><br><b>Estimado(a) $nombre_usuario,</b><br><br><br>Bienvenido a Interfaz Eval&uacute;a PbR NL.<br><br>Para ingresar, siga el siguiente enlace que se muestra a continuaci&oacute;n, donde se pedir&aacute; que actualice su contrase&ntilde;a:<br><a href='$enlace'>Actualizar contrase&ntilde;a</a><br><br><b>Saludos cordiales,<br><br>Interfaz Eval&uacute;a PbR NL</b>");
         
             if( !$mail->send() ) {
                 return response()->json(array('error' => false, 'result' => "La notificación no ha podido ser enviada, favor de intentarlo de nuevo.", 'code' => 200));

@@ -64,7 +64,14 @@
                             <img id="icon-cat-ods" class="icon-cat-secretaria" src="/img/@php echo $img; @endphp" width="80" height="80">
                         </div>
                         <div class="col-11">
-                            <h1 class="TituloCatalogo">@php echo $view; @endphp</h1>
+                            <div class="row"">
+                                <div class="col-12">
+                                    <h1 class="TituloCatalogo mx-3">@php echo $view; @endphp</h1>
+                                </div>
+                                <div class="col-12">
+                                    <h6 class="mx-3"><span id="contador_programas">0</span> PROGRAMAS - <span id="contador_componentes">0</span> COMPONENTES</h6>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -135,7 +142,7 @@
                         </div>
                         <div class="col-md-7">
                             <input type="hidden" id="id_objetivo">
-                            <label for="descripcion_objetivo" class="form-label">Id Objetivo PDF</label>
+                            <label for="descripcion_objetivo" class="form-label">Id Objetivo PED</label>
                             <input type="text" class="form-control" id="descripcion_objetivo" disabled style="background: white;">
                         </div>
                         <div class="col-md-2">
@@ -163,7 +170,23 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-md-12 mt-0">
+                            <div class="table-response mt-4">
+                                <table id="table_componentes" class="table table-striped table-hover">
+                                    <thead>
+                                        <tr class="table-header text-center">
+                                            <th width="5%">Id UA</th>
+                                            <th width="30%">Descripción UA</th>
+                                            <th width="5%">Componentes</th>
+                                            <th width="60%">Descripción</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
                         <div id="informacion_componente" class="col-md-12 d-none">
+                            <hr>
                             <form id="form_componente" autocomplete="off" method="post">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
                                 <div class="row">
@@ -182,21 +205,6 @@
                                     </div>
                                 </div>
                             </form>
-                        </div>
-                        <div class="col-md-12 mt-0">
-                            <div class="table-response mt-4">
-                                <table id="table_componentes" class="table table-striped table-hover">
-                                    <thead>
-                                        <tr class="table-header text-center">
-                                            <th width="10%">Id UA</th>
-                                            <th width="40%">Descripción UA</th>
-                                            <th width="10%">Componentes</th>
-                                            <th width="40%">Descripción</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody></tbody>
-                                </table>
-                            </div>
                         </div>
                     </div>
                 </div>

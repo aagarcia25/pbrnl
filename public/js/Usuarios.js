@@ -10,7 +10,7 @@ $(document).ready(function() {
 });
 
 function Funciones_Iniciales() {
-    // Func_Cargando();
+    Func_Cargando();
     GetSecretarias();
     Datepicker();
     Mask();
@@ -135,6 +135,7 @@ function Eventos() {
     SeleccionarTabla();
     OnChange_Secretaria();
     OnChange_Ua();
+    OnChange_IdUsuario();
     BtnCerrarSesionUsuario();
     BtnNotificarUsuario();
     BtnAgregarUsuario();
@@ -179,6 +180,34 @@ function OnChange_Ua(){
     $("#select_ua").on("change", function(){
         let id_ua = $(this).val();
         $("#ua_usuario").val(id_ua);
+    });
+}
+
+function OnChange_IdUsuario(){
+    $(".calc_id").on("change", function(){
+        let Nombre = $("#nombre_usuario").val().toUpperCase();
+        let Apellido = $("#appaterno_usuario").val().toUpperCase();
+        let Apellido2 = $("#apmaterno_usuario").val().toUpperCase();
+        let Fecha = $("#fechanacimiento_usuario").val().toUpperCase();
+
+        if (Nombre == ""){
+            return false;
+        }
+
+        if (Apellido == ""){
+            return false;
+        }
+        
+        if (Apellido2 == ""){
+            return false;
+        }
+
+        if (Fecha == ""){
+            return false;
+        }
+
+        var Id_usuario = Nombre.substr(0,1) + Apellido.substr(0,1) + Apellido2.substr(0,1) + Fecha.substr(0,2) + Fecha.substr(3,2);
+        $("#id_usuario").val(Id_usuario);
     });
 }
 
@@ -302,8 +331,6 @@ function BtnEditarUsuario(){
             const usuario = info_usuarios[i];
             
             if (usuario.idUsuario == id_usuario){
-                $("#id_usuario").val(usuario.idUsuario);
-                $("#id_usuario").prop("disabled", true);
                 $("#nombre_usuario").val(usuario.Nombre);
                 $("#appaterno_usuario").val(usuario.APaterno);
                 $("#apmaterno_usuario").val(usuario.AMaterno);
@@ -374,6 +401,8 @@ function BtnEditarUsuario(){
                 }else{
                     $("#check_Mir").prop("checked", false);
                 }
+                $("#id_usuario").val(usuario.idUsuario);
+                $("#id_usuario").prop("disabled", true);
                 break;
             }
         }
@@ -414,10 +443,10 @@ function BtnGuardarUsuario(){
         event.preventDefault();
 
         var request = {
-            id_usuario: $("#id_usuario").val(),
-            nombre_usuario: $("#nombre_usuario").val(),
-            appaterno_usuario: $("#appaterno_usuario").val(),
-            apmaterno_usuario: $("#apmaterno_usuario").val(),
+            id_usuario: $("#id_usuario").val().toUpperCase(),
+            nombre_usuario: $("#nombre_usuario").val().toUpperCase(),
+            appaterno_usuario: $("#appaterno_usuario").val().toUpperCase(),
+            apmaterno_usuario: $("#apmaterno_usuario").val().toUpperCase(),
             check_Activo: ($("#check_Activo").prop("checked") ? "A" : "I"),
             fechanacimiento_usuario: SetDDMMYYYY_YYYYMMDD($("#fechanacimiento_usuario").val()),
             rfc_usuario: $("#rfc_usuario").val(),
@@ -426,7 +455,7 @@ function BtnGuardarUsuario(){
             movil_usuario: $("#movil_usuario").val(),
             secretaria_usuario: $("#secretaria_usuario").val(),
             ua_usuario: $("#ua_usuario").val(),
-            puesto_usuario: $("#puesto_usuario").val(),
+            puesto_usuario: $("#puesto_usuario").val().toUpperCase(),
             select_roles: $("#select_roles").val(),
             check_CatalogoPbR: ($("#check_CatalogoPbR").prop("checked") ? 1 : 0),
             check_Clasificacion: ($("#check_Clasificacion").prop("checked") ? 1 : 0),

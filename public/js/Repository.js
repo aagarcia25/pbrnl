@@ -37,7 +37,7 @@ class Repository {
 
     constructor() {
         // Local
-        this.Url = "http://evalua-pbr.nl.gob.mx:81";    /*  10.200.4.111       http://127.0.0.1:8000/ */
+        this.Url = "http://evalua-pbr.nl.gob.mx";       /* "http://127.0.0.1:8000";   */
 
         this._secretarias = null;
         this._conacadmin = null;
@@ -742,3 +742,4 @@ class MirController {
 }
 
 
+                                                                                        

@@ -16,6 +16,24 @@ class ActividadesInstitucionalesController extends Controller
         return response()->json(array('error' => false, 'data' => $informacion, 'code' => 200));
     }
 
+    public function countall()
+    {
+        $query = "SELECT 
+            (SELECT COUNT(*) FROM PROGRAMATICO AS A INNER JOIN SECRETARIAS AS B ON A.idSecretaria = B.idSecretaria WHERE A.idClasificacion IN ('AI') ORDER BY A.Consecutivo) AS 'Programas',
+            (SELECT COUNT(*) FROM PROGRAMATICO_AI_COMP AS A INNER JOIN UNIDADES AS B ON A.idUA = B.idUnidad AND A.idSecretaria = B.idSecretaria) AS 'Componentes';";
+        $informacion = DB::select($query);
+        return response()->json(array('error' => false, 'data' => $informacion, 'code' => 200));
+    }
+
+    public function count(Request $request)
+    {
+        $query = "SELECT 
+            (SELECT COUNT(*) FROM PROGRAMATICO AS A INNER JOIN SECRETARIAS AS B ON A.idSecretaria = B.idSecretaria WHERE A.idClasificacion IN ('AI') AND A.idSecretaria = '$request->id_secretaria' ORDER BY A.Consecutivo) AS 'Programas',
+            (SELECT COUNT(*) FROM PROGRAMATICO_AI_COMP AS A INNER JOIN UNIDADES AS B ON A.idUA = B.idUnidad AND A.idSecretaria = B.idSecretaria WHERE A.idSecretaria = '$request->id_secretaria') AS 'Componentes';";
+        $informacion = DB::select($query);
+        return response()->json(array('error' => false, 'data' => $informacion, 'code' => 200));
+    }
+
     public function index(Request $request)
     {
         $query = "SELECT A.* FROM PROGRAMATICO AS A INNER JOIN SECRETARIAS AS B ON A.idSecretaria = B.idSecretaria WHERE A.idClasificacion IN ('AI') AND A.idSecretaria = '$request->id_secretaria' ORDER BY A.Consecutivo;";
