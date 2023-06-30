@@ -408,7 +408,7 @@ class LoginController {
     }
 
     Login(request) {
-        return Requests('POST', this.Url + "/AccessLogin", request);
+        return Requests('POST', "http://evalua-pbr.nl.gob.mx:81/AccessLogin", request);
     }
 
     Recuperar(request) {
