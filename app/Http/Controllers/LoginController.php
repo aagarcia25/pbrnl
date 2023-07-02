@@ -124,8 +124,7 @@ class LoginController extends Controller
         session(['programatica' => $ClasProgramatica]);
         session(['admin_mir' => $AdminMIR]);
 
-        //session()->put("usuario", $request->id_usuario);    /* Código por Omar */
-
+        session()->put("usuario", $request->id_usuario);
 
         return response()->json(
             array(
@@ -164,16 +163,32 @@ class LoginController extends Controller
                         ->get();
 
             if (count($usuario_activo) > 0){
-                return response()->json(
-                    array(
-                        'error' => true, 
-                        'data' => null, 
-                        'message' => "El usuario que intenta cambiar la contraseña tiene una sesión iniciada en otro dispositivo.", 
-                        'code' => 200
-                    )
-                );
+                $usuario = $usuario_activo[0];
+
+                $fecha_login = new DateTime($usuario->FechaLogin);
+                $hoy = new DateTime();
+
+                $dif = $hoy->diff($fecha_login)->i;
+
+                $max_minutos = 10;
+                $minutos_restantes = $max_minutos - $dif;
+ 
+                if($dif < $max_minutos){
+                    return response()->json(
+                        array(
+                            'error' => true, 
+                            'data' => null, 
+                            'message' => "El usuario que intenta cambiar la contraseña tiene una sesión iniciada en otro dispositivo.", 
+                            'code' => 200
+                        )
+                    );
+                }
+                else{
+                    //eliminar el registro para posteriormente agregar uno nuevo
+                    UsuariosEnLinea::where('idUsuario',$usuario->idUsuario)->delete();
+                }
             }
-            
+
             $usuario->Password    = $request->password;
             $usuario->save();
 
@@ -184,7 +199,6 @@ class LoginController extends Controller
             $insert->idUsuario      = $request->id_usuario;
             $insert->FechaLogin     = $Fecha;
             $insert->save();
-
         }catch (Exception $e) {
             return response()->json(
                 array(
