@@ -8,7 +8,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-
+use DateTime;
 
 date_default_timezone_set('America/Monterrey');
 
@@ -66,14 +66,33 @@ class LoginController extends Controller
 
             // Código Original --- 30/06/2023                         
              if (count($usuario_activo) > 0){
-                return response()->json(
-                    array(
-                        'error' => true, 
-                        'data' => null, 
-                        'message' => "El Usuario ya ha iniciado sesión en otro dispositivo.", 
-                        'code' => 200
-                    )
-                );
+                //OMAR: 02/07/2023
+                //ya inició sesión, hay que ver que si tiene más de 10 minutos de inactividad, se pueda volver a
+                //iniciar la sesión
+                $usuario = $usuario_activo[0];
+
+                $fecha_login = new DateTime($usuario->FechaLogin);
+                $hoy = new DateTime();
+
+                $dif = $hoy->diff($fecha_login)->i;
+
+                $max_minutos = 10;
+                $minutos_restantes = $max_minutos - $dif;
+
+                if($dif < $max_minutos){
+                    return response()->json(
+                        array(
+                            'error' => true, 
+                            'data' => null, 
+                            'message' => "El Usuario ya ha iniciado sesión en otro dispositivo.", 
+                            'code' => 200
+                        )
+                    );
+                }
+                else {
+                    //eliminar el registro para posteriormente agregar uno nuevo
+                    UsuariosEnLinea::where('idUsuario',$usuario->idUsuario)->delete();
+                }
             }
  
 
