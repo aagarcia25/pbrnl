@@ -165,7 +165,7 @@
 </div>
 
 @include('includes._partialFooter')
-<script src="/js/Repository.js"></script>
+<script src="{{ asset('/js/Repository.js') }}"></script>
 <script src="/js/Eje.js"></script>
 
 </body>

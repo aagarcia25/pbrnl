@@ -119,7 +119,7 @@
 
 @include('includes._partialFooter')
 
-<script src="/js/Repository.js"></script>
+<script src="{{ asset('/js/Repository.js') }}"></script>
 <script src="/js/ConacAdministrativo.js"></script>
 <script src="/js/CatConacAdm.js"></script>
 

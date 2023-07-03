@@ -203,7 +203,7 @@
 </div>
 
 @include('includes._partialFooter')
-<script src="/js/Repository.js"></script>
+<script src="{{ asset('/js/Repository.js') }}"></script>
 <script src="/js/Usuarios.js"></script>
 
 </body>

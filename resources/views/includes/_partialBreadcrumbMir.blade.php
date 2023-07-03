@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-lg-1">
             <div class="card bg-transparent border border-0 mt-5">
-                <a href="/MenuMIR">
+                <a href="/public/MenuMIR">
                     <img class="IconoRegresar ms-2" alt="" src="img/icono regresar.svg" style="width: 50px" />
                 </a>                    
             </div>
