@@ -59,7 +59,7 @@ $view = "Menu de inicio";
         </div>
         <div class="col-lg-4">
             <div class="d-flex align-items-center justify-content-center">
-                <a @if (session('admin_mir') == 1) href="public/MenuMIR" @else href="#" @endif class="d-flex align-items-center justify-content-center">
+                <a @if (session('admin_mir') == 1) href="/MenuMIR" @else href="#" @endif class="d-flex align-items-center justify-content-center">
                     <img class="BotonImagen4" 
                     @if (session('admin_mir') == 1)
                         src="img/BotonMIR.svg"
