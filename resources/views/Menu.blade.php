@@ -17,7 +17,7 @@ $view = "Menu de inicio";
         <div class="col-lg-4">
             <div class="d-flex align-items-center justify-content-center">
                 <!-- <a href="/Administracion">  -->
-                <a @if (session('admin_evalua') == 1) href="/public/MenuAdmin" @else href="#" @endif>        
+                <a @if (session('admin_evalua') == 1) href="/interfaz/MenuAdmin" @else href="#" @endif>        
                     <img class="BotonImagen3" 
                     @if (session('admin_evalua') == 1) 
                         src="img/boton admin usuarios.svg" 
@@ -32,7 +32,7 @@ $view = "Menu de inicio";
 
         <div class="col-lg-4">
             <div class="d-flex align-items-center justify-content-center">
-                <a @if (session('catalogos_pbr') == 1) href="/public/Catalogos" @else href="#" @endif class="d-flex align-items-center justify-content-center">
+                <a @if (session('catalogos_pbr') == 1) href="/interfaz/Catalogos" @else href="#" @endif class="d-flex align-items-center justify-content-center">
                     <img class="BotonImagen1" 
                     @if (session('catalogos_pbr') == 1) 
                         src="img/Catalogos.svg" 
@@ -58,7 +58,7 @@ $view = "Menu de inicio";
         </div>
         <div class="col-lg-4">
             <div class="d-flex align-items-center justify-content-center">
-                <a @if (session('admin_mir') == 1) href="/public/MenuMIR" @else href="#" @endif class="d-flex align-items-center justify-content-center">
+                <a @if (session('admin_mir') == 1) href="/interfaz/MenuMIR" @else href="#" @endif class="d-flex align-items-center justify-content-center">
                     <img class="BotonImagen4" 
                     @if (session('admin_mir') == 1)
                         src="img/BotonMIR.svg"
