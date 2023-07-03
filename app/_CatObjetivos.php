@@ -5,7 +5,7 @@
 
 @include('includes._partialHeader')
 
-<link rel="stylesheet" type="text/css" href="/css/EstilosPbR.css" />
+  <link rel="stylesheet" type="text/css" href="{{ asset('/css/EstilosPbR.css') }}" />
 
 <style>
     .input-background-white {

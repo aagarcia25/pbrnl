@@ -12,7 +12,7 @@
     <link rel="stylesheet" type="text/css" href="/vendor/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="/vendor/bootstrap-icons/bootstrap-icons.css" />
     <link rel="stylesheet" type="text/css" href="/css/login.css" />
-    <link rel="stylesheet" type="text/css" href="/css/EstilosPbR.css" />
+      <link rel="stylesheet" type="text/css" href="{{ asset('/css/EstilosPbR.css') }}" />
 </head>
 @php
 if (Session::has('sesion')) {
