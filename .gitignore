@@ -22,6 +22,6 @@ Homestead.json
 /.vagrant
 .phpunit.result.cache
 # Omar:
-app/Http/Middleware/VerifyCsrfToken.php
+#app/Http/Middleware/VerifyCsrfToken.php
 composer.lock
 package-lock.json
