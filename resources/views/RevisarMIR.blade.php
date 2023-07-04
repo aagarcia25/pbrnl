@@ -2030,7 +2030,7 @@
 
 @include('includes._partialFooter')
 <script src="{{ asset('/js/Repository.js') }}"></script>
-<script src="/js/Mir.js"></script>
+<script src="{{ asset('/js/Mir.js') }}"></script>
 
 </body>
 
