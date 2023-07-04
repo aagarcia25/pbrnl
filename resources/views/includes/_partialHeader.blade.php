@@ -47,7 +47,7 @@ if (!Session::has('sesion')) {
     <nav class="navbar navbar-expand-lg navbar-white bg-white static-top">
         <div class="container-fluid">
         <div class="d-flex justify-content-between">
-            <a class="navbar-brand mx-5" href="/Menu">
+            <a class="navbar-brand mx-5" href="/interfaz/Menu">
                 <img src="img/logo-tesoreria.svg" alt="Logo de tesorería de Nuevo León" width="200">
             </a>
         </div>
