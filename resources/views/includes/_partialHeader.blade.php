@@ -34,7 +34,7 @@ if (!Session::has('sesion')) {
     }else{
         if (time() - session('tiempo') > 1800) { //3600
             @endphp
-                <script>window.location = "/public/Logout";</script>
+                <script>window.location = "/publicLogout";</script>
             @php
             die();
         }
@@ -61,7 +61,7 @@ if (!Session::has('sesion')) {
                         <li class="dropdown-item UsuarioBG fw-bold text-uppercase">
                              @php echo session('id_usuario'); @endphp<br>@php echo session('nombre') . " " . session('ap_paterno'); @endphp
                         </li>
-                        <li><a class="dropdown-item BtnLogout text-center" href="/public/Logout">Cerrar sesión</a></li>
+                        <li><a class="dropdown-item BtnLogout text-center" href="/publicLogout">Cerrar sesión</a></li>
                     </ul>
                 </div>
             </div>
