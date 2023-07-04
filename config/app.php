@@ -54,9 +54,9 @@ return [
 
     //'url' => env('APP_URL',  'http://evalua-pbr.nl.gob.mx/public'),     
     /*'url' => env('APP_URL',  'http://evalua-pbr.nl.gob.mx:81//'), */    
-      'url' => env('APP_URL',  'http://evalua-pbr.nl.gob.mx/interfaz'),  
+      'url' => env('APP_URL',  'http://evalua-pbr.nl.gob.mx/public'),  
 
-    'asset_url' => env('ASSET_URL', 'http://evalua-pbr.nl.gob.mx/interfaz'),
+    'asset_url' => env('ASSET_URL', 'http://evalua-pbr.nl.gob.mx/public'),
 
     /*
     |--------------------------------------------------------------------------
