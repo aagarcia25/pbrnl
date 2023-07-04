@@ -252,9 +252,9 @@ if (Session::has('sesion')) {
     <script src="/js/jquery.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="{{ asset('/js/Generales.js') }}"></script>
+     <script src="{{ asset('/js/Generales.js') }}"></script>
     <script src="{{ asset('/js/Repository.js') }}"></script>
-    <script src="{{ asset('/js/RecuperacionCredencial.js') }}"></script>
+    <script src="/js/RecuperacionCredencial.js"></script>
 
 </body>
 
