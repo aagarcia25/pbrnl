@@ -15,10 +15,10 @@ use App\Http\Controllers\SecretariaController;
 |
 */
 
-Route::get('/', function () {
+Route::get('/interfaz/', function () {
     return view('Login'); // En resources -> views - index.php -- Así se llama la vista principal donde entraran 
 });
-Route::get('/Login', function () {
+Route::get('/interfaz/Login', function () {
     return view('Login'); // En resources -> views - index.php -- Así se llama la vista principal donde entraran 
 });
 Route::post('AccessLogin','LoginController@login');
