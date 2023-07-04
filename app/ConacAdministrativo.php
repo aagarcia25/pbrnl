@@ -11,9 +11,7 @@ class ConacAdministrativo extends Model
         'Descripcion'
     ];
     protected $table = 'CONAC_ADM';
-    //public $timestamps = false;
     protected $primaryKey = 'IdConac';
-    //protected $primaryKey = array('id','id_conac');
     public $incrementing = false;
     public function getKeyName(){
         return "IdConac";
