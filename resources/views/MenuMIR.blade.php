@@ -20,7 +20,7 @@ $view = "Menu de inicio";
     <div class="row">
         <div class="col-lg-3"></div>
         <div class="col-lg-2">
-            <a href="/RevisarMIR" class="d-flex align-items-center justify-content-center">
+            <a href="RevisarMIR" class="d-flex align-items-center justify-content-center">
                 <img class="BotonRevisarMIR" src="img/dummy.png" alt="Logo de tesorería de Nuevo León" width="170" height="170">
             </a>
             <div class="FontMenuInicio d-flex align-items-center justify-content-center text-center mt-3">

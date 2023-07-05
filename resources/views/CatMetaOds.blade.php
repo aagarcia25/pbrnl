@@ -29,7 +29,7 @@
                 </div>    
                 <div class="row mt-3">
                     <div class="col-md-1">
-                        <a href="/Catalogos" class="d-flex align-items-center justify-content-center">
+                        <a href="Catalogos" class="d-flex align-items-center justify-content-center">
                             <img id="icon-regresarPlan" onmouseover="img_over('icon-regresarPlan', '/img/icono regresar activo.svg')" onmouseout="img_out('icon-regresarPlan', '/img/icono regresar.svg')" src="img/icono regresar.svg" alt="Logo de tesorería de Nuevo León" width="50" height="50">
                         </a>
                         <div class="d-flex align-items-center justify-content-center text-center">
@@ -39,7 +39,7 @@
                 </div>
                 <div class="row mt-1">
                     <div class="col-1">
-                        <a href="/Eje" class="d-flex align-items-center justify-content-center">
+                        <a href="Eje" class="d-flex align-items-center justify-content-center">
                             <img id="icon-cat-eje" class="icon-cat-secretaria" onmouseover="img_over('icon-cat-eje', '/img/icono eje.svg')" onmouseout="img_out('icon-cat-eje', 'img/icono eje off.svg')" src="img/icono eje off.svg" width="50" height="50">
                         </a>
                         <div class="d-flex align-items-center justify-content-center text-center">
@@ -49,7 +49,7 @@
                 </div>
                 <div class="row mt-1">              
                     <div class="col-1">
-                        <a href="/Tema" class="d-flex align-items-center justify-content-center">
+                        <a href="Tema" class="d-flex align-items-center justify-content-center">
                             <img id="icon-cat-tema" class="icon-cat-secretaria" onmouseover="img_over('icon-cat-tema', '/img/icono tema.svg')" onmouseout="img_out('icon-cat-tema', 'img/icono tema off.svg')" src="img/icono tema off.svg" width="50" height="50">
                         </a>
                         <div class="d-flex align-items-center justify-content-center text-center">
@@ -59,7 +59,7 @@
                 </div>
                 <div class="row mt-1">              
                     <div class="col-1">
-                        <a href="/Objetivos" class="d-flex align-items-center justify-content-center">
+                        <a href="Objetivos" class="d-flex align-items-center justify-content-center">
                             <img id="icon-cat-objetivo" class="icon-cat-secretaria" onmouseover="img_over('icon-cat-objetivo', '/img/icono objetivo.svg')" onmouseout="img_out('icon-cat-objetivo', 'img/icono objetivo off.svg')" src="img/icono objetivo off.svg" width="50" height="50">
                         </a>
                         <div class="d-flex align-items-center justify-content-center text-center">
@@ -69,7 +69,7 @@
                 </div>
                 <div class="row mt-1">              
                     <div class="col-1">
-                        <a href="/Estrategia" class="d-flex align-items-center justify-content-center">
+                        <a href="Estrategia" class="d-flex align-items-center justify-content-center">
                             <img id="icon-cat-estrategia" class="icon-cat-secretaria" onmouseover="img_over('icon-cat-estrategia', '/img/icono estrategias.svg')" onmouseout="img_out('icon-cat-estrategia', 'img/icono estrategia off.svg')" src="img/icono estrategia off.svg" width="50" height="50">
                         </a>
                         <div class="d-flex align-items-center justify-content-center text-center">
@@ -79,7 +79,7 @@
                 </div>
                 <div class="row mt-1">              
                     <div class="col-1">
-                        <a href="/LineasAccion" class="d-flex align-items-center justify-content-center">
+                        <a href="LineasAccion" class="d-flex align-items-center justify-content-center">
                             <img id="icon-cat-lineas-accion" class="icon-cat-secretaria" onmouseover="img_over('icon-cat-lineas-accion', '/img/icono lineas de accion.svg')" onmouseout="img_out('icon-cat-lineas-accion', 'img/icono lineas de accion off.svg')" src="img/icono lineas de accion off.svg" width="50" height="50">
                         </a>
                         <div class="d-flex align-items-center justify-content-center text-center">
@@ -89,7 +89,7 @@
                 </div>
                 <div class="row mt-1">              
                     <div class="col-1">
-                        <a href="/Ods" class="d-flex align-items-center justify-content-center">
+                        <a href="Ods" class="d-flex align-items-center justify-content-center">
                             <img id="icon-cat-ods" class="icon-cat-secretaria" onmouseover="img_over('icon-cat-ods', '/img/icono ODS.svg')" onmouseout="img_out('icon-cat-ods', 'img/icono ODS off.svg')" src="img/icono ODS off.svg" width="50" height="50">
                         </a>
                         <div class="d-flex align-items-center justify-content-center text-center">

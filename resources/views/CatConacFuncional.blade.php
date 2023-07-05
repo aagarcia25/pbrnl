@@ -30,7 +30,7 @@
                     </div>
                     <div class="row mt-3">
                         <div class="col-md-1">
-                            <a href="/Catalogos" class="d-flex align-items-center justify-content-center">
+                            <a href="Catalogos" class="d-flex align-items-center justify-content-center">
                                 <img id="icon-regresar" onmouseover="img_over('icon-regresar', '/img/icono regresar activo.svg')" onmouseout="img_out('icon-regresar', '/img/icono regresar.svg')" src="img/icono regresar.svg" alt="Logo de tesorería de Nuevo León" width="50" height="50">
                             </a>
                             <div class="d-flex align-items-center justify-content-center text-center">
@@ -40,7 +40,7 @@
                     </div>
                     <div class="row mt-1">
                         <div class="col-md-1">
-                            <a href="/ConacAdministrativo" class="d-flex align-items-center justify-content-center">
+                            <a href="ConacAdministrativo" class="d-flex align-items-center justify-content-center">
                                 <img id="icon-cat-admin" onmouseover="img_over('icon-cat-admin', '/img/icono administrativa.svg')" onmouseout="img_out('icon-cat-admin', '/img/icono CONAC administrativa off.svg')" src="img/icono CONAC administrativa off.svg" alt="Logo de tesorería de Nuevo León" width="50" height="50">
                             </a>
                             <div class="d-flex align-items-center justify-content-center text-center">
@@ -50,7 +50,7 @@
                     </div>
                     <div class="row mt-1">
                         <div class="col-md-1">
-                            <a href="/Secretarias" class="d-flex align-items-center justify-content-center">
+                            <a href="Secretarias" class="d-flex align-items-center justify-content-center">
                                 <img id="icon-cat-secretaria" class="icon-cat-secretaria" onmouseover="img_over('icon-cat-secretaria', '/img/LogoSecretarias.svg')" onmouseout="img_out('icon-cat-secretaria', 'img/icono Secretarias off.svg')" src="img/icono Secretarias off.svg" alt="Logo de tesorería de Nuevo León" width="50" height="50">
                             </a>
                             <div class="d-flex align-items-center justify-content-center text-center">
@@ -60,7 +60,7 @@
                     </div>
                     <div class="row mt-1">
                         <div class="col-md-1">
-                            <a href="/UnidadesAdministrativas" class="d-flex align-items-center justify-content-center">
+                            <a href="UnidadesAdministrativas" class="d-flex align-items-center justify-content-center">
                                 <img id="icon-cat-unidades" class="icon-cat-administrativas" onmouseover="img_over('icon-cat-unidades', '/img/icono unidades admvas.svg')" onmouseout="img_out('icon-cat-unidades', '/img/icono unidades admvas off.svg')" src="img/icono unidades admvas off.svg" alt="Logo de tesorería de Nuevo León" width="50" height="50">
                             </a>
                             <div class="d-flex align-items-center justify-content-center text-center">
@@ -70,7 +70,7 @@
                     </div>
                     <div class="row mt-1">
                         <div class="col-md-1">
-                            <a href="/ConacTipologia" class="d-flex align-items-center justify-content-center">
+                            <a href="ConacTipologia" class="d-flex align-items-center justify-content-center">
                                 <img id="icon-cat-tipologia" class="icon-cat-tipologia" onmouseover="img_over('icon-cat-tipologia', '/img/icono tipologia.svg')" onmouseout="img_out('icon-cat-tipologia', '/img/icono CONAC tipologia off.svg')" src="img/icono CONAC tipologia off.svg" alt="Logo de tesorería de Nuevo León" width="50" height="50">
                             </a>
                             <div class="d-flex align-items-center justify-content-center text-center">

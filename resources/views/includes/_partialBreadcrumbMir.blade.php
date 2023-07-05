@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-lg-1">
             <div class="card bg-transparent border border-0 mt-5">
-                <a href="/MenuMIR">
+                <a href="MenuMIR">
                     <img class="IconoRegresar ms-2" alt="" src="img/icono regresar.svg" style="width: 50px" />
                 </a>                    
             </div>
@@ -25,8 +25,8 @@
             <h1 class="TituloCatalogo">@php echo $view; @endphp</h1>
             <!--nav-- class="mt-3" aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/Menu">Inicio</a></li>
-                    <li class="breadcrumb-item"><a href="/Catalogos">Cátalogos</a></li>
+                    <li class="breadcrumb-item"><a href="Menu">Inicio</a></li>
+                    <li class="breadcrumb-item"><a href="Catalogos">Cátalogos</a></li>
                     <li class="breadcrumb-item active" aria-current="page">@php echo $view; @endphp</li>
                 </ol>
             </!--nav-->

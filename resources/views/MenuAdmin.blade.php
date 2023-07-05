@@ -18,7 +18,7 @@ $view = "Menu de inicio";
         <div class="col-lg-3"></div>
         <div class="col-lg-3">
             <div class="d-flex align-items-center justify-content-center">
-                <a href="/Usuarios" class="d-flex align-items-center justify-content-center">
+                <a href="Usuarios" class="d-flex align-items-center justify-content-center">
                     <img class="BotonAdminUsuarios" src="img/boton admin usuarios.svg" alt="Logo de tesorería de Nuevo León" width="170" height="170">
                 </a>
             </div>
@@ -28,7 +28,7 @@ $view = "Menu de inicio";
         </div>
         <div class="col-lg-3">
             <div class="d-flex align-items-center justify-content-center">
-                <a href="/Roles" class="d-flex align-items-center justify-content-center">
+                <a href="Roles" class="d-flex align-items-center justify-content-center">
                     <img class="BotonAdminRoles" src="img/boton rol de usuario.svg" alt="Logo de tesorería de Nuevo León" width="170" height="170">
                 </a>
             </div>

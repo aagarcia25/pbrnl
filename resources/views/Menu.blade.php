@@ -16,7 +16,7 @@ $view = "Menu de inicio";
         <div class="col-lg-2"></div>
         <div class="col-lg-4">
             <div class="d-flex align-items-center justify-content-center">
-                <!-- <a href="/Administracion">  -->
+                <!-- <a href="Administracion">  -->
                 <a @if (session('admin_evalua') == 1) href="MenuAdmin" @else href="#" @endif>        
                     <img class="BotonImagen3" 
                     @if (session('admin_evalua') == 1) 

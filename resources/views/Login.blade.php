@@ -19,7 +19,7 @@
 @php
 if (Session::has('sesion')) {
 @endphp
-    <script>window.location = "/Menu";</script>
+    <script>window.location = "Menu";</script>
 @php
 }
 @endphp

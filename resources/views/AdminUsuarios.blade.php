@@ -11,7 +11,7 @@
     <div class="row">
         <div class="col-md-1">
             <div class="card bg-transparent border border-0 ms-4">
-                <a href="/MenuAdmin">
+                <a href="MenuAdmin">
                     <img class="IconoRegresar ms-4" alt="" src="img/icono regresar.svg" style="width: 35%" />
                 </a>                    
             </div>
@@ -27,7 +27,7 @@
     <div class="row mt-4">
         <div class="col-md-1">
             <div class="card bg-transparent border border-0 ms-4">
-                <a href="/Roles">
+                <a href="Roles">
                     <img class="IconoRolUsr ms-4" alt="" src="img/dummy.png"/>
                 </a>                    
             </div>
