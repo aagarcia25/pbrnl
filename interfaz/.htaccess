@@ -6,7 +6,7 @@
     #RewriteEngine On
 
     RewriteEngine On
-    Redirect 301 / http://evalua-pbr.nl.gob.mx/interfaz/
+    Redirect 301 / /interfaz/
 
   
 
