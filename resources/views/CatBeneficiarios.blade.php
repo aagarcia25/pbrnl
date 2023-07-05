@@ -5,7 +5,7 @@
 @include('includes._partialHeader')
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" type="text/css" href="{{ asset('/css/EstilosPbR.css') }}" />
+  <link rel="stylesheet" type="text/css" href="css/EstilosPbR.css" />
 <link rel="stylesheet" type="text/css" href="Content/MenuCatalogos.css" />
 
 <style>
@@ -128,8 +128,8 @@
 
 @include('includes._partialFooter')
 
-<script src="{{ asset('/js/Repository.js') }}"></script>
-<script src="/js/Beneficiarios.js"></script>
+<script src="js/Repository.js"></script>
+<script src="js/Beneficiarios.js"></script>
 
 </body>
 

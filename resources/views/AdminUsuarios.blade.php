@@ -5,7 +5,7 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet" />
 @include('includes._partialHeader')
-  <link rel="stylesheet" type="text/css" href="{{ asset('/css/EstilosPbR.css') }}" />
+  <link rel="stylesheet" type="text/css" href="css/EstilosPbR.css" />
 
 <div id="MenuLeft" class="mt-5 ms-2">
     <div class="row">
@@ -203,8 +203,8 @@
 </div>
 
 @include('includes._partialFooter')
-<script src="{{ asset('/js/Repository.js') }}"></script>
-<script src="/js/Usuarios.js"></script>
+<script src="js/Repository.js"></script>
+<script src="js/Usuarios.js"></script>
 
 </body>
 

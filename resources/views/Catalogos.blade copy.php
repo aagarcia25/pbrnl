@@ -4,7 +4,7 @@ $view = "Menu de catálogos";
 
 @include('includes._partialHeader')
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" type="text/css" href="/css/MenuCatalogos.css" />
+<link rel="stylesheet" type="text/css" href="css/MenuCatalogos.css" />
 
 <div class="container">
     <div class="pagetitle">
@@ -202,7 +202,7 @@ $view = "Menu de catálogos";
 @include('includes._partialFooter')
  -->
  
- <script src="/js/Catalogos.js"></script>
+ <script src="js/Catalogos.js"></script>
 
 </body>
 

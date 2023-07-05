@@ -6,7 +6,7 @@
 @include('includes._partialHeader')
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" type="text/css" href="{{ asset('/css/EstilosPbR.css') }}" />
+  <link rel="stylesheet" type="text/css" href="css/EstilosPbR.css" />
 
 <style>
     .input-background-white {
@@ -119,9 +119,9 @@
 
 @include('includes._partialFooter')
 
-<script src="{{ asset('/js/Repository.js') }}"></script>
-<script src="/js/ConacAdministrativo.js"></script>
-<script src="/js/CatConacAdm.js"></script>
+<script src="js/Repository.js"></script>
+<script src="js/ConacAdministrativo.js"></script>
+<script src="js/CatConacAdm.js"></script>
 
 
 </body>

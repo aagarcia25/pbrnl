@@ -7,11 +7,13 @@
     <title>@php echo $view; @endphp - Interfaz Evalúa PbR Nuevo León</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
+
+    <base href="<?php echo config('app.base_href') ?>">
     
     <!-- Css plugins -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/css/bootstrap-select.min.css">
-    <link rel="stylesheet" href="/vendor/toast/jquery.toast.min.css">
+    <link rel="stylesheet" href="vendor/toast/jquery.toast.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.10.0/css/bootstrap-datepicker.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet" />
 
@@ -19,9 +21,10 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.13.2/b-2.3.4/b-colvis-2.3.4/b-html5-2.3.4/b-print-2.3.4/fc-4.2.1/fh-3.3.1/sp-2.1.1/datatables.min.css"/>
 
     <!-- Css -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('/css/menu.css') }}"  />
+    <link rel="stylesheet" type="text/css" href="css/menu.css"  />
     {{-- <link rel="stylesheet" type="text/css" href="Content/EstilosPbR.css" /> --}}
 
+    
 </head>
 @php
 if (!Session::has('sesion')) {
@@ -34,7 +37,7 @@ if (!Session::has('sesion')) {
     }else{
         if (time() - session('tiempo') > 1800) { //3600
             @endphp
-                <script>window.location = "/public/Logout";</script>
+                <script>window.location = "Logout";</script>
             @php
             die();
         }
@@ -61,7 +64,7 @@ if (!Session::has('sesion')) {
                         <li class="dropdown-item UsuarioBG fw-bold text-uppercase">
                              @php echo session('id_usuario'); @endphp<br>@php echo session('nombre') . " " . session('ap_paterno'); @endphp
                         </li>
-                        <li><a class="dropdown-item BtnLogout text-center" href="/public/Logout">Cerrar sesión</a></li>
+                        <li><a class="dropdown-item BtnLogout text-center" href="Logout">Cerrar sesión</a></li>
                     </ul>
                 </div>
             </div>

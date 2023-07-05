@@ -38,7 +38,7 @@ function ResponseLogin(response){
         $("#mensaje_modal").text(response.message);
         $("#Modal").modal("show");
     }else{
-        window.location.href = '/public/Menu';
+        window.location.href = 'Menu';
     }
 }
 

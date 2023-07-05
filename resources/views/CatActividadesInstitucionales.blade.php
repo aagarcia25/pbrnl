@@ -5,7 +5,7 @@
 
 @include('includes._partialHeader')
 
-  <link rel="stylesheet" type="text/css" href="{{ asset('/css/EstilosPbR.css') }}" />
+  <link rel="stylesheet" type="text/css" href="css/EstilosPbR.css" />
 
 <style>
     .input-background-white {
@@ -286,8 +286,8 @@
 </div>
 
 @include('includes._partialFooter')
-<script src="{{ asset('/js/Repository.js') }}"></script>
-<script src="/js/ActividadesInstitucionales.js"></script>
+<script src="js/Repository.js"></script>
+<script src="js/ActividadesInstitucionales.js"></script>
 
 
 </body>

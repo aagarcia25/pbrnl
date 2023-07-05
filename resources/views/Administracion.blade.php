@@ -8,7 +8,7 @@ $view = "Roles y usuarios";
     <div class="pagetitle">
         <nav class="mt-3" aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/Menu">Inicio</a></li>
+                <li class="breadcrumb-item"><a hrefs="Menu">Inicio</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Roles y usuarios</li>
             </ol>
         </nav>
@@ -23,7 +23,7 @@ $view = "Roles y usuarios";
             </div>
         </div>
         <div class="col">
-            <a href="/Usuarios" class="d-flex align-items-center justify-content-center">
+            <a href="Usuarios" class="d-flex align-items-center justify-content-center">
                 <img class="bd-placeholder-img rounded-circle round-section cursor-pointer" src="img/boton admin usuarios.svg" alt="Logo de tesorería de Nuevo León" width="140" height="140">
             </a>
             <div class="d-flex align-items-center justify-content-center text-center">
@@ -31,7 +31,7 @@ $view = "Roles y usuarios";
             </div>
         </div>
         <div class="col">
-            <a href="/Roles" class="d-flex align-items-center justify-content-center">
+            <a href="Roles" class="d-flex align-items-center justify-content-center">
                 <img class="bd-placeholder-img rounded-circle round-section cursor-pointer" src="img/boton rol de usuario.svg" alt="Logo de tesorería de Nuevo León" width="140" height="140">
             </a>
             <div class="d-flex align-items-center justify-content-center text-center">
@@ -45,7 +45,7 @@ $view = "Roles y usuarios";
 
 ?>
 @include('includes._partialFooter')
-<script src="/js/Administracion.js"></script>
+<script src="js/Administracion.js"></script>
 
 </body>
 

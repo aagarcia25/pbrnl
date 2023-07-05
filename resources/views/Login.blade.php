@@ -7,13 +7,14 @@
     <title>Iniciar sesión - Interfaz Evalúa PbR Nuevo León</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
+    <base href="<?php echo config('app.base_href') ?>">
     <!-- Vendor CSS Files -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('/vendor/bootstrap/css/bootstrap.min.css') }} " />
-    <link rel="stylesheet" type="text/css" href="{{ asset('/vendor/bootstrap-icons/bootstrap-icons.css') }} " />
-    <link rel="stylesheet" type="text/css" href="{{ asset('/css/login.css') }}"  />
-    <link rel="stylesheet" type="text/css" href="{{ asset('/css/EstilosPbR.css') }}" />
-
+    <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="vendor/bootstrap-icons/bootstrap-icons.css" />
+    <link rel="stylesheet" type="text/css" href="css/login.css"  />
+    <link rel="stylesheet" type="text/css" href="css/EstilosPbR.css" />
+    
 </head>
 @php
 if (Session::has('sesion')) {
@@ -268,12 +269,12 @@ if (Session::has('sesion')) {
         </div>
 
     </footer>
-    <script src="{{ asset('/js/jquery.js') }}"></script>
+    <script src="js/jquery.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="{{ asset('/js/Generales.js') }}"></script>
-    <script src="{{ asset('/js/Repository.js') }}"></script>
-    <script src="{{ asset('/js/Login.js') }}"></script>
+    <script src="js/Generales.js"></script>
+    <script src="js/Repository.js"></script>
+    <script src="js/Login.js"></script>
 
 </body>
 
