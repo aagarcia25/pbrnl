@@ -4,7 +4,7 @@
     </IfModule>
 
     RewriteEngine On
-    Redirect 301 / /interfaz/
+   # Redirect 301 / /interfaz/
 
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
