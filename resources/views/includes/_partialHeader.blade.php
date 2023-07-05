@@ -37,7 +37,7 @@ if (!Session::has('sesion')) {
     }else{
         if (time() - session('tiempo') > 1800) { //3600
             @endphp
-                <script>window.location = "Logout";</script>
+                <script>window.location = "/interfaz/Logout";</script>
             @php
             die();
         }
