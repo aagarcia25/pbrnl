@@ -86,8 +86,8 @@ class UsuariosController extends Controller
             
             $remitente = "evalua.pbrnl@nuevoleon.gob.mx";
             $passowrd = "*Ev4035*";
-            $host = "correo.nl.gob.mx";
-            $port = 587;
+            $host = "10.153.144.150";
+            $port = 25;
 
             //Load Composer's autoloader
             require base_path("vendor/autoload.php");
@@ -102,10 +102,17 @@ class UsuariosController extends Controller
             $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
             $mail->Username   = $remitente;                             //SMTP username
             $mail->Password   = $passowrd;                              //SMTP password
-            $mail->SMTPSecure = "ssl";                                  //Enable implicit TLS encryption
+            $mail->SMTPSecure = "tls";                                  //Enable implicit TLS encryption
             $mail->Port       = $port;                                  //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
         
         
+            $mail->SMTPOptions = [
+                'ssl' => [
+                    'verify_peer' => false,
+                    'verify_peer_name' => false,
+                    'allow_self_signed' => true,
+                ]
+            ];
             //Content
             $mail->isHTML(true);                                  //Set email format to HTML
             $mail->setFrom($remitente, utf8_decode('Evalúa PbR NL'));
