@@ -19,16 +19,9 @@ class LoginController extends Controller
         try {
             $usuario = Login::select()
                         ->where('idUsuario', '=', $request->id_usuario)
+                        // solo los activos pueden iniciar sesión
+                        ->where('Estatus','=','A')
                         ->first();
-            
-            $Nombre = $usuario->Nombre;
-            $ApPaterno = $usuario->APaterno;
-            $ApMaterno = $usuario->AMaterno;
-            $AdminMIR = $usuario->AdminMIR;
-            $AdminEvalua = $usuario->AdminEvalua;
-            $TipoUsuario = $usuario->TipoUsuario;
-            $CatalogosPbR = $usuario->CatalogosPbR;
-            $ClasProgramatica = $usuario->ClasProgramatica;
 
             if ($usuario == null) {
                 return response()->json(
@@ -40,6 +33,15 @@ class LoginController extends Controller
                     )
                 );
             }
+
+            $Nombre = $usuario->Nombre;
+            $ApPaterno = $usuario->APaterno;
+            $ApMaterno = $usuario->AMaterno;
+            $AdminMIR = $usuario->AdminMIR;
+            $AdminEvalua = $usuario->AdminEvalua;
+            $TipoUsuario = $usuario->TipoUsuario;
+            $CatalogosPbR = $usuario->CatalogosPbR;
+            $ClasProgramatica = $usuario->ClasProgramatica;
 
             $usuario = DB::table('USUARIOS')
                         ->where('idUsuario', $request->id_usuario)
