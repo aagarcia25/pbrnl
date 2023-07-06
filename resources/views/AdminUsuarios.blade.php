@@ -112,7 +112,7 @@
                         </div>
                         <div class="row mb-2 g-3 align-items-center mt-3">
                             <div class="col-md-4 FormUsr">
-                                <input type="text" class="form-control fecha TextBoxUsr calc_id" id="fechanacimiento_usuario">
+                                <input type="text" class="form-control fecha TextBoxUsr calc_id" id="fechanacimiento_usuario" required>
                                 <label for="fechanacimiento_usuario" class="form-labelUsr">Fecha de Nacimiento</label>
                             </div>
                             <div class="col-md-4 FormUsr">
@@ -126,11 +126,11 @@
                         </div>
                         <div class="row mb-2 g-3 align-items-center mt-3">
                             <div class="col FormUsr">
-                                <input type="text" class="form-control TextBoxUsr" id="telefono_usuario" maxlength="20">
+                                <input type="text" class="form-control TextBoxUsr" id="telefono_usuario" maxlength="20" required>
                                 <label for="telefono_usuario" class="form-labelUsr">Teléfono de Oficina o Contacto</label>
                             </div>
                             <div class="col FormUsr">
-                                <input type="text" class="form-control TextBoxUsr" id="movil_usuario" maxlength="20">
+                                <input type="text" class="form-control TextBoxUsr" id="movil_usuario" maxlength="20" required>
                                 <label for="movil_usuario" class="form-labelUsr">Teléfono Móvil</label>
                             </div>
                         </div>
@@ -141,7 +141,7 @@
                             </div>
                             <div class="col-md-10 FormUsr FontMsg">
                                 <label for="select_secretaria" class="form-labelUsr3">Descripción Secretaría</label>
-                                <select id="select_secretaria" class="selectpicker show-tick form-control TextBoxUsr" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="5" data-live-search="true" data-actions-box="true">
+                                <select id="select_secretaria" class="selectpicker show-tick form-control TextBoxUsr" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="5" data-live-search="true" data-actions-box="true" required>
                                 </select>
                             </div>
                         </div>
@@ -152,7 +152,7 @@
                             </div>
                             <div class="col-md-10 FormUsr FontMsg">
                                 <label for="select_ua" class="form-labelUsr3">Descripción Unidad Administrativa</label>
-                                <select id="select_ua" class="selectpicker show-tick form-control TextBoxUsr" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="5" data-live-search="true" data-actions-box="true" data-window-padding="top">
+                                <select id="select_ua" class="selectpicker show-tick form-control TextBoxUsr" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="5" data-live-search="true" data-actions-box="true" data-window-padding="top" required>
                                 </select>
                             </div>
                         </div>
@@ -165,7 +165,7 @@
                         <div class="row mt-2 mb-2 g-3 align-items-center">
                             <div class="col-3 FormUsr FontMsg">
                                 <label for="select_roles" class="form-labelUsr3">Rol</label>
-                                <select id="select_roles" class="selectpicker show-tick form-control TextBoxUsr" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="5" data-live-search="true" data-actions-box="true">
+                                <select id="select_roles" class="selectpicker show-tick form-control TextBoxUsr" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="5" data-live-search="true" data-actions-box="true" required>
                                 </select>
                             </div>
                             <div class="col-2 ">
