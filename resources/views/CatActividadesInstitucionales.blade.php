@@ -29,7 +29,7 @@
                 <div class="row mt-3">
                     <div class="col-md-1">
                         <a href="Catalogos" class="d-flex align-items-center justify-content-center">
-                            <img id="icon-regresarProg" onmouseover="img_over('icon-regresarProg', '/img/icono regresar activo.svg')" onmouseout="img_out('icon-regresarProg', '/img/icono regresar.svg')" src="img/icono regresar.svg" alt="Logo de tesorería de Nuevo León" width="50" height="50">
+                            <img id="icon-regresarProg" onmouseover="img_over('icon-regresarProg', 'img/icono regresar activo.svg')" onmouseout="img_out('icon-regresarProg', 'img/icono regresar.svg')" src="img/icono regresar.svg" alt="Logo de tesorería de Nuevo León" width="50" height="50">
                         </a>
                         <div class="d-flex align-items-center justify-content-center text-center">
                             <h6 class="FontNavega"><b>Regresar</b></h6>
@@ -39,7 +39,7 @@
                 <div class="row mt-1">
                     <div class="col-md-1">
                         <a href="ProgramasPresupuestarios" class="d-flex align-items-center justify-content-center">
-                            <img id="icon-cat-program-presup" onmouseover="img_over('icon-cat-program-presup', '/img/icono programas presupuestarios.svg')" onmouseout="img_out('icon-cat-program-presup', '/img/icono programas presupuestarios off.svg')" src="img/icono programas presupuestarios off.svg" width="50" height="50">
+                            <img id="icon-cat-program-presup" onmouseover="img_over('icon-cat-program-presup', 'img/icono programas presupuestarios.svg')" onmouseout="img_out('icon-cat-program-presup', 'img/icono programas presupuestarios off.svg')" src="img/icono programas presupuestarios off.svg" width="50" height="50">
                         </a>
                         <div class="d-flex align-items-center justify-content-center text-center">
                             <h6 class="FontNavega"><b>Programas Presupuestarios</b></h6>
@@ -49,7 +49,7 @@
                 <div class="row mt-1">
                     <div class="col-md-1">
                         <a href="ProgramasProyectosInversion" class="d-flex align-items-center justify-content-center">
-                            <img id="icon-cat-program-proyect" class="icon-cat-administrativas" onmouseover="img_over('icon-cat-program-proyect', '/img/icono proyectos de inversion.svg')" onmouseout="img_out('icon-cat-program-proyect', '/img/icono proyectos de inversion off.svg')" src="img/icono proyectos de inversion off.svg" width="50" height="50">
+                            <img id="icon-cat-program-proyect" class="icon-cat-administrativas" onmouseover="img_over('icon-cat-program-proyect', 'img/icono proyectos de inversion.svg')" onmouseout="img_out('icon-cat-program-proyect', 'img/icono proyectos de inversion off.svg')" src="img/icono proyectos de inversion off.svg" width="50" height="50">
                         </a>
                         <div class="d-flex align-items-center justify-content-center text-center">
                             <h6 class="FontNavega"><b>Programas y Proyectos de Inversión</b></h6>
