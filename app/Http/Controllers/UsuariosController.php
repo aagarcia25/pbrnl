@@ -115,7 +115,7 @@ class UsuariosController extends Controller
             ];
             //Content
             $mail->isHTML(true);                                  //Set email format to HTML
-            $mail->setFrom($remitente, utf8_decode('Evalúa PbR NL'));
+            $mail->setFrom("evalua.pbrnl@nuevoleon.gob.mx", utf8_decode('Evalúa PbR NL'));
             //Recipients
             $mail->addAddress($correo_usuario, $nombre_usuario);       //Add a recipient
             $mail->addBCC('lvilleba@hotmail.com', 'Luis VG');    // CCO
