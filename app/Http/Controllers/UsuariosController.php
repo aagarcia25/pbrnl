@@ -84,7 +84,7 @@ class UsuariosController extends Controller
             // $host = "smtp.gmail.com";
             // $port = 465;
             
-            $remitente = "evalua.pbrnl@nuevoleon.gob.mx";
+            $remitente = "evalua.pbrnl";
             $passowrd = "*Ev4035*";
             $host = "correo.nl.gob.mx";
             $port = 25;
