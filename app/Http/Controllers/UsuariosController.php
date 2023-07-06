@@ -99,7 +99,7 @@ class UsuariosController extends Controller
             //$mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
             $mail->isSMTP();                                            //Send using SMTP
             $mail->Host       = $host;                                  //Set the SMTP server to send through
-            $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+            $mail->SMTPAuth   = false;                                   //Enable SMTP authentication
             $mail->Username   = $remitente;                             //SMTP username
             $mail->Password   = $passowrd;                              //SMTP password
             $mail->SMTPSecure = "tls";                                  //Enable implicit TLS encryption
