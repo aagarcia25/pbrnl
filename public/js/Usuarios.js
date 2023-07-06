@@ -106,7 +106,7 @@ function ResponseGetUsuarios(response){
                         <td>${response.data[i].APaterno}</td>
                         <td>${response.data[i].AMaterno}</td>
                         <td class="text-center">${(response.data[i].Estatus == "A" ? "SI" : "NO")}</td>
-                        <td class="text-center">${response.data[i].Notificado == "S" ? `<img src="./../img/check2-circle-Activo2.svg" width="20%" class="border-none">` : `<img src="./../img/check2-circle-Inactivo2.svg" width="20%" class="border-none">`}</td>
+                        <td class="text-center">${response.data[i].Notificado == "S" ? `<img src="img/check2-circle-Activo2.svg" width="20%" class="border-none">` : `<img src="img/check2-circle-Inactivo2.svg" width="20%" class="border-none">`}</td>
                     </tr>
                 `);
             }

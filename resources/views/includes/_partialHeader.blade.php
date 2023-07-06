@@ -37,7 +37,7 @@ if (!Session::has('sesion')) {
     }else{
         if (time() - session('tiempo') > 1800) { //3600
             @endphp
-                <script>window.location = "/interfaz/Logout";</script>
+                <script>window.location = "Logout";</script>
             @php
             die();
         }
@@ -50,7 +50,7 @@ if (!Session::has('sesion')) {
     <nav class="navbar navbar-expand-lg navbar-white bg-white static-top">
         <div class="container-fluid">
         <div class="d-flex justify-content-between">
-            <a class="navbar-brand mx-5" href="/interfaz/Menu">
+            <a class="navbar-brand mx-5" href="Menu">
                 <img src="img/logo-tesoreria.svg" alt="Logo de tesorería de Nuevo León" width="200">
             </a>
         </div>
