@@ -214,11 +214,11 @@ class UsuariosController extends Controller
             $update->Puesto             = $request->puesto_usuario;
             $update->Estatus            = $request->check_Activo;
             $update->TipoUsuario        = $request->select_roles;
-            if($insert->TipoUsuario == "1") {
-                $insert->AdminEvalua = true;
+            if($update->TipoUsuario == "1") {
+                $update->AdminEvalua = true;
             }
             else {
-                $insert->AdminEvalua = false;
+                $update->AdminEvalua = false;
             }
             $update->FechaNacimiento    = $request->fechanacimiento_usuario;
             $update->CatalogosPbR       = $request->check_CatalogoPbR;
