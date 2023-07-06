@@ -102,7 +102,7 @@ class UsuariosController extends Controller
             $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
             $mail->Username   = $remitente;                             //SMTP username
             $mail->Password   = $passowrd;                              //SMTP password
-            $mail->SMTPSecure = "tls";                                  //Enable implicit TLS encryption
+            $mail->SMTPSecure = "ssl";                                  //Enable implicit TLS encryption
             $mail->Port       = $port;                                  //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
         
         
