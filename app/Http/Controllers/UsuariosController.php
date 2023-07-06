@@ -77,18 +77,17 @@ class UsuariosController extends Controller
 
             $correo_usuario = $usuario->eMail;
             $nombre_usuario = $usuario->Nombre . " " . $usuario->APaterno;
-            $enlace = "http://evalua-pbr.nl.gob.mx/RecuperacionCredencial/".$request->id_usuario;
+            $enlace = "http://evalua-pbr.nl.gob.mx/interfaz/RecuperacionCredencial/".$request->id_usuario;
             
-            $remitente = "testeoevaluapbrnl@gmail.com";
-            $passowrd = "jhzgzzrhbpagbqlf";
-            $host = "smtp.gmail.com";
-            $port = 465;
-            /*
+            // $remitente = "testeoevaluapbrnl@gmail.com";
+            // $passowrd = "jhzgzzrhbpagbqlf";
+            // $host = "smtp.gmail.com";
+            // $port = 465;
+            
             $remitente = "evalua.pbrnl@nuevoleon.gob.mx";
             $passowrd = "*Ev4035*";
             $host = "correo.nl.gob.mx";
             $port = 587;
-            */
 
             //Load Composer's autoloader
             require base_path("vendor/autoload.php");
@@ -161,6 +160,14 @@ class UsuariosController extends Controller
             $insert->Puesto             = $request->puesto_usuario;
             $insert->Estatus            = $request->check_Activo;
             $insert->TipoUsuario        = $request->select_roles;
+
+            if($insert->TipoUsuario == "1") {
+                $insert->AdminEvalua = true;
+            }
+            else {
+                $insert->AdminEvalua = false;
+            }
+
             $insert->FechaNacimiento    = $request->fechanacimiento_usuario;
             $insert->CatalogosPbR       = $request->check_CatalogoPbR;
             $insert->ClasProgramatica   = $request->check_Clasificacion;
@@ -207,6 +214,12 @@ class UsuariosController extends Controller
             $update->Puesto             = $request->puesto_usuario;
             $update->Estatus            = $request->check_Activo;
             $update->TipoUsuario        = $request->select_roles;
+            if($insert->TipoUsuario == "1") {
+                $insert->AdminEvalua = true;
+            }
+            else {
+                $insert->AdminEvalua = false;
+            }
             $update->FechaNacimiento    = $request->fechanacimiento_usuario;
             $update->CatalogosPbR       = $request->check_CatalogoPbR;
             $update->ClasProgramatica   = $request->check_Clasificacion;
