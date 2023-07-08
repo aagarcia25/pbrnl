@@ -76,7 +76,7 @@ class UsuariosController extends Controller
             }
 
             $correo_usuario = $usuario->eMail;
-            $nombre_usuario = $usuario->Nombre . " " . $usuario->APaterno;
+            $nombre_usuario = $usuario->Nombre . " " . $usuario->APaterno . " " . $usuario->AMaterno;
             $enlace = "http://evalua-pbr.nl.gob.mx/interfaz/RecuperacionCredencial/".$request->id_usuario;
             
             // $remitente = "testeoevaluapbrnl@gmail.com";
@@ -118,9 +118,10 @@ class UsuariosController extends Controller
             $mail->setFrom("evalua.pbrnl@nuevoleon.gob.mx", utf8_decode('Evalúa PbR NL'));
             //Recipients
             $mail->addAddress($correo_usuario, $nombre_usuario);       //Add a recipient
-            $mail->addBCC('lvilleba@hotmail.com', 'Luis VG');    // CCO
-            $mail->Subject = utf8_decode("Bienvenido a Interfaz Evalúa PbR NL");
-            $mail->Body    = utf8_decode("<h2>Interfaz Eval&uacute;a PbR NL</h2><br><b>Estimado(a) $nombre_usuario,</b><br><br><br>Bienvenido a Interfaz Eval&uacute;a PbR NL.<br><br>Para ingresar, siga el siguiente enlace que se muestra a continuaci&oacute;n, donde se pedir&aacute; que actualice su contrase&ntilde;a:<br><a href='$enlace'>Actualizar contrase&ntilde;a</a><br><br><b>Saludos cordiales,<br><br>Interfaz Eval&uacute;a PbR NL</b>");
+
+            $mail->Subject = utf8_decode("Bienvenido a la Interfaz Evalúa PbR NL");
+            $mail->Body    = utf8_decode("<h2>Interfaz Eval&uacute;a PbR NL</h2><br><b>Estimado $nombre_usuario," .
+            "</b><br><br><br>Bienvenido a la Interfaz Eval&uacute;a PbR NL.<br><br>Para ingresar, siga el siguiente enlace que se muestra a continuaci&oacute;n, donde se pedir&aacute; que genere su contrase&ntilde;a:<br><a href='$enlace'>Generar contrase&ntilde;a</a><br><br><b>Saludos cordiales,<br><br>Interfaz Eval&uacute;a PbR NL</b>Secretaría de Finanzas y Tesorería General del Estado");
         
             if( !$mail->send() ) {
                 return response()->json(array('error' => false, 'result' => "La notificación no ha podido ser enviada, favor de intentarlo de nuevo.", 'code' => 200));
