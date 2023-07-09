@@ -259,9 +259,9 @@ class UsuariosController extends Controller
                     )
                 );
             }
-            
 
-            $delete->Estatus             = "I";
+            // 08/07/2023: Se le pone estatus E para marcar que está eliminado
+            $delete->Estatus             = "E";
             $delete->save();
 
         } catch (Exception $e) {

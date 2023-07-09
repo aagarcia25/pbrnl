@@ -62,41 +62,20 @@ class LoginController extends Controller
             $Hora = date('H') - 1;
             $Fecha = date('Y-m-d ') . $Hora . date(':i:s');
 
-            $usuario_activo = DB::table('USUARIOS_LINEA')
-                        ->where('idUsuario', $request->id_usuario)
-                        ->get();
-
-            // Código Original --- 30/06/2023                         
-             if (count($usuario_activo) > 0){
-                //OMAR: 02/07/2023
-                //ya inició sesión, hay que ver que si tiene más de 10 minutos de inactividad, se pueda volver a
-                //iniciar la sesión
-                $usuario = $usuario_activo[0];
-
-                $fecha_login = new DateTime($usuario->FechaLogin);
-                $hoy = new DateTime();
-
-                $dif = $hoy->diff($fecha_login)->i;
-
-                $max_minutos = 10;
-                $minutos_restantes = $max_minutos - $dif;
-
-                if($dif < $max_minutos){
-                    return response()->json(
-                        array(
-                            'error' => true, 
-                            'data' => null, 
-                            'message' => "El Usuario ya ha iniciado sesión en otro dispositivo.", 
-                            'code' => 200
-                        )
-                    );
-                }
-                else {
-                    //eliminar el registro para posteriormente agregar uno nuevo
-                    UsuariosEnLinea::where('idUsuario',$usuario->idUsuario)->delete();
-                }
+            if($this->validar_sesion_expirada($request->id_usuario)) {
+                //eliminar el registro para posteriormente agregar uno nuevo
+                UsuariosEnLinea::where('idUsuario',$request->id_usuario)->delete();
             }
- 
+            else {
+                return response()->json(
+                    array(
+                        'error' => true, 
+                        'data' => null, 
+                        'message' => "El Usuario ya ha iniciado sesión en otro dispositivo.", 
+                        'code' => 200
+                    )
+                );
+            }
 
             $insert                 = new UsuariosEnLinea;
             $insert->idUsuario      = $request->id_usuario;
@@ -160,35 +139,19 @@ class LoginController extends Controller
                 );
             }
 
-            $usuario_activo = DB::table('USUARIOS_LINEA')
-                        ->where('idUsuario', $request->id_usuario)
-                        ->get();
-
-            if (count($usuario_activo) > 0){
-                $usuario = $usuario_activo[0];
-
-                $fecha_login = new DateTime($usuario->FechaLogin);
-                $hoy = new DateTime();
-
-                $dif = $hoy->diff($fecha_login)->i;
-
-                $max_minutos = 10;
-                $minutos_restantes = $max_minutos - $dif;
- 
-                if($dif < $max_minutos){
-                    return response()->json(
-                        array(
-                            'error' => true, 
-                            'data' => null, 
-                            'message' => "El usuario que intenta cambiar la contraseña tiene una sesión iniciada en otro dispositivo.", 
-                            'code' => 200
-                        )
-                    );
-                }
-                else{
-                    //eliminar el registro para posteriormente agregar uno nuevo
-                    UsuariosEnLinea::where('idUsuario',$usuario->idUsuario)->delete();
-                }
+            if($this->validar_sesion_expirada($request->id_usuario)) {
+                //eliminar el registro para posteriormente agregar uno nuevo
+                UsuariosEnLinea::where('idUsuario',$request->id_usuario)->delete();
+            }
+            else {
+                return response()->json(
+                    array(
+                        'error' => true, 
+                        'data' => null, 
+                        'message' => "El usuario que intenta cambiar la contraseña tiene una sesión iniciada en otro dispositivo.", 
+                        'code' => 200
+                    )
+                );
             }
 
             $usuario->Password    = $request->password;
@@ -229,6 +192,37 @@ class LoginController extends Controller
                 'code' => 200
             )
         );
+    }
+
+
+    private function validar_sesion_expirada($id_usuario) {
+        $usuario_activo = DB::table('USUARIOS_LINEA')
+                        ->where('idUsuario', $id_usuario)
+                        ->get();
+
+        if (count($usuario_activo) > 0){
+            $usuario = $usuario_activo[0];
+
+            $fecha_login = new DateTime($usuario->FechaLogin);
+            $hoy = new DateTime();
+            $diferencia = $hoy->diff($fecha_login);
+
+            $dif = 
+                ($diferencia->days * 1440) + 
+                ($diferencia->h) * 60 + 
+                $diferencia->i;
+
+            $max_minutos = 10;
+
+            if($dif < $max_minutos){
+                return false;
+            }
+            else{
+                
+                return true;
+            }
+        }
+        return true;
     }
 
     public function logout()

@@ -25,3 +25,5 @@ Homestead.json
 app/Http/Middleware/VerifyCsrfToken.php
 composer.lock
 package-lock.json
+
+.vscode/
