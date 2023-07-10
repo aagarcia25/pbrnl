@@ -6,7 +6,7 @@ $(document).ready(function() {
 });
 
 function Funciones_Iniciales() {
-    
+    $("#mensajeCoinciden").hide();
 }
 
 function Eventos() {
@@ -38,7 +38,13 @@ function ResponseLogin(response){
         $("#mensaje_modal").text(response.message);
         $("#Modal").modal("show");
     }else{
-        window.location.href = 'Menu';
+        Func_DespliegaConfirmacion("Contraseña cambiada", 
+            "Su contraseña ha sido cambiada, por favor inicie sesión con su nombre de usuario y su nueva contraseña",
+            "",
+            "Aceptar", null, ()=>{
+                window.location.href = 'Login';
+            }
+        );
     }
 }
 
@@ -49,6 +55,7 @@ function ResponseLogin(response){
 function Func_Valida() {
     var id_usuario = $("#id_usuario");
     var password = $("#password");
+    var passwordConfirm = $("#passwordConfirm");
     var resultado = true;
 
     if (id_usuario.val() == "" || id_usuario.val() == null || id_usuario.val() == undefined) {
@@ -67,6 +74,26 @@ function Func_Valida() {
     } else {
         password.removeClass("is-invalid");
         password.addClass("is-valid");
+    }
+
+    if(password.val() != passwordConfirm.val()) {
+        resultado = false;
+        password.addClass("is-invalid");
+        password.removeClass("is-valid");
+
+        passwordConfirm.addClass("is-invalid");
+        passwordConfirm.removeClass("is-valid");
+
+        $("#mensajeCoinciden").show();
+    }
+    else {
+        password.addClass("is-valid");
+        password.removeClass("is-invalid");
+
+        passwordConfirm.addClass("is-valid");
+        passwordConfirm.removeClass("is-invalid");
+
+        $("#mensajeCoinciden").hide();
     }
 
     if (!resultado) {

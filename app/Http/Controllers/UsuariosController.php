@@ -11,11 +11,13 @@ use PHPMailer\PHPMailer\Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+require "../../funciones.php";
+
 class UsuariosController extends Controller
 {
     public function index()
     {
-        $query = "SELECT * FROM USUARIOS WHERE Estatus = 'A';";
+        $query = "SELECT * FROM USUARIOS WHERE Estatus <> 'E';";    //E es para eliminados
         $informacion = DB::select($query);
         return response()->json(array('error' => false, 'data' => $informacion, 'code' => 200));
     }
@@ -57,6 +59,10 @@ class UsuariosController extends Controller
         return response()->json(array('error' => false, 'data' => $usuario, 'code' => 200));
     }
 
+    public function solicitar_recuperacion(Request $request) {
+
+    }
+
     public function notif(Request $request)
     {
         try {
@@ -75,58 +81,36 @@ class UsuariosController extends Controller
                 );
             }
 
+            $token = bin2hex(random_bytes(32));
+
             $correo_usuario = $usuario->eMail;
             $nombre_usuario = $usuario->Nombre . " " . $usuario->APaterno . " " . $usuario->AMaterno;
-            $enlace = "http://evalua-pbr.nl.gob.mx/interfaz/RecuperacionCredencial/".$request->id_usuario;
-            
-            // $remitente = "testeoevaluapbrnl@gmail.com";
-            // $passowrd = "jhzgzzrhbpagbqlf";
-            // $host = "smtp.gmail.com";
-            // $port = 465;
-            
-            $remitente = "evalua.pbrnl";
-            $passowrd = "*Ev4035*";
-            $host = "correo.nl.gob.mx";
-            $port = 25;
+            $enlace = "http://evalua-pbr.nl.gob.mx/interfaz/RecuperacionCredencial/" . $token;
+            $mensaje = "<h2>Interfaz Eval&uacute;a PbR NL</h2><br>
+            <b>Estimado $nombre_usuario</b><br>
+            ID de usuario: <strong>$usuario->idUsuario</strong><br>
+            <br>
+            Bienvenido a la Interfaz Eval&uacute;a PbR NL.<br>
+            <br>
+            Para ingresar, siga el siguiente enlace que se 
+            muestra a continuaci&oacute;n, donde se pedir&aacute; que genere su contrase&ntilde;a:<br>
+            <a href='$enlace'>Generar contrase&ntilde;a</a><br>
+            <br>
+            <b>Saludos cordiales,<br>
+            <br>
+            Interfaz Eval&uacute;a PbR NL<br>
+            Secretaría de Finanzas y Tesorería General del Estado</b>";
+
 
             //Load Composer's autoloader
             require base_path("vendor/autoload.php");
 
-            //Create an instance; passing `true` enables exceptions
-            $mail = new PHPMailer(true);
+            $result = enviar_correo($correo_usuario, "Bienvenido a la Interfaz Evalúa PbR NL", $mensaje);
 
-            //Server settings
-            //$mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
-            $mail->isSMTP();                                            //Send using SMTP
-            $mail->Host       = $host;                                  //Set the SMTP server to send through
-            $mail->SMTPAuth   = false;                                   //Enable SMTP authentication
-            $mail->Username   = $remitente;                             //SMTP username
-            $mail->Password   = $passowrd;                              //SMTP password
-            $mail->SMTPSecure = "tls";                                  //Enable implicit TLS encryption
-            $mail->Port       = $port;                                  //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-        
-        
-            $mail->SMTPOptions = [
-                'ssl' => [
-                    'verify_peer' => false,
-                    'verify_peer_name' => false,
-                    'allow_self_signed' => true,
-                ]
-            ];
-            //Content
-            $mail->isHTML(true);                                  //Set email format to HTML
-            $mail->setFrom("evalua.pbrnl@nuevoleon.gob.mx", utf8_decode('Evalúa PbR NL'));
-            //Recipients
-            $mail->addAddress($correo_usuario, $nombre_usuario);       //Add a recipient
-
-            $mail->Subject = utf8_decode("Bienvenido a la Interfaz Evalúa PbR NL");
-            $mail->Body    = utf8_decode("<h2>Interfaz Eval&uacute;a PbR NL</h2><br><b>Estimado $nombre_usuario," .
-            "</b><br><br><br>Bienvenido a la Interfaz Eval&uacute;a PbR NL.<br><br>Para ingresar, siga el siguiente enlace que se muestra a continuaci&oacute;n, donde se pedir&aacute; que genere su contrase&ntilde;a:<br><a href='$enlace'>Generar contrase&ntilde;a</a><br><br><b>Saludos cordiales,<br><br>Interfaz Eval&uacute;a PbR NL</b>Secretaría de Finanzas y Tesorería General del Estado");
-        
-            if( !$mail->send() ) {
+            if( !$result ) {
                 return response()->json(array('error' => false, 'result' => "La notificación no ha podido ser enviada, favor de intentarlo de nuevo.", 'code' => 200));
             }
-            
+
             $usuario->Notificado           = "S";
             $usuario->save();
 
@@ -180,7 +164,7 @@ class UsuariosController extends Controller
             $insert->CatalogosPbR       = $request->check_CatalogoPbR;
             $insert->ClasProgramatica   = $request->check_Clasificacion;
             $insert->AdminMIR           = $request->check_Mir;
-            $insert->CambiarPwd         = "N";
+            $insert->CambiarPwd         = "S";
             $insert->save();
 
         }catch (Exception $e) {

@@ -91,7 +91,7 @@ function Func_DespliegaConfirmacion(title, text, icon, btnConfirm, btnCancel, ne
         title: title,
         text: text,
         icon: icon,
-        showCancelButton: true,
+        showCancelButton: btnCancel != null ? true : false,
         confirmButtonColor: '#cfe1b9',
         cancelButtonColor: '#adb5bd',
         cancelButtonText: btnCancel,

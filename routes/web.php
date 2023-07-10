@@ -28,7 +28,8 @@ Route::get('/RecuperacionCredencial/{id_usuario}', function ($id_usuario) {
         'id_usuario' => $id_usuario
     ]);
 });
-Route::post('RecoverPassword','LoginController@recover');
+Route::post('RecoverPassword','LoginController@recover'); 
+Route::post('SolicitarRecuperacionContrasena','LoginController@solicitar_recuperacion'); 
 
 // Menu principal
 Route::get('/Menu', function () {

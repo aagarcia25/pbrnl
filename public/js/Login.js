@@ -11,6 +11,33 @@ function Funciones_Iniciales() {
 
 function Eventos() {
     Login();
+    BtnOlvidasteContrasena()
+}
+
+function BtnOlvidasteContrasena() {
+    $("#btnOlvidasteContrasena").on("click", function() {
+        Func_DespliegaConfirmacion(
+            "Solicitud de recuperación de contraseña",
+            "Si el usuario existe, se enviará un correo electrónico con las instrucciones para recuperar la contraseña ¿Está de acuerdo?",
+            "",
+            "Aceptar",
+            "Cancelar",
+            EnviarCorreoRecuperacion
+        )
+    });
+}
+
+function EnviarCorreoRecuperacion(r) {
+    if(!r)
+        return;
+
+    Func_Cargando("Enviando correo de recuperación, espere por favor");
+    var request = {
+        id_usuario: $("#id_usuario").val().toUpperCase()
+    };
+
+    repository.Login.SolicitarRecuperacionContrasena(request)
+    .then(ResponseSolicitarRecuperacionContrasena);
 }
 
 function Login(){
@@ -27,7 +54,6 @@ function Login(){
             repository.Login.Login(request)
                 .then(ResponseLogin);
         }
-
     });
 }
 
@@ -42,6 +68,14 @@ function ResponseLogin(response){
     }
 }
 
+function ResponseSolicitarRecuperacionContrasena(response) {
+    swal.close();
+    if (!response.error) {
+        Func_Aviso("Correcto", "Se han enviado las instrucciones de recuperación de contraseña a su correo electrónico");
+    } else {
+        Func_Aviso("Error", "Ha ocurrido una anomalía al realizar el proceso, favor de intentarlo nuevamente.", "error");
+    }
+}
 // ======================================================
 // Funciones
 // ======================================================

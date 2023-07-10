@@ -144,6 +144,7 @@ function Eventos() {
     BtnBajaUsuario();
 }
 
+
 function SeleccionarTabla() {
     $('#table tbody').on('click', 'tr', function() {
         var table = $('#table').DataTable();
@@ -436,6 +437,10 @@ function BtnBajaUsuario(){
             }
         });
     });
+}
+
+function btResetPwd_Click(evt) {
+
 }
 
 function BtnGuardarUsuario(){

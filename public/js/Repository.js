@@ -415,6 +415,10 @@ class LoginController {
     Recuperar(request) {
         return Requests('POST', this.Url + "/RecoverPassword", request);
     }
+
+    SolicitarRecuperacionContrasena(request) {
+        return Requests('POST', this.Url + "/SolicitarRecuperacionContrasena", request);
+    }
 }
 
 class RolesController {
@@ -459,7 +463,6 @@ class UsuariosController {
     DeleteUsuario(id) {
         return Requests('POST', this.Url + "/DeleteUsuario", id);
     }
-
 }
 
 class ProgramasPresupuestalesController {

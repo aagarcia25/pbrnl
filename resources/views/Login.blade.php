@@ -87,13 +87,11 @@ if (Session::has('sesion')) {
                                 <div class="vh-5 row m-0 text-center align-items-center justify-content-center py-0">
                                     <div class="col-auto">
                                         <button type="submit" class="btn button-login">Iniciar sesión</button>
-                                        <!-- <asp:Button ID="btLogin" runat="server" CssClass="btn btn-secondary BtnLogin" Text="Iniciar sesión" OnClick="btLogin_Click" /> -->
                                     </div>
                                 </div>
                                 <div class="vh-5 row mt-5 text-center align-items-center justify-content-center py-0">
                                     <div class="col-auto">
-                                        <a class="BtnForgetPwd text-decoration-none" href="#">¿Olvidaste tu Contraseña?</a>
-                                        <!-- <asp:Button ID="btResetPwd" runat="server" Text="¿Olvidaste tu Contraseña?" CssClass="BtnForgetPwd" OnClick="btResetPwd_Click" /> -->
+                                        <a class="BtnForgetPwd text-decoration-none" id="btnOlvidasteContrasena" href="javascript:">¿Olvidaste tu Contraseña?</a>
                                     </div>
                                 </div>
                             </form>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Iniciar sesión - Interfaz Evalúa PbR Nuevo León</title>
+    <title>Reestablecer contraseña - Interfaz Evalúa PbR Nuevo León</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
     <base href="<?php echo config('app.base_href') ?>">
@@ -29,7 +29,7 @@ if (Session::has('sesion')) {
         <div class="row Cintilla">
             <div class="col">
                 <div class="text-md-center py-2">
-                    <img src="../img/logo-nl.svg" width="200" alt=""/>
+                    <img src="img/logo-nl.svg" width="200" alt=""/>
                 </div>
             </div>
             <div class="col"></div>
@@ -37,10 +37,10 @@ if (Session::has('sesion')) {
         <div class="row align-items-md-stretch ">
             <div class="col left LogosIzquierda"> 
                 <div class="text-md-center">
-                    <img src="../img/logo_tesoreriabco.png" width="240" alt=""/>
+                    <img src="img/logo_tesoreriabco.png" width="240" alt=""/>
                 </div>
                 <div class="row bg py-4">
-                    <img src="../img/leonblanco.svg" width="90" height="300" alt=""/>
+                    <img src="img/leonblanco.svg" width="90" height="300" alt=""/>
                 </div>
                 <div class="row py-4 ">
                     <h2 class="TituloLeft fw-bold text-center align-items-end">Interfaz Evalúa PbR Nuevo León</h2>
@@ -53,34 +53,43 @@ if (Session::has('sesion')) {
                 </div>
                 <div class="row CuadroRight mt-5">                    
                     <div class="text-md-center mt-4 py-3 ">
-                        <img src="../img/LogoEvalua.svg" width="200" alt=""/>
+                        <img src="img/LogoEvalua.svg" width="200" alt=""/>
                     </div>
-                    <h2 class="TituloRight text-center mt-0">Interfaz Evalúa PbR Nuevo León</h2>
+                    <h2 class="TituloRight text-center mt-0">Recuperación de contraseña</h2>
                     <h6 class="text-center mt-0">Ingrese su nueva contraseña</h6>
                     <div class="FormaLogin mt-2">
                         <div class="mt-1">
                             <form id="form_login" autocomplete="off">
-                                <div class="vh-5 row text-center align-items-center justify-content-center py-0">
+                                <input type="hidden" id="id_usuario" class="form-control UserTextBox text-uppercase" name="id_usuario" placeholder="Usuario" value="@php echo $id_usuario; @endphp" disabled />
+                                <div class="vh-5 row m-0 text-center align-items-center justify-content-center py-0">
                                     <div class="col-auto">
                                         <div class="mb-4">
-                                            <img src="../img/LoginUser.png" width="50" alt="" />
+                                            <img src="img/LoginPwd.png" width="50" alt="" />
                                         </div>
                                     </div>
                                     <div class="col-auto">
                                         <div class="mb-4" style="margin-left: -25px">
-                                            <input type="text" id="id_usuario" class="form-control UserTextBox text-uppercase" name="id_usuario" placeholder="Usuario" value="@php echo $id_usuario; @endphp" disabled />
+                                            <input type="password" id="password" class="form-control UserTextBox" name="password" placeholder="NUEVA CONTRASEÑA" maxlength="10" />
                                         </div>
                                     </div>
                                 </div>
                                 <div class="vh-5 row m-0 text-center align-items-center justify-content-center py-0">
                                     <div class="col-auto">
                                         <div class="mb-4">
-                                            <img src="../img/LoginPwd.png" width="50" alt="" />
+                                            <img src="img/LoginPwd.png" width="50" alt="" />
                                         </div>
                                     </div>
+
                                     <div class="col-auto">
                                         <div class="mb-4" style="margin-left: -25px">
-                                            <input type="password" id="password" class="form-control UserTextBox" name="password" placeholder="CONTRASEÑA" maxlength="10" />
+                                            <input type="password" id="passwordConfirm" class="form-control UserTextBox" name="passwordConfirm" placeholder="CONFIRMACIÓN" maxlength="10" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="vh-5 row m-0 text-center align-items-center justify-content-center py-0">
+                                    <div class="col-auto">
+                                        <div class="mb-4 alert alert-danger" id="mensajeCoinciden">
+                                            Las contraseñas no coinciden
                                         </div>
                                     </div>
                                 </div>
@@ -91,8 +100,6 @@ if (Session::has('sesion')) {
                                 </div>
                             </form>
                         </div>
-                        <h6 class="text-center mt-0">Debe ser de 8 a 10 caracteres de longitud, contener al menos una letra mayúscula, una letra minúscula y un caracter especial.</h6>
-
 
                         <div id="Mensaje" class="modal fade FondoTransparente" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" role="dialog">
                             <div class="modal-dialog modal-lg ">
@@ -251,6 +258,8 @@ if (Session::has('sesion')) {
     </footer>
 
     <script src="js/jquery.js"></script>
+    <script src="vendor/toast/jquery.toast.min.js"></script>
+    <link rel="stylesheet" href="vendor/toast/jquery.toast.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="js/Generales.js"></script>
