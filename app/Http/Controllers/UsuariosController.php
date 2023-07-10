@@ -11,8 +11,6 @@ use PHPMailer\PHPMailer\Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-require "../../funciones.php";
-
 class UsuariosController extends Controller
 {
     public function index()
