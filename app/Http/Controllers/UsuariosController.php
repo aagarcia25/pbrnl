@@ -10,6 +10,7 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Helpers;
 
 class UsuariosController extends Controller
 {
@@ -99,11 +100,10 @@ class UsuariosController extends Controller
             Interfaz Eval&uacute;a PbR NL<br>
             Secretaría de Finanzas y Tesorería General del Estado</b>";
 
-
             //Load Composer's autoloader
             require base_path("vendor/autoload.php");
 
-            $result = enviar_correo($correo_usuario, "Bienvenido a la Interfaz Evalúa PbR NL", $mensaje);
+            $result = Helpers::EnviarCorreo($usuario->eMail, "Bienvenido a la Interfaz Evalúa PbR NL", $mensaje);
 
             if( !$result ) {
                 return response()->json(array('error' => false, 'result' => "La notificación no ha podido ser enviada, favor de intentarlo de nuevo.", 'code' => 200));

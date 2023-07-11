@@ -261,7 +261,7 @@
                                 <input type="text" class="form-control" id="consecutivopp" disabled style="background: white;">
                             </div>
                             <div class="col-md-5">
-                                <label for="descriptivopp" class="form-label">Consecutivo</label>
+                                <label for="descriptivopp" class="form-label">Descripción</label>
                                 <input type="text" class="form-control" id="descriptivopp" disabled style="background: white;">
                             </div>
                             <div class="col-md-12">

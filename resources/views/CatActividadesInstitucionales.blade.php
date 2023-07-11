@@ -1,5 +1,5 @@
 @php
-   $view = "Actividades Institucionales Específícas";
+   $view = "Actividades Institucionales Específicas";
    $img = "icono actividades institucionales.svg";
 @endphp
 
@@ -220,7 +220,7 @@
                 <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
                 <input type="hidden" id="id"></input>
                 <div class="modal-header">
-                    <h5 class="modal-title">Actualización de la Actividad Institucional Específíca</h5>
+                    <h5 class="modal-title">Actualización de la Actividad Institucional Específica</h5>
                 </div>
                 <form id="form_pp" autocomplete="off">
                     <div class="modal-body">
@@ -260,7 +260,7 @@
                                 <input type="text" class="form-control" id="consecutivopp" disabled style="background: white;">
                             </div>
                             <div class="col-md-5">
-                                <label for="descriptivopp" class="form-label">Consecutivo</label>
+                                <label for="descriptivopp" class="form-label">Descripción</label>
                                 <input type="text" class="form-control" id="descriptivopp" disabled style="background: white;">
                             </div>
                             <div class="col-md-12">

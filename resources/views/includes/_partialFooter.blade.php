@@ -2,6 +2,8 @@
 <!-- End #main -->
 
 <script src="js/jquery.js"></script>
+<script src="js/angular.js"></script>
+<script src="js/app.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -21,7 +23,7 @@
         {
             inactivityDialogDuration: 1800, //3600
             maxInactivitySeconds: 1800, //3600
-            inactivityLogoutUrl: '/Logout',
+            inactivityLogoutUrl: 'Logout',
             inactivityLogoutUrl1: function () {
                 console.log('log out code goes here');
             },

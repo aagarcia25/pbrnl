@@ -6,7 +6,7 @@
 @include('includes._partialHeader')
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" type="text/css" href="css/EstilosPbR.css />
+<link rel="stylesheet" type="text/css" href="css/EstilosPbR.css" />
 
 <style>
     .input-background-white {
@@ -14,7 +14,7 @@
     }
 </style>
 
-<div class="mt-3">
+<div class="mt-3" ng-app="pbrApp" ng-controller="conacController as vm">
     {{-- @include('includes._partialBreadcrumbCatalogos') --}}
 
     <section class="container-fluid section">
@@ -92,11 +92,18 @@
                             <table id="table" class="table table-striped table-hover">
                                 <thead>
                                     <tr class="table-header text-center">
-                                        <th scope="col" width="20%">Id CONAC</th>
-                                        <th scope="col" width="80%">Descripción</th>
+                                        <th scope="col" width="20%">Id Tipología</th>
+                                        <th scope="col" width="30%">Descripción</th>
+                                        <th scope="col" width="50%">Características</th>
                                     </tr>
                                 </thead>
-                                <tbody></tbody>
+                                <tbody>
+                                    <tr ng-repeat="t in vm.tipologias">
+                                        <td><% t.IdTipologia %></td>
+                                        <td><% t.Descripcion %></td>
+                                        <td><% t.Caracteristicas %></td>
+                                    </tr>
+                                </tbody>
                             </table>
                         </div>
                         <!-- End Table with stripped rows -->
@@ -110,7 +117,6 @@
 
 @include('includes._partialFooter')
 
-<script src="js/Repository.js"></script>
 <script src="js/ConacTipologia.js"></script>
 
 </body>
