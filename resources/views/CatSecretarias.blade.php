@@ -1,5 +1,5 @@
 @php
-   $view = "Secretarias";
+   $view = "Secretarías";
    $img = "LogoSecretarias.svg";
 @endphp
 

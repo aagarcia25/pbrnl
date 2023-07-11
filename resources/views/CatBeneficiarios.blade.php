@@ -35,7 +35,11 @@
                                 <div class="p-2 bd-highlight">
                                     <button type="button" id="BtnEditarTipoBeneficiario" class="btn button-crud BotonesGrid2"><i class="ri-edit-2-fill"></i>Editar tipo beneficiario</button>
                                 </div>
-                            </div>                            
+
+                                <div class="p-2 bd-highlight">
+                                    <button type="button" id="BtnEliminarTipoBeneficiario" class="btn button-crud BotonesGrid2"><i class="ri-edit-2-fill"></i>Eliminar tipo beneficiario</button>
+                                </div>
+                            </div>
                         </div>
                         <!-- Botones de accion -->
                         @include('includes._partialBotonesAccion')
@@ -44,8 +48,8 @@
                             <table id="table" class="table table-striped table-hover">
                                 <thead>
                                     <tr class="table-header text-center">
-                                        <th scope="col" width="10%">Id Beneficiario</th>
-                                        <th scope="col" width="20%">Tipo Beneficiario</th>
+                                        <th scope="col" width="10%">Tipo Beneficiario</th>
+                                        <th scope="col" width="20%">Id Beneficiario</th>
                                         <th scope="col" width="70%">Población o Área de Enfoque</th>
                                     </tr>
                                 </thead>

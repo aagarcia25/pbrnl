@@ -701,6 +701,10 @@ class BeneficiariosController {
     EditTipoBeneficiario(request) {
         return Requests('POST', this.Url + "/EditTipoBeneficiario", request);
     }
+
+    DeleteTipoBeneficiario(request) {
+        return Requests('POST', this.Url + "/DeleteTipoBeneficiario", request);
+    }
 }
 
 class MirController {

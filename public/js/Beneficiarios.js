@@ -65,13 +65,13 @@ function ResponseGetBeneficiarios(response){
     if (!response.error) {
         DestroyDataTable("table");
         $("#table > tbody > tr").remove();
+        info_beneficiarios = response.data;
         if (response.data.length > 0) {
-            info_beneficiarios = response.data;
             for (var i = 0; i < response.data.length; i++) {
                 $("#table > tbody").append(`
                     <tr>
-                        <td>${response.data[i].idCatBeneficiario}</td>
                         <td>${response.data[i].idBeneficiario}</td>
+                        <td>${response.data[i].idCatBeneficiario}</td>
                         <td>${response.data[i].Poblacion}</td>
                     </tr>
                 `);
@@ -97,6 +97,7 @@ function Eventos() {
 
     BtnAgregarTipoBeneficiario();
     BtnEditarTipoBeneficiario();
+    BtnEliminarTipoBeneficiario();
     BtnGuardarTipoBeneficiario();
 }
 
@@ -125,6 +126,10 @@ function BtnAgregarCatalogo(){
         $("#modal_accion").text("Agregar");
 
         $("#select_TipoBeneficiarioModal").selectpicker("val", selectTipoBeneficiario);
+        $("#select_TipoBeneficiarioModal").attr("disabled","");
+        $("#select_TipoBeneficiarioModal").selectpicker("refresh");
+        //$("#select_TipoBeneficiarioModal").selectpicker("hide");
+
         $("#id_Beneficiario").val(Func_ObtenSiguienteBeneficiario());
         $("#descripcion").val("");
         
@@ -144,8 +149,10 @@ function BtnEditarCatalogo(){
         }
 
         Func_LimpiarModal();
-        $("#select_TipoBeneficiarioModal").selectpicker("val", data[1]);
-        $("#id_Beneficiario").val(data[0]);
+        $("#select_TipoBeneficiarioModal").attr("disabled","");
+        $("#select_TipoBeneficiarioModal").selectpicker("refresh");
+        $("#select_TipoBeneficiarioModal").selectpicker("val", data[0]);
+        $("#id_Beneficiario").val(data[1]);
         $("#descripcion").val(data[2]);
         $("#modal_accion").text("Editar");
         $("#Modal").modal("show");
@@ -279,6 +286,42 @@ function BtnEditarTipoBeneficiario() {
 
         $("#Modal_TipoBeneficiario").modal("show");
     });
+}
+
+function BtnEliminarTipoBeneficiario() {
+    $('#BtnEliminarTipoBeneficiario').click(function() {
+        let beneficiario =  info_tipobeneficiarios[$("#select_TipoBeneficiario")[0].selectedIndex - 1];
+        console.log(beneficiario);
+
+        Func_DespliegaConfirmacion("Eliminar " + beneficiario.TipoBeneficiario, 
+            "¿Deseas eliminar el Tipo de Beneficiario seleccionado?", 
+            "question", "Aceptar", "Cancelar", function(response) {
+            if (!response) {
+                return;
+            }
+            var request = {
+                id: beneficiario.idBeneficiario
+            };
+            Func_Cargando();
+            repository.Beneficiarios.DeleteTipoBeneficiario(request)
+                .then(ResponseDeleteTipoBeneficiario);
+        });
+    });
+}
+
+function ResponseDeleteTipoBeneficiario(response) {
+    swal.close();
+    if(response.error){
+        Func_Aviso("Anomalía detectada", "Ha ocurrido una anomalía al realizar el proceso, favor de intentarlo nuevamente.", "error");
+        return;
+    }
+
+    const index = $("#select_TipoBeneficiario")[0].selectedIndex - 1;
+    const beneficiario = info_tipobeneficiarios[index];
+    info_tipobeneficiarios.splice(index, 1);
+    
+    $("#select_TipoBeneficiario").find("[value="+beneficiario.idBeneficiario+"]").remove();
+    $("#select_TipoBeneficiario").selectpicker("refresh");
 }
 
 function BtnGuardarTipoBeneficiario() {

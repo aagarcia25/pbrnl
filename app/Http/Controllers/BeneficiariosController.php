@@ -13,7 +13,7 @@ class BeneficiariosController extends Controller
 {
     public function types()
     {
-        $query = "SELECT * FROM TIPO_BENEFICIARIO;";
+        $query = "SELECT * FROM TIPO_BENEFICIARIO WHERE Estatus= 'A'";
         $informacion = DB::select($query);
         return response()->json(array('error' => false, 'data' => $informacion, 'code' => 200));
     }
@@ -117,10 +117,28 @@ class BeneficiariosController extends Controller
         if (is_null($update)) {
             return response()->json(array('error' => true, 'result' => "El tipo beneficiario que intenta editar no existe.", 'code' => 404));
         }
-        
+
         try {
             $update->idBeneficiario     = $request->id_tipobeneficiario;
             $update->TipoBeneficiario   = $request->descripcion;
+            $update->save();
+        }catch (Exception $e) {
+            return response()->json(array('error' => true , 'result' => $e->getMessage(), 'code' => 500));
+        }
+
+        return response()->json(array('error' => false, 'result' => $update , 'code' => 200));
+    }
+
+    public function eliminar_tipo(Request $request)
+    {
+        $update = TipoBeneficiarios::find($request->id);
+
+        if (is_null($update)) {
+            return response()->json(array('error' => true, 'result' => "El tipo beneficiario que intenta eliminar no existe.", 'code' => 404));
+        }
+
+        try {
+            $update->Estatus   = 'E';   //eliminado
             $update->save();
         }catch (Exception $e) {
             return response()->json(array('error' => true , 'result' => $e->getMessage(), 'code' => 500));

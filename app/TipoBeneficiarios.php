@@ -8,7 +8,8 @@ class TipoBeneficiarios extends Model
 {
     protected $fillable = [
         'idBeneficiario',
-        'TipoBeneficiario'
+        'TipoBeneficiario',
+        'Estatus'
     ];
     
     protected $table = 'TIPO_BENEFICIARIO';

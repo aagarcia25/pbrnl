@@ -140,10 +140,10 @@ class LoginController extends Controller
 
             $enlace = "http://evalua-pbr.nl.gob.mx/interfaz/RecuperacionCredencial/" . $token;
             $mensaje = "<h2>Interfaz Eval&uacute;a PbR NL</h2><br>
-            <b>Estimado $nombre_usuario</b><br>
+            <b>Estimado(a) $nombre_usuario</b><br>
             ID de usuario: <strong>$usuario->idUsuario</strong><br>
             <br>
-            Se ha solicitado la recuperación de su contraseña<br>
+            Se ha solicitado la recuperación de su contraseña.<br>
             <br>
             Para recuperarla, siga el siguiente enlace que se 
             muestra a continuaci&oacute;n, donde se pedir&aacute; que genere su nueva contrase&ntilde;a:<br>
