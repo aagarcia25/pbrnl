@@ -52,7 +52,10 @@ class UnidadesAdministrativasController extends BaseController
 
     public function update(Request $request)
     {
-        $update = UnidadesAdministrativas::where('idSecretaria', '=', $request->id_secretaria)->where('idUnidad', '=', $request->id_unidad)->first();
+        $update = UnidadesAdministrativas::
+            where('idSecretaria', '=', $request->id_secretaria)
+            ->where('idUnidad', '=', $request->id_unidad)
+            ->first();
 
         if (is_null($update)) {
             return response()->json(array('error' => true, 'result' => "La unidad administrativa que intenta editar no existe.", 'code' => 404));
