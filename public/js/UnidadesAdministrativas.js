@@ -34,8 +34,7 @@ function ResponseGetConacFuncional(response) {
         GetSecretarias()
     } else {
         swal.close();
-        console.log(response.result)
-        Func_Aviso("Anomalía detectada", "Ha ocurrido una anomalía al obtener la información del módulo, favor de intentarlo nuevamente.", "error");
+        MostrarHttpError(response);
     }
 }
 
@@ -237,8 +236,7 @@ function ResponseAddUnidadeAdministrativa(response) {
         Func_Toast("success", "Unidad administrativa agregada.", "La unidad administrativa ha sido agregada con éxito.");
         GetUnidadesAdministrativas();
     } else {
-        console.log(response.result)
-        Func_Aviso("Anomalía detectada", "Ha ocurrido una anomalía al realizar el proceso, favor de intentarlo nuevamente.", "error");
+        MostrarHttpError(response);
     }
 }
 
@@ -249,8 +247,7 @@ function ResponseEditUnidadeAdministrativa(response) {
         Func_Toast("success", "Unidad administrativa editada.", "La unidad administrativa ha sido modificada.");
         GetUnidadesAdministrativas();
     } else {
-        console.log(response.result)
-        Func_Aviso("Anomalía detectada", "Ha ocurrido una anomalía al realizar el proceso, favor de intentarlo nuevamente.", "error");
+        MostrarHttpError(response);
     }
 }
 
@@ -259,12 +256,9 @@ function ResponseDeleteUnidadeAdministrativa(response) {
         Func_Toast("success", "Unidad administrativa eliminada.", "La unidad administrativa ha sido eliminada de Interfaz PbR.");
         GetSecretarias();
     } else {
-        console.log(response.result)
-        Func_Aviso("Anomalía detectada", "Ha ocurrido una anomalía al realizar el proceso, favor de intentarlo nuevamente.", "error");
+        MostrarHttpError(response);
     }
 }
-
-
 
 // ======================================================
 // Funciones

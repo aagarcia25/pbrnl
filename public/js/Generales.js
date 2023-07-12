@@ -164,3 +164,8 @@ function img_over(id, nombre) {
 function img_out(id, nombre) {
     $("#" + id).attr('src', nombre);
 }
+
+function MostrarHttpError(response) {
+    console.log(response.result)
+    Func_Aviso("Anomalía detectada", "Ha ocurrido una anomalía al realizar el proceso, favor de intentarlo nuevamente. (" + response.result + ")", "error");
+}

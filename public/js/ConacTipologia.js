@@ -3,10 +3,11 @@
 
     var controller = function(conacFactory) {
         const vm = this;
-
+        Func_Cargando();
         conacFactory.lista()
         .then((response)=>{
             vm.tipologias = response.data.data;
+            swal.close();
         });
     }
 
