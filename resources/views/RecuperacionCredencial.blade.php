@@ -179,8 +179,6 @@ if (Session::has('sesion')) {
                             </div>
                         </div>
 
-
-
                         <script type="text/javascript">
                             function ShowMensaje(title, body) {
                                 $("#Mensaje").modal("show");

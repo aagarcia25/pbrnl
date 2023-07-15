@@ -35,8 +35,7 @@ function ResponseLogin(response){
     console.log(response)
     swal.close();
     if (response.error){
-        $("#mensaje_modal").text(response.message);
-        $("#Modal").modal("show");
+        Func_Aviso("Error", response.message, "error");
     }else{
         Func_DespliegaConfirmacion("Contraseña cambiada", 
             "Su contraseña ha sido cambiada, por favor inicie sesión con su nombre de usuario y su nueva contraseña",

@@ -110,6 +110,7 @@ class UsuariosController extends Controller
             }
 
             $usuario->Notificado           = "S";
+            $usuario->TokenRecuperacion = $token;
             $usuario->save();
 
         } catch (Exception $e) {
