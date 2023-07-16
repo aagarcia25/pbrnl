@@ -234,6 +234,8 @@ Route::get('/Catalogos', function () {
     Route::post('AddUsuario','UsuariosController@insert');
     Route::post('EditUsuario','UsuariosController@update');
     Route::post('DeleteUsuario','UsuariosController@delete');
+    Route::post('ValidarIdUsuario','UsuariosController@validar_id'); 
+
 
     // Roles
     Route::get('/Roles', function () {

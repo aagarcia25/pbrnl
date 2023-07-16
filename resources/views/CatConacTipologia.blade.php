@@ -94,14 +94,14 @@
                                     <tr class="table-header text-center">
                                         <th scope="col" width="20%">Id Tipología</th>
                                         <th scope="col" width="30%">Descripción</th>
-                                        <th scope="col" width="50%">Características</th>
+                                        <th scope="col" width="50%">Definición</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr ng-repeat="t in vm.tipologias">
                                         <td><% t.IdTipologia %></td>
-                                        <td><% t.Descripcion %></td>
-                                        <td><% t.Caracteristicas %></td>
+                                        <td class="texto-justificado"><% t.Descripcion %></td>
+                                        <td class="texto-justificado"><% t.Caracteristicas %></td>
                                     </tr>
                                 </tbody>
                             </table>

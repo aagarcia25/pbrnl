@@ -116,21 +116,21 @@
                                 <label for="fechanacimiento_usuario" class="form-labelUsr">Fecha de Nacimiento</label>
                             </div>
                             <div class="col-md-4 FormUsr">
-                                <input type="text" class="form-control TextBoxUsr text-uppercase " id="rfc_usuario" maxlength="13" required>
+                                <input type="text" class="form-control TextBoxUsr text-uppercase " id="rfc_usuario"  minlength="13" maxlength="13" required>
                                 <label for="rfc_usuario" class="form-labelUsr">RFC <span class="text-red">*</span></label>
                             </div>
                             <div class="col-md-4 FormUsr">
-                                <input type="text" class="form-control TextBoxUsr" id="correo_usuario" maxlength="45" required>
+                                <input type="email" class="form-control TextBoxUsr" id="correo_usuario" maxlength="45" required>
                                 <label for="correo_usuario" class="form-labelUsr">Correo Electrónico <span class="text-red">*</span></label>
                             </div>
                         </div>
                         <div class="row mb-2 g-3 align-items-center mt-3">
                             <div class="col FormUsr">
-                                <input type="text" class="form-control TextBoxUsr" id="telefono_usuario" maxlength="20" required>
+                                <input type="text" class="form-control TextBoxUsr" id="telefono_usuario" minlength="14" maxlength="20" required>
                                 <label for="telefono_usuario" class="form-labelUsr">Teléfono de Oficina o Contacto</label>
                             </div>
                             <div class="col FormUsr">
-                                <input type="text" class="form-control TextBoxUsr" id="movil_usuario" maxlength="20" required>
+                                <input type="text" class="form-control TextBoxUsr" id="movil_usuario" minlength="14" maxlength="20" required>
                                 <label for="movil_usuario" class="form-labelUsr">Teléfono Móvil</label>
                             </div>
                         </div>

@@ -187,6 +187,12 @@ function OnChange_Ua(){
 
 function OnChange_IdUsuario(){
     $(".calc_id").on("change", function(){
+        const accion = $("#modal_accion").text();
+        if(accion == "Editar")
+        {
+            return;
+        }
+
         let Nombre = $("#nombre_usuario").val().toUpperCase();
         let Apellido = $("#appaterno_usuario").val().toUpperCase();
         let Apellido2 = $("#apmaterno_usuario").val().toUpperCase();
@@ -209,7 +215,14 @@ function OnChange_IdUsuario(){
         }
 
         var Id_usuario = Nombre.substr(0,1) + Apellido.substr(0,1) + Apellido2.substr(0,1) + Fecha.substr(0,2) + Fecha.substr(3,2);
-        $("#id_usuario").val(Id_usuario);
+        //ir al servidor y validar que no haya un usuario con ese id
+        repository.Usuarios.ValidarId({id:Id_usuario})
+        .then(response=>{
+            $("#id_usuario").val(response.data);
+        })
+        .catch(err=>{
+            MostrarHttpError(err);
+        });
     });
 }
 
@@ -317,6 +330,7 @@ function BtnAgregarUsuario(){
 
 function BtnEditarUsuario(){
     $("#BtnEditarUsuario").on("click", function() {
+        $("#modal_accion").text("Editar");
         var table = $('#table').DataTable();
         var index = table.row('.selected').index();
         var data = table.row(index).data();
@@ -409,7 +423,7 @@ function BtnEditarUsuario(){
             }
         }
         
-        $("#modal_accion").text("Editar");
+        
         $("#Modal").modal("show");
     });
 }

@@ -18,7 +18,7 @@
 @php
 if (Session::has('sesion')) {
 @endphp
-    <script>window.location = "/Menu";</script>
+    <script>window.location = "Menu";</script>
 @php
 }
 @endphp
@@ -69,7 +69,7 @@ if (Session::has('sesion')) {
                                     </div>
                                     <div class="col-auto">
                                         <div class="mb-4" style="margin-left: -25px">
-                                            <input type="password" id="password" class="form-control UserTextBox" name="password" placeholder="NUEVA CONTRASEÑA" maxlength="10" />
+                                            <input type="password" id="password" class="form-control UserTextBox" name="password" placeholder="NUEVA CONTRASEÑA" minlength="8" maxlength="10" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" />
                                         </div>
                                     </div>
                                 </div>
@@ -86,6 +86,13 @@ if (Session::has('sesion')) {
                                         </div>
                                     </div>
                                 </div>
+                                <div style="width:350px; margin: 0 auto; font-size: .7em">
+                                    <div class="alert alert-info">
+                                        La contraseña debe tener entre 8 y 10 caracteres,
+                                        una letra mayúscula, una minúscula y un número al menos
+                                    </div>
+                                </div>
+                                
                                 <div class="vh-5 row m-0 text-center align-items-center justify-content-center py-0">
                                     <div class="col-auto">
                                         <div class="mb-4 alert alert-danger" id="mensajeCoinciden">

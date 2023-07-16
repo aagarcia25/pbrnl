@@ -58,8 +58,31 @@ class UsuariosController extends Controller
         return response()->json(array('error' => false, 'data' => $usuario, 'code' => 200));
     }
 
-    public function solicitar_recuperacion(Request $request) {
+    public function validar_id(Request $request) {
+        $id = $request->id;
 
+        $usuarios = DB::table("usuarios")
+        ->where('idUsuario', '=', $id)
+        ->get();
+
+        $encontrados = count($usuarios);
+        if($encontrados == 0)
+        {
+            return response()->json(array(
+                'error' => false, 
+                'data' => $id, 
+                'message' => "", 
+                'code' => 200
+            ));
+        }
+        else{
+            return response()->json(array(
+                'error' => false, 
+                'data' => $id . ($encontrados + 1),
+                'message' => "", 
+                'code' => 200
+            ));
+        }
     }
 
     public function notif(Request $request)
@@ -86,10 +109,10 @@ class UsuariosController extends Controller
             $nombre_usuario = $usuario->Nombre . " " . $usuario->APaterno . " " . $usuario->AMaterno;
             $enlace = "http://evalua-pbr.nl.gob.mx/interfaz/RecuperacionCredencial/" . $token;
             $mensaje = "<h2>Interfaz Eval&uacute;a PbR NL</h2><br>
-            <b>Estimado $nombre_usuario</b><br>
+            <b>Estimado(a) $nombre_usuario</b><br>
             ID de usuario: <strong>$usuario->idUsuario</strong><br>
             <br>
-            Bienvenido a la Interfaz Eval&uacute;a PbR NL.<br>
+            Bienvenido(a) a la Interfaz Eval&uacute;a PbR NL.<br>
             <br>
             Para ingresar, siga el siguiente enlace que se 
             muestra a continuaci&oacute;n, donde se pedir&aacute; que genere su contrase&ntilde;a:<br>

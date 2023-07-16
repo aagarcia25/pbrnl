@@ -463,6 +463,10 @@ class UsuariosController {
     DeleteUsuario(id) {
         return Requests('POST', this.Url + "/DeleteUsuario", id);
     }
+
+    ValidarId(id) {
+        return Requests('POST', this.Url + "/ValidarIdUsuario", id);
+    }
 }
 
 class ProgramasPresupuestalesController {
