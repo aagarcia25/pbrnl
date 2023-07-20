@@ -210,7 +210,8 @@ Route::get('/Catalogos', function () {
     Route::post('AddTipoBeneficiario','BeneficiariosController@insert_tipo');
     Route::post('EditTipoBeneficiario','BeneficiariosController@update_tipo');
     Route::post('DeleteTipoBeneficiario','BeneficiariosController@eliminar_tipo');
-
+    Route::get('GetUltimoIdTipoBeneficiario','BeneficiariosController@get_ultimo_tipo_beneficiario');
+    
 // ========================================
 // A D M I N I S T R A C I Ó N
 // ========================================

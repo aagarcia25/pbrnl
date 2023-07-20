@@ -263,6 +263,18 @@ function BtnAgregarTipoBeneficiario() {
         $("#descripcion_tipobeneficiario").val();
 
         $("#Modal_TipoBeneficiario").modal("show");
+
+        //generar el id del beneficiario
+        get_ultimo_beneficiario()
+        .then((response)=> {
+            if(response.error == true)
+            {
+                Func_Aviso("Error", response.result, 'error');
+                return;
+            }
+            $("#id_tipobeneficiario").val(response.data);
+            
+        });
     });
 }
 
@@ -419,6 +431,10 @@ function ResponseGetTipoBeneficiarioRefresh(response) {
         console.log(response.result)
         Func_Aviso("Anomalía detectada", "Ha ocurrido una anomalía al obtener la información del módulo, favor de intentarlo nuevamente.", "error");
     }
+}
+
+function get_ultimo_beneficiario() {
+    return repository.Beneficiarios.GetUltimoIdTipoBeneficiario();
 }
 
 // ======================================================

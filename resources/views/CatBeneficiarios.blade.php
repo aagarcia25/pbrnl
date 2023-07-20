@@ -36,9 +36,9 @@
                                     <button type="button" id="BtnEditarTipoBeneficiario" class="btn button-crud BotonesGrid2"><i class="ri-edit-2-fill"></i>Editar tipo beneficiario</button>
                                 </div>
 
-                                <div class="p-2 bd-highlight">
+                                <!-- <div class="p-2 bd-highlight">
                                     <button type="button" id="BtnEliminarTipoBeneficiario" class="btn button-crud BotonesGrid2"><i class="ri-edit-2-fill"></i>Eliminar tipo beneficiario</button>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                         <!-- Botones de accion -->
@@ -111,7 +111,7 @@
                         <div class="row g-3">
                             <div class="col-md-4">
                                 <label for="id_tipobeneficiario" class="form-label">Tipo Beneficiario</label>
-                                <input type="text" class="form-control" id="id_tipobeneficiario" required maxlength="2">
+                                <input type="text" class="form-control" id="id_tipobeneficiario" required maxlength="2" readonly>
                             </div>
                             <div class="col-md-12">
                                 <label for="descripcion_tipobeneficiario" class="form-label">Descripción</label>

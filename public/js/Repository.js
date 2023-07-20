@@ -709,6 +709,10 @@ class BeneficiariosController {
     DeleteTipoBeneficiario(request) {
         return Requests('POST', this.Url + "/DeleteTipoBeneficiario", request);
     }
+
+    GetUltimoIdTipoBeneficiario() {
+        return Requests("GET", this.Url + "/GetUltimoIdTipoBeneficiario");
+    }
 }
 
 class MirController {

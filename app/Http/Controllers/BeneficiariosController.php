@@ -13,7 +13,7 @@ class BeneficiariosController extends Controller
 {
     public function types()
     {
-        $query = "SELECT * FROM TIPO_BENEFICIARIO WHERE Estatus= 'A'";
+        $query = "SELECT * FROM TIPO_BENEFICIARIO";
         $informacion = DB::select($query);
         return response()->json(array('error' => false, 'data' => $informacion, 'code' => 200));
     }
@@ -48,6 +48,8 @@ class BeneficiariosController extends Controller
     
     public function insert(Request $request)
     {
+        //obtener el que ya exista
+
         try {
             $insert                     = new Beneficiarios;
             $insert->idCatBeneficiario  = $request->id_beneficiario;
@@ -147,6 +149,26 @@ class BeneficiariosController extends Controller
         return response()->json(array('error' => false, 'result' => $update , 'code' => 200));
     }
     
+    public function get_ultimo_tipo_beneficiario() {
+        try {
+            $query = "SELECT idBeneficiario FROM TIPO_BENEFICIARIO ORDER BY idBeneficiario DESC LIMIT 1,1";
+            $ultimo = DB::select($query)[0];
+            $nuevo = intval($ultimo->idBeneficiario) + 1;
+
+            if($nuevo >= 99)
+                throw new Exception("Ha alcanzado el límite de tipos de beneficiarios");
+
+            if($nuevo < 10)
+                $retorno = '0' . $nuevo;
+            else
+                $retorno = '' . $nuevo;
+
+            return response()->json(array('error' => false, 'data' => $retorno, 'code' => 200));
+
+        }catch (Exception $e) {
+            return response()->json(array('error' => true , 'result' => $e->getMessage(), 'code' => 500));
+        }
+    }
 }
 
 ?>

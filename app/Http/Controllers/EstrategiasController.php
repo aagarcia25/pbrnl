@@ -31,8 +31,13 @@ class EstrategiasController extends Controller
                     INNER JOIN TEMA AS B ON A.IdTema = B.IdTema
                     WHERE A.IdEje = '$request->id_eje' AND A.IdObjetivo = '$request->id_objetivo' AND A.Activo = 'S' AND B.Activo = 'S'
                     GROUP BY B.IdEje, B.IdTema, B.Descripcion, A.Activo";
-        $informacion = DB::select($query);
-        return response()->json(array('error' => false, 'data' => $informacion, 'code' => 200));
+        try{
+            $informacion = DB::select($query);
+            return response()->json(array('error' => false, 'data' => $informacion, 'code' => 200));
+        }
+        catch(Exception $e) {
+            return response()->json(array('error' => true , 'result' => $e->getMessage(), 'code' => 500));
+        }
     }
     
     public function objetivos(Request $request)
