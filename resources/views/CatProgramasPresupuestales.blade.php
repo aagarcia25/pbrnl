@@ -90,7 +90,7 @@
                                 <button type="button" id="BtnActualizacionPP" class="btn button-crud"><i class="bi bi-trash"></i> Actualización PP</button>
                             </div>
                             <div class="p-2 bd-highlight">
-                                <button type="button" id="BtnComponentes" class="btn button-crud"><i class="ri-edit-2-fill"></i> Componente</button>
+                                <button type="button" id="BtnComponentes" class="btn button-crud"><i class="ri-edit-2-fill"></i> Componentes</button>
                             </div>
                         </div>
                         <!-- Botones de accion -->
@@ -124,7 +124,7 @@
                 <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
                 <input type="hidden" id="id"></input>
                 <div class="modal-header">
-                    <h5 class="modal-title">Componentes del Programa Presupuetario</h5>
+                    <h5 class="modal-title">Componentes del Programa Presupuestario</h5>
                 </div>
                 <div class="modal-body">
                     <div class="row g-3">
@@ -191,12 +191,12 @@
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <label for="unidad_componente" class="form-label">Nueva unidad administrativa</label>
+                                        <label for="unidad_componente" class="form-label">Nueva Unidad Administrativa</label>
                                         <select id="unidad_componente" class="selectpicker show-tick form-control" title="Seleccione..." data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
                                         </select>
                                     </div>
                                     <div class="col-md-6">
-                                        <label for="descripcion_componente" class="form-label">Nueva descripción</label>
+                                        <label for="descripcion_componente" class="form-label">Nueva Descripción</label>
                                         <input type="text" class="form-control" id="descripcion_componente" maxlength="300" required>
                                     </div>
                                     <input type="hidden" id="id_componente">
@@ -221,7 +221,7 @@
                 <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
                 <input type="hidden" id="id"></input>
                 <div class="modal-header">
-                    <h5 class="modal-title">Actualización de programa presupuestario</h5>
+                    <h5 class="modal-title">Actualización de Programa Presupuestario</h5>
                 </div>
                 <form id="form_pp" autocomplete="off">
                     <div class="modal-body">

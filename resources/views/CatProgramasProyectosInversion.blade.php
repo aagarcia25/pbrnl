@@ -70,7 +70,7 @@
                                 </div>
                                 <div class="col-12">
                                     <!--h6 class="mx-3"><span id="contador_programas">0</span> PROGRAMAS - <span id="contador_componentes">0</span> COMPONENTES</h6-->
-                                    <h6 class="mx-3"><span id="contador_componentes">0</span> PROGRAMAS Y PROYECTOS DE INVERSION</h6>
+                                    <h6 class="mx-3"><span id="contador_programas">0</span> PROGRAMAS Y PROYECTOS DE INVERSION</h6>
                                 </div>
                             </div>
                         </div>
@@ -91,7 +91,7 @@
                                 <button type="button" id="BtnActualizacionPP" class="btn button-crud"><i class="bi bi-trash"></i> Actualización PPI</button>
                             </div>
                             <div class="p-2 bd-highlight">
-                                <button type="button" id="BtnComponentes" class="btn button-crud"><i class="ri-edit-2-fill"></i> Tipo de proyecto</button>
+                                <button type="button" id="BtnComponentes" class="btn button-crud"><i class="ri-edit-2-fill"></i> Tipo de proyectos</button>
                             </div>
                         </div>
                         <!-- Botones de accion -->
@@ -125,7 +125,7 @@
                 <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
                 <input type="hidden" id="id"></input>
                 <div class="modal-header">
-                    <h5 class="modal-title">Componentes del Programa y Proyecto de Inversión</h5>
+                    <h5 class="modal-title">Tipos de Proyectos del Programa y Proyecto de Inversión</h5>
                 </div>
                 <div class="modal-body">
                     <div class="row g-3">
@@ -171,6 +171,23 @@
                                 </div>
                             </div>
                         </div>
+                        
+                        <div class="col-md-12 mt-0">
+                            <div class="table-response mt-4">
+                                <table id="table_componentes" class="table table-striped table-hover">
+                                    <thead>
+                                        <tr class="table-header text-center">
+                                            <th width="10%">Id UA</th>
+                                            <th width="40%">Descripción UA</th>
+                                            <th width="10%">Componentes</th>
+                                            <th width="40%">Descripción</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+
                         <div id="informacion_componente" class="col-md-12 d-none">
                             <form id="form_componente" autocomplete="off" method="post">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
@@ -190,21 +207,6 @@
                                     </div>
                                 </div>
                             </form>
-                        </div>
-                        <div class="col-md-12 mt-0">
-                            <div class="table-response mt-4">
-                                <table id="table_componentes" class="table table-striped table-hover">
-                                    <thead>
-                                        <tr class="table-header text-center">
-                                            <th width="10%">Id UA</th>
-                                            <th width="40%">Descripción UA</th>
-                                            <th width="10%">Componentes</th>
-                                            <th width="40%">Descripción</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody></tbody>
-                                </table>
-                            </div>
                         </div>
                     </div>
                 </div>

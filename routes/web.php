@@ -97,6 +97,8 @@ Route::get('/Catalogos', function () {
     Route::post('EditComponentePP','ProgramasPresupuestalesController@updatecomponent');
     Route::post('EditProgramaPresupuestal','ProgramasPresupuestalesController@updatepp');
 
+    Route::get('GetAllCountProgramasP','ProgramasPresupuestalesController@countall');
+
     // Actividades institucionales
     Route::get('/ActividadesInstitucionales', function () {
         return view('CatActividadesInstitucionales'); // En resources -> views - index.php -- Así se llama la vista principal donde entraran 
@@ -107,6 +109,7 @@ Route::get('/Catalogos', function () {
     Route::post('GetComponentesAI','ActividadesInstitucionalesController@components');
     Route::post('EditComponenteAI','ActividadesInstitucionalesController@updatecomponent');
     Route::post('EditActividadInstitucional','ActividadesInstitucionalesController@updatepp');
+    Route::get('GetAllCountActividadesAI','ActividadesInstitucionalesController@countall');
 
     // Programas y proyectos de inversión
     Route::get('/ProgramasProyectosInversion', function () {
@@ -118,6 +121,7 @@ Route::get('/Catalogos', function () {
     Route::post('GetComponentesPPI','ProgramasProyectosInversionController@components');
     Route::post('EditComponentePPI','ProgramasProyectosInversionController@updatecomponent');
     Route::post('EditProgramaPresupuestoInversion','ProgramasProyectosInversionController@updatepp');
+    Route::get('GetAllCountPPI','ProgramasProyectosInversionController@countall');
 
 // ========================================
 // C A T Á L O G O S   P L A N E A C I O N E S

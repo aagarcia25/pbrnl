@@ -449,7 +449,5 @@ function Func_LimpiarModal() {
 
 function Func_ObtenSiguienteBeneficiario(){
     let contador = parseInt(info_beneficiarios.length) + parseInt(1);
-    return selectTipoBeneficiario + "." + contador;
+    return selectTipoBeneficiario + "." + (contador < 10 ? '0' : '') + contador;
 }
-
-

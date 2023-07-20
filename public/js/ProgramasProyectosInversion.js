@@ -112,8 +112,8 @@ function GetAllCountPPI(){
 function ResponseGetAllCountPPI(response) {
     swal.close();
     if (!response.error) {
-        //$("#contador_programas").text(response.data[0]['Programas']);
-        $("#contador_componentes").text(response.data[0]['Componentes']);
+        $("#contador_programas").text(response.data[0]['Programas']);
+        //$("#contador_componentes").text(response.data[0]['Componentes']);
     } else {
         console.log(response.result)
         Func_Aviso("Anomalía detectada", "Ha ocurrido una anomalía al obtener la información del módulo, favor de intentarlo nuevamente.", "error");

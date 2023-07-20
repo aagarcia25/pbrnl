@@ -123,7 +123,7 @@ function ResponseGetTemas(response) {
     } else {
         swal.close();
         console.log(response.result)
-        Func_Aviso("Anomalía detectada", "Ha ocurrido una anomalía al obtener la información del módulo, favor de intentarlo nuevamente.", "error");
+        Func_Aviso("Anomalía detectada", "Ha ocurrido una anomalía al obtener la información del módulo, favor de intentarlo nuevamente. ("+response.result+")", "error");
     }
 }
 

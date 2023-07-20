@@ -69,7 +69,7 @@
                                     <h1 class="TituloCatalogo mx-3">@php echo $view; @endphp</h1>
                                 </div>
                                 <div class="col-12">
-                                    <h6 class="mx-3"><span id="contador_programas">0</span> PROGRAMAS - <span id="contador_componentes">0</span> COMPONENTES</h6>
+                                    <h6 class="mx-3"><span id="contador_programas">0</span> ACTIVIDADES - <span id="contador_componentes">0</span> ACCIONES</h6>
                                 </div>
                             </div>
                         </div>
@@ -87,7 +87,7 @@
                         <!-- Botones de accion -->
                         <div class="d-flex flex-row-reverse bd-highlight mt-4">
                             <div class="p-2 bd-highlight">
-                                <button type="button" id="BtnActualizacionPP" class="btn button-crud"><i class="bi bi-trash"></i> Actualización AI</button>
+                                <button type="button" id="BtnActualizacionPP" class="btn button-crud"><i class="bi bi-trash"></i> Actualización AIE</button>
                             </div>
                             <div class="p-2 bd-highlight">
                                 <button type="button" id="BtnComponentes" class="btn button-crud"><i class="ri-edit-2-fill"></i> Acciones</button>
@@ -170,6 +170,23 @@
                                 </div>
                             </div>
                         </div>
+                        
+                        <div class="col-md-12 mt-0">
+                            <div class="table-response mt-4">
+                                <table id="table_componentes" class="table table-striped table-hover">
+                                    <thead>
+                                        <tr class="table-header text-center">
+                                            <th width="10%">Id UA</th>
+                                            <th width="40%">Descripción UA</th>
+                                            <th width="10%">Acciones</th>
+                                            <th width="40%">Descripción</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+
                         <div id="informacion_componente" class="col-md-12 d-none">
                             <form id="form_componente" autocomplete="off" method="post">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
@@ -189,21 +206,6 @@
                                     </div>
                                 </div>
                             </form>
-                        </div>
-                        <div class="col-md-12 mt-0">
-                            <div class="table-response mt-4">
-                                <table id="table_componentes" class="table table-striped table-hover">
-                                    <thead>
-                                        <tr class="table-header text-center">
-                                            <th width="10%">Id UA</th>
-                                            <th width="40%">Descripción UA</th>
-                                            <th width="10%">Componentes</th>
-                                            <th width="40%">Descripción</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody></tbody>
-                                </table>
-                            </div>
                         </div>
                     </div>
                 </div>
