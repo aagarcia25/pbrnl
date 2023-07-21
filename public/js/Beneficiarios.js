@@ -149,9 +149,10 @@ function BtnEditarCatalogo(){
         }
 
         Func_LimpiarModal();
-        $("#select_TipoBeneficiarioModal").attr("disabled","");
+        $("#select_TipoBeneficiarioModal").prop("disabled",true);
+        $("#select_TipoBeneficiarioModal").val(data[0]);
         $("#select_TipoBeneficiarioModal").selectpicker("refresh");
-        $("#select_TipoBeneficiarioModal").selectpicker("val", data[0]);
+        
         $("#id_Beneficiario").val(data[1]);
         $("#descripcion").val(data[2]);
         $("#modal_accion").text("Editar");

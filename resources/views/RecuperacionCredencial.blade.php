@@ -89,7 +89,7 @@ if (Session::has('sesion')) {
                                 <div style="width:350px; margin: 0 auto; font-size: .7em">
                                     <div class="alert alert-info">
                                         La contraseña debe tener entre 8 y 10 caracteres,
-                                        una letra mayúscula, una minúscula y un número al menos
+                                        una letra mayúscula, una minúscula y un número al menos.
                                     </div>
                                 </div>
                                 
