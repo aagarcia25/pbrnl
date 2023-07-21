@@ -126,11 +126,18 @@
                         </div>
                         <div class="row mb-2 g-3 align-items-center mt-3">
                             <div class="col FormUsr">
-                                <input type="text" class="form-control TextBoxUsr" id="telefono_usuario" minlength="14" maxlength="20" required>
+                                <input type="text" class="form-control TextBoxUsr" id="telefono_usuario" 
+                                    oninvalid="this.setCustomValidity('El teléfono debe tener 10 caracteres como mínimo y 20 como máximo')" 
+                                    oninput="this.setCustomValidity('')"
+                                    minlength="14" maxlength="20" 
+                                    required>
                                 <label for="telefono_usuario" class="form-labelUsr">Teléfono de Oficina o Contacto</label>
                             </div>
                             <div class="col FormUsr">
-                                <input type="text" class="form-control TextBoxUsr" id="movil_usuario" minlength="14" maxlength="20" required>
+                                <input type="text" class="form-control TextBoxUsr" 
+                                    oninvalid="this.setCustomValidity('El teléfono debe tener 10 caracteres como mínimo y 20 como máximo')" 
+                                    oninput="this.setCustomValidity('')"
+                                    id="movil_usuario" minlength="14" maxlength="20" required>
                                 <label for="movil_usuario" class="form-labelUsr">Teléfono Móvil</label>
                             </div>
                         </div>
