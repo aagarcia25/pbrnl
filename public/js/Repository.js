@@ -12,9 +12,11 @@ async function Requests(method = '', url = '', data = null) {
         referrer: 'no-referrer'
     };
 
-    if (data) {
+    if (data && method.toLowerCase() != "get") {
         options.body = JSON.stringify(data);
     }
+    else if(data)
+        url += "?" + new URLSearchParams(data).toString();
 
     const response = await fetch(url, options);
 
@@ -483,7 +485,7 @@ class ProgramasPresupuestalesController {
     }
 
     GetCountProgramasP(request) {
-        return Requests('POST', this.Url + "/GetCountProgramasP", request);
+        return Requests('GET', this.Url + "/GetCountProgramasP", request);
     }
 
     GetProgramasP(request) {
@@ -521,7 +523,7 @@ class ActividadesInstitucionalesController {
     }
 
     GetCountActividadesAI(request) {
-        return Requests('POST', this.Url + "/GetCountActividadesAI", request);
+        return Requests('GET', this.Url + "/GetCountActividadesAI", request);
     }
 
     GetActividadesI(request) {
@@ -559,7 +561,7 @@ class ProgramasProyectosInversionController {
     }
 
     GetCountPPI(request) {
-        return Requests('POST', this.Url + "/GetCountPPI", request);
+        return Requests('GET', this.Url + "/GetCountPPI", request);
     }
 
     GetPPI(request) {
