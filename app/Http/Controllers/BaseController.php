@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 use Exception;
+use Illuminate\Support\Facades\DB;
 
 class BaseController extends Controller {
     public function guardarCambios($entidad) {
@@ -18,6 +19,16 @@ class BaseController extends Controller {
         }
 
         return response()->json(array('error' => false, 'result' => $entidad , 'code' => 200));
+    }
+
+    public function executeQuery($query) {
+        try{
+            $informacion = DB::select($query);
+            return response()->json(array('error' => false, 'data' => $informacion, 'code' => 200));
+        }
+        catch(Exception $e) {
+            return response()->json(array('error' => true, 'result' => $e->getMessage(), 'code' => 200));
+        }
     }
 }
 ?>

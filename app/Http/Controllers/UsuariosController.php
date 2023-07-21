@@ -61,7 +61,7 @@ class UsuariosController extends Controller
     public function validar_id(Request $request) {
         $id = $request->id;
 
-        $usuarios = DB::table("usuarios")
+        $usuarios = DB::table("USUARIOS")
         ->where('idUsuario', '=', $id)
         ->get();
 

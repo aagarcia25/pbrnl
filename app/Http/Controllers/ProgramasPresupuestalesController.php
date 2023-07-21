@@ -7,7 +7,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class ProgramasPresupuestalesController extends Controller
+class ProgramasPresupuestalesController extends BaseController
 {
     public function all()
     {
@@ -21,8 +21,8 @@ class ProgramasPresupuestalesController extends Controller
         $query = "SELECT 
             (SELECT COUNT(*) FROM PROGRAMATICO AS A INNER JOIN SECRETARIAS AS B ON A.idSecretaria = B.idSecretaria WHERE A.idClasificacion IN ('PP') ORDER BY A.Consecutivo) AS 'Programas',
             (SELECT COUNT(*) FROM PROGRAMATICO_COMP AS A INNER JOIN UNIDADES AS B ON A.idUA = B.idUnidad AND A.idSecretaria = B.idSecretaria) AS 'Componentes';";
-        $informacion = DB::select($query);
-        return response()->json(array('error' => false, 'data' => $informacion, 'code' => 200));
+
+        return $this->executeQuery($query);
     }
 
     public function count(Request $request)
