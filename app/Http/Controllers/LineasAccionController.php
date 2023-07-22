@@ -50,7 +50,7 @@ class LineasAccionController extends Controller
                 where('IdEje', '=', $request->id_eje)
                 ->where('IdTema', '=', $request->id_tema)
                 ->where('IdObjetivo', '=', $request->id_objetivo)
-                ->where('IdEstrategia', '=', $request->id_estrategia)
+                ->where("IdEstrategia", '=', $request->id_estrategia)
                 ->where('IdLineaAccion', '=', $request->id_lineaccion)
                 ->first();
         

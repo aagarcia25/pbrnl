@@ -15,7 +15,7 @@ class LineasAccion extends Model
         'Descripcion',
         'Activo'
     ];
-    protected $table = 'ESTRATEGIAS';
+    protected $table = 'LINEASACCION';
     public $timestamps = false;
     protected $primaryKey = ['IdEje', 'IdTema', 'IdObjetivo', 'IdEstrategias', 'IdLineaAccion'];
     public $incrementing = false;
