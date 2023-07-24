@@ -88,19 +88,19 @@
                         <div class="row mb-2 g-3 align-items-center">
                             <div class="col-md-2 FormUsrDis">
                                 <input type="text" class="form-control TextBoxUsrDis text-uppercase" id="id_usuario" style="background: white;" readonly>
-                                <label for="id_usuario" class="form-labelUsrDis">Id Usuario <span class="text-red">*</span></label>
+                                <label for="id_usuario" class="form-labelUsrDis">Id Usuario </label>
                             </div>
                             <div class="col-md-2 FormUsr">
                                 <input type="text" class="form-control TextBoxUsr text-uppercase calc_id" id="nombre_usuario" maxlength="45" required>
-                                <label for="nombre_usuario" class="form-labelUsr">Nombre <span class="text-red">*</span></label>
+                                <label for="nombre_usuario" class="form-labelUsr">Nombre </label>
                             </div>
                             <div class="col-md-3 FormUsr">
                                 <input type="text" class="form-control TextBoxUsr text-uppercase calc_id" id="appaterno_usuario" maxlength="45" required>
-                                <label for="appaterno_usuario" class="form-labelUsr">Apellido Paterno <span class="text-red">*</span></label>
+                                <label for="appaterno_usuario" class="form-labelUsr">Apellido Paterno </label>
                             </div>
                             <div class="col-md-3 FormUsr">
                                 <input type="text" class="form-control TextBoxUsr text-uppercase calc_id" id="apmaterno_usuario" maxlength="45" required>
-                                <label for="apmaterno_usuario" class="form-labelUsr">Apellido Materno <span class="text-red">*</span></label>
+                                <label for="apmaterno_usuario" class="form-labelUsr">Apellido Materno </label>
                             </div>
                             <div class="col-md-2 FontMsg ">
                                 <label class="toggle ">
@@ -117,11 +117,11 @@
                             </div>
                             <div class="col-md-4 FormUsr">
                                 <input type="text" class="form-control TextBoxUsr text-uppercase " id="rfc_usuario"  minlength="13" maxlength="13" required>
-                                <label for="rfc_usuario" class="form-labelUsr">RFC <span class="text-red">*</span></label>
+                                <label for="rfc_usuario" class="form-labelUsr">RFC </label>
                             </div>
                             <div class="col-md-4 FormUsr">
                                 <input type="email" class="form-control TextBoxUsr" id="correo_usuario" maxlength="45" required>
-                                <label for="correo_usuario" class="form-labelUsr">Correo Electrónico <span class="text-red">*</span></label>
+                                <label for="correo_usuario" class="form-labelUsr">Correo Electrónico </label>
                             </div>
                         </div>
                         <div class="row mb-2 g-3 align-items-center mt-3">

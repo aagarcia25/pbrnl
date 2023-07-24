@@ -72,6 +72,7 @@ class EstrategiasController extends Controller
                 where('IdEje', '=', $request->id_eje)
                 ->where('IdTema', '=', $request->id_tema)
                 ->where('IdObjetivo', '=', $request->id_objetivo)
+                ->where('IdEstrategias', '=', $request->id_estrategia)
                 ->first();
         
         if (is_null($update)) {

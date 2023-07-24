@@ -76,7 +76,7 @@
                         <div class="row g-3">
                             <div class="col-md-4">
                                 <label for="select_TipoBeneficiarioModal" class="form-label">Tipo de Beneficiario</label>
-                                <select id="select_TipoBeneficiarioModal" class="selectpicker show-tick form-control" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                <select id="select_TipoBeneficiarioModal" class="selectpicker show-tick form-control" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required disabled>
                                 </select>
                             </div>
                             <div class="col-md-4">

@@ -85,16 +85,17 @@ class BeneficiariosController extends Controller
 
     public function delete(Request $request)
     {
+        return response()->json(array('error' => true, 'result' => "función deshabilitada", 'code' => 500));
 
-        $delete = Beneficiarios::find($request->id_beneficiario);
+        // $delete = Beneficiarios::find($request->id_beneficiario);
 
-        if (is_null($delete)) {
-            return response()->json(array('error' => true, 'result' => "El beneficiario que intenta eliminar no existe.", 'code' => 404));
-        }
+        // if (is_null($delete)) {
+        //     return response()->json(array('error' => true, 'result' => "El beneficiario que intenta eliminar no existe.", 'code' => 404));
+        // }
 
-        $delete->delete();
+        // $delete->delete();
 
-        return response()->json(array('error' => false, 'result' => $delete , 'code' => 200));
+        // return response()->json(array('error' => false, 'result' => $delete , 'code' => 200));
     }
     
     public function insert_tipo(Request $request)

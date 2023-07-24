@@ -125,10 +125,10 @@ function BtnAgregarCatalogo(){
     $("#BtnAgregarCatalogo").on("click", function() {
         $("#modal_accion").text("Agregar");
 
+        //$("#select_TipoBeneficiarioModal").val(selectTipoBeneficiario);
+        // $("#select_TipoBeneficiarioModal").attr("disabled","");
         $("#select_TipoBeneficiarioModal").selectpicker("val", selectTipoBeneficiario);
-        $("#select_TipoBeneficiarioModal").attr("disabled","");
-        $("#select_TipoBeneficiarioModal").selectpicker("refresh");
-        //$("#select_TipoBeneficiarioModal").selectpicker("hide");
+        
 
         $("#id_Beneficiario").val(Func_ObtenSiguienteBeneficiario());
         $("#descripcion").val("");
@@ -149,10 +149,11 @@ function BtnEditarCatalogo(){
         }
 
         Func_LimpiarModal();
-        $("#select_TipoBeneficiarioModal").prop("disabled",true);
-        $("#select_TipoBeneficiarioModal").val(data[0]);
-        $("#select_TipoBeneficiarioModal").selectpicker("refresh");
         
+        // $("#select_TipoBeneficiarioModal").attr("disabled","");
+        //$("#select_TipoBeneficiarioModal").selectpicker("refresh");
+        $("#select_TipoBeneficiarioModal").selectpicker("val", data[0]);
+
         $("#id_Beneficiario").val(data[1]);
         $("#descripcion").val(data[2]);
         $("#modal_accion").text("Editar");
@@ -161,29 +162,30 @@ function BtnEditarCatalogo(){
 }
 
 function BtnEliminarCatalogo(){
-    $('#BtnEliminarCatalogo').click(function() {
-        var table = $('#table').DataTable();
-        var index = table.row('.selected').index();
-        var data = table.row(index).data();
+    $("#BtnEliminarCatalogo").remove();
+    // $('#BtnEliminarCatalogo').click(function() {
+    //     var table = $('#table').DataTable();
+    //     var index = table.row('.selected').index();
+    //     var data = table.row(index).data();
 
-        if (!table.rows('.selected').any()) {
-            Func_Aviso("Atención", "Para continuar favor de seleccionar un Beneficiario.", "info");
-            return false;
-        }
+    //     if (!table.rows('.selected').any()) {
+    //         Func_Aviso("Atención", "Para continuar favor de seleccionar un Beneficiario.", "info");
+    //         return false;
+    //     }
 
-        Func_DespliegaConfirmacion("Eliminar " + data[2], "¿Deseas eliminar el Beneficiario seleccionado?", "question", "Aceptar", "Cancelar", function(response) {
-            if (response) {
-                var id_beneficiario = data[0];
-                var request = {
-                    id_beneficiario: id_beneficiario
-                };
-                Func_Cargando();
-                repository.Beneficiarios.DeleteBeneficiario(request)
-                    .then(ResponseDeleteBeneficiario);
+    //     Func_DespliegaConfirmacion("Eliminar " + data[2], "¿Deseas eliminar el Beneficiario seleccionado?", "question", "Aceptar", "Cancelar", function(response) {
+    //         if (response) {
+    //             var id_beneficiario = data[0];
+    //             var request = {
+    //                 id_beneficiario: id_beneficiario
+    //             };
+    //             Func_Cargando();
+    //             repository.Beneficiarios.DeleteBeneficiario(request)
+    //                 .then(ResponseDeleteBeneficiario);
 
-            }
-        });
-    });
+    //         }
+    //     });
+    // });
 }
 
 function BtnGuardarBeneficiario(){
@@ -245,23 +247,23 @@ function ResponseEditBeneficiario(response) {
     }
 }
 
-function ResponseDeleteBeneficiario(response) {
-    if (!response.error) {
-        Func_Toast("success", "Beneficiario eliminado.", "El beneficiario fue eliminado de Interfaz PbR.");
-        Func_Cargando();
-        GetBeneficiarios();
-    } else {
-        console.log(response.result)
-        Func_Aviso("Anomalía detectada", "Ha ocurrido una anomalía al realizar el proceso, favor de intentarlo nuevamente.", "error");
-    }
-}
+// function ResponseDeleteBeneficiario(response) {
+//     if (!response.error) {
+//         Func_Toast("success", "Beneficiario eliminado.", "El beneficiario fue eliminado de Interfaz PbR.");
+//         Func_Cargando();
+//         GetBeneficiarios();
+//     } else {
+//         console.log(response.result)
+//         Func_Aviso("Anomalía detectada", "Ha ocurrido una anomalía al realizar el proceso, favor de intentarlo nuevamente.", "error");
+//     }
+// }
 
 function BtnAgregarTipoBeneficiario() {
     $("#BtnAgregarTipoBeneficiario").on("click", function(){
         $("#modal_acciontipobeneficiario").text("Agregar");
 
-        $("#id_tipobeneficiario").val();
-        $("#descripcion_tipobeneficiario").val();
+        $("#id_tipobeneficiario").val("");
+        $("#descripcion_tipobeneficiario").val("");
 
         $("#Modal_TipoBeneficiario").modal("show");
 
