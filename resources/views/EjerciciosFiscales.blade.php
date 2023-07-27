@@ -1,19 +1,14 @@
 @php
-   $view = "Programas y Proyectos de Inversión";
-   $img = "icono proyectos de inversion.svg";
+   $view = "Ejercicios fiscales";
+   $img = "icono programas presupuestarios.svg";
 @endphp
 
 @include('includes._partialHeader')
 
   <link rel="stylesheet" type="text/css" href="css/EstilosPbR.css" />
 
-<style>
-    .input-background-white {
-        background-color: white;
-    }
-</style>
 
-<div class="mt-3">
+<div class="mt-3" ng-app="pbrApp" ng-controller="ejerciciosFiscalesController as vm">
     {{-- @include('includes._partialBreadcrumbCatalogos') --}}
 
     <section class="container-fluid section">
@@ -26,23 +21,13 @@
                         </a>
                     </div>
                 </div>    
-                <div class="row mt-1">
+                <div class="row mt-3">
                     <div class="col-md-1">
                         <a href="Catalogos" class="d-flex align-items-center justify-content-center">
                             <img id="icon-regresarProg" onmouseover="img_over('icon-regresarProg', 'img/icono regresar activo.svg')" onmouseout="img_out('icon-regresarProg', 'img/icono regresar.svg')" src="img/icono regresar.svg" alt="Logo de tesorería de Nuevo León" width="50" height="50">
                         </a>
                         <div class="d-flex align-items-center justify-content-center text-center">
                             <h6 class="FontNavega"><b>Regresar</b></h6>
-                        </div>
-                    </div>
-                </div>
-                <div class="row mt-1">
-                    <div class="col-md-1">
-                        <a href="ProgramasPresupuestarios" class="d-flex align-items-center justify-content-center">
-                            <img id="icon-cat-program-presup" onmouseover="img_over('icon-cat-program-presup', 'img/icono programas presupuestarios.svg')" onmouseout="img_out('icon-cat-program-presup', 'img/icono programas presupuestarios off.svg')" src="img/icono programas presupuestarios off.svg" width="50" height="50">
-                        </a>
-                        <div class="d-flex align-items-center justify-content-center text-center">
-                            <h6 class="FontNavega"><b>Programas Presupuestarios</b></h6>
                         </div>
                     </div>
                 </div>
@@ -56,7 +41,17 @@
                         </div>
                     </div>
                 </div>
-            </div>
+                <div class="row mt-1">
+                    <div class="col-md-1">
+                        <a href="ProgramasProyectosInversion" class="d-flex align-items-center justify-content-center">
+                            <img id="icon-cat-program-proyect" class="icon-cat-administrativas" onmouseover="img_over('icon-cat-program-proyect', 'img/icono proyectos de inversion.svg')" onmouseout="img_out('icon-cat-program-proyect', 'img/icono proyectos de inversion off.svg')" src="img/icono proyectos de inversion off.svg" width="50" height="50">
+                        </a>
+                        <div class="d-flex align-items-center justify-content-center text-center">
+                            <h6 class="FontNavega"><b>Programas y Proyectos de Inversión</b></h6>
+                        </div>
+                    </div>
+                </div>
+            </div>   <!-- ***END COL-2 -->
             <div class="col-8">
                 <div class="container pagetitle mt-3">
                     <div class="row mb-3">
@@ -69,8 +64,7 @@
                                     <h1 class="TituloCatalogo mx-3">@php echo $view; @endphp</h1>
                                 </div>
                                 <div class="col-12">
-                                    <!--h6 class="mx-3"><span id="contador_programas">0</span> PROGRAMAS - <span id="contador_componentes">0</span> COMPONENTES</h6-->
-                                    <h6 class="mx-3"><span id="contador_programas">0</span> PROGRAMAS Y PROYECTOS DE INVERSION</h6>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -78,20 +72,14 @@
                 </div>
                 <div class="card">
                     <div class="card-body">
-                        <div class="row">
-                            <div class="col-12">
-                                <label for="select_secretaria" class="form-label">Secretaría</label>
-                                <select id="select_secretaria" class="selectpicker show-tick form-control" title="Seleccione..." data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
-                                </select>
-                            </div>
-                        </div>
+                        
                         <!-- Botones de accion -->
                         <div class="d-flex flex-row-reverse bd-highlight mt-4">
                             <div class="p-2 bd-highlight">
-                                <button type="button" id="BtnActualizacionPP" class="btn button-crud"><i class="bi bi-trash"></i> Actualización PPI</button>
+                                <button type="button" id="BtnActualizacionPP" class="btn button-crud"><i class="bi bi-trash"></i> Nuevo</button>
                             </div>
                             <div class="p-2 bd-highlight">
-                                <button type="button" id="BtnComponentes" class="btn button-crud"><i class="ri-edit-2-fill"></i> Tipo de proyectos</button>
+                                <button type="button" id="BtnComponentes" class="btn button-crud"><i class="ri-edit-2-fill"></i> Editar</button>
                             </div>
                         </div>
                         <!-- Botones de accion -->
@@ -99,16 +87,20 @@
                             <table id="table" class="table table-striped table-hover">
                                 <thead>
                                     <tr class="table-header text-center">
-                                        <th scope="col" class="d-none">Id Secretaria</th>
-                                        <th scope="col" width="10%">Id Clasificación</th>
-                                        <th scope="col" width="10%">Id Objetivo PED</th>
-                                        <th scope="col" width="10%">Anticorrupción</th>
-                                        <th scope="col" width="10%">Id Tipología</th>
-                                        <th scope="col" width="10%">Consecutivo</th>
-                                        <th scope="col" width="50%">Descripción del Programa</th>
+                                        <th scope="col" width="5em">Ejercicio</th>
+                                        <th scope="col" >Contenido</th>
                                     </tr>
                                 </thead>
-                                <tbody></tbody>
+                                <tbody>
+                                    <tr ng-repeat="e in vm.ejercicios">
+                                        <td>
+                                            <% e.Id %>
+                                        </td>
+                                        <td>
+                                            <% e.Contenido %>
+                                        </td>
+                                    </tr>
+                                </tbody>
                             </table>
                         </div>
                         <!-- End Table with stripped rows -->
@@ -125,7 +117,7 @@
                 <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
                 <input type="hidden" id="id"></input>
                 <div class="modal-header">
-                    <h5 class="modal-title">Tipos de Proyectos del Programa y Proyecto de Inversión</h5>
+                    <h5 class="modal-title">Componentes del Programa Presupuestario</h5>
                 </div>
                 <div class="modal-body">
                     <div class="row g-3">
@@ -171,24 +163,23 @@
                                 </div>
                             </div>
                         </div>
-                        
                         <div class="col-md-12 mt-0">
                             <div class="table-response mt-4">
                                 <table id="table_componentes" class="table table-striped table-hover">
                                     <thead>
                                         <tr class="table-header text-center">
-                                            <th width="10%">Id UA</th>
-                                            <th width="40%">Descripción UA</th>
-                                            <th width="10%">Programas y Proyectos</th>
-                                            <th width="40%">Descripción</th>
+                                            <th width="5%">Id UA</th>
+                                            <th width="30%">Descripción UA</th>
+                                            <th width="5%">Componentes</th>
+                                            <th width="60%">Descripción</th>
                                         </tr>
                                     </thead>
                                     <tbody></tbody>
                                 </table>
                             </div>
                         </div>
-
                         <div id="informacion_componente" class="col-md-12 d-none">
+                            <hr>
                             <form id="form_componente" autocomplete="off" method="post">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
                                 <div class="row">
@@ -223,7 +214,7 @@
                 <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>
                 <input type="hidden" id="id"></input>
                 <div class="modal-header">
-                    <h5 class="modal-title">Actualización del Programa y Proyecto de Inversión</h5>
+                    <h5 class="modal-title">Actualización de Programa Presupuestario</h5>
                 </div>
                 <form id="form_pp" autocomplete="off">
                     <div class="modal-body">
@@ -290,8 +281,7 @@
 
 @include('includes._partialFooter')
 <script src="js/Repository.js"></script>
-<script src="js/ProgramasProyectosInversion.js"></script>
-
+<script src="js/EjerciciosFiscales.js"></script>
 
 </body>
 
