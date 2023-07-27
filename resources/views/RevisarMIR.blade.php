@@ -2029,8 +2029,13 @@
 </div>
 
 @include('includes._partialFooter')
-<script src="js/Repository.js"></script>
-<script src="js/Mir.js"></script>
+<script src="/js/Repository.js"></script>
+<script src="/js/MirLlamadas.js"></script>
+<script src="/js/MirMetas.js"></script>
+<script src="/js/MirResponse.js"></script>
+<script src="/js/MirGuardar.js"></script>
+<script src="/js/Mir.js"></script>
+
 
 </body>
 
