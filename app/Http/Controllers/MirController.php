@@ -8,6 +8,7 @@ use App\MirProposito;
 use App\MirComponente;
 use App\MirActividad;
 use App\LogCarga;
+use App\LogFormula;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -54,12 +55,28 @@ class MirController extends Controller
         return response()->json(array('error' => false, 'data' => $info, 'code' => 200));
     }
 
+    public function caratula_consecutivo(Request $request)
+    {
+        $info = DB::table('MIR_CARATULA_View')
+            ->where('Consecutivo', $request->consecutivo)->first();
+
+        return response()->json(array('error' => false, 'data' => $info, 'code' => 200));
+    }
+
     public function fin(Request $request)
     {
         $info = DB::table('FIN1')
             ->where('ClasProgramatica', $request->consecutivo)->first();
 
         return response()->json(array('error' => false, 'data' => $info, 'code' => 200));
+    }
+
+    public function fin_validar(Request $request)
+    {
+        $info = DB::table('FIN1')
+            ->where('ClasProgramatica', $request->consecutivo)->first();
+
+        return $info;
     }
 
     public function proposito(Request $request)
@@ -70,6 +87,14 @@ class MirController extends Controller
         return response()->json(array('error' => false, 'data' => $info, 'code' => 200));
     }
 
+    public function proposito_validar(Request $request)
+    {
+        $info = DB::table('PROPOSITO')
+            ->where('ClasProgramatica', $request->consecutivo)->first();
+
+        return $info;
+    }
+
     public function componentes(Request $request)
     {
         $query = "SELECT * FROM COMPONENTE1 WHERE ClasProgramatica = '$request->consecutivo';";
@@ -77,11 +102,39 @@ class MirController extends Controller
         return response()->json(array('error' => false, 'data' => $info, 'code' => 200));
     }
 
+    public function componentes_validar(Request $request)
+    {
+        $query = "SELECT * FROM COMPONENTE1 WHERE ClasProgramatica = '$request->consecutivo';";
+        $info = DB::select($query);
+        return $info;
+    }
+
     public function actividades(Request $request)
     {
         $query = "SELECT * FROM ACTIVIDAD WHERE ClasProgramatica = '$request->consecutivo';";
         $info = DB::select($query);
         return response()->json(array('error' => false, 'data' => $info, 'code' => 200));
+    }
+
+    public function actividades_validar(Request $request)
+    {
+        $query = "SELECT * FROM ACTIVIDAD WHERE ClasProgramatica = '$request->consecutivo';";
+        $info = DB::select($query);
+        return $info;
+    }
+
+    public function actividadescomponente($consecutivo, $id_componente)
+    {
+        $query = "SELECT * FROM ACTIVIDAD WHERE ClasProgramatica = '$consecutivo' AND idComponente = '$id_componente';";
+        $info = DB::select($query);
+        return response()->json(array('error' => false, 'data' => $info, 'code' => 200));
+    }
+
+    public function actividadescomponente_validar($consecutivo, $id_componente)
+    {
+        $query = "SELECT * FROM ACTIVIDAD WHERE ClasProgramatica = '$consecutivo' AND idComponente = '$id_componente';";
+        $info = DB::select($query);
+        return $info;
     }
 
     public function auditoriacarga(Request $request)
@@ -103,12 +156,14 @@ class MirController extends Controller
         $info = array();
 
         // Eliminar información en carga
+        $this->deleteCarga($request->caratula['consecutivo_caratula']);
+/* 
         $delete = LogCarga::find($request->caratula['consecutivo_caratula']);
         if (is_null($delete)) {
             return response()->json(array('error' => true, 'result' => "No hay información en el log que eliminar.", 'code' => 404));
         }
         $delete->delete();
-
+ */
         // C A R A T U L A
         try {
             
@@ -1113,6 +1168,853 @@ class MirController extends Controller
         return response()->json(array('error' => false, 'result' => $info, 'actual' => $informacion, 'code' => 200));
     }
 
+    public function validarFormulas(Request $request){
+        $consecutivo = $request->consecutivo;
+        $fin = $this->fin_validar($request);
+        $proposito = $this->proposito_validar($request);
+        $componentes = $this->componentes_validar($request);
+        $actividades = $this->actividades_validar($request);
+    
+        // F O R M U L A S   D E   F I N
+        $array = array();
+        $this->deleteFormula($consecutivo);
+
+        $valida_fin = $this->validaFin($consecutivo, $fin);
+        
+        $ResultadoMeta_Fin = 0;
+        $ResultadoLineaBase_Fin = 0;
+        $MetaAnual_Fin = 0;
+        $LineaBase_Fin = 0;
+        
+        if ($valida_fin == 1){
+            $idelemento_carga = "F";
+            $seccion_carga = "Fin";
+            $numero = substr($fin->TipoFormula, 0, 1);
+            $signo = substr($fin->TipoFormula, 1, 1);
+    
+            $Denominador = $fin->ValorDenominador;
+            $Numerador = $fin->ValorNumerador;
+            $Numerador = str_replace(",", "", $Numerador);
+            $Denominador = str_replace(",", "", $Denominador);
+            $LineaBaseV1 = $fin->LineaBaseV1;
+            $LineaBaseV2 = $fin->LineaBaseV2;
+            $LineaBaseV1 = str_replace(",", "", $LineaBaseV1);
+            $LineaBaseV2 = str_replace(",", "", $LineaBaseV2);
+            $MetaAnual = $fin->MetaAnualOriginal;
+            $LineaBase = $fin->LineaBaseOriginal;
+            // echo "FIN";
+            switch ($numero) {
+                case 1:
+                    if ($signo == "-"){
+                        //((V1 - V2)/V2)*100
+                        if ($Denominador == "" || $Denominador == "-" || $Denominador == "0" || $Denominador == "0.00" || $Denominador == 0 || $Denominador == 0.00){
+                            $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "VARIABLE 2 (DENOMINADOR)", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Denominador, "");
+                            $ResultadoMeta_Fin = 0;
+                            // echo "FIN- $Denominador";
+                        }else{
+                            $ResultadoMeta_Fin = round(((floatval($Numerador) - floatval($Denominador)) / floatval($Denominador)) * 100, 2);
+                            // echo "FIN".$ResultadoMeta_Fin;
+                        }
+    
+                        if ($LineaBaseV2 == "" || $LineaBaseV2 == "-" || $LineaBaseV2 == "0" || $LineaBaseV2 == "0.00" || $LineaBaseV2 == 0 || $LineaBaseV2 == 0.00){
+                            $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "LÍNEA BASE V2", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $LineaBaseV2, "");
+                        }else{
+                            $ResultadoLineaBase_Fin = round(((floatval($LineaBaseV1) - floatval($LineaBaseV2)) / floatval($LineaBaseV2)) * 100, 2);
+                        }
+                    }else{
+                        //((V1 + V2)/V2)*100
+                        if ($Denominador == "" || $Denominador == "-" || $Denominador == "0" || $Denominador == "0.00" || $Denominador == 0 || $Denominador == 0.00){
+                            $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "VARIABLE 2 (DENOMINADOR)", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Denominador, "");
+                            $ResultadoMeta_Fin = 0;
+                        }else{
+                            $ResultadoMeta_Fin = round(((floatval($Numerador) + floatval($Denominador)) / floatval($Denominador)) * 100, 2);
+                        }
+    
+                        if ($LineaBaseV2 == "" || $LineaBaseV2 == "-" || $LineaBaseV2 == "0" || $LineaBaseV2 == "0.00" || $LineaBaseV2 == 0 || $LineaBaseV2 == 0.00){
+                            $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "LÍNEA BASE V2", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $LineaBaseV2, "");
+                        }else{
+                            $ResultadoLineaBase_Fin = round(((floatval($LineaBaseV1) + floatval($LineaBaseV2)) / floatval($LineaBaseV2)) * 100, 2);
+                        }
+                    }
+                    break;
+                case 2:
+                    if ($signo == "-"){
+                        //((V1 - V2)/V1)*100
+                        if ($Numerador == "" || $Numerador == "-" || $Numerador == "0" || $Numerador == "0.00" || $Numerador == 0 || $Numerador == 0.00){
+                            $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "VARIABLE 1 (NUMERADOR)", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Numerador, "");
+                            $ResultadoMeta_Fin = 0;
+                        }else{
+                            $ResultadoMeta_Fin = round((floatval($Numerador) - floatval($Denominador) / floatval($Numerador)) * 100, 2);
+                        }
+    
+                        if ($LineaBaseV1 == "" || $LineaBaseV1 == "-" || $LineaBaseV1 == "0" || $LineaBaseV1 == "0.00" || $LineaBaseV1 == 0 || $LineaBaseV1 == 0.00){
+                            $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "LÍNEA BASE V1", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $LineaBaseV1, "");
+                        }else{
+                            $ResultadoLineaBase_Fin = round(((floatval($LineaBaseV1) - floatval($LineaBaseV2)) / floatval($LineaBaseV1)) * 100, 2);
+                        }
+                    }else{
+                        //((V1 + V2)/V1)*100
+                        if ($Numerador == "" || $Numerador == "-" || $Numerador == "0" || $Numerador == "0.00" || $Numerador == 0 || $Numerador == 0.00){
+                            $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "VARIABLE 1 (NUMERADOR)", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Numerador, "");
+                            $ResultadoMeta_Fin = 0;
+                        }else{
+                            $ResultadoMeta_Fin = round(((floatval($Numerador) + floatval($Denominador)) / floatval($Numerador)) * 100, 2);
+                        }
+    
+                        if ($LineaBaseV1 == "" || $LineaBaseV1 == "-" || $LineaBaseV1 == "0" || $LineaBaseV1 == "0.00" || $LineaBaseV1 == 0 || $LineaBaseV1 == 0.00){
+                            $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "LÍNEA BASE V1", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $LineaBaseV1, "");
+                        }else{
+                            $ResultadoLineaBase_Fin = round(((floatval($LineaBaseV1) + floatval($LineaBaseV2)) / floatval($LineaBaseV1)) * 100, 2);
+                        }
+                    }
+                    break;
+                case 3:
+                    //V1/V2
+                    if ($Denominador == "" || $Denominador == "-" || $Denominador == "0" || $Denominador == "0.00" || $Denominador == 0 || $Denominador == 0.00){
+                        $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "VARIABLE 1 (DENOMINADOR)", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Numerador, "");
+                        $ResultadoMeta_Fin = 0;
+                    }else{
+                        $ResultadoMeta_Fin = round(floatval($Numerador) / floatval($Denominador), 2);
+                    }
+    
+                    if ($LineaBaseV2 == "" || $LineaBaseV2 == "-" || $LineaBaseV2 == "0" || $LineaBaseV2 == "0.00" || $LineaBaseV2 == 0 || $LineaBaseV2 == 0.00){
+                        $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "LÍNEA BASE V2", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $LineaBaseV2, "");
+                    }else{
+                        $ResultadoLineaBase_Fin = round(floatval($LineaBaseV1) / floatval($LineaBaseV2), 2);
+                    }
+                    break;
+                case 4:
+                    //(V1/V2)*100
+                    if ($Denominador == "" || $Denominador == "-" || $Denominador == "0" || $Denominador == "0.00" || $Denominador == 0 || $Denominador == 0.00){
+                        $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "VARIABLE 1 (DENOMINADOR)", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Numerador, "");
+                        $ResultadoMeta_Fin = 0;
+                    }else{
+                        $ResultadoMeta_Fin = round((floatval($Numerador) / floatval($Denominador))*100, 2);
+                    }
+    
+                    if ($LineaBaseV2 == "" || $LineaBaseV2 == "-" || $LineaBaseV2 == "0" || $LineaBaseV2 == "0.00" || $LineaBaseV2 == 0 || $LineaBaseV2 == 0.00){
+                        $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "LÍNEA BASE V2", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $LineaBaseV2, "");
+                    }else{
+                        $ResultadoLineaBase_Fin = round((floatval($LineaBaseV1) / floatval($LineaBaseV2))*100, 2);
+                    }
+                    break;
+            }
+    
+            if (abs(abs(floatval($MetaAnual)) - abs($ResultadoMeta_Fin)) <= 0.01){
+            }else{
+                $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "FÓRMULA META ANUAL", "REVISAR VALOR - EXISTEN DIFERENCIAS", $MetaAnual, $ResultadoMeta_Fin);
+                // echo "FIN- Meta Anual Original = $MetaAnual";
+                // echo "FIN- Resultado Meta Anual = $ResultadoMeta_Fin";
+                $MetaAnual_Fin = $ResultadoMeta_Fin;
+            }
+    
+            if (abs(abs(floatval($LineaBase)) - abs($ResultadoLineaBase_Fin)) <= 0.01){
+            }else{
+                $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "LÍNEA BASE", "REVISAR VALOR - EXISTEN DIFERENCIAS", $LineaBase, $ResultadoLineaBase_Fin);
+                $LineaBase_Fin = $ResultadoLineaBase_Fin;
+            }
+        }
+
+        $array_fin =  [
+            "ResultadoMeta_Fin" => $ResultadoMeta_Fin,
+            "ResultadoLineaBase_Fin" => $ResultadoLineaBase_Fin,
+            "MetaAnual_Fin" => $MetaAnual_Fin,
+            "LineaBase_Fin" => $LineaBase_Fin,
+        ];
+        array_push($array,$array_fin);
+    
+        // F O R M U L A S   D E   P R O P O S I T O
+        $valida_proposito = $this->validaProposito($consecutivo, $proposito);
+        $ResultadoMeta_Proposito = 0;
+        $ResultadoLineaBase_Proposito = 0;
+        $MetaAnual_Proposito = 0;
+        $LineaBase_Proposito = 0;
+        if ($valida_proposito == 1){
+            $idelemento_carga = "P";
+            $seccion_carga = "PROPÓSITO";
+            $numero = substr($proposito->TipoFormula, 0, 1);
+            $signo = substr($proposito->TipoFormula, 1, 1);
+    
+            $Denominador = $proposito->ValorDenominador;
+            $Numerador = $proposito->ValorNumerador;
+            $Numerador = str_replace(",", "", $Numerador);
+            $Denominador = str_replace(",", "", $Denominador);
+            $LineaBaseV1 = $proposito->LineaBaseV1;
+            $LineaBaseV2 = $proposito->LineaBaseV2;
+            $LineaBaseV1 = str_replace(",", "", $LineaBaseV1);
+            $LineaBaseV2 = str_replace(",", "", $LineaBaseV2);
+            $MetaAnual = $proposito->MetaAnualOriginal;
+            $LineaBase = $proposito->LineaBaseOriginal;
+            //echo "PROPóSITO";
+            switch ($numero) {
+                case 1:
+                    if ($signo == "-"){
+                        //((V1 - V2)/V2)*100
+                        if ($Denominador == "" || $Denominador == "-" || $Denominador == "0" || $Denominador == "0.00" || $Denominador == 0 || $Denominador == 0.00){
+                            $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "VARIABLE 2 (DENOMINADOR)", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Denominador, "");
+                        }else{
+                            $ResultadoMeta_Proposito = round(((floatval($Numerador) - floatval($Denominador)) / floatval($Denominador)) * 100, 2);
+                        }
+    
+                        if ($LineaBaseV2 == "" || $LineaBaseV2 == "-" || $LineaBaseV2 == "0" || $LineaBaseV2 == "0.00" || $LineaBaseV2 == 0 || $LineaBaseV2 == 0.00){
+                            $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "LÍNEA BASE V2", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $LineaBaseV2, "");
+                        }else{
+                            $ResultadoLineaBase_Proposito = round(((floatval($LineaBaseV1) - floatval($LineaBaseV2)) / floatval($LineaBaseV2)) * 100, 2);
+                            // echo "PROPOSITO LINEA BASE V1: $LineaBaseV1";
+                            // echo "PROPOSITO LINEA BASE V2: $LineaBaseV2";
+                            // $Tempo = floatval($LineaBaseV1) - floatval($LineaBaseV2);
+                            // echo "PROPOSITO V1 - V2: $Tempo";
+                            // $Tempo = $Tempo / floatval($LineaBaseV2);
+                            // echo "PROPOSITO TEMPO / V2: $Tempo";
+                            // echo "PROPOSITO RESULTADO LINEA BASE: $ResultadoLineaBase_Proposito";
+                        }
+                    }else{
+                        //((V1 + V2)/V2)*100
+                        if ($Denominador == "" || $Denominador == "-" || $Denominador == "0" || $Denominador == "0.00" || $Denominador == 0 || $Denominador == 0.00){
+                            $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "VARIABLE 2 (DENOMINADOR)", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Denominador, "");
+                        }else{
+                            $ResultadoMeta_Proposito = round(((floatval($Numerador) + floatval($Denominador)) / floatval($Denominador)) * 100, 2);
+                        }
+    
+                        if ($LineaBaseV2 == "" || $LineaBaseV2 == "-" || $LineaBaseV2 == "0" || $LineaBaseV2 == "0.00" || $LineaBaseV2 == 0 || $LineaBaseV2 == 0.00){
+                            $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "LÍNEA BASE V2", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $LineaBaseV2, "");
+                        }else{
+                            $ResultadoLineaBase_Proposito = round(((floatval($LineaBaseV1) + floatval($LineaBaseV2)) / floatval($LineaBaseV2)) * 100, 2);
+                        }
+                    }
+                    break;
+                case 2:
+                    if ($signo == "-"){
+                        //((V1 - V2)/V1)*100
+                        if ($Numerador == "" || $Numerador == "-" || $Numerador == "0" || $Numerador == "0.00" || $Numerador == 0 || $Numerador == 0.00){
+                            $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "VARIABLE 1 (NUMERADOR)", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Numerador, "");
+                        }else{
+                            $ResultadoMeta_Proposito = round(((floatval($Numerador) - floatval($Denominador)) / floatval($Numerador)) * 100, 2);
+                        }
+    
+                        if ($LineaBaseV1 == "" || $LineaBaseV1 == "-" || $LineaBaseV1 == "0" || $LineaBaseV1 == "0.00" || $LineaBaseV1 == 0 || $LineaBaseV1 == 0.00){
+                            $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "LÍNEA BASE V1", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $LineaBaseV1, "");
+                        }else{
+                            $ResultadoLineaBase_Proposito = round(((floatval($LineaBaseV1) - floatval($LineaBaseV2)) / floatval($LineaBaseV1)) * 100, 2);
+                        }
+                    }else{
+                        //((V1 + V2)/V1)*100
+                        if ($Numerador == "" || $Numerador == "-" || $Numerador == "0" || $Numerador == "0.00" || $Numerador == 0 || $Numerador == 0.00){
+                            $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "VARIABLE 1 (NUMERADOR)", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Numerador, "");
+                        }else{
+                            $ResultadoMeta_Proposito = round(((floatval($Numerador) + floatval($Denominador) / floatval($Numerador))) * 100, 2);
+                        }
+    
+                        if ($LineaBaseV1 == "" || $LineaBaseV1 == "-" || $LineaBaseV1 == "0" || $LineaBaseV1 == "0.00" || $LineaBaseV1 == 0 || $LineaBaseV1 == 0.00){
+                            $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "LÍNEA BASE V1", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $LineaBaseV1, "");
+                        }else{
+                            $ResultadoLineaBase_Proposito = round(((floatval($LineaBaseV1) + floatval($LineaBaseV2) / floatval($LineaBaseV1))) * 100, 2);
+                        }
+                    }
+                    break;
+                case 3:
+                    //V1/V2
+                    if ($Denominador == "" || $Denominador == "-" || $Denominador == "0" || $Denominador == "0.00" || $Denominador == 0 || $Denominador == 0.00){
+                        $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "VARIABLE 1 (DENOMINADOR)", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Numerador, "");
+                    }else{
+                        $ResultadoMeta_Proposito = round(floatval($Numerador) / floatval($Denominador), 2);
+                    }
+    
+                    if ($LineaBaseV2 == "" || $LineaBaseV2 == "-" || $LineaBaseV2 == "0" || $LineaBaseV2 == "0.00" || $LineaBaseV2 == 0 || $LineaBaseV2 == 0.00){
+                        $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "LÍNEA BASE V2", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $LineaBaseV2, "");
+                    }else{
+                        $ResultadoLineaBase_Proposito = round(floatval($LineaBaseV1) / floatval($LineaBaseV2), 2);
+                    }
+                    break;
+                case 4:
+                    //(V1/V2)*100
+                    if ($Denominador == "" || $Denominador == "-" || $Denominador == "0" || $Denominador == "0.00" || $Denominador == 0 || $Denominador == 0.00){
+                        $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "VARIABLE 1 (DENOMINADOR)", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Numerador, "");
+                    }else{
+                        $ResultadoMeta_Proposito = round((floatval($Numerador) / floatval($Denominador))*100, 2);
+                    }
+    
+                    if ($LineaBaseV2 == "" || $LineaBaseV2 == "-" || $LineaBaseV2 == "0" || $LineaBaseV2 == "0.00" || $LineaBaseV2 == 0 || $LineaBaseV2 == 0.00){
+                        $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "LÍNEA BASE V2", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $LineaBaseV2, "");
+                    }else{
+                        $ResultadoLineaBase_Proposito = round((floatval($LineaBaseV1) / floatval($LineaBaseV2))*100, 2);
+                    }
+                    break;
+            }
+    
+            if (abs(abs(floatval($MetaAnual)) - abs($ResultadoMeta_Proposito)) <= 0.01){
+            }else{
+                $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "FÓRMULA META ANUAL", "REVISAR VALOR - EXISTEN DIFERENCIAS", $MetaAnual, $ResultadoMeta_Proposito);
+                $MetaAnual_Proposito = $ResultadoMeta_Proposito;
+            }
+    
+            if (abs(abs(floatval($LineaBase)) - abs($ResultadoLineaBase_Proposito)) <= 0.01){
+            }else{
+                $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "LÍNEA BASE", "REVISAR VALOR - EXISTEN DIFERENCIAS", $LineaBase, $ResultadoLineaBase_Proposito);
+                $LineaBase_Proposito = $ResultadoLineaBase_Proposito;
+            }
+        }
+        $array_propsito = array (
+            "ResultadoMeta_Fin" => $ResultadoMeta_Proposito,
+            "ResultadoLineaBase_Fin" => $ResultadoLineaBase_Proposito,
+            "MetaAnual_Fin" => $MetaAnual_Proposito,
+            "LineaBase_Fin" => $LineaBase_Proposito,
+        );
+        array_push($array,$array_propsito);
+    
+        // F O R M U L A S   D E   C O M P O N E N T E S
+        $ResultadoLineaBase_Componente = 0;
+        for ($i=0; $i < count($componentes); $i++) { 
+            $componente = $componentes[$i];
+            $id_componente = $componente->idComponente;
+            $valida_componente = $this->validaComponente($consecutivo, $id_componente, $componente);
+    
+            // Validaciones de formulas
+            if ($valida_componente == 1){
+                $idelemento_carga = $id_componente;
+                $seccion_carga = "COMPONENTE ".$id_componente;
+                $numero = substr($componente->TipoFormula, 0, 1);
+                $signo = substr($componente->TipoFormula, 1, 1);
+    
+                $Denominador = $componente->ValorDenominador;
+                $Numerador = $componente->ValorNumerador;
+                $Numerador = str_replace(",", "", $Numerador);
+                $Denominador = str_replace(",", "", $Denominador);
+                $LineaBaseV1 = $componente->LineaBaseV1;
+                $LineaBaseV2 = $componente->LineaBaseV2;
+                $LineaBaseV1 = str_replace(",", "", $LineaBaseV1);
+                $LineaBaseV2 = str_replace(",", "", $LineaBaseV2);
+                $MetaAnual = $componente->MetaAnual;
+                $LineaBase = $componente->LineaBase;
+                $Frecuencia = $componente->Frecuencia;
+                $Semestre1V1 = $componente->Semestre1V1;
+                $Semestre1V2 = $componente->Semestre1V2;
+                $Semestre2V1 = $componente->Semestre2V1;
+                $Semestre2V2 = $componente->Semestre2V2;
+                $Semestre1V1 = str_replace(",", "", $Semestre1V1);
+                $Semestre1V2 = str_replace(",", "", $Semestre1V2);
+                $Semestre2V1 = str_replace(",", "", $Semestre2V1);
+                $Semestre2V2 = str_replace(",", "", $Semestre2V2);
+                //
+                $MetaTrimestre4 = $componente->MetaTrimestre4; //Deciía MEtaTrimestre4
+                $Trimestre1V1 = $componente->Trimestre1V1;
+                $Trimestre2V1 = $componente->Trimestre2V1;
+                $Trimestre3V1 = $componente->Trimestre3V1;
+                $Trimestre4V1 = $componente->Trimestre4V1;
+                $Trimestre1V2 = $componente->Trimestre1V2;
+                $Trimestre2V2 = $componente->Trimestre2V2;
+                $Trimestre3V2 = $componente->Trimestre3V2;
+                $Trimestre4V2 = $componente->Trimestre4V2;
+                $Trimestre1V1 = str_replace(",", "", $Trimestre1V1);
+                $Trimestre2V1 = str_replace(",", "", $Trimestre2V1);
+                $Trimestre3V1 = str_replace(",", "", $Trimestre3V1);
+                $Trimestre4V1 = str_replace(",", "", $Trimestre4V1);
+                $Trimestre1V2 = str_replace(",", "", $Trimestre1V2);
+                $Trimestre2V2 = str_replace(",", "", $Trimestre2V2);
+                $Trimestre3V2 = str_replace(",", "", $Trimestre3V2);
+                $Trimestre4V2 = str_replace(",", "", $Trimestre4V2);
+                //
+                $MetaAnualOriginal_Comp = $componente->MetaAnualOriginal;
+                $LineaBaseOriginal_Comp = $componente->LineaBaseOriginal;      
+                $ValorNumeradorOriginal_Comp = $componente->ValorNumeradorOriginal; 
+                $ValorDenominadorOriginal_Comp = $componente->ValorDenominadorOriginal;         
+                
+                //echo "COMPONENTES: COMPONENTE [" . $componente . "]";
+                switch ($numero) {
+                    case 1:
+                        if ($signo == "-"){
+                            //((V1 - V2)/V2)*100
+                            if ($Denominador == "" || $Denominador == "-" || $Denominador == "0" || $Denominador == "0.00" || $Denominador == 0 || $Denominador == 0.00){
+                                $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "VARIABLE 2 (DENOMINADOR)", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Denominador, "");
+                            }else{
+                                $ResultadoMeta_Componente = round(((floatval($Numerador) - floatval($Denominador)) / floatval($Denominador)) * 100, 2);
+                            }
+    
+                            if ($LineaBaseV2 == "" || $LineaBaseV2 == "-" || $LineaBaseV2 == "0" || $LineaBaseV2 == "0.00" || $LineaBaseV2 == 0 || $LineaBaseV2 == 0.00){
+                                $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "LÍNEA BASE V2", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $LineaBaseV2, "");
+                            }else{
+                                $ResultadoLineaBase_Componente = round(((floatval($LineaBaseV1) - floatval($LineaBaseV2)) / floatval($LineaBaseV2)) * 100, 2);
+                            }
+    
+                            if ($Frecuencia == "SEMESTRAL"){
+                                if ($Semestre1V1 == "" || $Semestre1V1 == "-" || $Semestre1V1 == "0" || $Semestre1V1 == "0.00" || $Semestre1V1 == 0 || $Semestre1V1 == 0.00){
+                                    $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "SEMESTRE 1 VARIABLE 1", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Semestre1V1, "");
+                                } else if ($Semestre1V2 == "" || $Semestre1V2 == "-" || $Semestre1V2 == "0" || $Semestre1V2 == "0.00" || $Semestre1V2 == 0 || $Semestre1V2 == 0.00) {
+                                    $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "SEMESTRE 1 VARIABLE 2", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Semestre1V2, "");
+                                } else{
+                                    $Resultado_MetaSemestral1 = round(((floatval($Semestre1V1) - floatval($Semestre1V2)) / floatval($Semestre1V2)) * 100, 2);
+                                }
+    
+                                if ($Semestre2V1 == "" || $Semestre2V1 == "-" || $Semestre2V1 == "0" || $Semestre2V1 == "0.00" || $Semestre2V1 == 0 || $Semestre2V1 == 0.00){
+                                    $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "SEMESTRE 2 VARIABLE 1", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Semestre2V1, "");
+                                } else if ($Semestre2V2 == "" || $Semestre2V2 == "-" || $Semestre2V2 == "0" || $Semestre2V2 == "0.00" || $Semestre2V2 == 0 || $Semestre2V2 == 0.00) {
+                                    $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "SEMESTRE 2 VARIABLE 2", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Semestre2V2, "");
+                                } else{
+                                    $Resultado_MetaSemestral2 = round(((floatval($Semestre2V1) - floatval($Semestre2V2)) / floatval($Semestre2V2)) * 100, 2);
+                                }
+                            }
+                            else {
+                                //Trimestre 1
+                                if ($Trimestre1V1 == "" || $Trimestre1V1 == "-" || $Trimestre1V1 == "0" || $Trimestre1V1 == "0.00" || $Trimestre1V1 == 0 || $Trimestre1V1 == 0.00){
+                                    $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "TRIMESTRE 1 VARIABLE 1", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Trimestre1V1, "");
+                                } else if ($Trimestre1V2 == "" || $Trimestre1V2 == "-" || $Trimestre1V2 == "0" || $Trimestre1V2 == "0.00" || $Trimestre1V2 == 0 || $Trimestre1V2 == 0.00) {
+                                    $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "TRIMESTRE 1 VARIABLE 2", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Trimestre1V2, "");
+                                } else{
+                                    $Resultado_MetaTrimestral1 = round(((floatval($Trimestre1V1) - floatval($Trimestre1V2)) / floatval($Trimestre1V2)) * 100, 2);
+                                }
+                                //Trimestre 2
+                                if ($Trimestre2V1 == "" || $Trimestre2V1 == "-" || $Trimestre2V1 == "0" || $Trimestre2V1 == "0.00" || $Trimestre2V1 == 0 || $Trimestre2V1 == 0.00){
+                                    $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "TRIMESTRE 2 VARIABLE 1", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Trimestre2V1, "");
+                                } else if ($Trimestre2V2 == "" || $Trimestre2V2 == "-" || $Trimestre2V2 == "0" || $Trimestre2V2 == "0.00" || $Trimestre2V2 == 0 || $Trimestre2V2 == 0.00) {
+                                    $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "TRIMESTRE 2 VARIABLE 2", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Trimestre2V2, "");
+                                } else{
+                                    $Resultado_MetaTrimestral2 = round(((floatval($Trimestre2V1) - floatval($Trimestre2V2)) / floatval($Trimestre2V2)) * 100, 2);
+                                }
+                                //Trimestre 3
+                                if ($Trimestre3V1 == "" || $Trimestre3V1 == "-" || $Trimestre3V1 == "0" || $Trimestre3V1 == "0.00" || $Trimestre3V1 == 0 || $Trimestre3V1 == 0.00){
+                                    $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "TRIMESTRE 3 VARIABLE 1", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Trimestre3V1, "");
+                                } else if ($Trimestre3V2 == "" || $Trimestre3V2 == "-" || $Trimestre3V2 == "0" || $Trimestre3V2 == "0.00" || $Trimestre3V2 == 0 || $Trimestre3V2 == 0.00) {
+                                    $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "TRIMESTRE 3 VARIABLE 2", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Trimestre3V2, "");
+                                } else{
+                                    $Resultado_MetaTrimestral3 = round(((floatval($Trimestre3V1) - floatval($Trimestre3V2)) / floatval($Trimestre3V2)) * 100, 2);
+                                }
+                                //Trimestre 4
+                                if ($Trimestre4V1 == "" || $Trimestre4V1 == "-" || $Trimestre4V1 == "0" || $Trimestre4V1 == "0.00" || $Trimestre4V1 == 0 || $Trimestre4V1 == 0.00){
+                                    $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "TRIMESTRE 4 VARIABLE 1", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Trimestre4V1, "");
+                                } else if ($Trimestre4V2 == "" || $Trimestre4V2 == "-" || $Trimestre4V2 == "0" || $Trimestre4V2 == "0.00" || $Trimestre4V2 == 0 || $Trimestre4V2 == 0.00) {
+                                    $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "TRIMESTRE 4 VARIABLE 2", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Trimestre4V2, "");
+                                } else{
+                                    $Resultado_MetaTrimestral4 = round(((floatval($Trimestre4V1) - floatval($Trimestre4V2)) / floatval($Trimestre4V2)) * 100, 2);
+                                }
+    
+                            }
+                        }else{
+                            //((V1 + V2)/V2)*100
+                            if ($Denominador == "" || $Denominador == "-" || $Denominador == "0" || $Denominador == "0.00" || $Denominador == 0 || $Denominador == 0.00){
+                                $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "VARIABLE 2 (DENOMINADOR)", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Denominador, "");
+                            }else{
+                                $ResultadoMeta_Proposito = round(((floatval($Numerador) + floatval($Denominador)) / floatval($Denominador)) * 100, 2);
+                            }
+    
+                            if ($LineaBaseV2 == "" || $LineaBaseV2 == "-" || $LineaBaseV2 == "0" || $LineaBaseV2 == "0.00" || $LineaBaseV2 == 0 || $LineaBaseV2 == 0.00){
+                                $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "LÍNEA BASE V2", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $LineaBaseV2, "");
+                            }else{
+                                $ResultadoLineaBase_Proposito = round(((floatval($LineaBaseV1) + floatval($LineaBaseV2)) / floatval($LineaBaseV2)) * 100, 2);
+                            }
+                            if ($Frecuencia == "SEMESTRAL"){
+                                if ($Semestre1V1 == "" || $Semestre1V1 == "-" || $Semestre1V1 == "0" || $Semestre1V1 == "0.00" || $Semestre1V1 == 0 || $Semestre1V1 == 0.00){
+                                    $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "SEMESTRE 1 VARIABLE 1", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Semestre1V1, "");
+                                } else if ($Semestre1V2 == "" || $Semestre1V2 == "-" || $Semestre1V2 == "0" || $Semestre1V2 == "0.00" || $Semestre1V2 == 0 || $Semestre1V2 == 0.00) {
+                                    $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "SEMESTRE 1 VARIABLE 2", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Semestre1V2, "");
+                                } else{
+                                    $Resultado_MetaSemestral1 = round(((floatval($Semestre1V1) + floatval($Semestre1V2)) / floatval($Semestre1V2)) * 100, 2);
+                                }
+    
+                                if ($Semestre2V1 == "" || $Semestre2V1 == "-" || $Semestre2V1 == "0" || $Semestre2V1 == "0.00" || $Semestre2V1 == 0 || $Semestre2V1 == 0.00){
+                                    $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "SEMESTRE 2 VARIABLE 1", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Semestre2V1, "");
+                                } else if ($Semestre2V2 == "" || $Semestre2V2 == "-" || $Semestre2V2 == "0" || $Semestre2V2 == "0.00" || $Semestre2V2 == 0 || $Semestre2V2 == 0.00) {
+                                    $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "SEMESTRE 2 VARIABLE 2", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Semestre2V2, "");
+                                } else{
+                                    $Resultado_MetaSemestral2 = round(((floatval($Semestre2V1) + floatval($Semestre2V2)) / floatval($Semestre2V2)) * 100, 2);
+                                }
+                            }
+                            else {
+                                //Trimestre 1
+                                if ($Trimestre1V1 == "" || $Trimestre1V1 == "-" || $Trimestre1V1 == "0" || $Trimestre1V1 == "0.00" || $Trimestre1V1 == 0 || $Trimestre1V1 == 0.00){
+                                    $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "TRIMESTRE 1 VARIABLE 1", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Trimestre1V1, "");
+                                } else if ($Trimestre1V2 == "" || $Trimestre1V2 == "-" || $Trimestre1V2 == "0" || $Trimestre1V2 == "0.00" || $Trimestre1V2 == 0 || $Trimestre1V2 == 0.00) {
+                                    $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "TRIMESTRE 1 VARIABLE 2", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Trimestre1V2, "");
+                                } else{
+                                    $Resultado_MetaTrimestral1 = round(((floatval($Trimestre1V1) + floatval($Trimestre1V2)) / floatval($Trimestre1V2)) * 100, 2);
+                                }
+                                //Trimestre 2
+                                if ($Trimestre2V1 == "" || $Trimestre2V1 == "-" || $Trimestre2V1 == "0" || $Trimestre2V1 == "0.00" || $Trimestre2V1 == 0 || $Trimestre2V1 == 0.00){
+                                    $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "TRIMESTRE 2 VARIABLE 1", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Trimestre2V1, "");
+                                } else if ($Trimestre2V2 == "" || $Trimestre2V2 == "-" || $Trimestre2V2 == "0" || $Trimestre2V2 == "0.00" || $Trimestre2V2 == 0 || $Trimestre2V2 == 0.00) {
+                                    $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "TRIMESTRE 2 VARIABLE 2", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Trimestre2V2, "");
+                                } else{
+                                    $Resultado_MetaTrimestral2 = round(((floatval($Trimestre2V1) + floatval($Trimestre2V2)) / floatval($Trimestre2V2)) * 100, 2);
+                                }
+                                //Trimestre 3
+                                if ($Trimestre3V1 == "" || $Trimestre3V1 == "-" || $Trimestre3V1 == "0" || $Trimestre3V1 == "0.00" || $Trimestre3V1 == 0 || $Trimestre3V1 == 0.00){
+                                    $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "TRIMESTRE 3 VARIABLE 1", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Trimestre3V1, "");
+                                } else if ($Trimestre3V2 == "" || $Trimestre3V2 == "-" || $Trimestre3V2 == "0" || $Trimestre3V2 == "0.00" || $Trimestre3V2 == 0 || $Trimestre3V2 == 0.00) {
+                                    $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "TRIMESTRE 3 VARIABLE 2", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Trimestre3V2, "");
+                                } else{
+                                    $Resultado_MetaTrimestral3 = round(((floatval($Trimestre3V1) + floatval($Trimestre3V2)) / floatval($Trimestre3V2)) * 100, 2);
+                                }
+                                //Trimestre 4
+                                if ($Trimestre4V1 == "" || $Trimestre4V1 == "-" || $Trimestre4V1 == "0" || $Trimestre4V1 == "0.00" || $Trimestre4V1 == 0 || $Trimestre4V1 == 0.00){
+                                    $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "TRIMESTRE 4 VARIABLE 1", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Trimestre4V1, "");
+                                } else if ($Trimestre4V2 == "" || $Trimestre4V2 == "-" || $Trimestre4V2 == "0" || $Trimestre4V2 == "0.00" || $Trimestre4V2 == 0 || $Trimestre4V2 == 0.00) {
+                                    $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "TRIMESTRE 4 VARIABLE 2", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Trimestre4V2, "");
+                                } else{
+                                    $Resultado_MetaTrimestral4 = round(((floatval($Trimestre4V1) + floatval($Trimestre4V2)) / floatval($Trimestre4V2)) * 100, 2);
+                                }
+                            }
+                        }
+                        break;
+                    case 2:
+                        if ($signo == "-"){
+                            //((V1 - V2)/V1)*100
+                            if ($Numerador == "" || $Numerador == "-" || $Numerador == "0" || $Numerador == "0.00" || $Numerador == 0 || $Numerador == 0.00){
+                                $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "VARIABLE 1 (NUMERADOR)", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Numerador, "");
+                            }else{
+                                $ResultadoMeta_Proposito = round(((floatval($Numerador) - floatval($Denominador)) / floatval($Numerador)) * 100, 2);
+                            }
+    
+                            if ($LineaBaseV1 == "" || $LineaBaseV1 == "-" || $LineaBaseV1 == "0" || $LineaBaseV1 == "0.00" || $LineaBaseV1 == 0 || $LineaBaseV1 == 0.00){
+                                $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "LÍNEA BASE V1", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $LineaBaseV1, "");
+                            }else{
+                                $ResultadoLineaBase_Proposito = round(((floatval($LineaBaseV1) - floatval($LineaBaseV2)) / floatval($LineaBaseV1)) * 100, 2);
+                            }
+                            if ($Frecuencia == "SEMESTRAL"){
+                                if ($Semestre1V1 == "" ||$Semestre1V1 == "-" ||$Semestre1V1 == "0" || $Semestre1V1 == "0.00" || $Semestre1V1 == 0 || $Semestre1V1 == 0.00){
+                                    $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "SEMESTRE 1 VARIABLE 1", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Semestre1V1, "");
+                                } else if ($Semestre1V2 == "" || $Semestre1V2 == "-" || $Semestre1V2 == "0" || $Semestre1V2 == "0.00" || $Semestre1V2 == 0 || $Semestre1V2 == 0.00) {
+                                    $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "SEMESTRE 1 VARIABLE 2", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Semestre1V2, "");
+                                } else{
+                                    $Resultado_MetaSemestral1 = round(((floatval($Semestre1V1) - floatval($Semestre1V2)) / floatval($Semestre1V1)) * 100, 2);
+                                }
+    
+                                if ($Semestre2V1 == "" || $Semestre2V1 == "-" || $Semestre2V1 == "0" || $Semestre2V1 == "0.00" || $Semestre2V1 == 0 || $Semestre2V1 == 0.00){
+                                    $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "SEMESTRE 2 VARIABLE 1", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Semestre2V1, "");
+                                } else if ($Semestre2V2 == "" || $Semestre2V2 == "-" || $Semestre2V2 == "0" || $Semestre2V2 == "0.00" || $Semestre2V2 == 0 || $Semestre2V2 == 0.00) {
+                                    $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "SEMESTRE 2 VARIABLE 2", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Semestre2V2, "");
+                                } else{
+                                    $Resultado_MetaSemestral2 = round(((floatval($Semestre2V1) - floatval($Semestre2V2)) / floatval($Semestre2V1)) * 100, 2);
+                                }
+                            }
+                            else {
+                                //Trimestre 1
+                                if ($Trimestre1V1 == "" || $Trimestre1V1 == "-" || $Trimestre1V1 == "0" || $Trimestre1V1 == "0.00" || $Trimestre1V1 == 0 || $Trimestre1V1 == 0.00){
+                                    $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "TRIMESTRE 1 VARIABLE 1", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Trimestre1V1, "");
+                                } else if ($Trimestre1V2 == "" || $Trimestre1V2 == "-" || $Trimestre1V2 == "0" || $Trimestre1V2 == "0.00" || $Trimestre1V2 == 0 || $Trimestre1V2 == 0.00) {
+                                    $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "TRIMESTRE 1 VARIABLE 2", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Trimestre1V2, "");
+                                } else{
+                                    $Resultado_MetaTrimestral1 = round(((floatval($Trimestre1V1) - floatval($Trimestre1V2)) / floatval($Trimestre1V1)) * 100, 2);
+                                }
+                                //Trimestre 2
+                                if ($Trimestre2V1 == "" || $Trimestre2V1 == "-" || $Trimestre2V1 == "0" || $Trimestre2V1 == "0.00" || $Trimestre2V1 == 0 || $Trimestre2V1 == 0.00){
+                                    $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "TRIMESTRE 2 VARIABLE 1", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Trimestre2V1, "");
+                                } else if ($Trimestre2V2 == "" || $Trimestre2V2 == "-" || $Trimestre2V2 == "0" || $Trimestre2V2 == "0.00" || $Trimestre2V2 == 0 || $Trimestre2V2 == 0.00) {
+                                    $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "TRIMESTRE 2 VARIABLE 2", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Trimestre2V2, "");
+                                } else{
+                                    $Resultado_MetaTrimestral2 = round(((floatval($Trimestre2V1) - floatval($Trimestre2V2)) / floatval($Trimestre2V1)) * 100, 2);
+                                }
+                                //Trimestre 3
+                                if ($Trimestre3V1 == "" || $Trimestre3V1 == "-" || $Trimestre3V1 == "0" || $Trimestre3V1 == "0.00" || $Trimestre3V1 == 0 || $Trimestre3V1 == 0.00){
+                                    $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "TRIMESTRE 3 VARIABLE 1", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Trimestre3V1, "");
+                                } else if ($Trimestre3V2 == "" || $Trimestre3V2 == "-" || $Trimestre3V2 == "0" || $Trimestre3V2 == "0.00" || $Trimestre3V2 == 0 || $Trimestre3V2 == 0.00) {
+                                    $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "TRIMESTRE 3 VARIABLE 2", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Trimestre3V2, "");
+                                } else{
+                                    $Resultado_MetaTrimestral3 = round(((floatval($Trimestre3V1) - floatval($Trimestre3V2)) / floatval($Trimestre3V1)) * 100, 2);
+                                }
+                                //Trimestre 4
+                                if ($Trimestre4V1 == "" || $Trimestre4V1 == "-" || $Trimestre4V1 == "0" || $Trimestre4V1 == "0.00" || $Trimestre4V1 == 0 || $Trimestre4V1 == 0.00){
+                                    $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "TRIMESTRE 1 VARIABLE 1", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Trimestre4V1, "");
+                                } else if ($Trimestre4V2 == "" || $Trimestre4V2 == "-" || $Trimestre4V2 == "0" || $Trimestre4V2 == "0.00" || $Trimestre4V2 == 0 || $Trimestre4V2 == 0.00) {
+                                    $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "TRIMESTRE 1 VARIABLE 2", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Trimestre4V2, "");
+                                } else{
+                                    $Resultado_MetaTrimestral4 = round(((floatval($Trimestre4V1) - floatval($Trimestre4V2)) / floatval($Trimestre4V1)) * 100, 2);
+                                }
+    
+                            }
+                        }else{
+                            //((V1 + V2)/V1)*100       
+                            if ($Numerador == "" || $Numerador == "-" || $Numerador == "0" || $Numerador == "0.00" || $Numerador == 0 || $Numerador == 0.00){
+                                $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "VARIABLE 1 (NUMERADOR)", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Numerador, "");
+                            }else{
+                                $ResultadoMeta_Proposito = round(((floatval($Numerador) + floatval($Denominador)) / floatval($Numerador)) * 100, 2);
+                            }
+    
+                            if ($LineaBaseV1 == "" || $LineaBaseV1 == "-" || $LineaBaseV1 == "0" || $LineaBaseV1 == "0.00" || $LineaBaseV1 == 0 || $LineaBaseV1 == 0.00){
+                                $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "LÍNEA BASE V1", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $LineaBaseV1, "");
+                            }else{
+                                $ResultadoLineaBase_Proposito = round(((floatval($LineaBaseV1) + floatval($LineaBaseV2)) / floatval($LineaBaseV1)) * 100, 2);
+                            }
+                            if ($Frecuencia == "SEMESTRAL"){
+                                if ($Semestre1V1 == "" || $Semestre1V1 == "-" || $Semestre1V1 == "0" || $Semestre1V1 == "0.00" || $Semestre1V1 == 0 || $Semestre1V1 == 0.00){
+                                    $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "SEMESTRE 1 VARIABLE 1", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Semestre1V1, "");
+                                } else if ($Semestre1V2 == "" || $Semestre1V2 == "-" || $Semestre1V2 == "0" || $Semestre1V2 == "0.00" || $Semestre1V2 == 0 || $Semestre1V2 == 0.00) {
+                                    $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "SEMESTRE 1 VARIABLE 2", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Semestre1V2, "");
+                                } else{
+                                    $Resultado_MetaSemestral1 = round(((floatval($Semestre1V1) + floatval($Semestre1V2)) / floatval($Semestre1V1)) * 100, 2);
+                                }
+    
+                                if ($Semestre2V1 == "" || $Semestre2V1 == "-" || $Semestre2V1 == "0" || $Semestre2V1 == "0.00" || $Semestre2V1 == 0 || $Semestre2V1 == 0.00){
+                                    $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "SEMESTRE 2 VARIABLE 1", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Semestre2V1, "");
+                                } else if ($Semestre2V2 == "" || $Semestre2V2 == "-" || $Semestre2V2 == "0" || $Semestre2V2 == "0.00" || $Semestre2V2 == 0 || $Semestre2V2 == 0.00) {
+                                    $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "SEMESTRE 2 VARIABLE 2", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Semestre2V2, "");
+                                } else{
+                                    $Resultado_MetaSemestral2 = round(((floatval($Semestre2V1) + floatval($Semestre2V2)) / floatval($Semestre2V1)) * 100, 2);
+                                }
+                            }
+                            else {
+                                //Trimestre 1
+                                if ($Trimestre1V1 == "" || $Trimestre1V1 == "-" || $Trimestre1V1 == "0" || $Trimestre1V1 == "0.00" || $Trimestre1V1 == 0 || $Trimestre1V1 == 0.00){
+                                    $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "TRIMESTRE 1 VARIABLE 1", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Trimestre1V1, "");
+                                } else if ($Trimestre1V2 == "0" || $Trimestre1V2 == "0.00" || $Trimestre1V2 == 0 || $Trimestre1V2 == 0.00) {
+                                    $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "TRIMESTRE 1 VARIABLE 2", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Trimestre1V2, "");
+                                } else{
+                                    $Resultado_MetaTrimestral1 = round(((floatval($Trimestre1V1) + floatval($Trimestre1V2)) / floatval($Trimestre1V1)) * 100, 2);
+                                }
+                                //Trimestre 2
+                                if ($Trimestre2V1 == "" || $Trimestre2V1 == "-" || $Trimestre2V1 == "0" || $Trimestre2V1 == "0.00" || $Trimestre2V1 == 0 || $Trimestre2V1 == 0.00){
+                                    $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "TRIMESTRE 2 VARIABLE 1", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Trimestre2V1, "");
+                                } else if ($Trimestre2V2 == "" || $Trimestre2V2 == "-" || $Trimestre2V2 == "0" || $Trimestre2V2 == "0.00" || $Trimestre2V2 == 0 || $Trimestre2V2 == 0.00) {
+                                    $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "TRIMESTRE 2 VARIABLE 2", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Trimestre2V2, "");
+                                } else{
+                                    $Resultado_MetaTrimestral2 = round(((floatval($Trimestre2V1) + floatval($Trimestre2V2)) / floatval($Trimestre2V1)) * 100, 2);
+                                }
+                                //Trimestre 3
+                                if ($Trimestre3V1 == "" || $Trimestre3V1 == "-" || $Trimestre3V1 == "0" || $Trimestre3V1 == "0.00" || $Trimestre3V1 == 0 || $Trimestre3V1 == 0.00){
+                                    $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "TRIMESTRE 3 VARIABLE 1", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Trimestre3V1, "");
+                                } else if ($Trimestre3V2 == "" || $Trimestre3V2 == "-" || $Trimestre3V2 == "0" || $Trimestre3V2 == "0.00" || $Trimestre3V2 == 0 || $Trimestre3V2 == 0.00) {
+                                    $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "TRIMESTRE 3 VARIABLE 2", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Trimestre3V2, "");
+                                } else{
+                                    $Resultado_MetaTrimestral3 = round(((floatval($Trimestre3V1) + floatval($Trimestre3V2)) / floatval($Trimestre3V1)) * 100, 2);
+                                }
+                                //Trimestre 4
+                                if ($Trimestre4V1 == "" || $Trimestre4V1 == "-" || $Trimestre4V1 == "0" || $Trimestre4V1 == "0.00" || $Trimestre4V1 == 0 || $Trimestre4V1 == 0.00){
+                                    $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "TRIMESTRE 1 VARIABLE 1", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Trimestre4V1, "");
+                                } else if ($Trimestre4V2 == "" || $Trimestre4V2 == "-" || $Trimestre4V2 == "0" || $Trimestre4V2 == "0.00" || $Trimestre4V2 == 0 || $Trimestre4V2 == 0.00) {
+                                    $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "TRIMESTRE 1 VARIABLE 2", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Trimestre4V2, "");
+                                } else{
+                                    $Resultado_MetaTrimestral4 = round(((floatval($Trimestre4V1) + floatval($Trimestre4V2)) / floatval($Trimestre4V1)) * 100, 2);
+                                }
+                            }
+                        }
+                        break;
+                    case 3:
+                        //V1/V2
+                        if ($Denominador == "" || $Denominador == "-" || $Denominador == "0" || $Denominador == "0.00" || $Denominador == 0 || $Denominador == 0.00){
+                            $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "VARIABLE 1 (DENOMINADOR)", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Numerador, "");
+                        }else{
+                            $ResultadoMeta_Proposito = round(floatval($Numerador) / floatval($Denominador), 2);
+                        }
+    
+                        if ($LineaBaseV2 == "" || $LineaBaseV2 == "-" || $LineaBaseV2 == "0" || $LineaBaseV2 == "0.00" || $LineaBaseV2 == 0 || $LineaBaseV2 == 0.00){
+                            $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "LÍNEA BASE V2", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $LineaBaseV2, "");
+                        }else{
+                            $ResultadoLineaBase_Proposito = round(floatval($LineaBaseV1) / floatval($LineaBaseV2), 2);
+                        }
+                        break;
+                        if ($Frecuencia == "SEMESTRAL"){
+                            if ($Semestre1V1 == "" || $Semestre1V1 == "-" || $Semestre1V1 == "0" || $Semestre1V1 == "0.00" || $Semestre1V1 == 0 || $Semestre1V1 == 0.00){
+                                $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "SEMESTRE 1 VARIABLE 1", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Semestre1V1, "");
+                            } else if ($Semestre1V2 == "" || $Semestre1V2 == "-" || $Semestre1V2 == "0" || $Semestre1V2 == "0.00" || $Semestre1V2 == 0 || $Semestre1V2 == 0.00) {
+                                $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "SEMESTRE 1 VARIABLE 2", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Semestre1V2, "");
+                            } else{
+                                $Resultado_MetaSemestral1 = round(floatval($Semestre1V1) / floatval($Semestre1V2), 2);
+                            }
+    
+                            if ($Semestre2V1 == "" || $Semestre2V1 == "-" || $Semestre2V1 == "0" || $Semestre2V1 == "0.00" || $Semestre2V1 == 0 || $Semestre2V1 == 0.00){
+                                $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "SEMESTRE 2 VARIABLE 1", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Semestre2V1, "");
+                            } else if ($Semestre2V2 == "" || $Semestre2V2 == "-" || $Semestre2V2 == "0" || $Semestre2V2 == "0.00" || $Semestre2V2 == 0 || $Semestre2V2 == 0.00) {
+                                $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "SEMESTRE 2 VARIABLE 2", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Semestre2V2, "");
+                            } else{
+                                $Resultado_MetaSemestral2 = round(floatval($Semestre2V1) / floatval($Semestre2V2), 2);
+                            }
+                        }
+                        else {
+                            //Trimestre 1
+                            if ($Trimestre1V1 == "" || $Trimestre1V1 == "-" || $Trimestre1V1 == "0" || $Trimestre1V1 == "0.00" || $Trimestre1V1 == 0 || $Trimestre1V1 == 0.00){
+                                $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "TRIMESTRE 1 VARIABLE 1", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Trimestre1V1, "");
+                            } else if ($Trimestre1V2 == "" || $Trimestre1V2 == "-" || $Trimestre1V2 == "0" || $Trimestre1V2 == "0.00" || $Trimestre1V2 == 0 || $Trimestre1V2 == 0.00) {
+                                $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "TRIMESTRE 1 VARIABLE 2", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Trimestre1V2, "");
+                            } else{
+                                $Resultado_MetaTrimestral1 = round(floatval($Trimestre1V1) / floatval($Trimestre1V2), 2);
+                            }
+                            //Trimestre 2
+                            if ($Trimestre2V1 == "" || $Trimestre2V1 == "-" || $Trimestre2V1 == "0" || $Trimestre2V1 == "0.00" || $Trimestre2V1 == 0 || $Trimestre2V1 == 0.00){
+                                $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "TRIMESTRE 2 VARIABLE 1", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Trimestre2V1, "");
+                            } else if ($Trimestre2V2 == "0" || $Trimestre2V2 == "0.00" || $Trimestre2V2 == 0 || $Trimestre2V2 == 0.00) {
+                                $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "TRIMESTRE 2 VARIABLE 2", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Trimestre2V2, "");
+                            } else{
+                                $Resultado_MetaTrimestral2 = round(floatval($Trimestre2V1) / floatval($Trimestre2V2), 2);
+                            }
+                            //Trimestre 3
+                            if ($Trimestre3V1 == "" || $Trimestre3V1 == "-" || $Trimestre3V1 == "0" || $Trimestre3V1 == "0.00" || $Trimestre3V1 == 0 || $Trimestre3V1 == 0.00){
+                                $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "TRIMESTRE 3 VARIABLE 1", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Trimestre3V1, "");
+                            } else if ($Trimestre3V2 == "" || $Trimestre3V2 == "-" || $Trimestre3V2 == "0" || $Trimestre3V2 == "0.00" || $Trimestre3V2 == 0 || $Trimestre3V2 == 0.00) {
+                                $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "TRIMESTRE 3 VARIABLE 2", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Trimestre3V2, "");
+                            } else{
+                                $Resultado_MetaTrimestral3 = round(floatval($Trimestre3V1) / floatval($Trimestre3V2), 2);
+                            }
+                            //Trimestre 4
+                            if ($Trimestre4V1 == "" || $Trimestre4V1 == "-" || $Trimestre4V1 == "0" || $Trimestre4V1 == "0.00" || $Trimestre4V1 == 0 || $Trimestre4V1 == 0.00){
+                                $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "TRIMESTRE 1 VARIABLE 1", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Trimestre4V1, "");
+                            } else if ($Trimestre4V2 == "" || $Trimestre4V2 == "-" || $Trimestre4V2 == "0" || $Trimestre4V2 == "0.00" || $Trimestre4V2 == 0 || $Trimestre4V2 == 0.00) {
+                                $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "TRIMESTRE 1 VARIABLE 2", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Trimestre4V2, "");
+                            } else{
+                                $Resultado_MetaTrimestral4 = round(floatval($Trimestre4V1) / floatval($Trimestre4V2), 2);
+                            }    
+                        }
+                    case 4:
+                        //(V1/V2)*100
+                        if ($Denominador == "" || $Denominador == "-" || $Denominador == "0" || $Denominador == "0.00" || $Denominador == 0 || $Denominador == 0.00){
+                            $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "VARIABLE 1 (DENOMINADOR)", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Numerador, "");
+                        }else{
+                            $ResultadoMeta_Proposito = round((floatval($Numerador) / floatval($Denominador))*100, 2);
+                        }
+    
+                        if ($LineaBaseV2 == "" || $LineaBaseV2 == "-" || $LineaBaseV2 == "0" || $LineaBaseV2 == "0.00" || $LineaBaseV2 == 0 || $LineaBaseV2 == 0.00){
+                            // echo "Linea Base V1: $LineaBaseV1";
+                            // echo "Linea BAse V2: $LineaBaseV2";
+                           $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "LÍNEA BASE V2", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $LineaBaseV2, "");
+                        }else{
+                            // echo "Linea Base V1: $LineaBaseV1";
+                            // echo "Linea BAse V2: $LineaBaseV2";
+                            $ResultadoLineaBase_Proposito = round((floatval($LineaBaseV1) / floatval($LineaBaseV2))*100, 2);
+                        }
+                        break;
+                        if ($Frecuencia == "SEMESTRAL"){
+                            if ($Semestre1V1 == "" || $Semestre1V1 == "-" || $Semestre1V1 == "0" || $Semestre1V1 == "0.00" || $Semestre1V1 == 0 || $Semestre1V1 == 0.00){
+                                $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "SEMESTRE 1 VARIABLE 1", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Semestre1V1, "");
+                            } else if ($Semestre1V2 == "" || $Semestre1V2 == "-" || $Semestre1V2 == "0" || $Semestre1V2 == "0.00" || $Semestre1V2 == 0 || $Semestre1V2 == 0.00) {
+                                $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "SEMESTRE 1 VARIABLE 2", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Semestre1V2, "");
+                            } else{
+                                $Resultado_MetaSemestral1 = round((floatval($Semestre1V1) / floatval($Semestre1V2))*100, 2);
+                            }
+    
+                            if ($Semestre2V1 == "" || $Semestre2V1 == "-" || $Semestre2V1 == "0" || $Semestre2V1 == "0.00" || $Semestre2V1 == 0 || $Semestre2V1 == 0.00){
+                                $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "SEMESTRE 2 VARIABLE 1", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Semestre2V1, "");
+                            } else if ($Semestre2V2 == "" || $Semestre2V2 == "-" || $Semestre2V2 == "0" || $Semestre2V2 == "0.00" || $Semestre2V2 == 0 || $Semestre2V2 == 0.00) {
+                                $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "SEMESTRE 2 VARIABLE 2", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Semestre2V2, "");
+                            } else{
+                                $Resultado_MetaSemestral2 = round((floatval($Semestre2V1) / floatval($Semestre2V2))*100, 2);
+                            }
+                        }
+                        else {
+                            //Trimestre 1
+                            if ($Trimestre1V1 == "" || $Trimestre1V1 == "-" || $Trimestre1V1 == "0" || $Trimestre1V1 == "0.00" || $Trimestre1V1 == 0 || $Trimestre1V1 == 0.00){
+                                $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "TRIMESTRE 1 VARIABLE 1", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Trimestre1V1, "");
+                            } else if ($Trimestre1V2 == "" || $Trimestre1V2 == "-" || $Trimestre1V2 == "0" || $Trimestre1V2 == "0.00" || $Trimestre1V2 == 0 || $Trimestre1V2 == 0.00) {
+                                $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "TRIMESTRE 1 VARIABLE 2", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Trimestre1V2, "");
+                            } else{
+                                $Resultado_MetaTrimestral1 = round((floatval($Trimestre1V1) / floatval($Trimestre1V2))*100, 2);
+                            }
+                            //Trimestre 2
+                            if ($Trimestre2V1 == "" || $Trimestre2V1 == "-" || $Trimestre2V1 == "0" || $Trimestre2V1 == "0.00" || $Trimestre2V1 == 0 || $Trimestre2V1 == 0.00){
+                                $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "TRIMESTRE 2 VARIABLE 1", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Trimestre2V1, "");
+                            } else if ($Trimestre2V2 == "" || $Trimestre2V2 == "-" || $Trimestre2V2 == "0" || $Trimestre2V2 == "0.00" || $Trimestre2V2 == 0 || $Trimestre2V2 == 0.00) {
+                                $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "TRIMESTRE 2 VARIABLE 2", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Trimestre2V2, "");
+                            } else{
+                                $Resultado_MetaTrimestral2 = round((floatval($Trimestre2V1) / floatval($Trimestre2V2))*100, 2);
+                            }
+                            //Trimestre 3
+                            if ($Trimestre3V1 == "" || $Trimestre3V1 == "-" || $Trimestre3V1 == "0" || $Trimestre3V1 == "0.00" || $Trimestre3V1 == 0 || $Trimestre3V1 == 0.00){
+                                $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "TRIMESTRE 3 VARIABLE 1", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Trimestre3V1, "");
+                            } else if ($Trimestre3V2 == "" || $Trimestre3V2 == "-" || $Trimestre3V2 == "0" || $Trimestre3V2 == "0.00" || $Trimestre3V2 == 0 || $Trimestre3V2 == 0.00) {
+                                $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "TRIMESTRE 3 VARIABLE 2", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Trimestre3V2, "");
+                            } else{
+                                $Resultado_MetaTrimestral3 = round((floatval($Trimestre3V1) / floatval($Trimestre3V2))*100, 2);
+                            }
+                            //Trimestre 4
+                            if ($Trimestre4V1 == "" || $Trimestre4V1 == "-" || $Trimestre4V1 == "0" || $Trimestre4V1 == "0.00" || $Trimestre4V1 == 0 || $Trimestre4V1 == 0.00){
+                                $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "TRIMESTRE 1 VARIABLE 1", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Trimestre4V1, "");
+                            } else if ($Trimestre4V2 == "0" || $Trimestre4V2 == "0.00" || $Trimestre4V2 == 0 || $Trimestre4V2 == 0.00) {
+                                $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "TRIMESTRE 1 VARIABLE 2", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Trimestre4V2, "");
+                            } else{
+                                $Resultado_MetaTrimestral4 = round((floatval($Trimestre4V1) / floatval($Trimestre4V2))*100, 2);
+                            }
+                        }
+                }
+                // APLICAR LA FORMULA Y VALIDAR
+                if ($Frecuencia == "SEMESTRAL"){
+                    //META ANUAL
+                    if ($MetaAnualOriginal_Comp - $ResultadoMeta_Componente <= 0.01) {
+    
+                    }
+                    else {
+                        $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "META ANUAL", "REVISAR VALOR - EXISTEN DIFERENCIAS", $MetaAnualOriginal_Comp, $ResultadoMeta_Componente);
+                    }
+                    //LÏNEA BASE
+                    if ($LineaBaseOriginal_Comp - $ResultadoLineaBase_Componente <= 0.01) {
+    
+                    }
+                    else {
+                        $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "LÍNEA BASE", "REVISAR VALOR - EXISTEN DIFERENCIAS", $LineaBaseOriginal_Comp, $ResultadoLineaBase_Componente);
+                    }
+                    //META v1
+                    if ($ValorNumeradorOriginal_Comp - $Resultado_MetaSemestral1 <= 0.01) {
+                    }
+                    else {
+                        $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "META ANUAL V1", "REVISAR VALOR - EXISTEN DIFERENCIAS", $ValorNumeradorOriginal_Comp, $Resultado_MetaSemestral1);
+                    }
+                    //META V2
+                    if ($ValorDenominadorOriginal_Comp - $Resultado_MetaSemestral2 <= 0.01) {
+                    }
+                    else {
+                        $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "META ANUAL V2", "REVISAR VALOR - EXISTEN DIFERENCIAS", $ValorDenominadorOriginal_Comp, $Resultado_MetaSemestral2);
+                    }
+                }
+                else {
+                    //FRECUENCIA TRIMESTRAL
+                    //META ANUAL
+                    // echo "Meta Anual Original = $MetaAnualOriginal_Comp";
+                    // echo "Meta Trimestre 4 = $MetaTrimestre4";
+                    // echo "ResultadoLineaBase_Componente = $ResultadoLineaBase_Componente";
+                    if ($MetaAnualOriginal_Comp - $MetaTrimestre4 <= 0.01) {
+    
+                    }
+                    else {
+                        $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "META ANUAL", "REVISAR VALOR - EXISTEN DIFERENCIAS", $MetaAnualOriginal_Comp, $MetaTrimestre4);
+                    }
+                    //LÏNEA BASE
+                    if ($LineaBaseOriginal_Comp - $ResultadoLineaBase_Componente <= 0.01) {
+    
+                    }
+                    else {
+                        $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "LÍNEA BASE", "REVISAR VALOR - EXISTEN DIFERENCIAS", $LineaBaseOriginal_Comp, $ResultadoLineaBase_Componente);
+                    }
+                    //META v1
+                    if ($ValorNumeradorOriginal_Comp - (floatval($Trimestre1V1)+floatval($Trimestre2V1)+floatval($Trimestre3V1)+floatval($Trimestre4V1)) <= 0.01) {
+                        // $tempo = floatval($Trimestre1V1)+floatval($Trimestre2V1)+floatval($Trimestre3V1)+floatval($Trimestre4V1);
+                        // echo "Suma de Trimestres V1 = $tempo";
+                    }
+                    else {
+                        $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "META ANUAL V1", "REVISAR VALOR - EXISTEN DIFERENCIAS", $ValorNumeradorOriginal_Comp, floatval($Trimestre1V1)+floatval($Trimestre2V1)+floatval($Trimestre3V1)+floatval($Trimestre4V1));
+                    }
+                    //META V2
+                    if ($ValorDenominadorOriginal_Comp - (floatval($Trimestre1V2)+floatval($Trimestre2V2)+floatval($Trimestre3V2)+floatval($Trimestre4V2)) <= 0.01) {
+                        // $tempo2 = floatval($Trimestre1V1)+floatval($Trimestre2V1)+floatval($Trimestre3V1)+floatval($Trimestre4V1);
+                        // echo "Suma de Trimestres V2 = $tempo2";
+                    }
+                    else {
+                        $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "META ANUAL V2", "REVISAR VALOR - EXISTEN DIFERENCIAS", $ValorDenominadorOriginal_Comp, floatval($Trimestre1V2)+floatval($Trimestre2V2)+floatval($Trimestre3V2)+floatval($Trimestre4V2));
+                    }
+                }
+    
+            }
+    
+            $actividades_componente = $this->actividadescomponente_validar($consecutivo, $id_componente);
+            for ($j = 0; $j < count($actividades_componente); $j++){
+                $actividad = $actividades_componente[$j];
+                $id_elemento = $actividad->idActividad;
+                $valida_actividad = $this->validaActividad($consecutivo, $id_elemento, $actividad);
+    
+                //echo "ACTIVIDADES: ACTIVIDAD [" . $id_elemento . "]";
+                if ($valida_actividad == 1){
+                    $idelemento_carga = $id_elemento;
+                    $seccion_carga = "ACTIVIDAD ".$id_elemento;
+                    $numero = substr($actividad->TipoFormula, 0, 1);
+                    $signo = substr($actividad->TipoFormula, 1, 1);
+                }
+            }
+        }
+    
+        /*
+        for ($i=0; $i < count($actividades["data"]); $i++) { 
+            $actividad = $actividades["data"][$i];
+            $id_elemento = $componente["idComponente"];
+            $valida_componente = $this->validaActividad($consecutivo, $id_elemento, $actividades);
+        }
+        */
+        return response()->json(array('error' => false, 'result' => 'Información validada correctamente.', 'code' => 200));
+    }
+
     public function addCarga($consecutivo, $id_elemento, $seccion, $elemento, $descripcion){
         try {
             $insert                 = new LogCarga;
@@ -1126,6 +2028,330 @@ class MirController extends Controller
         }catch (Exception $e) {
             return response()->json(array('error' => true , 'result' => "Ha ocurrido una anomalía al realizar las validaciones. " . $e->getMessage(), 'code' => 500));
         }
+    }
+
+    public function addFormula($consecutivo, $id_elemento, $seccion, $elemento, $descripcion, $valor_original, $valor_modificado){
+        try {
+            $insert                 = new LogFormula();
+            $insert->Consecutivo    = $consecutivo;
+            $insert->idElemento     = $id_elemento;
+            $insert->Seccion        = $seccion;
+            $insert->Elemento       = $elemento;
+            $insert->Descripcion    = $descripcion;
+
+            // echo "addFormula (valor original): $valor_original";
+            // echo "addFormula (valor modificado): $valor_modificado";
+            $insert->ValorOriginal  = $valor_original;
+            $insert->ValorModificado  = $valor_modificado;
+
+            // if ($valor_original = "" || $valor_original == "-"){
+            //     $insert->ValorOriginal  = $valor_original;
+            // }else{
+            //     $insert->ValorOriginal  = floatval($valor_original);
+            // }
+            
+            // if ($valor_modificado = "" || $valor_modificado == "-"){
+            //     $insert->ValorModificado  = $valor_modificado;
+            // }else{
+            //     $insert->ValorModificado  = floatval($valor_modificado);
+            // }
+
+            $insert->save();
+
+        }catch (Exception $e) {
+            return response()->json(array('error' => true , 'result' => ("Ha ocurrido una anomalía al agregar la información de las formulas. " . $e->getMessage() . " Línea de error: " . $e->getLine()), 'code' => 500));
+        }
+    }
+
+    function validaFin($consecutivo, $request){
+        
+        $valida = 1;
+        $idelemento_carga = "F";
+        $seccion_carga = "Fin";
+
+        if (empty($request->ValorNumerador)) {
+            $valida = 0;
+            $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "NUMERADOR", "REVISAR VALOR", $request->ValorNumerador, "");
+        }
+
+        if (empty($request->ValorDenominador)) {
+            $valida = 0;
+            $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "DENOMINADOR", "REVISAR VALOR", $request->ValorDenominador, "");
+        }
+
+        if (empty($request->LineaBaseV1)) {
+            $valida = 0;
+            $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "LÍNEA BASE V1", "REVISAR VALOR", $request->LineaBaseV1, "");
+        }
+
+        if (empty($request->LineaBaseV2)) {
+            $valida = 0;
+            $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "LÍNEA BASE V2", "REVISAR VALOR", $request->LineaBaseV2, "");
+        }
+
+        return $valida;
+        
+    }
+
+    function validaProposito($consecutivo, $request){
+        $valida = 1;
+        $idelemento_carga = "P";
+        $seccion_carga = "PROPÓSITO";
+
+        if (empty($request->ValorNumerador)) {
+            $valida = 0;
+            $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "NUMERADOR", "REVISAR VALOR", $request->ValorNumerador, "");
+        }
+
+        if (empty($request->ValorDenominador)) {
+            $valida = 0;
+            $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "DENOMINADOR", "REVISAR VALOR", $request->ValorDenominador, "");
+        }
+
+        if (empty($request->LineaBaseV1)) {
+            $valida = 0;
+            $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "LÍNEA BASE V1", "REVISAR VALOR", $request->LineaBaseV1, "");
+        }
+
+        if (empty($request->LineaBaseV2)) {
+            $valida = 0;
+            $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "LÍNEA BASE V2", "REVISAR VALOR", $request->LineaBaseV2, "");
+        }
+
+        return $valida;
+    }
+
+    public function validaComponente($consecutivo, $id_elemento, $request){
+        $valida = 1;
+        $idelemento_carga = $id_elemento;
+        $seccion_carga = "COMPONENTE ".$idelemento_carga;
+
+        if (empty($request->ValorNumerador)) {
+            $valida = 0;
+            $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "NUMERADOR", "REVISAR VALOR", $request->ValorNumerador, "");
+        }
+
+        if (empty($request->ValorDenominador)) {
+            $valida = 0;
+            $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "DENOMINADOR", "REVISAR VALOR", $request->ValorDenominador, "");
+        }
+
+        if (empty($request->LineaBaseV1)) {
+            $valida = 0;
+            $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "LÍNEA BASE V1", "REVISAR VALOR", $request->LineaBaseV1, "");
+        }
+
+        if (empty($request->LineaBaseV2)) {
+            $valida = 0;
+            $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "LÍNEA BASE V2", "REVISAR VALOR", $request->LineaBaseV2, "");
+        }
+
+        if ($request->Frecuencia == "SEMESTRAL") {
+            if (empty($request->Semestre1V1)) {
+                $valida = 0;
+                $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "SEMESTRE 1, VALOR V1", "REVISAR VALOR", $request->Semestre1V1, "");
+            }
+    
+            if (empty($request->Semestre2V1)) {
+                $valida = 0;
+                $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "SEMESTRE 2, VALOR V1", "REVISAR VALOR", $request->Semestre2V1, "");
+            }
+    
+            if (empty($request->Semestre1V2)) {
+                $valida = 0;
+                $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "SEMESTRE 1, VALOR V2", "REVISAR VALOR", $request->Semestre1V2, "");
+            }
+    
+            if (empty($request->Semestre2V2)) {
+                $valida = 0;
+                $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "SEMESTRE 2, VALOR V2", "REVISAR VALOR", $request->Semestre2V2, "");
+            }
+        }
+
+        if ($request->Frecuencia == "TRIMESTRAL") {
+            if (empty($request->Trimestre1V1)) {
+                $valida = 0;
+                $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "TRIMESTRE 1, VALOR V1", "REVISAR VALOR", $request->Trimestre1V1, "");
+            }
+    
+            if (empty($request->Trimestre2V1)) {
+                $valida = 0;
+                $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "TRIMESTRE 2, VALOR V1", "REVISAR VALOR", $request->Trimestre2V1, "");
+            }
+    
+            if (empty($request->Trimestre3V1)) {
+                $valida = 0;
+                $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "TRIMESTRE 2, VALOR V1", "REVISAR VALOR", $request->Trimestre3V1, "");
+            }
+    
+            if (empty($request->Trimestre4V1)) {
+                $valida = 0;
+                $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "TRIMESTRE 4, VALOR V1", "REVISAR VALOR", $request->Trimestre4V1, "");
+            }        
+    
+            if (empty($request->Trimestre1V2)) {
+                $valida = 0;
+                $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "TRIMESTRE 1, VALOR V2", "REVISAR VALOR", $request->Trimestre1V2, "");
+            }
+    
+            if (empty($request->Trimestre2V2)) {
+                $valida = 0;
+                $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "TRIMESTRE 2, VALOR V2", "REVISAR VALOR", $request->Trimestre2V2, "");
+            }
+    
+            if (empty($request->Trimestre3V2)) {
+                $valida = 0;
+                $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "TRIMESTRE 3, VALOR V2", "REVISAR VALOR", $request->Trimestre3V2, "");
+            }
+    
+            if (empty($request->Trimestre4V2)) {
+                $valida = 0;
+                $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "TRIMESTRE 3, VALOR V2", "REVISAR VALOR", $request->Trimestre4V2, "");
+            }
+        }
+
+        return $valida;
+    }
+
+    public function validaActividad($consecutivo, $id_elemento, $request){
+        $valida = 1;
+        $idelemento_carga = $id_elemento;
+        $seccion_carga = "ACTIVIDAD ".$idelemento_carga;
+
+        if (empty($request->ValorNumerador)) {
+            $valida = 0;
+            $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "NUMERADOR", "REVISAR VALOR", $request->ValorNumerador, "");
+        }
+
+        if (empty($request->ValorDenominador)) {
+            $valida = 0;
+            $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "DENOMINADOR", "REVISAR VALOR", $request->ValorDenominador, "");
+        }
+
+        if (empty($request->LineaBaseV1)) {
+            $valida = 0;
+            $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "LÍNEA BASE V1", "REVISAR VALOR", $request->LineaBaseV1, "");
+        }
+
+        if (empty($request->LineaBaseV2)) {
+            $valida = 0;
+            $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "LÍNEA BASE V2", "REVISAR VALOR", $request->LineaBaseV2, "");
+        }
+
+        if ($request->Frecuencia == "TRIMESTRAL") {
+            if (empty($request->Trimestre1V1)) {
+                $valida = 0;
+                $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "TRIMESTRE 1, VALOR V1", "REVISAR VALOR", $request->Trimestre1V1, "");
+            }
+        
+            if (empty($request->Trimestre2V1)) {
+                $valida = 0;
+                $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "TRIMESTRE 2, VALOR V1", "REVISAR VALOR", $request->Trimestre2V1, "");
+            }
+        
+            if (empty($request->Trimestre3V1)) {
+                $valida = 0;
+                $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "TRIMESTRE 2, VALOR V1", "REVISAR VALOR", $request->Trimestre3V1, "");
+            }
+        
+            if (empty($request->Trimestre4V1)) {
+                $valida = 0;
+                $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "TRIMESTRE 4, VALOR V1", "REVISAR VALOR", $request->Trimestre4V1, "");
+            }        
+        
+            if (empty($request->Trimestre1V2)) {
+                $valida = 0;
+                $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "TRIMESTRE 1, VALOR V2", "REVISAR VALOR", $request->Trimestre1V2, "");
+            }
+        
+            if (empty($request->Trimestre2V2)) {
+                $valida = 0;
+                $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "TRIMESTRE 2, VALOR V2", "REVISAR VALOR", $request->Trimestre2V2, "");
+            }
+        
+            if (empty($request->Trimestre3V2)) {
+                $valida = 0;
+                $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "TRIMESTRE 3, VALOR V2", "REVISAR VALOR", $request->Trimestre3V2, "");
+            }
+        
+            if (empty($request->Trimestre4V2)) {
+                $valida = 0;
+                $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "TRIMESTRE 3, VALOR V2", "REVISAR VALOR", $request->Trimestre4V2, "");
+            }
+        }
+
+        return $valida;
+    }
+
+    public function deleteCarga($consecutivo){
+        try {
+            $delete = LogCarga::find($consecutivo);
+
+            if (is_null($delete)) {
+                return response()->json(array('error' => true, 'result' => "No ha sido posible eliminar la información de la auditoría de carga.", 'code' => 404));
+            }
+
+            $delete->delete();
+
+        }catch (Exception $e) {
+            return response()->json(array('error' => true , 'result' => ("No ha sido posible eliminar la información de la auditoría de carga. " . $e->getMessage() . " Línea de error: " . $e->getLine()), 'code' => 500));
+        }
+    }
+
+    public function deleteFormula($consecutivo){
+        try {
+            $delete = LogFormula::find($consecutivo);
+
+            if (is_null($delete)) {
+                return response()->json(array('error' => true, 'result' => "No ha sido posible eliminar la información de la auditoría de formulas.", 'code' => 404));
+            }
+
+            $delete->delete();
+        }catch (Exception $e) {
+            return response()->json(array('error' => true , 'result' => ("No ha sido posible eliminar la información de la auditoría de formulas. " . $e->getMessage() . " Línea de error: " . $e->getLine()), 'code' => 500));
+        }
+    }
+
+    public function deletelog(Request $request){
+        try {
+            $id_formula = $request->all();
+            for ($i=0; $i < count($id_formula); $i++) {
+
+                $delete = LogFormula::
+                    where('id', '=', $id_formula[$i])
+                    ->first();
+
+                if (is_null($delete)) {
+                    return response()->json(array('error' => true, 'result' => "La auditoría de formulas que intenta eliminar no existe.", 'code' => 404));
+                }
+
+                $delete->delete();
+            }
+
+            return response()->json(array('error' => false, 'data' => $delete, 'code' => 200));
+        }catch (Exception $e) {
+            return response()->json(array('error' => true , 'result' => ("No ha sido posible eliminar la información de la auditoría de formulas. " . $e->getMessage() . " Línea de error: " . $e->getLine()), 'code' => 500));
+        }
+        
+    }
+
+    public function Func_LimpiarMoneda($numero) {
+        if ($numero == 0 || $numero == "0") {
+            return $numero;
+        } else {
+            if (strpos($numero, '$') !== false) {
+                while (strpos($numero, '$') !== false) {
+                    $numero = str_replace("$", "", $numero);
+                }
+            }
+            if (strpos($numero, ',') !== false) {
+                while (strpos($numero, ',') !== false) {
+                    $numero = str_replace(",", "", $numero);
+                }
+            }
+        }
+    
+        return trim(preg_replace('/\s+/', '', $numero));
     }
 
     /*

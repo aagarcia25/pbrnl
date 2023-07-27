@@ -1999,8 +1999,8 @@
                                                     <th width="15%">Objetivo MIR</th>
                                                     <th width="20%">Elemento</th>
                                                     <th width="20%">Observación</th>
-                                                    <th width="20%">Versión original</th>
-                                                    <th width="20%">Versión modificado</th>
+                                                    <th width="20%">Valor Original</th>
+                                                    <th width="20%">Valor Modificado</th>
                                                 </tr>
                                             </thead>
                                             <tbody></tbody>
