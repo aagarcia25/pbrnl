@@ -126,6 +126,16 @@ $view = "Menu de catálogos";
                         </div>
                     </div>
                 </div>
+                <div class="row mt-1">
+                    <div class="col-md-1">
+                        <a href="EjerciciosFiscales" class="d-flex align-items-center justify-content-center">
+                            <img id="icon-cat-ef" class="icon-cat-ef" onmouseover="img_over('icon-cat-program-proyect', 'img/icono proyectos de inversion.svg')" onmouseout="img_out('icon-cat-program-proyect', 'img/icono proyectos de inversion off.svg')" src="img/icono proyectos de inversion off.svg" width="50" height="50">
+                        </a>
+                        <div class="d-flex align-items-center justify-content-center text-center">
+                            <h6 class="FontNavega"><b>Ejercicios Fiscales</b></h6>
+                        </div>
+                    </div>
+                </div>
             </div>
                     <!-- PLANEACION -->
             <div id="opcPlaneacion" class="d-none grupo-catalogos">

@@ -274,4 +274,13 @@ Route::get('/Catalogos', function () {
     Route::post('GetMirAutoriaCarga','MirController@auditoriacarga');
     Route::post('GetMirAutoriaFormulas','MirController@auditoriaformulas');
 
+// ========================================
+// Ejercicios Fiscales
+// ========================================
 
+Route::get('/EjerciciosFiscales', function () {
+    return view('EjerciciosFiscales');
+});
+
+Route::get('GetEjerciciosFiscales', "EjerciciosFiscalesController@lista");
+Route::post('GuardarEjercicioFiscal', "EjerciciosFiscalesController@guardar");
