@@ -106,6 +106,26 @@ function Func_DespliegaConfirmacion(title, text, icon, btnConfirm, btnCancel, ne
     }));
 }
 
+function Func_DespliegaConfirmacion2(title, text, icon, btnConfirm, btnCancel, next) {
+    swal.fire({
+        title: title,
+        html: text,
+        icon: icon,
+        showCancelButton: true,
+        confirmButtonColor: '#cfe1b9',
+        cancelButtonColor: '#adb5bd',
+        cancelButtonText: btnCancel,
+        confirmButtonText: btnConfirm,
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        reverseButtons: true,
+        focusConfirm: false,
+        focusCancel: false
+    }).then((function(result) {
+        next(result.value)
+    }));
+}
+
 function Func_Aviso(title, text, type) {
     Swal.fire(
         title,
@@ -168,4 +188,23 @@ function img_out(id, nombre) {
 function MostrarHttpError(response) {
     console.log(response.result)
     Func_Aviso("Anomalía detectada", "Ha ocurrido una anomalía al realizar el proceso, favor de intentarlo nuevamente. (" + response.result + ")", "error");
+}
+
+function Func_LimpiarMoneda(numero) {
+    if (numero == 0 || numero == "0") {
+        return numero;
+    } else {
+        if (numero.includes('$')) {
+            while (numero.includes('$')) {
+                numero = numero.replace("$", "");
+            }
+        }
+        if (numero.includes(',')) {
+            while (numero.includes(',')) {
+                numero = numero.replace(",", "");
+            }
+        }
+    }
+
+    return numero.trim().replace(/\s+/g, '');
 }
