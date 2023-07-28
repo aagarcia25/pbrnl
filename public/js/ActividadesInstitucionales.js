@@ -15,6 +15,29 @@ $(document).ready(function() {
 function Funciones_Iniciales() {
     Func_Cargando();
     GetSecretarias();
+    GetEjercicios();
+}
+
+function GetEjercicios() {
+    repository.EjerciciosFiscales.Lista()
+    .then(response => {
+        swal.close();
+        if(response.error == true)
+        {
+            MostrarHttpError(response);
+            return;
+        }
+        response.data.forEach(element => {
+            $("#select_ef").append("<option value='"+element.Id+"'>" + element.Id);
+        });
+        $("#select_ef").val(response.data[0].Id);
+
+        $("#select_ef").selectpicker("refresh");
+    })
+    .catch((e)=>{
+        swal.close();
+        MostrarHttpError(e);
+    });
 }
 
 function GetSecretarias() {
@@ -72,7 +95,7 @@ function ResponseGetAllObjetivos(response) {
 }
 
 function GetAllActividadesI() {
-    repository.ActividadesInstitucionales.GetAllActividadesI()
+    repository.ActividadesInstitucionales.GetAllActividadesI({ejercicio_fiscal: $("#select_ef").val()})
         .then(ResponseGetAllActividadesI);
 }
 
@@ -105,7 +128,7 @@ function ResponseGetAllActividadesI(response) {
 }
 
 function GetAllCountActividadesAI(){
-    repository.ActividadesInstitucionales.GetAllCountActividadesAI()
+    repository.ActividadesInstitucionales.GetAllCountActividadesAI({ejercicio_fiscal: $("#select_ef").val()})
         .then(ResponseGetAllCountActividadesAI);
 }
 
@@ -131,6 +154,8 @@ function Eventos() {
     BtnActualizarPP();
     OnChange_SecretariaPP();
     GuardarActualizarPP();
+
+    OnChange_Ejercicio();
 }
 
 function SeleccionarTabla() {
@@ -165,9 +190,21 @@ function OnChange_Secretaria(){
     });
 }
 
+function OnChange_Ejercicio() {
+    $("#select_ef").on("change", function(){
+        var ef = $(this).val();
+        Func_Cargando();
+
+        $("#select_secretaria").selectpicker("val","");
+
+        GetAllActividadesI();
+    });
+}
+
 function GetActividadesI(id_secretaria) {
     var request = {
-        "id_secretaria": id_secretaria
+        "id_secretaria": id_secretaria,
+        "ejercicio_fiscal": $("#select_ef").val()
     }
     repository.ActividadesInstitucionales.GetActividadesI(request)
         .then(ResponseGetActividadesI);
@@ -203,7 +240,8 @@ function ResponseGetActividadesI(response) {
 
 function GetCountActividadesAI(){
     var request = {
-        "id_secretaria": $("#select_secretaria").val()
+        "id_secretaria": $("#select_secretaria").val(),
+        ejercicio_fiscal: $("#select_ef").val()
     }
     repository.ActividadesInstitucionales.GetCountActividadesAI(request)
         .then(ResponseGetCountActividadesAI);
@@ -236,7 +274,8 @@ function BtnComponentes(){
             "id_secretaria": data[0],
             "id_objetivo": data[2],
             "id_clasificacion": data[1],
-            "consecutivo": data[5]
+            "consecutivo": data[5],
+            "ejercicio_fiscal": $("#select_ef").val()
         }
         Func_Cargando();
         GetInfoComponentesAI(request);
@@ -267,7 +306,8 @@ function ResponseGetInfoComponentesAI(response){
                 "id_secretaria": data['idSecretaria'],
                 "id_objetivo": data['IdObjetivo'],
                 "id_clasificacion": data['idClasificacion'],
-                "consecutivo": data['Consecutivo']
+                "consecutivo": data['Consecutivo'],
+                "ejercicio_fiscal": $("#select_ef").val()
             }
             GetComponentesAI(request);
         }else{
@@ -365,7 +405,8 @@ function GuardarComponente(){
             id_secretaria: $("#id_secretaria").val(),
             id_objetivo: $("#id_objetivo").val(),
             id_clasificacion: $("#id_clasificacion").val(),
-            consecutivo: $("#consecutivo").val()
+            consecutivo: $("#consecutivo").val(),
+            ejercicio_fiscal: $("#select_ef").val(),
         }
 
         Func_DespliegaConfirmacion("Guardar", "¿Deseas guardar la información del actualizada del componente?", "question", "Aceptar", "Cancelar", function(response) {
@@ -391,7 +432,8 @@ function ResponseEditComponenteAI(response) {
             "id_secretaria": $("#id_secretaria").val(),
             "id_objetivo": $("#id_objetivo").val(),
             "id_clasificacion": $("#id_clasificacion").val(),
-            "consecutivo": $("#consecutivo").val()
+            "consecutivo": $("#consecutivo").val(),
+            "ejercicio_fiscal": $("#select_ef").val(),
         }
         GetComponentesAI(request);
     } else {
@@ -498,8 +540,8 @@ function GuardarActualizarPP(){
             id_objetivo_real: $("#select_objetivo_real").val(),
             id_anticorrupcion_real: $("#id_anticorrupcion_real").val(),
             id_topologia_real: $("#select_topologia_real").val(),
-            consecutivo_real: $("#consecutivo_real").val()
-
+            consecutivo_real: $("#consecutivo_real").val(),
+            ejercicio_fiscal: $("#select_ef").val()
         }
 
         Func_DespliegaConfirmacion("Guardar", "¿Deseas actualizar la información de la Actividad Institucional?", "question", "Aceptar", "Cancelar", function(response) {

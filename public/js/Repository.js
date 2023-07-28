@@ -522,12 +522,12 @@ class ActividadesInstitucionalesController {
         this.Url = url;
     }
 
-    GetAllActividadesI() {
-        return Requests('GET', this.Url + "/GetAllActividadesAI");
+    GetAllActividadesI(request) {
+        return Requests('GET', this.Url + "/GetAllActividadesAI", request);
     }
 
-    GetAllCountActividadesAI() {
-        return Requests('GET', this.Url + "/GetAllCountActividadesAI");
+    GetAllCountActividadesAI(request) {
+        return Requests('GET', this.Url + "/GetAllCountActividadesAI", request);
     }
 
     GetCountActividadesAI(request) {
