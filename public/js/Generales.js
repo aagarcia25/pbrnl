@@ -188,7 +188,7 @@ function img_out(id, nombre) {
 function MostrarHttpError(response) {
     console.error(response);
     var mensaje = response.result;
-    Func_Aviso("Anomalía detectada", "Ha ocurrido una anomalía al realizar el proceso, favor de intentarlo nuevamente. (" + mensaje + ")", "error");
+    Func_Aviso("Error", "" + mensaje + "", "error");
 }
 
 function Func_LimpiarMoneda(numero) {

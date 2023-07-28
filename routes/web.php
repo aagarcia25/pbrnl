@@ -284,3 +284,4 @@ Route::get('/EjerciciosFiscales', function () {
 
 Route::get('GetEjerciciosFiscales', "EjerciciosFiscalesController@lista");
 Route::post('GuardarEjercicioFiscal', "EjerciciosFiscalesController@guardar");
+Route::post('SetStatusEF', "EjerciciosFiscalesController@set_status");

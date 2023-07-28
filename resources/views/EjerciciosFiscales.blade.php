@@ -90,6 +90,14 @@
                                     ng-click="vm.btnAgregarEF_click()"
                                     id="BtnAgregarEF" 
                                     class="btn button-crud"><i class="bi bi-trash"></i> Nuevo</button>
+                                
+                                <button type="button" ng-if="vm.seleccionado != null" 
+                                    ng-click="vm.setStatus()"
+                                    id="BtnAgregarEF" 
+                                    class="btn button-crud"><i class="bi bi-trash"></i> 
+                                    <span ng-if="vm.seleccionado.Estatus == 'A'">Cerrar</span>
+                                    <span ng-if="vm.seleccionado.Estatus != 'A'">Abrir</span>
+                                </button>
                             </div>
                             <div class="p-2 bd-highlight">
                                 
@@ -97,21 +105,32 @@
                         </div>
                         <!-- Botones de accion -->
                         <div class="table-response mt-4">
-                            <table id="table" class="table table-striped table-hover">
+                            <table id="table" class="table table-striped table-hover dataTable">
                                 <thead>
                                     <tr class="table-header text-center">
                                         <th scope="col" width="5em">Ejercicio</th>
-                                        <th scope="col" >Contenido</th>
+                                        <th width="14%" scope="col">Abierto</th>
+                                        <th width="14%" scope="col">Programas Presupuestarios</th>
+                                        <th width="14%" scope="col">Componentes</th>
+                                        <th width="14%" scope="col">Actividades Institucionales Específicas</th>
+                                        <th width="14%" scope="col">Acciones</th>
+                                        <th width="14%" scope="col">Programas y Proyectos de Inversión</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr ng-repeat="e in vm.ejercicios">
-                                        <td>
-                                            <% e.Id %>
+                                    <tr ng-repeat="e in vm.ejercicios" 
+                                        ng-click="vm.seleccionado = e" 
+                                        ng-class="{selected: vm.seleccionado == e}">
+                                        <td ><% e.Id %></td>
+                                        <td class="text-center" >
+                                            <img src="img/check2-circle-Activo2.svg" width="15px" alt="" ng-if="e.Estatus == 'A'">
+                                            <img src="img/check2-circle-Inactivo2.svg" width="15px" alt="" ng-if="e.Estatus != 'A'">
                                         </td>
-                                        <td>
-                                            <% e.Contenido %>
-                                        </td>
+                                        <td ><% e.PP %></td>
+                                        <td ><% e.PP_C %></td>
+                                        <td ><% e.AI %></td>
+                                        <td ><% e.AI_C %></td>
+                                        <td ><% e.PPI_P %></td>
                                     </tr>
                                 </tbody>
                             </table>
