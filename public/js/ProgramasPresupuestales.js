@@ -15,11 +15,34 @@ $(document).ready(function() {
 function Funciones_Iniciales() {
     Func_Cargando();
     GetSecretarias();
+    GetEjercicios();
 }
 
 function GetSecretarias() {
     repository.Secretarias.GetSecretarias()
         .then(ResponseGetSecretarias);
+}
+
+function GetEjercicios() {
+    repository.EjerciciosFiscales.Lista()
+    .then(response => {
+        swal.close();
+        if(response.error == true)
+        {
+            MostrarHttpError(response);
+            return;
+        }
+        response.data.forEach(element => {
+            $("#select_ef").append("<option value='"+element.Id+"'>" + element.Id);
+        });
+        $("#select_ef").val(response.data[0].Id);
+
+        $("#select_ef").selectpicker("refresh");
+    })
+    .catch((e)=>{
+        swal.close();
+        MostrarHttpError(e);
+    });
 }
 
 function ResponseGetSecretarias(response) {
@@ -72,7 +95,8 @@ function ResponseGetAllObjetivos(response) {
 }
 
 function GetAllProgramasP() {
-    repository.ProgramasPresupuestales.GetAllProgramasP()
+    let ef = $("#select_ef").val();
+    repository.ProgramasPresupuestales.GetAllProgramasP({ejercicio_fiscal: ef})
         .then(ResponseGetAllProgramasP);
 }
 
@@ -105,7 +129,8 @@ function ResponseGetAllProgramasP(response) {
 }
 
 function GetAllCountProgramasP(){
-    repository.ProgramasPresupuestales.GetAllCountProgramasP()
+    let ef = $("#select_ef").val();
+    repository.ProgramasPresupuestales.GetAllCountProgramasP({ejercicio_fiscal: ef})
         .then(ResponseGetAllCountProgramasP);
 }
 
@@ -131,6 +156,8 @@ function Eventos() {
     BtnActualizarPP();
     OnChange_SecretariaPP();
     GuardarActualizarPP();
+
+    OnChange_Ejercicio();
 }
 
 function SeleccionarTabla() {
@@ -165,9 +192,21 @@ function OnChange_Secretaria(){
     });
 }
 
+function OnChange_Ejercicio() {
+    $("#select_ef").on("change", function(){
+        var ef = $(this).val();
+        Func_Cargando();
+        
+        GetAllProgramasP();
+
+        $("#select_secretaria").selectpicker("val","");
+    });
+}
+
 function GetProgramasP(id_secretaria) {
     var request = {
-        "id_secretaria": id_secretaria
+        "id_secretaria": id_secretaria,
+        "ejercicio_fiscal": $("#select_ef").val()
     }
     repository.ProgramasPresupuestales.GetProgramasP(request)
         .then(ResponseGetProgramasP);
@@ -203,7 +242,8 @@ function ResponseGetProgramasP(response) {
 
 function GetCountProgramasP(){
     var request = {
-        "id_secretaria": $("#select_secretaria").val()
+        "id_secretaria": $("#select_secretaria").val(),
+        "ejercicio_fiscal": $("#select_ef").val()
     }
     repository.ProgramasPresupuestales.GetCountProgramasP(request)
         .then(ResponseGetCountProgramasP);
@@ -236,7 +276,8 @@ function BtnComponentes(){
             "id_secretaria": data[0],
             "id_objetivo": data[2],
             "id_clasificacion": data[1],
-            "consecutivo": data[5]
+            "consecutivo": data[5],
+            "ejercicio_fiscal": $("#select_ef").val()
         }
         // Func_Cargando();
         GetInfoComponentes(request);
@@ -266,7 +307,8 @@ function ResponseGetInfoComponentes(response){
                 "id_secretaria": data['idSecretaria'],
                 "id_objetivo": data['IdObjetivo'],
                 "id_clasificacion": data['idClasificacion'],
-                "consecutivo": data['Consecutivo']
+                "consecutivo": data['Consecutivo'],
+                "ejercicio_fiscal": $("#select_ef").val()
             }
             GetComponentes(request);
         }else{
@@ -364,7 +406,8 @@ function GuardarComponente(){
             id_secretaria: $("#id_secretaria").val(),
             id_objetivo: $("#id_objetivo").val(),
             id_clasificacion: $("#id_clasificacion").val(),
-            consecutivo: $("#consecutivo").val()
+            consecutivo: $("#consecutivo").val(),
+            ejercicio_fiscal: $("#select_ef").val()
         }
 
         repository.ProgramasPresupuestales.EditComponente(request)
@@ -393,7 +436,8 @@ function ResponseEditComponente(response) {
             "id_secretaria": $("#id_secretaria").val(),
             "id_objetivo": $("#id_objetivo").val(),
             "id_clasificacion": $("#id_clasificacion").val(),
-            "consecutivo": $("#consecutivo").val()
+            "consecutivo": $("#consecutivo").val(),
+            "ejercicio_fiscal": $("#select_ef").val()
         }
         GetComponentes(request);
     } else {
@@ -500,8 +544,8 @@ function GuardarActualizarPP(){
             id_objetivo_real: $("#select_objetivo_real").val(),
             id_anticorrupcion_real: $("#id_anticorrupcion_real").val(),
             id_topologia_real: $("#select_topologia_real").val(),
-            consecutivo_real: $("#consecutivo_real").val()
-
+            consecutivo_real: $("#consecutivo_real").val(),
+            ejercicio_fiscal: $("#select_ef").val()
         }
 
         Func_DespliegaConfirmacion("Guardar", "¿Deseas actualizar la información del programa presupuestario?", "question", "Aceptar", "Cancelar", function(response) {

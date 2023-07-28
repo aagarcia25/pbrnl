@@ -17,60 +17,11 @@ class EjerciciosFiscalesController extends BaseController
 {
     public function lista()
     {
-        $query = "SELECT * FROM EJERCICIOS_FISCALES WHERE Estatus = 'A' ORDER BY Id DESC;";
+        $query = "SELECT * FROM EJERCICIOS_FISCALES ORDER BY Id DESC;";
         $informacion = DB::select($query);
         return response()->json(array('error' => false, 'data' => $informacion, 'code' => 200));
     }
     
-    public function insert(Request $request)
-    {
-        try {
-            $insert                 = new Eje;
-            $insert->IdEje          = $request->id_Eje;
-            $insert->Descripcion    = $request->descripcion;
-            $insert->Activo         = "S";
-            $insert->save();
-
-        }catch (Exception $e) {
-            return response()->json(array('error' => true , 'result' => $e->getMessage(), 'code' => 500));
-        }
-
-        return response()->json(array('error' => false, 'result' => $insert , 'code' => 200));
-    }
-
-    public function update(Request $request)
-    {
-        $update = Eje::find($request->id_Eje);
-
-        if (is_null($update)) {
-            return response()->json(array('error' => true, 'result' => "El eje que intenta editar no existe.", 'code' => 404));
-        }
-        
-        try {
-            $update->Descripcion    = $request->descripcion;
-            $update->save();
-        }catch (Exception $e) {
-            return response()->json(array('error' => true , 'result' => $e->getMessage(), 'code' => 500));
-        }
-
-        return response()->json(array('error' => false, 'result' => $update , 'code' => 200));
-    }
-
-    public function delete(Request $request)
-    {
-
-        $delete = Eje::find($request->id_eje);
-
-        if (is_null($delete)) {
-            return response()->json(array('error' => true, 'result' => "El eje que intenta eliminar no existe.", 'code' => 404));
-        }
-
-        $delete->Activo             = "N";
-        $delete->save();
-
-        return response()->json(array('error' => false, 'result' => $delete , 'code' => 200));
-    }
-
     public function guardar(Request $request) {
         $nuevo_ef = $request->ejercicio_fiscal;
         $anterior_ef = $nuevo_ef - 1;
@@ -90,7 +41,7 @@ class EjerciciosFiscalesController extends BaseController
             $programa->Consecutivo = $d->Consecutivo;
             $programa->Anticorrupcion = $d->Anticorrupcion;
             $programa->idTipologia = $d->idTipologia;
-            $programa->DescripcionPrograma = $d->DescripcionPrograma;
+            $programa->DescripcionPrograma = $d->DescripcionPrograma ;
             $programa->idSecretaria = $d->idSecretaria;
             $programa->idUA = $d->idUA;
             $programa->ejercicioFiscal = $nuevo_ef;
@@ -108,7 +59,7 @@ class EjerciciosFiscalesController extends BaseController
             $reg->Componente = $d->Componente;
             $reg->idSecretaria = $d->idSecretaria;
             $reg->idUA = $d->idUA;
-            $reg->DescripcionComponente = $d->DescripcionComponente;
+            $reg->DescripcionComponente = $d->DescripcionComponente ;
             $reg->Observaciones = $d->Observaciones;
             $reg->ConacF = $d->ConacF;
             $reg->ejercicioFiscal = $nuevo_ef;
@@ -125,7 +76,7 @@ class EjerciciosFiscalesController extends BaseController
             $reg->Consecutivo = $d->Consecutivo;
             $reg->Componente = $d->Componente;
             $reg->ClaveFuncional = $d->ClaveFuncional;
-            $reg->DescripcionComponente = $d->DescripcionComponente;
+            $reg->DescripcionComponente = $d->DescripcionComponente ;
             $reg->idSecretaria = $d->idSecretaria;
             $reg->idUA = $d->idUA;
             $reg->Observaciones = $d->Observaciones;
@@ -145,10 +96,10 @@ class EjerciciosFiscalesController extends BaseController
             $reg->idSecretaria = $d->idSecretaria;
             $reg->idUA = $d->idUA;
             $reg->ClaveFuncional = $d->ClaveFuncional;
-            $reg->DescripcionComponente = $d->DescripcionComponente;
+            $reg->DescripcionComponente = $d->DescripcionComponente ;
             $reg->Anticorrupcion = $d->Anticorrupcion;
             $reg->idTipologia = $d->idTipologia;
-            $reg->DescripcionPrograma = $d->DescripcionPrograma;
+            $reg->DescripcionPrograma = $d->DescripcionPrograma ;
             $reg->ejercicioFiscal = $nuevo_ef;
 
             $reg->save();

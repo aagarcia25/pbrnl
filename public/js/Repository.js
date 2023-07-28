@@ -63,6 +63,7 @@ class Repository {
         this._mir = null;
         this._estrategias = null;
         this._lineasaccion = null;
+        this._ejercicios = null;
     }
 
     get Secretarias() {
@@ -233,6 +234,13 @@ class Repository {
         return this._lineasaccion;
     }
 
+    get EjerciciosFiscales() {
+        if (!this._ejercicios) {
+            this._ejercicios = new EjerciciosFiscalesController(this.Url);
+        }
+
+        return this._ejercicios;
+    }
 }
 
 class SecretariasController {
@@ -476,12 +484,12 @@ class ProgramasPresupuestalesController {
         this.Url = url;
     }
 
-    GetAllProgramasP() {
-        return Requests('GET', this.Url + "/GetAllProgramasPP");
+    GetAllProgramasP(request) {
+        return Requests('GET', this.Url + "/GetAllProgramasPP", request);
     }
 
-    GetAllCountProgramasP() {
-        return Requests('GET', this.Url + "/GetAllCountProgramasP");
+    GetAllCountProgramasP(request) {
+        return Requests('GET', this.Url + "/GetAllCountProgramasP", request);
     }
 
     GetCountProgramasP(request) {
@@ -759,5 +767,12 @@ class MirController {
     }
 }
 
+class EjerciciosFiscalesController {
+    constructor(url = '') {
+        this.Url = url;
+    }
 
-                                                                                        
+    Lista() {
+        return Requests('GET', this.Url + "/GetEjerciciosFiscales");
+    }
+}
