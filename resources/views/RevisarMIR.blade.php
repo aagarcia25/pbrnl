@@ -5,7 +5,7 @@
 
  @include('includes._partialHeader')
 
-  <link rel="stylesheet" type="text/css" href="css/EstilosPbR.css" />
+<link rel="stylesheet" type="text/css" href="/css/EstilosPbR.css" />
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet" />
 
@@ -86,8 +86,8 @@
                             <button class="nav-link tab-modal-caratula BotonesTab" id="tab-proposito" data-bs-toggle="tab" data-bs-target="#nav-proposito" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Propósito</button>
                             <button class="nav-link tab-modal-caratula BotonesTab" id="tab-componentes" data-bs-toggle="tab" data-bs-target="#nav-componentes" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Componentes</button>
                             <button class="nav-link tab-modal-caratula BotonesTab" id="tab-actividades" data-bs-toggle="tab" data-bs-target="#nav-actividades" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Actividades</button>
-                            <button class="nav-link tab-modal-caratula BotonesTab" id="tab-auditoriacarga" data-bs-toggle="tab" data-bs-target="#nav-auditoriacarga" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Auditoría de carga</button>
-                            <button class="nav-link tab-modal-caratula BotonesTab" id="tab-auditoriaformulas" data-bs-toggle="tab" data-bs-target="#nav-auditoriaformulas" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Auditoría de fórmulas</button>
+                            <button class="nav-link tab-modal-caratula BotonesTab" id="tab-auditoriacarga" onclick="GetMirAutoriaCarga();" data-bs-toggle="tab" data-bs-target="#nav-auditoriacarga" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Auditoría de carga</button>
+                            <button class="nav-link tab-modal-caratula BotonesTab" id="tab-auditoriaformulas" onclick="GetMirAutoriaFormulas();" data-bs-toggle="tab" data-bs-target="#nav-auditoriaformulas" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Auditoría de fórmulas</button>
                         </div>
                     </nav>
                     <div class="tab-content" id="nav-tabContent">
@@ -106,8 +106,8 @@
                                     </select>
                                 </div>
                                 <div class="col-6 mb-1 FormUsr FontMsg mt-3">
-                                    <label for="nombre_pp" class="form-labelUsr4 text-uppercase">Nombre del PP</label>
-                                    <input type="text" class="TextBoxUsrReadOnly w-100 H-50 text-center" id="nombre_pp" readonly>
+                                    <label for="nombre_pp" class="form-labelUsr4">Nombre del PP</label>
+                                    <input type="text" class="TextBoxUsrReadOnly w-100 H-50 text-center text-uppercase" id="nombre_pp" readonly>
                                 </div>
                                 <div class="col-3 mb-1 FormUsr FontMsg mt-3">
                                     <label for="clave_programatica" class="form-labelUsr4">Clave Programática</label>
@@ -148,7 +148,7 @@
                                     </select>
                                 </div>
                                 <div class="col-12 mb-1 FormUsr FontMsg mt-3">
-                                    <label for="programa_sectorial" class="form-labelUsr4 text-uppercase">Programa Sectorial, Regional, Especial o Institucional</label>
+                                    <label for="programa_sectorial" class="form-labelUsr4">Programa Sectorial, Regional, Especial o Institucional</label>
                                     <input type="text" class="TextBoxUsr w-100 H-50" id="programa_sectorial">
                                 </div>
                                 <div class="col-4 align-self-center FormUsr FontMsg mt-3">
@@ -177,10 +177,10 @@
                                 <div class="col-12">
                                     <div class="d-flex">
                                         <div class="p-2 flex-grow-1">
-                                            <img id="fin-izq" src="img/icono izq.svg" class="tabs-internas cursor-pointer" onmouseover="img_over('fin-izq', 'img/icono izq activo.svg')" onmouseout="img_out('fin-izq', 'img/icono izq.svg')" data-superior="fin" data-seccion="findos" data-actual="finuno" data-texto="1/2" width="30" height="30">
+                                            <img id="fin-izq" src="/img/icono izq.svg" class="tabs-internas cursor-pointer" onmouseover="img_over('fin-izq', '/img/icono izq activo.svg')" onmouseout="img_out('fin-izq', 'img/icono izq.svg')" data-superior="fin" data-seccion="findos" data-actual="finuno" data-texto="1/2" width="30" height="30">
                                         </div>
                                         <div class="p-2">
-                                            <b class="m-3 number-tabs-fin">1/2</b><img id="fin-der" src="img/icono der.svg" class="tabs-internas cursor-pointer" onmouseover="img_over('fin-der', 'img/icono der activo.svg')" onmouseout="img_out('fin-der', 'img/icono der.svg')" data-superior="fin" data-seccion="finuno" data-actual="findos" data-texto="2/2" width="30" height="30">
+                                            <b class="m-3 money-tabs-fin">1/2</b><img id="fin-der" src="/img/icono der.svg" class="tabs-internas cursor-pointer" onmouseover="img_over('fin-der', '/img/icono der activo.svg')" onmouseout="img_out('fin-der', 'img/icono der.svg')" data-superior="fin" data-seccion="finuno" data-actual="findos" data-texto="2/2" width="30" height="30">
                                         </div>
                                     </div>
                                 </div>
@@ -197,14 +197,14 @@
                                         <input type="text" class="TextBoxUsrReadOnly w-100 H-50 text-center" disabled="" style="background: white; color: gray;" id="claveindicador_fin" readonly>
                                     </div>
                                     <div class="col-10 mb-1 FormUsr FontMsg mt-3">
-                                        <label for="nombreindicar_fin" class="form-labelUsr4 text-uppercase">Nombre del Indicador</label>
+                                        <label for="nombreindicar_fin" class="form-labelUsr4">Nombre del Indicador</label>
                                         <textarea class="TextBoxUsr w-100 H-50" id="nombreindicar_fin" required maxlength="300" rows="2"></textarea>
                                         <div class="position-absolute bottom-0 end-0">
                                             <label id="lblContIndicadorFin" class="LabelContador me-4">0/30</label>
                                         </div>
                                     </div>
                                     <div class="col-12 mb-1 FormUsr FontMsg mt-3">
-                                        <label for="descripcionformula_fin" class="form-labelUsr4 text-uppercase">Descripción de la fórmula</label>
+                                        <label for="descripcionformula_fin" class="form-labelUsr4">Descripción de la fórmula</label>
                                         <textarea class="TextBoxUsr w-100 H-50" id="descripcionformula_fin" required maxlength="300" rows="2"></textarea>
                                     </div>
                                     <div class="col-3 mb-1 FormUsr FontMsg mt-3 Rows4">
@@ -285,22 +285,22 @@
                                     </div>
                                     <div class="col-3 mb-1 FormUsr FontMsg mt-3">
                                         <label for="lineabaseV1_fin" class="form-labelUsr4">V1</label>
-                                        <input type="text" class="TextBoxUsr w-100 H-50" id="lineabaseV1_fin">
+                                        <input type="text" class="TextBoxUsr w-100 H-50 money" id="lineabaseV1_fin">
                                     </div>
                                     <div class="col-3 mb-1 FormUsr FontMsg mt-3">
                                         <label for="lineabaseV2_fin" class="form-labelUsr4">V2</label>
-                                        <input type="text" class="TextBoxUsr w-100 H-50" id="lineabaseV2_fin">
+                                        <input type="text" class="TextBoxUsr w-100 H-50 money" id="lineabaseV2_fin">
                                     </div>
                                     <div class="col-6 mb-1 FormUsr FontMsg mt-3">
                                         <label for="mediosverificacion_fin" class="form-labelUsr4">Medios de Verificación</label>
-                                        <input type="text" class="TextBoxUsr w-100 H-50 text-uppercase" id="mediosverificacion_fin">
+                                        <input type="text" class="TextBoxUsr w-100 H-50" id="mediosverificacion_fin">
                                     </div>
                                     <div class="col-6 mb-1 FormUsr FontMsg mt-3">
                                         <label for="fuentesinformacion_fin" class="form-labelUsr4">Fuentes de Información</label>
-                                        <input type="text" class="TextBoxUsr w-100 H-50 text-uppercase" id="fuentesinformacion_fin">
+                                        <input type="text" class="TextBoxUsr w-100 H-50" id="fuentesinformacion_fin">
                                     </div>
                                     <div class="col-12 mb-1 FormUsr FontMsg mt-3">
-                                        <label for="supuestos_fin" class="form-labelUsr4 text-uppercase">Supuestos</label>
+                                        <label for="supuestos_fin" class="form-labelUsr4">Supuestos</label>
                                         <textarea class="TextBoxUsr w-100 H-50" id="supuestos_fin" required maxlength="300" rows="2"></textarea>
                                     </div>
                                 </div>
@@ -420,21 +420,21 @@
                                     </div>
                                     <div class="col-4 mb-3 FormUsr FontMsg mt-3">
                                         <label for="descripcionindicador_fin" class="form-labelUsr4">Descripción Indicador</label>
-                                        <textarea class="form-control TextBoxUsr w-100 text-uppercase" id="descripcionindicador_fin" required maxlength="300" rows="6"></textarea>
+                                        <textarea class="form-control TextBoxUsr w-100" id="descripcionindicador_fin" required maxlength="300" rows="6"></textarea>
                                         <div class="position-absolute bottom-0 end-0">
                                             <label id="lblIndicaFin" class="LabelContador me-4">0/240</label>
                                         </div>
                                     </div>
                                     <div class="col-4 mb-3 FormUsr FontMsg mt-3">
                                         <label for="descripcionnumerador_fin" class="form-labelUsr4">Descripción Numerador</label>
-                                        <textarea class="form-control TextBoxUsr w-100 text-uppercase" id="descripcionnumerador_fin" required maxlength="300" rows="6"></textarea>
+                                        <textarea class="form-control TextBoxUsr w-100" id="descripcionnumerador_fin" required maxlength="300" rows="6"></textarea>
                                         <div class="position-absolute bottom-0 end-0">
                                             <label id="lblContDescNumFin" class="LabelContador me-4">0/240</label>
                                         </div>
                                     </div>
                                     <div class="col-4 mb-3 FormUsr FontMsg mt-3">
                                         <label for="descripciondenominador_fin" class="form-labelUsr4">Descripción Denominador</label>
-                                        <textarea class="form-control TextBoxUsr w-100 text-uppercase" id="descripciondenominador_fin" required maxlength="300" rows="6"></textarea>
+                                        <textarea class="form-control TextBoxUsr w-100" id="descripciondenominador_fin" required maxlength="300" rows="6"></textarea>
                                         <div class="position-absolute bottom-0 end-0">
                                             <label id="lblContDescDenomFin" class="LabelContador me-4">0/240</label>
                                         </div>
@@ -447,10 +447,10 @@
                                 <div class="col-12">
                                     <div class="d-flex">
                                         <div class="p-2 flex-grow-1">
-                                            <img id="proposito-izq" src="img/icono izq.svg" class="tabs-internas cursor-pointer" onmouseover="img_over('proposito-izq', 'img/icono izq activo.svg')" onmouseout="img_out('proposito-izq', 'img/icono izq.svg')" data-superior="proposito" data-seccion="propositodos" data-actual="propositouno" data-texto="1/2" width="30" height="30">
+                                            <img id="proposito-izq" src="/img/icono izq.svg" class="tabs-internas cursor-pointer" onmouseover="img_over('proposito-izq', '/img/icono izq activo.svg')" onmouseout="img_out('proposito-izq', 'img/icono izq.svg')" data-superior="proposito" data-seccion="propositodos" data-actual="propositouno" data-texto="1/2" width="30" height="30">
                                         </div>
                                         <div class="p-2">
-                                            <b class="m-3 number-tabs-proposito">1/2</b><img id="proposito-der" src="img/icono der.svg" class="tabs-internas cursor-pointer" onmouseover="img_over('proposito-der', 'img/icono der activo.svg')" onmouseout="img_out('proposito-der', 'img/icono der.svg')" data-superior="proposito" data-seccion="propositouno" data-actual="propositodos" data-texto="2/2" width="30" height="30">
+                                            <b class="m-3 money-tabs-proposito">1/2</b><img id="proposito-der" src="/img/icono der.svg" class="tabs-internas cursor-pointer" onmouseover="img_over('proposito-der', '/img/icono der activo.svg')" onmouseout="img_out('proposito-der', 'img/icono der.svg')" data-superior="proposito" data-seccion="propositouno" data-actual="propositodos" data-texto="2/2" width="30" height="30">
                                         </div>
                                     </div>
                                 </div>
@@ -459,7 +459,7 @@
                                 <input type="hidden" id="claseprogramatica_proposito">
                                 <div class="row">
                                     <div class="col-12 mb-1 FormUsr FontMsg mt-3">
-                                        <label for="proposito_proposito" class="form-labelUsr4 text-uppercase">Proposito</label>
+                                        <label for="proposito_proposito" class="form-labelUsr4">Proposito</label>
                                         <textarea class="TextBoxUsr w-100 H-50" id="proposito_proposito" required maxlength="300" rows="2"></textarea>
                                     </div>
                                     <div class="col-2 mb-1 FormUsr FontMsg mt-3">
@@ -467,14 +467,14 @@
                                         <input type="text" class="TextBoxUsrReadOnly w-100 H-50 text-center" id="claveindicador_proposito"  disabled="" style="background: white; color: gray;">
                                     </div>
                                     <div class="col-10 mb-1 FormUsr FontMsg mt-3">
-                                        <label for="nombreindicar_proposito" class="form-labelUsr4 text-uppercase">Nombre del indicador</label>
+                                        <label for="nombreindicar_proposito" class="form-labelUsr4">Nombre del indicador</label>
                                         <textarea class="TextBoxUsr w-100 H-50" id="nombreindicar_proposito" required maxlength="300" rows="2"></textarea>
                                         <div class="position-absolute bottom-0 end-0">
                                             <label id="lblContIndicadorProp" class="LabelContador me-4">0/30</label>
                                         </div>
                                     </div>
                                     <div class="col-12 mb-1 FormUsr FontMsg mt-3">
-                                        <label for="descripcionformula_proposito" class="form-labelUsr4 text-uppercase">Descripción de la fórmula</label>
+                                        <label for="descripcionformula_proposito" class="form-labelUsr4">Descripción de la fórmula</label>
                                         <textarea class="TextBoxUsr w-100 H-50" id="descripcionformula_proposito" required maxlength="300" rows="2"></textarea>
                                     </div>
                                     <div class="col-3 mb-1 FormUsr FontMsg mt-3">
@@ -555,22 +555,22 @@
                                     </div>
                                     <div class="col-3 mb-1 FormUsr FontMsg mt-3">
                                         <label for="lineabaseV1_proposito" class="form-labelUsr4">V1</label>
-                                        <input type="text" class="TextBoxUsr w-100 H-50" id="lineabaseV1_proposito">
+                                        <input type="text" class="TextBoxUsr w-100 H-50 money" id="lineabaseV1_proposito">
                                     </div>
                                     <div class="col-3 mb-1 FormUsr FontMsg mt-3">
                                         <label for="lineabaseV2_proposito" class="form-labelUsr4">V2</label>
-                                        <input type="text" class="TextBoxUsr w-100 H-50" id="lineabaseV2_proposito">
+                                        <input type="text" class="TextBoxUsr w-100 H-50 money" id="lineabaseV2_proposito">
                                     </div>
                                     <div class="col-6 mb-1 FormUsr FontMsg mt-3">
-                                        <label for="mediosverificacion_proposito" class="form-labelUsr4 text-uppercase">Medios de Verificación</label>
+                                        <label for="mediosverificacion_proposito" class="form-labelUsr4">Medios de Verificación</label>
                                         <input type="text" class="TextBoxUsr w-100 H-50" id="mediosverificacion_proposito">
                                     </div>
                                     <div class="col-6 mb-1 FormUsr FontMsg mt-3">
-                                        <label for="fuentesinformacion_proposito" class="form-labelUsr4 text-uppercase">Fuentes de Información</label>
+                                        <label for="fuentesinformacion_proposito" class="form-labelUsr4">Fuentes de Información</label>
                                         <input type="text" class="TextBoxUsr w-100 H-50" id="fuentesinformacion_proposito">
                                     </div>
                                     <div class="col-12 mb-1 FormUsr FontMsg mt-3">
-                                        <label for="supuestos_proposito" class="form-labelUsr4 text-uppercase">Supuestos</label>
+                                        <label for="supuestos_proposito" class="form-labelUsr4">Supuestos</label>
                                         <textarea class="TextBoxUsr w-100 H-50" id="supuestos_proposito" required maxlength="300" rows="2"></textarea>
                                     </div>
                                 </div>
@@ -689,21 +689,21 @@
                                         </select>
                                     </div>
                                     <div class="col-4 mb-3 FormUsr FontMsg mt-3">
-                                        <label for="descripcionindicador_proposito" class="form-labelUsr4 text-uppercase">Descripción Indicador</label>
+                                        <label for="descripcionindicador_proposito" class="form-labelUsr4">Descripción Indicador</label>
                                         <textarea class="form-control TextBoxUsr w-100" id="descripcionindicador_proposito" required maxlength="300" rows="6"></textarea>
                                         <div class="position-absolute bottom-0 end-0">
                                             <label ID="lbContlIndicaProp" class="LabelContador me-4" >0/240</label>
                                         </div>
                                     </div>
                                     <div class="col-4 mb-3 FormUsr FontMsg mt-3">
-                                        <label for="descripcionnumerador_proposito" class="form-labelUsr4 text-uppercase">Descripción Numerador</label>
+                                        <label for="descripcionnumerador_proposito" class="form-labelUsr4">Descripción Numerador</label>
                                         <textarea class="form-control TextBoxUsr w-100" id="descripcionnumerador_proposito" required maxlength="300" rows="6"></textarea>
                                         <div class="position-absolute bottom-0 end-0">
                                             <label ID="lblContDescNumProp" class="LabelContador me-4" >0/240</label>
                                         </div>
                                     </div>
                                     <div class="col-4 mb-3 FormUsr FontMsg mt-3">
-                                        <label for="descripciondenominador_proposito" class="form-labelUsr4 text-uppercase">Descripción Denominador</label>
+                                        <label for="descripciondenominador_proposito" class="form-labelUsr4">Descripción Denominador</label>
                                         <textarea class="form-control TextBoxUsr w-100" id="descripciondenominador_proposito" required maxlength="300" rows="6"></textarea>
                                         <div class="position-absolute bottom-0 end-0">
                                             <label ID="lblContDescDenomProp" class="LabelContador me-4">0/240</label>
@@ -718,30 +718,30 @@
                                 <div class="col-1">
                                     <div class="d-flex">
                                         <div class="p-2 flex-grow-1">
-                                            <img id="componente-anterior" class="tabs-select-componente cursor-pointer" data-tipo="-1" src="img/icono anterior.svg" onmouseover="img_over('componente-anterior', 'img/icono anterior activo.svg')" onmouseout="img_out('componente-anterior', 'img/icono anterior.svg')" width="30" height="30">
+                                            <img id="componente-anterior" class="tabs-select-componente cursor-pointer" data-tipo="-1" src="/img/icono anterior.svg" onmouseover="img_over('componente-anterior', '/img/icono anterior activo.svg')" onmouseout="img_out('componente-anterior', 'img/icono anterior.svg')" width="30" height="30">
                                         </div>
                                         <div class="p-2">
-                                            <img id="componente-siguiente" class="tabs-select-componente cursor-pointer" data-tipo="+1" src="img/icono siguiente.svg" onmouseover="img_over('componente-siguiente', 'img/icono siguiente activo.svg')" onmouseout="img_out('componente-siguiente', 'img/icono siguiente.svg')" width="30" height="30">
+                                            <img id="componente-siguiente" class="tabs-select-componente cursor-pointer" data-tipo="+1" src="/img/icono siguiente.svg" onmouseover="img_over('componente-siguiente', '/img/icono siguiente activo.svg')" onmouseout="img_out('componente-siguiente', 'img/icono siguiente.svg')" width="30" height="30">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-2 mb-1 FormUsr FontMsg mt-3">
                                     <label for="id_componente" class="form-labelUsr4">Id Componente</label>
-                                    <input type="text" class="TextBoxUsrReadOnly w-100 H-50 text-center text-uppercase" id="id_componente"  disabled="" style="background: white; color: gray;">
+                                    <input type="text" class="TextBoxUsrReadOnly w-100 H-50 text-center" id="id_componente"  disabled="" style="background: white; color: gray;">
                                 </div>
                                 <div class="col-9 mb-1 FormUsr FontMsg mt-3">
                                     <label for="nombre_componente" class="form-labelUsr4">Componente</label>
-                                    <input type="text" class="TextBoxUsr w-100 H-50 text-uppercase" id="nombre_componente">
+                                    <input type="text" class="TextBoxUsr w-100 H-50" id="nombre_componente">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-12">
                                     <div class="d-flex">
                                         <div class="p-2 flex-grow-1">
-                                            <img id="componente-izq" src="img/icono izq.svg" src="img/icono izq activo.svg" onmouseover="img_over('componente-izq', 'img/icono izq activo.svg')" onmouseout="img_out('componente-izq', 'img/icono izq.svg')" class="tabs-internas cursor-pointer" data-superior="componentes" data-seccion="componentesdos" data-actual="componentesuno" data-texto="1/2" width="30" height="30">
+                                            <img id="componente-izq" src="/img/icono izq.svg" src="/img/icono izq activo.svg" onmouseover="img_over('componente-izq', '/img/icono izq activo.svg')" onmouseout="img_out('componente-izq', 'img/icono izq.svg')" class="tabs-internas cursor-pointer" data-superior="componentes" data-seccion="componentesdos" data-actual="componentesuno" data-texto="1/2" width="30" height="30">
                                         </div>
                                         <div class="p-2">
-                                            <b class="m-3 number-tabs-componentes">1/2</b><img id="componente-der" src="img/icono der.svg" src="img/icono der activo.svg" onmouseover="img_over('componente-der', 'img/icono der activo.svg')" onmouseout="img_out('componente-der', 'img/icono der.svg')" class="tabs-internas cursor-pointer" data-superior="componentes" data-seccion="componentesuno" data-actual="componentesdos" data-texto="2/2" width="30" height="30">
+                                            <b class="m-3 money-tabs-componentes">1/2</b><img id="componente-der" src="/img/icono der.svg" src="/img/icono der activo.svg" onmouseover="img_over('componente-der', '/img/icono der activo.svg')" onmouseout="img_out('componente-der', 'img/icono der.svg')" class="tabs-internas cursor-pointer" data-superior="componentes" data-seccion="componentesuno" data-actual="componentesdos" data-texto="2/2" width="30" height="30">
                                         </div>
                                     </div>
                                 </div>
@@ -750,15 +750,18 @@
                                 <div class="row">
                                     <div class="col-2 mb-1 FormUsr FontMsg mt-3">
                                         <label for="claveindicador_componente" class="form-labelUsr4">Clave Indicador</label>
-                                        <input type="text" class="TextBoxUsr w-100 H-50 text-uppercase" id="claveindicador_componente" disabled="" style="background: white; color: gray;">
+                                        <input type="text" class="TextBoxUsr w-100 H-50" id="claveindicador_componente" disabled="" style="background: white; color: gray;">
                                     </div>
                                     <div class="col-10 mb-1 FormUsr FontMsg mt-3">
                                         <label for="nombreindicar_componente" class="form-labelUsr4">Nombre del Indicador</label>
-                                        <textarea class="TextBoxUsr w-100 H-50 text-uppercase" id="nombreindicar_componente" required maxlength="300" rows="2"></textarea>
+                                        <textarea class="TextBoxUsr w-100 H-50" id="nombreindicar_componente" required maxlength="300" rows="2"></textarea>
+                                        <div class="position-absolute bottom-0 end-0">
+                                            <label id="lblContIndicadorComp" class="LabelContador me-4">0/30</label>
+                                        </div>
                                     </div>
                                     <div class="col-12 mb-1 FormUsr FontMsg mt-3">
                                         <label for="descripcionformula_componente" class="form-labelUsr4">Descripción de la Fórmula</label>
-                                        <textarea class="TextBoxUsr w-100 H-50 text-uppercase" id="descripcionformula_componente" required maxlength="300" rows="2"></textarea>
+                                        <textarea class="TextBoxUsr w-100 H-50" id="descripcionformula_componente" required maxlength="300" rows="2"></textarea>
                                     </div>
                                     <div class="col-3 mb-1 FormUsr FontMsg mt-3">
                                         <label for="variable1_componente" class="form-labelUsr4">Variable 1 (V1)</label>
@@ -824,7 +827,7 @@
                                                         <label for="lineabaseV1_componente" class="form-label">V1</label>
                                                     </div>
                                                     <div class="col-9">
-                                                        <input type="text" class="form-control" id="lineabaseV1_componente">
+                                                        <input type="text" class="form-control money" id="lineabaseV1_componente">
                                                     </div>
                                                 </div>
                                             </div>
@@ -834,7 +837,7 @@
                                                         <label for="lineabaseV2_componente" class="form-label">V2</label>
                                                     </div>
                                                     <div class="col-9">
-                                                        <input type="text" class="form-control" id="lineabaseV2_componente">
+                                                        <input type="text" class="form-control money" id="lineabaseV2_componente">
                                                     </div>
                                                 </div>
                                             </div>
@@ -857,7 +860,7 @@
                                     </div>
                                     <div class="col-2 FormUsr FontMsg mt-3">
                                         <label for="selectfrecuencia_componente" class="form-labelUsr3">Frecuencia</label>
-                                        <select id="selectfrecuencia_componente" class="TextBoxUsr unidad-medida select-mir w-100" data-tipo="componente" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                        <select id="selectfrecuencia_componente" class="TextBoxUsr select-frecuencia select-mir w-100" data-tipo="componente" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
                                             <option value="-">-</option>
                                             <option value="TRIMESTRAL">TRIMESTRAL</option>
                                             <option value="SEMESTRAL">SEMESTRAL</option>
@@ -904,7 +907,7 @@
                                                         <label for="metasemestral1V1D_componente" class="form-label">D:</label>
                                                     </div>
                                                     <div class="col-11">
-                                                        <input type="text" class="form-control" id="metasemestral1V1D_componente">
+                                                        <input type="text" class="form-control money" id="metasemestral1V1D_componente" onkeypress="return justNumbers(event);">
                                                     </div>
                                                 </div>
                                             </div>
@@ -928,7 +931,7 @@
                                                         <label for="metasemestral2V1D_componente" class="form-label">D:</label>
                                                     </div>
                                                     <div class="col-11">
-                                                        <input type="text" class="form-control" id="metasemestral2V1D_componente">
+                                                        <input type="text" class="form-control money" id="metasemestral2V1D_componente" onkeypress="return justNumbers(event);">
                                                     </div>
                                                 </div>
                                             </div>
@@ -952,7 +955,7 @@
                                                         <label for="metatrimestral1V1D_componente" class="form-label">D:</label>
                                                     </div>
                                                     <div class="col-10">
-                                                        <input type="text" class="form-control" id="metatrimestral1V1D_componente">
+                                                        <input type="text" class="form-control money" id="metatrimestral1V1D_componente" onkeypress="return justNumbers(event);">
                                                     </div>
                                                 </div>
                                             </div>
@@ -962,7 +965,7 @@
                                                         <label for="metatrimestral1V1A_componente" class="form-label" style="background: white; color: gray;">A:</label>
                                                     </div>
                                                     <div class="col-10">
-                                                        <input type="text" class="form-control" disabled="" style="background: white; color: gray;" id="metatrimestral1V1A_componente">
+                                                        <input type="text" class="form-control" disabled="" onchange="MetaS1V1A_Componente();" style="background: white; color: gray;" id="metatrimestral1V1A_componente">
                                                     </div>
                                                 </div>
                                             </div>
@@ -976,7 +979,7 @@
                                                         <label for="metatrimestral2V1D_componente" class="form-label">D:</label>
                                                     </div>
                                                     <div class="col-10">
-                                                        <input type="text" class="form-control" id="metatrimestral2V1D_componente">
+                                                        <input type="text" class="form-control money" id="metatrimestral2V1D_componente" onkeypress="return justNumbers(event);">
                                                     </div>
                                                 </div>
                                             </div>
@@ -1000,7 +1003,7 @@
                                                         <label for="metatrimestral3V1D_componente" class="form-label">D:</label>
                                                     </div>
                                                     <div class="col-10">
-                                                        <input type="text" class="form-control" id="metatrimestral3V1D_componente">
+                                                        <input type="text" class="form-control money" id="metatrimestral3V1D_componente" onkeypress="return justNumbers(event);">
                                                     </div>
                                                 </div>
                                             </div>
@@ -1024,7 +1027,7 @@
                                                         <label for="metatrimestral4V1D_componente" class="form-label">D:</label>
                                                     </div>
                                                     <div class="col-10">
-                                                        <input type="text" class="form-control" id="metatrimestral4V1D_componente">
+                                                        <input type="text" class="form-control money" id="metatrimestral4V1D_componente" onkeypress="return justNumbers(event);">
                                                     </div>
                                                 </div>
                                             </div>
@@ -1047,7 +1050,13 @@
                                         <input type="text" class="TextBoxUsr w-100 H-50" id="variableV2_componente" disabled="" style="background: white; color: gray;">
                                     </div>
                                     <div class="col-2">
-                                        
+                                        <div class="row d-flex align-items-center justify-content-center">
+                                            <input type="button" id="checkDenominadorFijo_componente" class="DenominadorFijoInactivo denominadorfijo ms-2" data-tipo="componente">
+                                        </div>
+                                        <div class="row">
+                                            <p class="LetretosFont text-center">Activar en caso de que el denominador sea una constante.</p>
+                                            <input type="hidden" id="clicDenominador_componente" value="0" style="background: white; color: gray;">
+                                        </div>
                                     </div>
                                     <div class="col-4 d-none d-metasemestral-componente">
                                         <div class="row">
@@ -1057,7 +1066,7 @@
                                                         <label for="metasemestral1V2D_componente" class="form-label">D:</label>
                                                     </div>
                                                     <div class="col-11">
-                                                        <input type="text" class="form-control" id="metasemestral1V2D_componente">
+                                                        <input type="text" class="form-control money" id="metasemestral1V2D_componente" onkeypress="return justNumbers(event);">
                                                     </div>
                                                 </div>
                                             </div>
@@ -1081,7 +1090,7 @@
                                                         <label for="metasemestral2V2D_componente" class="form-label">D:</label>
                                                     </div>
                                                     <div class="col-11">
-                                                        <input type="text" class="form-control" id="metasemestral2V2D_componente">
+                                                        <input type="text" class="form-control money" id="metasemestral2V2D_componente" onkeypress="return justNumbers(event);">
                                                     </div>
                                                 </div>
                                             </div>
@@ -1105,7 +1114,7 @@
                                                         <label for="metatrimestral1V2D_componente" class="form-label">D:</label>
                                                     </div>
                                                     <div class="col-10">
-                                                        <input type="text" class="form-control" id="metatrimestral1V2D_componente">
+                                                        <input type="text" class="form-control money" id="metatrimestral1V2D_componente" onkeypress="return justNumbers(event);">
                                                     </div>
                                                 </div>
                                             </div>
@@ -1129,7 +1138,7 @@
                                                         <label for="metatrimestral2V2D_componente" class="form-label">D:</label>
                                                     </div>
                                                     <div class="col-10">
-                                                        <input type="text" class="form-control" id="metatrimestral2V2D_componente">
+                                                        <input type="text" class="form-control money" id="metatrimestral2V2D_componente" onkeypress="return justNumbers(event);">
                                                     </div>
                                                 </div>
                                             </div>
@@ -1153,7 +1162,7 @@
                                                         <label for="metatrimestral3V2D_componente" class="form-label">D:</label>
                                                     </div>
                                                     <div class="col-10">
-                                                        <input type="text" class="form-control" id="metatrimestral3V2D_componente">
+                                                        <input type="text" class="form-control money" id="metatrimestral3V2D_componente" onkeypress="return justNumbers(event);">
                                                     </div>
                                                 </div>
                                             </div>
@@ -1177,7 +1186,7 @@
                                                         <label for="metatrimestral4V2D_componente" class="form-label">D:</label>
                                                     </div>
                                                     <div class="col-10">
-                                                        <input type="text" class="form-control" id="metatrimestral4V2D_componente">
+                                                        <input type="text" class="form-control money" id="metatrimestral4V2D_componente" onkeypress="return justNumbers(event);">
                                                     </div>
                                                 </div>
                                             </div>
@@ -1199,15 +1208,15 @@
                                 <div class="row">
                                     <div class="col-6 mb-1 FormUsr FontMsg mt-3">
                                         <label for="mediosverificacion_componente" class="form-labelUsr4">Medios de Verificación</label>
-                                        <input type="text" class="TextBoxUsr w-100 H-50 text-uppercase" id="mediosverificacion_componente">
+                                        <input type="text" class="TextBoxUsr w-100 H-50" id="mediosverificacion_componente">
                                     </div>
                                     <div class="col-6 mb-1 FormUsr FontMsg mt-3">
                                         <label for="fuentesinformacion_componente" class="form-labelUsr4">Fuentes de Información</label>
-                                        <input type="text" class="TextBoxUsr w-100 H-50 text-uppercase" id="fuentesinformacion_componente">
+                                        <input type="text" class="TextBoxUsr w-100 H-50" id="fuentesinformacion_componente">
                                     </div>
                                     <div class="col-12 mb-1 FormUsr FontMsg mt-3">
                                         <label for="supuestos_componente" class="form-labelUsr4">Supuestos</label>
-                                        <textarea class="TextBoxUsr w-100 H-50 text-uppercase" id="supuestos_componente" required maxlength="300" rows="2"></textarea>
+                                        <textarea class="TextBoxUsr w-100 H-50" id="supuestos_componente" required maxlength="300" rows="2"></textarea>
                                     </div>
                                     <div class="col-4 mb-3 FormUsr FontMsg mt-3">
                                         <label for="select_sentidoindicador_componente" class="form-labelUsr3">Sentido del indicador</label>
@@ -1322,15 +1331,15 @@
                                     </div>
                                     <div class="col-4 mb-3 FormUsr FontMsg mt-3">
                                         <label for="descripcionindicador_componente" class="form-labelUsr4">Descripción Indicador</label>
-                                        <textarea class="form-control text-uppercase" id="descripcionindicador_componente" required maxlength="300" rows="6"></textarea>
+                                        <textarea class="form-control" id="descripcionindicador_componente" required maxlength="300" rows="6"></textarea>
                                     </div>
                                     <div class="col-4 mb-3 FormUsr FontMsg mt-3">
                                         <label for="descripcionnumerador_componente" class="form-labelUsr4">Descripción Numerador</label>
-                                        <textarea class="form-control text-uppercase" id="descripcionnumerador_componente" required maxlength="300" rows="6"></textarea>
+                                        <textarea class="form-control" id="descripcionnumerador_componente" required maxlength="300" rows="6"></textarea>
                                     </div>
                                     <div class="col-4 mb-3 FormUsr FontMsg mt-3">
                                         <label for="descripciondenominador_componente" class="form-labelUsr4">Descripción Denominador</label>
-                                        <textarea class="form-control text-uppercase" id="descripciondenominador_componente" required maxlength="300" rows="6"></textarea>
+                                        <textarea class="form-control" id="descripciondenominador_componente" required maxlength="300" rows="6"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -1342,10 +1351,10 @@
                                 <div class="col-1">
                                     <div class="d-flex">
                                         <div class="p-2 flex-grow-1">
-                                            <img id="componenteactividad-anterior" class="cursor-pointer tabs-select-componente" data-tipo="-1" src="img/icono anterior.svg" onmouseover="img_over('componenteactividad-anterior', 'img/icono anterior activo.svg')" onmouseout="img_out('componenteactividad-anterior', 'img/icono anterior.svg')" width="30" height="30">
+                                            <img id="componenteactividad-anterior" class="cursor-pointer tabs-select-componente" data-tipo="-1" src="/img/icono anterior.svg" onmouseover="img_over('componenteactividad-anterior', '/img/icono anterior activo.svg')" onmouseout="img_out('componenteactividad-anterior', 'img/icono anterior.svg')" width="30" height="30">
                                         </div>
                                         <div class="p-2">
-                                            <img id="componenteactividad-siguiente" class="cursor-pointer tabs-select-componente" data-tipo="+1" src="img/icono siguiente.svg" onmouseover="img_over('componenteactividad-siguiente', 'img/icono siguiente activo.svg')" onmouseout="img_out('componenteactividad-siguiente', 'img/icono siguiente.svg')" width="30" height="30">
+                                            <img id="componenteactividad-siguiente" class="cursor-pointer tabs-select-componente" data-tipo="+1" src="/img/icono siguiente.svg" onmouseover="img_over('componenteactividad-siguiente', '/img/icono siguiente activo.svg')" onmouseout="img_out('componenteactividad-siguiente', 'img/icono siguiente.svg')" width="30" height="30">
                                         </div>
                                     </div>
                                 </div>
@@ -1362,10 +1371,10 @@
                                 <div class="col-12">
                                     <div class="d-flex">
                                         <div class="p-2 flex-grow-1">
-                                            <img id="actividad-izq" src="img/icono izq.svg" src="img/icono izq activo.svg" onmouseover="img_over('actividad-izq', 'img/icono izq activo.svg')" onmouseout="img_out('actividad-izq', 'img/icono izq.svg')" class="tabs-internas cursor-pointer" data-superior="actividades" data-seccion="actividadesdos" data-actual="actividadesuno" data-texto="1/2" width="30" height="30">
+                                            <img id="actividad-izq" src="/img/icono izq.svg" src="/img/icono izq activo.svg" onmouseover="img_over('actividad-izq', '/img/icono izq activo.svg')" onmouseout="img_out('actividad-izq', 'img/icono izq.svg')" class="tabs-internas cursor-pointer" data-superior="actividades" data-seccion="actividadesdos" data-actual="actividadesuno" data-texto="1/2" width="30" height="30">
                                         </div>
                                         <div class="p-2">
-                                            <b class="m-3 number-tabs-actividades">1/2</b><img id="componente-der" src="img/icono der.svg" src="img/icono der activo.svg" onmouseover="img_over('actividad-der', 'img/icono der activo.svg')" onmouseout="img_out('actividad-der', 'img/icono der.svg')" class="tabs-internas cursor-pointer" data-superior="actividades" data-seccion="actividadesuno" data-actual="actividadesdos" data-texto="2/2" width="30" height="30">
+                                            <b class="m-3 money-tabs-actividades">1/2</b><img id="componente-der" src="/img/icono der.svg" src="/img/icono der activo.svg" onmouseover="img_over('actividad-der', '/img/icono der activo.svg')" onmouseout="img_out('actividad-der', 'img/icono der.svg')" class="tabs-internas cursor-pointer" data-superior="actividades" data-seccion="actividadesuno" data-actual="actividadesdos" data-texto="2/2" width="30" height="30">
                                         </div>
                                     </div>
                                 </div>
@@ -1375,15 +1384,15 @@
                                     <div class="col-1">
                                         <div class="d-flex">
                                             <div class="p-2 flex-grow-1">
-                                                <img id="actividad-anterior" class="cursor-pointer tabs-select-actividad" data-tipo="-1" src="img/icono anterior.svg" onmouseover="img_over('actividad-anterior', 'img/icono anterior activo.svg')" onmouseout="img_out('actividad-anterior', 'img/icono anterior.svg')" width="30" height="30">
+                                                <img id="actividad-anterior" class="cursor-pointer tabs-select-actividad" data-tipo="-1" src="/img/icono anterior.svg" onmouseover="img_over('actividad-anterior', '/img/icono anterior activo.svg')" onmouseout="img_out('actividad-anterior', 'img/icono anterior.svg')" width="30" height="30">
                                             </div>
                                             <div class="p-2">
-                                                <img id="actividad-siguiente" class="cursor-pointer tabs-select-actividad" data-tipo="+1" src="img/icono siguiente.svg" onmouseover="img_over('actividad-siguiente', 'img/icono siguiente activo.svg')" onmouseout="img_out('actividad-siguiente', 'img/icono siguiente.svg')" width="30" height="30">
+                                                <img id="actividad-siguiente" class="cursor-pointer tabs-select-actividad" data-tipo="+1" src="/img/icono siguiente.svg" onmouseover="img_over('actividad-siguiente', '/img/icono siguiente activo.svg')" onmouseout="img_out('actividad-siguiente', 'img/icono siguiente.svg')" width="30" height="30">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-3 mb-1 FormUsr FontMsg mt-3">
-                                        <label for="id_actividad" class="form-labelUsr4">Id Actividad</label>
+                                        <label for="id_actividad" class="form-labelUsr4">Id actividad</label>
                                         <input type="text" class="TextBoxUsrReadOnly w-100 H-50 text-center" id="id_actividad" disabled="" style="background: white; color: gray;">
                                     </div>
                                     <div class="col-8 mb-1 FormUsr FontMsg mt-3">
@@ -1391,15 +1400,18 @@
                                         <input type="text" class="TextBoxUsr w-100 H-50" id="nombre_actividad" readonly>
                                     </div>
                                     <div class="col-2 mb-1 FormUsr FontMsg mt-3">
-                                        <label for="claveindicador_actividad" class="form-labelUsr4">Clave Indicador</label>
+                                        <label for="claveindicador_actividad" class="form-labelUsr4">Clave indicador</label>
                                         <input type="text" class="TextBoxUsr w-100 H-50" id="claveindicador_actividad" disabled="" style="background: white; color: gray;">
                                     </div>
                                     <div class="col-10 mb-1 FormUsr FontMsg mt-3">
-                                        <label for="nombreindicar_actividad" class="form-labelUsr4">Nombre del Indicador</label>
+                                        <label for="nombreindicar_actividad" class="form-labelUsr4">Nombre del indicador</label>
                                         <textarea class="TextBoxUsr w-100 H-50" id="nombreindicar_actividad" required maxlength="300" rows="2"></textarea>
+                                        <div class="position-absolute bottom-0 end-0">
+                                            <label id="lblContIndicadorAct" class="LabelContador me-4">0/30</label>
+                                        </div>
                                     </div>
                                     <div class="col-12 mb-1 FormUsr FontMsg mt-3">
-                                        <label for="descripcionformula_actividad" class="form-labelUsr4">Descripción de la Fórmula</label>
+                                        <label for="descripcionformula_actividad" class="form-labelUsr4">Descripción de la fórmula</label>
                                         <textarea class="TextBoxUsr w-100 H-50" id="descripcionformula_actividad" required maxlength="300" rows="2"></textarea>
                                     </div>
                                     <div class="col-3 mb-1 FormUsr FontMsg mt-3">
@@ -1411,112 +1423,79 @@
                                         <textarea class="TextBoxUsr w-100" id="variable2_actividad" required maxlength="300" rows="5"></textarea>
                                     </div>
                                     <div class="col-3 mb-1 FormUsr FontMsg mt-3">
-                                        <label for="variable3_actividad" class="form-labelUsr4">Fórmula</label>
+                                        <label for="variable3_actividad" class="form-labelUsr4">Variable 3 (V3)</label>
                                         <textarea class="TextBoxUsr w-100" id="variable3_actividad" required maxlength="300" rows="5"></textarea>
                                     </div>
                                     <div class="col-3 mb-1">
                                         <div class="row">
-                                            <div class="col-12 FormUsr FontMsg mt-3">
-                                                <label for="select_unidadmedida_actividad" class="form-labelUsr3">Unidad de Medida</label>
-                                                <select id="select_unidadmedida_actividad" class="TextBoxUsr unidad-medida select-mir w-100" data-tipo="actividad" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                            <div class="col-12">
+                                                <label for="select_unidadmedida_actividad" class="form-label">Unidad de medida</label>
+                                                <select id="select_unidadmedida_actividad" class="selectpicker unidad-medida show-tick form-control" data-tipo="actividad" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
                                                     <option value="-">-</option>
                                                     <option value="PORCENTAJE">PORCENTAJE</option>
                                                     <option value="ABSOLUTO">ABSOLUTO</option>
                                                 </select>
                                             </div>
-                                            <div id="d-descripcionunidadmedida_actividad" class="col-12 d-none mt-3">
-                                                <label for="descripcionunidadmedida_actividad" class="form-labelUsr4">Descripción</label>
-                                                <input type="text" class="form-control TextBoxUsr w-100 H-50" id="descripcionunidadmedida_actividad">
+                                            <div id="d-descripcionunidadmedida_actividad" class="col-12 d-none">
+                                                <label for="descripcionunidadmedida_actividad" class="form-label">Descripción</label>
+                                                <input type="text" class="form-control" id="descripcionunidadmedida_actividad">
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-6 mb-1 FormUsr FontMsg mt-3 border border-1 border-black rounded">
-                                        <div class="row mt-2">
-                                            <div class="col-6">
-                                                <div class="row">
-                                                    <div class="col-6 mt-2">
-                                                        <label for="ejecerciciofisca_actividad" class="form-label">Ejercicio Fiscal:</label>
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <select id="ejecerciciofisca_actividad" class="selectpicker show-tick form-control" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
-                                                            <option value="-">-</option>
-                                                            <option value="2020">2020</option>
-                                                            <option value="2021">2021</option>
-                                                        </select>            
-                                                    </div>
-                                                    </div>
-                                            </div>
-                                            <div class="col-6">
-                                                <div class="row">
-                                                    <div class="col-6 mt-2">
-                                                        <label for="lineabase_actividad1" class="form-label">Línea Base</label>
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <input type="text" class="form-control" id="lineabase_actividad1">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-5 mb-1 FormUsr FontMsg ms-5 mt-3 border border-1 border-black rounded H-60">
-                                        <div class="row mt-2">
-                                            <div class="col-6">
-                                                <div class="row">
-                                                    <div class="col-3 mt-2">
-                                                        <label for="lineabaseV1_actividad" class="form-label">V1</label>
-                                                    </div>
-                                                    <div class="col-9">
-                                                        <input type="text" class="form-control" id="lineabaseV1_actividad">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-6">
-                                                <div class="row">
-                                                    <div class="col-3 mt-2">
-                                                        <label for="lineabaseV2_actividad" class="form-label">V2</label>
-                                                    </div>
-                                                    <div class="col-9">
-                                                        <input type="text" class="form-control" id="lineabaseV2_actividad">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-2 mb-1 FormUsr FontMsg mt-3">
-                                        <label for="metaanual_actividad" class="form-labelUsr4">Meta Anual</label>
-                                        <input type="text" class="TextBoxUsr w-100 H-60" id="metaanual_actividad" disabled="" style="background: white; color: gray;">
-                                    </div>
-                                    <div class="col-2 mb-1 FormUsr FontMsg mt-3">
-                                        <label for="selectfrecuencia_actividad" class="form-labelUsr3">Frecuencia</label>
-                                        <select id="selectfrecuencia_actividad" class="TextBoxUsr unidad-medida select-mir w-100" data-tipo="actividad" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required readonly>
+                                    <div class="col-3 mb-1">
+                                        <label for="ejecerciciofisca_actividad" class="form-label">Ejercicio fiscal:</label>
+                                        <select id="ejecerciciofisca_actividad" class="selectpicker show-tick form-control" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
                                             <option value="-">-</option>
-                                            <option value="TRIMESTRAL">TRIMESTRAL</option>
-                                            <!--option-- value="SEMESTRAL">SEMESTRAL</!--option-->
+                                            <option value="2020">2020</option>
+                                            <option value="2021">2021</option>
                                         </select>
                                     </div>
-                                    <div class="col-4 d-none d-metasemestral-actividad FormUsr FontMsg mt-3">
-                                        <label for="metasemestral1_actividad" class="form-labelUsr4">Meta Semestre I</label>
+                                    <div class="col-3 mb-1">
+                                        <label for="lineabase_actividad1" class="form-label">Línea base</label>
+                                        <input type="text" class="form-control" id="lineabase_actividad1">
+                                    </div>
+                                    <div class="col-3 mb-1">
+                                        <label for="lineabaseV1_actividad" class="form-label">V1</label>
+                                        <input type="text" class="form-control money" id="lineabaseV1_actividad">
+                                    </div>
+                                    <div class="col-3 mb-1">
+                                        <label for="lineabaseV2_actividad" class="form-label">V2</label>
+                                        <input type="text" class="form-control money" id="lineabaseV2_actividad">
+                                    </div>
+                                    <div class="col-2 mb-1 FormUsr FontMsg mt-3">
+                                        <label for="metaanual_actividad" class="form-labelUsr4">Meta anual</label>
+                                        <input type="text" class="form-control" id="metaanual_actividad" disabled="" style="background: white; color: gray;">
+                                    </div>
+                                    <div class="col-2 mb-1">
+                                        <label for="selectfrecuencia_actividad" class="form-label">Frecuencia</label>
+                                        <select id="selectfrecuencia_actividad" class="selectpicker select-frecuencia show-tick form-control" data-tipo="actividad" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                            <option value="-">-</option>
+                                            <option value="TRIMESTRAL">TRIMESTRAL</option>
+                                        </select>
+                                    </div>
+                                    <!--div class="col-4 d-none d-metasemestral-actividad FormUsr FontMsg mt-3">
+                                        <label for="metasemestral1_actividad" class="form-labelUsr4">Meta semestral I</label>
                                         <input type="text" class="form-control" id="metasemestral1_actividad">
-                                    </div>
-                                    <div class="col-4 d-none d-metasemestral-actividad FormUsr FontMsg mt-3">
-                                        <label for="metasemestral2_actividad" class="form-labelUsr4">Meta Semestre II</label>
+                                    </!--div>
+                                    <div-- class="col-4 d-none d-metasemestral-actividad FormUsr FontMsg mt-3">
+                                        <label for="metasemestral2_actividad" class="form-labelUsr4">Meta semestral II</label>
                                         <input type="text" class="form-control" id="metasemestral2_actividad" disabled="" style="background: white; color: gray;">
+                                    </div-->
+                                    <div class="col-2 d-none d-trimestral-actividad FormUsr FontMsg mt-3">
+                                        <label for="metatrimestral1_actividad" class="form-labelUsr4">Meta trimestral I</label>
+                                        <input type="text" class="form-control" id="metatrimestral1_actividad" disabled="" style="background: white; color: gray;">
                                     </div>
-                                    <div class="col-2 d-none d-trimestral-actividad FormUsr FontMsg mt-3 text-center">
-                                        <label for="metatrimestral1_actividad" class="form-labelUsr4">Meta Trimestre I</label>
-                                        <input type="text" class="TextBoxUsr w-100 H-60" id="metatrimestral1_actividad" disabled="" style="background: white; color: gray;">
+                                    <div class="col-2 d-none d-trimestral-actividad FormUsr FontMsg mt-3">
+                                        <label for="metatrimestral2_actividad" class="form-labelUsr4">Meta trimestral II</label>
+                                        <input type="text" class="form-control" id="metatrimestral2_actividad" disabled="" style="background: white; color: gray;">
                                     </div>
-                                    <div class="col-2 d-none d-trimestral-actividad FormUsr FontMsg mt-3 text-center">
-                                        <label for="metatrimestral2_actividad" class="form-labelUsr4">Meta Trimestre II</label>
-                                        <input type="text" class="TextBoxUsr w-100 H-60" id="metatrimestral2_actividad" disabled="" style="background: white; color: gray;">
+                                    <div class="col-2 d-none d-trimestral-actividad FormUsr FontMsg mt-3">
+                                        <label for="metatrimestral3_actividad" class="form-labelUsr4">Meta trimestral III</label>
+                                        <input type="text" class="form-control" id="metatrimestral3_actividad" disabled="" style="background: white; color: gray;">
                                     </div>
-                                    <div class="col-2 d-none d-trimestral-actividad FormUsr FontMsg mt-3 text-center">
-                                        <label for="metatrimestral3_actividad" class="form-labelUsr4">Meta trimestre III</label>
-                                        <input type="text" class="TextBoxUsr w-100 H-60" id="metatrimestral3_actividad" disabled="" style="background: white; color: gray;">
-                                    </div>
-                                    <div class="col-2 d-none d-trimestral-actividad FormUsr FontMsg mt-3 text-center">
-                                        <label for="metatrimestral4_actividad" class="form-labelUsr4">Meta trimestre IV</label>
-                                        <input type="text" class="TextBoxUsr w-100 H-60" id="metatrimestral4_actividad" disabled="" style="background: white; color: gray;">
+                                    <div class="col-2 d-none d-trimestral-actividad FormUsr FontMsg mt-3">
+                                        <label for="metatrimestral4_actividad" class="form-labelUsr4">Meta trimestral IV</label>
+                                        <input type="text" class="form-control" id="metatrimestral4_actividad" disabled="" style="background: white; color: gray;">
                                     </div>
                                     </div>
                                     <div class="row mb-1">
@@ -1527,7 +1506,7 @@
                                     <div class="col-2">
                                         
                                     </div>
-                                    <div class="col-4 d-none d-metasemestral-actividad">
+                                    <!--div class="col-4 d-none d-metasemestral-actividad">
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="row">
@@ -1535,7 +1514,7 @@
                                                         <label for="metasemestral1V1D_actividad" class="form-label">D:</label>
                                                     </div>
                                                     <div class="col-11">
-                                                        <input type="text" class="form-control" id="metasemestral1V1D_actividad">
+                                                        <input type="text" class="form-control money" id="metasemestral1V1D_actividad" onkeypress="return justNumbers(event);">
                                                     </div>
                                                 </div>
                                             </div>
@@ -1550,8 +1529,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-4 d-none d-metasemestral-actividad">
+                                    </!--div>
+                                    <div-- class="col-4 d-none d-metasemestral-actividad">
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="row">
@@ -1559,7 +1538,7 @@
                                                         <label for="metasemestral2V1D_actividad" class="form-label">D:</label>
                                                     </div>
                                                     <div class="col-11">
-                                                        <input type="text" class="form-control" id="metasemestral2V1D_actividad">
+                                                        <input type="text" class="form-control money" id="metasemestral2V1D_actividad" onkeypress="return justNumbers(event);">
                                                     </div>
                                                 </div>
                                             </div>
@@ -1574,7 +1553,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div-->
                                     <div class="col-2 d-none d-trimestral-actividad">
                                         <div class="row">
                                             <div class="col-12">
@@ -1583,7 +1562,7 @@
                                                         <label for="metatrimestral1V1D_actividad" class="form-label">D:</label>
                                                     </div>
                                                     <div class="col-10">
-                                                        <input type="text" class="form-control" id="metatrimestral1V1D_actividad">
+                                                        <input type="text" class="form-control money" id="metatrimestral1V1D_actividad" onkeypress="return justNumbers(event);">
                                                     </div>
                                                 </div>
                                             </div>
@@ -1607,7 +1586,7 @@
                                                         <label for="metatrimestral2V1D_actividad" class="form-label">D:</label>
                                                     </div>
                                                     <div class="col-10">
-                                                        <input type="text" class="form-control" id="metatrimestral2V1D_actividad">
+                                                        <input type="text" class="form-control money" id="metatrimestral2V1D_actividad" onkeypress="return justNumbers(event);">
                                                     </div>
                                                 </div>
                                             </div>
@@ -1631,7 +1610,7 @@
                                                         <label for="metatrimestral3V1D_actividad" class="form-label">D:</label>
                                                     </div>
                                                     <div class="col-10">
-                                                        <input type="text" class="form-control" id="metatrimestral3V1D_actividad">
+                                                        <input type="text" class="form-control money" id="metatrimestral3V1D_actividad" onkeypress="return justNumbers(event);">
                                                     </div>
                                                 </div>
                                             </div>
@@ -1655,7 +1634,7 @@
                                                         <label for="metatrimestral4V1D_actividad" class="form-label">D:</label>
                                                     </div>
                                                     <div class="col-10">
-                                                        <input type="text" class="form-control" id="metatrimestral4V1D_actividad">
+                                                        <input type="text" class="form-control money" id="metatrimestral4V1D_actividad" onkeypress="return justNumbers(event);">
                                                     </div>
                                                 </div>
                                             </div>
@@ -1677,9 +1656,16 @@
                                         <label for="variableV2_actividad" class="form-labelUsr4">V1</label>
                                         <input type="text" class="TextBoxUsr w-100 H-50" id="variableV2_actividad" disabled="" style="background: white; color: gray;">
                                     </div>
-                                    <div class="col-2">                                        
+                                    <div class="col-2">
+                                        <div class="row d-flex align-items-center justify-content-center">
+                                            <input type="button" id="checkDenominadorFijo_actividad" class="DenominadorFijoInactivo denominadorfijo ms-2" data-tipo="actividad">
+                                        </div>
+                                        <div class="row">
+                                            <p class="LetretosFont text-center">Activar en caso de que el denominador sea una constante.</p>
+                                            <input type="hidden" id="clicDenominador_actividad" value="0" style="background: white; color: gray;">
+                                        </div>
                                     </div>
-                                    <div class="col-4 d-none d-metasemestral-actividad">
+                                    <!--div class="col-4 d-none d-metasemestral-actividad">
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="row">
@@ -1687,7 +1673,7 @@
                                                         <label for="metasemestral1V2D_actividad" class="form-label">D:</label>
                                                     </div>
                                                     <div class="col-11">
-                                                        <input type="text" class="form-control" id="metasemestral1V2D_actividad">
+                                                        <input type="text" class="form-control money" id="metasemestral1V2D_actividad" onkeypress="return justNumbers(event);">
                                                     </div>
                                                 </div>
                                             </div>
@@ -1702,8 +1688,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-4 d-none d-metasemestral-actividad">
+                                    </!--div>
+                                    <div-- class="col-4 d-none d-metasemestral-actividad">
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="row">
@@ -1711,7 +1697,7 @@
                                                         <label for="metasemestral2V2D_actividad" class="form-label">D:</label>
                                                     </div>
                                                     <div class="col-11">
-                                                        <input type="text" class="form-control" id="metasemestral2V2D_actividad">
+                                                        <input type="text" class="form-control money" id="metasemestral2V2D_actividad" onkeypress="return justNumbers(event);">
                                                     </div>
                                                 </div>
                                             </div>
@@ -1726,7 +1712,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div-->
                                     <div class="col-2 d-none d-trimestral-actividad">
                                         <div class="row">
                                             <div class="col-12">
@@ -1735,7 +1721,7 @@
                                                         <label for="metatrimestral1V2D_actividad" class="form-label">D:</label>
                                                     </div>
                                                     <div class="col-10">
-                                                        <input type="text" class="form-control" id="metatrimestral1V2D_actividad">
+                                                        <input type="text" class="form-control money" id="metatrimestral1V2D_actividad" onkeypress="return justNumbers(event);">
                                                     </div>
                                                 </div>
                                             </div>
@@ -1759,7 +1745,7 @@
                                                         <label for="metatrimestral2V2D_actividad" class="form-label">D:</label>
                                                     </div>
                                                     <div class="col-10">
-                                                        <input type="text" class="form-control" id="metatrimestral2V2D_actividad">
+                                                        <input type="text" class="form-control money" id="metatrimestral2V2D_actividad" onkeypress="return justNumbers(event);">
                                                     </div>
                                                 </div>
                                             </div>
@@ -1783,7 +1769,7 @@
                                                         <label for="metatrimestral3V2D_actividad" class="form-label">D:</label>
                                                     </div>
                                                     <div class="col-10">
-                                                        <input type="text" class="form-control" id="metatrimestral3V2D_actividad">
+                                                        <input type="text" class="form-control money" id="metatrimestral3V2D_actividad" onkeypress="return justNumbers(event);">
                                                     </div>
                                                 </div>
                                             </div>
@@ -1807,7 +1793,7 @@
                                                         <label for="metatrimestral4V2D_actividad" class="form-label">D:</label>
                                                     </div>
                                                     <div class="col-10">
-                                                        <input type="text" class="form-control" id="metatrimestral4V2D_actividad">
+                                                        <input type="text" class="form-control money" id="metatrimestral4V2D_actividad" onkeypress="return justNumbers(event);">
                                                     </div>
                                                 </div>
                                             </div>
@@ -1841,7 +1827,7 @@
                                     </div>
                                     <div class="col-4 mb-3 FormUsr FontMsg mt-3">
                                         <label for="select_sentidoindicador_actividad" class="form-labelUsr3">Sentido del indicador</label>
-                                        <select id="select_sentidoindicador_actividad" class="TextBoxUsr unidad-medida select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                        <select id="select_sentidoindicador_actividad" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
                                             <option value="-">-</option>
                                             <option value="ASCENDENTE">ASCENDENTE</option>
                                             <option value="DESCENDENTE">DESCENDENTE</option>
@@ -1850,7 +1836,7 @@
                                     </div>
                                     <div class="col-4 mb-3 FormUsr FontMsg mt-3">
                                         <label for="select_tipoindicador_actividad" class="form-labelUsr3">Tipo de indicador</label>
-                                        <select id="select_tipoindicador_actividad" class="TextBoxUsr unidad-medida select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                        <select id="select_tipoindicador_actividad" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
                                             <option value="-">-</option>
                                             <option value="ESTRATÉGICO">ESTRATÉGICO</option>
                                             <option value="GESTIÓN">GESTIÓN</option>
@@ -1858,7 +1844,7 @@
                                     </div>
                                     <div class="col-4 mb-3 FormUsr FontMsg mt-3">
                                         <label for="select_dimensionindicador_actividad" class="form-labelUsr3">Dimensión del indicador</label>
-                                        <select id="select_dimensionindicador_actividad" class="TextBoxUsr unidad-medida select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                        <select id="select_dimensionindicador_actividad" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
                                             <option value="-">-</option>
                                             <option value="CALIDAD">CALIDAD</option>
                                             <option value="ECONOMÍA">ECONOMÍA</option>
@@ -1870,79 +1856,71 @@
                                     <div class="col-12 text-center">
                                         ANÁLSIS CREMAA
                                     </div>
-                                    <div class="row w-100">
-                                        <div class="col-1 ms-3"></div>
-                                        <div class="col-3 mb-3 border border-2 rounded ms-4">
-                                            <label class="form-label">Claridad</label>
-                                            <div class="form-check">
-                                                <input class="form-check-input ms-5" type="radio" name="claridad_actividad" id="claridad_actividadSi" value="S">
-                                                <label class="form-check-label ms-4" for="claridad_finSi">Si</label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input ms-5" type="radio" name="claridad_actividad" id="claridad_actividadNo" value="N">
-                                                <label class="form-check-label ms-4" for="claridad_actividadNo">No</label>
-                                            </div>
+                                    <div class="col-4 mb-3">
+                                        <label class="form-label">Claridad</label>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="claridad_actividad" id="claridad_actividadSi" value="S">
+                                            <label class="form-check-label" for="claridad_finSi">Si</label>
                                         </div>
-                                        <div class="col-3 mb-3 border border-2 rounded ms-4">
-                                            <label class="form-label">Relevancia</label>
-                                            <div class="form-check">
-                                                <input class="form-check-input ms-5" type="radio" name="relevancia_actividad" id="relevancia_actividadSi" value="S">
-                                                <label class="form-check-label ms-4" for="relevancia_actividadSi">Si</label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input ms-5" type="radio" name="relevancia_actividad" id="relevancia_actividadNo" value="N">
-                                                <label class="form-check-label ms-4" for="relevancia_actividadNo">No</label>
-                                            </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="claridad_actividad" id="claridad_actividadNo" value="N">
+                                            <label class="form-check-label" for="claridad_actividadNo">No</label>
                                         </div>
-                                        <div class="col-3 mb-3 border border-2 rounded ms-4">
-                                            <label class="form-label">Economía</label>
-                                            <div class="form-check">
-                                                <input class="form-check-input ms-5" type="radio" name="economia_actividad" id="economia_actividadSi" value="S">
-                                                <label class="form-check-label ms-4" for="economia_finSi">Si</label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input ms-5" type="radio" name="economia_actividad" id="economia_actividadNo" value="N">
-                                                <label class="form-check-label ms-4" for="economia_actividadNo">No</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-1"></div>
                                     </div>
-                                    <div class="row w-100">
-                                        <div class="col-1 ms-3"></div>
-                                        <div class="col-3 mb-3 border border-2 rounded ms-4">
-                                            <label class="form-label">Monitoreable</label>
-                                            <div class="form-check">
-                                                <input class="form-check-input ms-5" type="radio" name="monitoreable_actividad" id="monitoreable_actividadSi" value="S">
-                                                <label class="form-check-label ms-4" for="monitoreable_actividadSi">Si</label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input ms-5" type="radio" name="monitoreable_actividad" id="monitoreable_actividadNo" value="N">
-                                                <label class="form-check-label ms-4" for="monitoreable_actividadNo">No</label>
-                                            </div>
+                                    <div class="col-4 mb-3">
+                                        <label class="form-label">Relevancia</label>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="relevancia_actividad" id="relevancia_actividadSi" value="S">
+                                            <label class="form-check-label" for="relevancia_actividadSi">Si</label>
                                         </div>
-                                        <div class="col-3 mb-3 border border-2 rounded ms-4">
-                                            <label class="form-label">Adecuado</label>
-                                            <div class="form-check">
-                                                <input class="form-check-input ms-5" type="radio" name="adecuado_actividad" id="adecuado_actividadSi" value="S">
-                                                <label class="form-check-label ms-4" for="adecuado_actividadSi">Si</label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input ms-5" type="radio" name="adecuado_actividad" id="adecuado_actividadNo" value="N">
-                                                <label class="form-check-label ms-4" for="adecuado_actividadNo">No</label>
-                                            </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="relevancia_actividad" id="relevancia_actividadNo" value="N">
+                                            <label class="form-check-label" for="relevancia_actividadNo">No</label>
                                         </div>
-                                        <div class="col-3 mb-3 border border-2 rounded ms-4">
-                                            <label class="form-label">Aporte marginal</label>
-                                            <div class="form-check">
-                                                <input class="form-check-input ms-5" type="radio" name="aportemarginal_actividad" id="aportemarginal_actividadSi" value="S">
-                                                <label class="form-check-label ms-4" for="aportemarginal_finSi">Si</label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input ms-5" type="radio" name="aportemarginal_actividad" id="aportemarginal_actividadNo" value="N">
-                                                <label class="form-check-label ms-4" for="aportemarginal_actividadNo">No</label>
-                                            </div>
+                                    </div>
+                                    <div class="col-4 mb-3">
+                                        <label class="form-label">Economía</label>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="economia_actividad" id="economia_actividadSi" value="S">
+                                            <label class="form-check-label" for="economia_finSi">Si</label>
                                         </div>
-                                            <div class="col-1"></div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="economia_actividad" id="economia_actividadNo" value="N">
+                                            <label class="form-check-label" for="economia_actividadNo">No</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-4 mb-3">
+                                        <label class="form-label">Monitoreable</label>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="monitoreable_actividad" id="monitoreable_actividadSi" value="S">
+                                            <label class="form-check-label" for="monitoreable_actividadSi">Si</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="monitoreable_actividad" id="monitoreable_actividadNo" value="N">
+                                            <label class="form-check-label" for="monitoreable_actividadNo">No</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-4 mb-3">
+                                        <label class="form-label">Adecuado</label>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="adecuado_actividad" id="adecuado_actividadSi" value="S">
+                                            <label class="form-check-label" for="adecuado_actividadSi">Si</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="adecuado_actividad" id="adecuado_actividadNo" value="N">
+                                            <label class="form-check-label" for="adecuado_actividadNo">No</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-4 mb-3">
+                                        <label class="form-label">Aporte marginal</label>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="aportemarginal_actividad" id="aportemarginal_actividadSi" value="S">
+                                            <label class="form-check-label" for="aportemarginal_finSi">Si</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="aportemarginal_actividad" id="aportemarginal_actividadNo" value="N">
+                                            <label class="form-check-label" for="aportemarginal_actividadNo">No</label>
+                                        </div>
                                     </div>
                                     <hr>
                                     <div class="col-12 mb-3">
@@ -1985,17 +1963,15 @@
                         </div>
                         <div class="tab-pane fade" id="nav-auditoriaformulas" role="tabpanel" aria-labelledby="tab-auditoriaformulas" tabindex="0">
                             <div class="row">
+                                <div class="col-12 text-end my-3">
+                                    <button id="BtnEliminarLogFormula" class="BotonesGrid2">Eliminar Observación</button>  {{-- btn btn-outline-danger d-none --}}
+                                </div>
                                 <div class="col-12">
                                     <div class="table-responsive">
                                         <table id="table-auditoriaformulas" class="table table-striped table-hover">
                                             <thead>
                                                 <tr class="table-header text-center">
-                                                    <th width="5%">
-                                                        <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" id="checkAllFormulas">
-                                                            <label class="form-check-label" for="checkAllFormulas"></label>
-                                                        </div>
-                                                    </th>
+                                                    <th width="5%"></th>
                                                     <th width="15%">Objetivo MIR</th>
                                                     <th width="20%">Elemento</th>
                                                     <th width="20%">Observación</th>
@@ -2017,7 +1993,7 @@
                             <label class="form-label text-danger fw-bold">Algunos datos no han sido capturados.<br/>Favor de consultar la Auditoría de Carga y de Fórmulas.</label>
                         </div>
                         <div class="col-5">
-                            <input type="button" id="BtnValidar" class="buttonOutlineSucces150" value="Validar Fórmulas" >
+                            <input type="button" id="BtnValidar" class="buttonOutlineSucces150  text-capitalize" value="Validar Fórmulas" >
                             <input type="button" id="BtnGuardar" class="buttonOutlineSucces150" value="Guardar y Cerrar" >
                             <button type="button" class="buttonCloseModal" data-bs-dismiss="modal">Cerrar</button>                                    
                         </div>
@@ -2035,7 +2011,6 @@
 <script src="/js/MirResponse.js"></script>
 <script src="/js/MirGuardar.js"></script>
 <script src="/js/Mir.js"></script>
-
 
 </body>
 

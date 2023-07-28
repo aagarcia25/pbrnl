@@ -169,6 +169,14 @@ function OnClic_DenominadorFijo() {
 }
 
 function Func_CalcularMeta(valor1, valor2, modulo){
+    if (valor1 == "" || valor1 == 0 || valor1 == null || valor1 == undefined){
+        valor1 = 0;
+    }
+
+    if (valor2 == "" || valor2 == 0 || valor2 == null || valor2 == undefined){
+        valor2 = 0;
+    }
+    
     let operacion = $(`#variable3_${modulo}`).val();
   
     // Reemplaza las variables v1 y v2 en la fórmula

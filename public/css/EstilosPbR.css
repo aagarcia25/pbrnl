@@ -1243,21 +1243,21 @@
         font-weight: bold;
     }
 
-    .buttonOutlineSucces150 {
-        background-color: #cfe1b9;
-        border:none; /*#588157;*/
-        color: black;
-        width: 150px;
-        height: 35px;
-    }
+.buttonOutlineSucces150 {
+    background-color: #cfe1b9;
+    border:none; /*#588157;*/
+    color: black;
+    width: 160px;
+    height: 35px;
+}
     
-        .buttonOutlineSucces150:hover {
-            background-color: #97a97c;
-            border-color: #588157;
-            cursor: pointer;
-            color: white;
-            font-weight: bold;
-        }
+    .buttonOutlineSucces150:hover {
+        background-color: #97a97c;
+        border-color: #588157;
+        cursor: pointer;
+        color: white;
+        /* font-weight: bold; */
+    }
     
 
 .buttonAdminUser {
@@ -1768,7 +1768,7 @@ TextBox1:not(:placeholder-shown).TextBox1:not(:focus) ~ .form-label1 {
 
 .IconoAdminUsr {
     font-family: 'Poppins', sans-serif;
-    background: url('../img/icono admin usuarios interior.svg');
+    background: url('/img/icono admin usuarios interior.svg');
     background-repeat: no-repeat;
 }
 
@@ -2165,6 +2165,33 @@ TextBox1:not(:placeholder-shown).TextBox1:not(:focus) ~ .form-label1 {
     /* width: 100%;     */
 }
 
-.texto-justificado {
-    text-align: justify;
+.DenominadorFijoInactivo {
+    background-image: url("../img/boton_leon_off.svg");
+    background-repeat: no-repeat;
+    background-color: white;
+    border: none; /*#588157;*/
+    width: 100px;
+    height: 35px;
+    /* margin: auto;
+    display: block; */
 }
+
+.DenominadorFijoActivo {
+    background-image: url("../img/boton_leon_on.svg");
+    background-repeat: no-repeat;
+    background-color: white;
+    border: none; /*#588157;*/
+    width: 100px;
+    height: 35px;
+    /* margin: auto;
+    display: block; */
+}
+
+.modal input {
+    text-transform: uppercase!important;
+}
+
+.modal textarea {
+    text-transform: uppercase!important;
+}
+
