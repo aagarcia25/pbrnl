@@ -16,14 +16,15 @@ class ActividadesInstitucionales extends Model
         'idTipologia',
         'DescripcionPrograma',
         'idSecretaria',
-        'idUA'
+        'idUA',
+        'ejercicioFiscal'
     ];
     protected $table = 'PROGRAMATICO_AI_COMP';
     public $timestamps = false;
     
-    protected $primaryKey = array('idObjetivoPED','idClasificacion','Consecutivo');
+    protected $primaryKey = array('idObjetivoPED','idClasificacion','Consecutivo','ejercicioFiscal');
     public $incrementing = false;
     public function getKeyName(){
-        return array('idObjetivoPED','idClasificacion','Consecutivo');
+        return array('idObjetivoPED','idClasificacion','Consecutivo','ejercicioFiscal');
     }
 }

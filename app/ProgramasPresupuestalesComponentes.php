@@ -15,14 +15,15 @@ class ProgramasPresupuestalesComponentes extends Model
         'idUA',
         'DescripcionComponente',
         'Observaciones',
-        'ConacF'
+        'ConacF',
+        'ejercicioFiscal'
     ];
     protected $table = 'PROGRAMATICO_COMP';
     public $timestamps = false;
     
-    protected $primaryKey = array('idObjetivoPED','idClasificacion','Consecutivo','idSecretaria');
+    protected $primaryKey = array('idObjetivoPED','idClasificacion','Consecutivo','idSecretaria','ejercicioFiscal');
     public $incrementing = false;
     public function getKeyName(){
-        return array('idObjetivoPED','idClasificacion','Consecutivo','idSecretaria');
+        return array('idObjetivoPED','idClasificacion','Consecutivo','idSecretaria','ejercicioFiscal');
     }
 }

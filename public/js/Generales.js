@@ -186,8 +186,9 @@ function img_out(id, nombre) {
 }
 
 function MostrarHttpError(response) {
-    console.log(response.result)
-    Func_Aviso("Anomalía detectada", "Ha ocurrido una anomalía al realizar el proceso, favor de intentarlo nuevamente. (" + response.result + ")", "error");
+    console.error(response);
+    var mensaje = response.result;
+    Func_Aviso("Anomalía detectada", "Ha ocurrido una anomalía al realizar el proceso, favor de intentarlo nuevamente. (" + mensaje + ")", "error");
 }
 
 function Func_LimpiarMoneda(numero) {
