@@ -104,7 +104,11 @@ class ProgramasPresupuestalesController extends BaseController
 
     public function updatecomponent(Request $request)
     {
-        
+        if(!$this->validarEjercicioFiscal($request->ejercicio_fiscal))
+        {
+            return response()->json(array('error' => true , 'result' => "El ejercicio que está intentando modificar está cerrado", 'code' => 500));
+        }
+
         try {
             $update = DB::table('PROGRAMATICO_COMP')
                 ->where('idObjetivoPED', '=', $request->id_objetivo)
@@ -120,34 +124,6 @@ class ProgramasPresupuestalesController extends BaseController
                         'idUA' => $request->unidad_componente
                     )
                 );
-
-            /*
-                ->where('email', $userEmail)  // find your user by their email
-                ->limit(1)  // optional - to ensure only one record is updated.
-                ->update(array('member_type' => $plan));  // update the record in the DB. 
-            */
-            /*
-            $update = ProgramasPresupuestalesComponentes::
-                where('idObjetivoPED', '=', $request->id_objetivo)
-                ->where('idSecretaria', '=', $request->id_secretaria)
-                ->where('idClasificacion', '=', $request->id_clasificacion)
-                ->where('Consecutivo', '=', $request->consecutivo)
-                ->where('Componente', '=', $request->componente)
-                ->first();
-
-            if (is_null($update)) {
-                return response()->json(array('error' => true, 'result' => "El componente que intenta editar no existe.", 'code' => 404));
-            }
-            
-            $update->DescripcionComponente  = $request->descripcion_componente;
-            $update->idUA                   = $request->unidad_componente;
-            $update->save();
-            */
-
-            /*if ($update == 0){
-                return response()->json(array('error' => true, 'result' => "No ha sido posible editar el programa presupuestario, favor de intentarlo nuevamente.", 'code' => 404));
-            }*/
-
         }catch (Exception $e) {
             return response()->json(array('error' => true , 'result' => $e->getMessage(), 'code' => 500));
         }
@@ -157,7 +133,11 @@ class ProgramasPresupuestalesController extends BaseController
 
     public function updatepp(Request $request)
     {
-        
+        if(!$this->validarEjercicioFiscal($request->ejercicio_fiscal))
+        {
+            return response()->json(array('error' => true , 'result' => "El ejercicio que está intentando modificar está cerrado", 'code' => 500));
+        }
+
         try {
             $update = DB::table('PROGRAMATICO')
                 ->where('idObjetivoPED', '=', $request->id_objetivo_real)

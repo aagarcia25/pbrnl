@@ -4,6 +4,20 @@ use Exception;
 use Illuminate\Support\Facades\DB;
 
 class BaseController extends Controller {
+    
+    public function validarEjercicioFiscal($e) {
+        $ejercicio = DB::table("EJERCICIOS_FISCALES")
+            ->where("Id","=",$e)
+            ->first();
+
+        if($ejercicio->Estatus != "A")
+        {
+            return false;
+        }
+
+        return true;
+    }
+
     public function guardarCambios($entidad) {
         try {
             $entidad->save();

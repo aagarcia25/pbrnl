@@ -3,6 +3,7 @@
 
     var controller = function(ejerciciosFactory) {
         const vm = this;
+        vm.seleccionado = null;
         vm.ejercicios = [];
         vm.ejercicio = {
             ejercicio_fiscal: new Date().getFullYear() + 1
@@ -41,6 +42,27 @@
             })
             ;
         }
+
+        vm.setStatus = () => {
+            const accion = vm.seleccionado.Estatus == 'A' ? 'cerrar' : 'abrir';
+            Func_DespliegaConfirmacion("Confirmar", "Seguro que quiere "+accion+" el Ejercicio Fiscal","","Aceptar","Cancelar", (response) => {
+                if(!response)
+                    return;
+
+                const request = {
+                    Id: vm.seleccionado.Id,
+                    Estatus: vm.seleccionado.Estatus == 'A' ? 'I' : 'A'
+                };
+                ejerciciosFactory.setStatus(request)
+                .then(response => {
+                    vm.seleccionado.Estatus = request.Estatus;
+                    Func_Toast("success", "Estado actualizado", "Se ha actualizado el estado del Ejercicio Fiscal");
+                })
+                .catch(err => {
+                    MostrarHttpError(err);
+                })
+            });
+        }
     }
 
     var factory = function(http) {
@@ -50,6 +72,9 @@
             },
             guardar : (e) => {
                 return http.post("GuardarEjercicioFiscal", e);
+            },
+            setStatus: (e) => {
+                return http.post("SetStatusEF", e);
             }
         }
     }
