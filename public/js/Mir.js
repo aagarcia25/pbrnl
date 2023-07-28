@@ -1,4 +1,3 @@
-
 const repository = new Repository();
 var info_secretarias = null;
 var info_unidadadministrativa = null;
