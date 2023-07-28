@@ -9,18 +9,27 @@ use Illuminate\Support\Facades\DB;
 
 class ProgramasProyectosInversionController extends Controller
 {
-    public function all()
+    public function all(Request $request)
     {
-        $query = "SELECT A.* FROM PROGRAMATICO AS A INNER JOIN SECRETARIAS AS B ON A.idSecretaria = B.idSecretaria WHERE A.idClasificacion IN ('I' , 'E', 'O') ORDER BY CAST(A.Consecutivo AS SIGNED);";
+        $query = "SELECT A.* FROM PROGRAMATICO AS A 
+            INNER JOIN SECRETARIAS AS B ON A.idSecretaria = B.idSecretaria 
+            WHERE A.idClasificacion IN ('I' , 'E', 'O') AND ejercicioFiscal = $request->ejercicio_fiscal
+            ORDER BY CAST(A.Consecutivo AS SIGNED);";
         $informacion = DB::select($query);
         return response()->json(array('error' => false, 'data' => $informacion, 'code' => 200));
     }
 
-    public function countall()
+    public function countall(Request $request)
     {
         $query = "SELECT 
-            (SELECT COUNT(*) FROM PROGRAMATICO AS A INNER JOIN SECRETARIAS AS B ON A.idSecretaria = B.idSecretaria WHERE A.idClasificacion IN ('I' , 'E', 'O') ORDER BY CAST(A.Consecutivo AS SIGNED)) AS 'Programas',
-            (SELECT COUNT(*) FROM PROGRAMATICO_PI_COMP AS A INNER JOIN UNIDADES AS B ON A.idUA = B.idUnidad AND A.idSecretaria = B.idSecretaria) AS 'Componentes';";
+            (SELECT COUNT(*) FROM PROGRAMATICO AS A 
+                INNER JOIN SECRETARIAS AS B ON A.idSecretaria = B.idSecretaria 
+                WHERE A.idClasificacion IN ('I' , 'E', 'O') AND ejercicioFiscal = $request->ejercicio_fiscal
+                ORDER BY CAST(A.Consecutivo AS SIGNED)) AS 'Programas',
+            (SELECT COUNT(*) FROM PROGRAMATICO_PI_COMP AS A 
+                INNER JOIN UNIDADES AS B ON A.idUA = B.idUnidad AND A.idSecretaria = B.idSecretaria
+                WHERE ejercicioFiscal = $request->ejercicio_fiscal
+                ) AS 'Componentes';";
         $informacion = DB::select($query);
         return response()->json(array('error' => false, 'data' => $informacion, 'code' => 200));
     }
@@ -28,15 +37,30 @@ class ProgramasProyectosInversionController extends Controller
     public function count(Request $request)
     {
         $query = "SELECT 
-            (SELECT COUNT(*) FROM PROGRAMATICO AS A INNER JOIN SECRETARIAS AS B ON A.idSecretaria = B.idSecretaria WHERE A.idClasificacion IN ('I' , 'E', 'O') AND A.idSecretaria = '$request->id_secretaria' ORDER BY A.Consecutivo) AS 'Programas',
-            (SELECT COUNT(*) FROM PROGRAMATICO_PI_COMP AS A INNER JOIN UNIDADES AS B ON A.idUA = B.idUnidad AND A.idSecretaria = B.idSecretaria WHERE A.idSecretaria = '$request->id_secretaria') AS 'Componentes';";
+            (SELECT COUNT(*) FROM PROGRAMATICO AS A 
+                INNER JOIN SECRETARIAS AS B ON A.idSecretaria = B.idSecretaria 
+                WHERE A.idClasificacion IN ('I' , 'E', 'O') 
+                AND A.idSecretaria = '$request->id_secretaria' 
+                AND ejercicioFiscal = $request->ejercicio_fiscal
+                ORDER BY A.Consecutivo) AS 'Programas',
+            (SELECT COUNT(*) FROM PROGRAMATICO_PI_COMP AS A 
+                INNER JOIN UNIDADES AS B ON A.idUA = B.idUnidad AND A.idSecretaria = B.idSecretaria 
+                WHERE 
+                    A.idSecretaria = '$request->id_secretaria'
+                    AND ejercicioFiscal = $request->ejercicio_fiscal
+                    ) AS 'Componentes';";
         $informacion = DB::select($query);
         return response()->json(array('error' => false, 'data' => $informacion, 'code' => 200));
     }
 
     public function index(Request $request)
     {
-        $query = "SELECT A.* FROM PROGRAMATICO AS A INNER JOIN SECRETARIAS AS B ON A.idSecretaria = B.idSecretaria WHERE A.idClasificacion IN ('I' , 'E', 'O') AND A.idSecretaria = '$request->id_secretaria' ORDER BY CAST(A.Consecutivo AS SIGNED);";
+        $query = "SELECT A.* FROM PROGRAMATICO AS A 
+            INNER JOIN SECRETARIAS AS B ON A.idSecretaria = B.idSecretaria 
+            WHERE A.idClasificacion IN ('I' , 'E', 'O') 
+                AND A.idSecretaria = '$request->id_secretaria' 
+                AND ejercicioFiscal = $request->ejercicio_fiscal
+                ORDER BY CAST(A.Consecutivo AS SIGNED);";
         $informacion = DB::select($query);
         return response()->json(array('error' => false, 'data' => $informacion, 'code' => 200));
     }
@@ -49,7 +73,12 @@ class ProgramasProyectosInversionController extends Controller
                 INNER JOIN SECRETARIAS AS B ON A.idSecretaria = B.idSecretaria
                 INNER JOIN TIPOLOGIA AS C ON A.idTipologia = C.IdTipologia
                 INNER JOIN OBJETIVO AS D ON A.idObjetivoPED = D.IdObjetivo
-                WHERE A.idClasificacion IN ('I' , 'E', 'O') AND A.idSecretaria = '$request->id_secretaria' AND A.idObjetivoPED = '$request->id_objetivo' AND A.idClasificacion = '$request->id_clasificacion' AND A.Consecutivo = '$request->consecutivo';";
+                WHERE A.idClasificacion IN ('I' , 'E', 'O') 
+                    AND A.idSecretaria = '$request->id_secretaria' 
+                    AND A.idObjetivoPED = '$request->id_objetivo' 
+                    AND A.idClasificacion = '$request->id_clasificacion' 
+                    AND A.Consecutivo = '$request->consecutivo'
+                    AND ejercicioFiscal = $request->ejercicio_fiscal;";
         $informacion = DB::select($query);
 
         return response()->json(array('error' => false, 'data' => $informacion, 'code' => 200));
@@ -60,7 +89,11 @@ class ProgramasProyectosInversionController extends Controller
         $query = "SELECT A.idUA, B.Descripcion, A.Componente, A.DescripcionComponente
                 FROM PROGRAMATICO_PI_COMP AS A
                 INNER JOIN UNIDADES AS B ON A.idUA = B.idUnidad AND A.idSecretaria = B.idSecretaria
-                WHERE A.idSecretaria = '$request->id_secretaria' AND A.idObjetivoPED = '$request->id_objetivo' AND A.idClasificacion = '$request->id_clasificacion' AND A.Consecutivo = '$request->consecutivo';";
+                WHERE A.idSecretaria = '$request->id_secretaria' 
+                    AND A.idObjetivoPED = '$request->id_objetivo' 
+                    AND A.idClasificacion = '$request->id_clasificacion' 
+                    AND A.Consecutivo = '$request->consecutivo'
+                    AND ejercicioFiscal = $request->ejercicio_fiscal;";
         $informacion = DB::select($query);
         return response()->json(array('error' => false, 'data' => $informacion, 'code' => 200));
     }
@@ -75,6 +108,7 @@ class ProgramasProyectosInversionController extends Controller
                 ->where('idClasificacion', '=', $request->id_clasificacion)
                 ->where('Consecutivo', '=', $request->consecutivo)
                 ->where('Componente', '=', $request->componente)
+                ->where('ejercicioFiscal', '=', $request->ejercicio_fiscal)
                 ->limit(1)
                 ->update(
                     array(
@@ -101,6 +135,7 @@ class ProgramasProyectosInversionController extends Controller
                 ->where('Anticorrupcion', '=', $request->id_anticorrupcion_real)
                 ->where('idTipologia', '=', $request->id_topologia_real)
                 ->where('idSecretaria', '=', $request->id_secretaria_real)
+                ->where('ejercicioFiscal', '=', $request->ejercicio_fiscal)
                 ->limit(1)
                 ->update(
                     array(

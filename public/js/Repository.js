@@ -560,12 +560,12 @@ class ProgramasProyectosInversionController {
         this.Url = url;
     }
 
-    GetAllPPI() {
-        return Requests('GET', this.Url + "/GetAllPPI");
+    GetAllPPI(request) {
+        return Requests('GET', this.Url + "/GetAllPPI", request);
     }
 
-    GetAllCountPPI() {
-        return Requests('GET', this.Url + "/GetAllCountPPI");
+    GetAllCountPPI(request) {
+        return Requests('GET', this.Url + "/GetAllCountPPI", request);
     }
 
     GetCountPPI(request) {

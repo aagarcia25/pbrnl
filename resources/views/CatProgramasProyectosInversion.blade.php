@@ -79,7 +79,12 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-12">
+                            <div class="col-2">
+                                <label for="select_ef" class="form-label">Ejercicio Fiscal</label>
+                                <select id="select_ef" class="selectpicker show-tick form-control" title="Seleccione..." data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                </select>
+                            </div>
+                            <div class="col-10">
                                 <label for="select_secretaria" class="form-label">Secretaría</label>
                                 <select id="select_secretaria" class="selectpicker show-tick form-control" title="Seleccione..." data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
                                 </select>
