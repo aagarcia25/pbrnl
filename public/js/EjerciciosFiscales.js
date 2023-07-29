@@ -11,36 +11,50 @@
 
         Func_Cargando();
 
-        ejerciciosFactory.lista()
-        .then((response)=>{
-            vm.ejercicios = response.data.data;
-            swal.close();
-        });
+
+        vm.cargarDatos = ()  => {
+            ejerciciosFactory.lista()
+            .then((response)=>{
+                vm.ejercicios = response.data.data;
+                swal.close();
+            });
+        }
+
+        vm.cargarDatos();
 
         vm.btnAgregarEF_click = function() {
             $("#ModalNuevoEjercicioFiscal").modal("show");
         }
 
         vm.guardarEF = () => {
-            Func_Cargando();
-            ejerciciosFactory.guardar(vm.ejercicio)
-            .then((response)=>{
-                swal.close();
-                var data = response.data;
-                if(data.error == true){
-                    Func_Aviso("Error", "Error al abrir el ejercicio fiscal:" + response.result, "error");
-                }
-                else {
-                    Func_Toast("success", "Datos guardados", "Se agreg&oacute; el ejercicio fiscal.");
-                    vm.ejercicios.push(data.result);
-                    $("#ModalNuevoEjercicioFiscal").modal("toggle");
-                }
-            })
-            .catch((data)=> {
-                swal.close();
-                MostrarHttpError(data);
-            })
-            ;
+            Func_DespliegaConfirmacion("Confirmar", 
+                "¿Seguro que quiere guardar el Ejercicio Fiscal? Se copiarán todos los datos del Ejercicio Fiscal anterior",
+                "",
+                "Aceptar","Cancelar", (response) => {
+                if(!response)
+                    return;
+
+                Func_Cargando();
+                ejerciciosFactory.guardar(vm.ejercicio)
+                .then((response)=>{
+                    var data = response.data;
+                    if(data.error == true){
+                        Func_Aviso("Error", "Error al abrir el ejercicio fiscal:" + response.result, "error");
+                    }
+                    else {
+                        Func_Toast("success", "Datos guardados", "Se agreg&oacute; el ejercicio fiscal.");
+                        vm.cargarDatos();
+                        $("#ModalNuevoEjercicioFiscal").modal("toggle");
+                    }
+                })
+                .catch((data)=> {
+                    swal.close();
+                    MostrarHttpError(data);
+                })
+                ;
+            });
+
+            
         }
 
         vm.setStatus = () => {

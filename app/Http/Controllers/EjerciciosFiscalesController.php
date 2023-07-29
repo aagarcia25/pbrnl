@@ -87,7 +87,7 @@ class EjerciciosFiscalesController extends BaseController
             $programa->Consecutivo = $d->Consecutivo;
             $programa->Anticorrupcion = $d->Anticorrupcion;
             $programa->idTipologia = $d->idTipologia;
-            $programa->DescripcionPrograma = $d->DescripcionPrograma ;
+            $programa->DescripcionPrograma = $d->DescripcionPrograma . ' ' . $nuevo_ef;
             $programa->idSecretaria = $d->idSecretaria;
             $programa->idUA = $d->idUA;
             $programa->ejercicioFiscal = $nuevo_ef;
@@ -105,7 +105,7 @@ class EjerciciosFiscalesController extends BaseController
             $reg->Componente = $d->Componente;
             $reg->idSecretaria = $d->idSecretaria;
             $reg->idUA = $d->idUA;
-            $reg->DescripcionComponente = $d->DescripcionComponente ;
+            $reg->DescripcionComponente = $d->DescripcionComponente . ' ' . $nuevo_ef;
             $reg->Observaciones = $d->Observaciones;
             $reg->ConacF = $d->ConacF;
             $reg->ejercicioFiscal = $nuevo_ef;
@@ -122,7 +122,7 @@ class EjerciciosFiscalesController extends BaseController
             $reg->Consecutivo = $d->Consecutivo;
             $reg->Componente = $d->Componente;
             $reg->ClaveFuncional = $d->ClaveFuncional;
-            $reg->DescripcionComponente = $d->DescripcionComponente ;
+            $reg->DescripcionComponente = $d->DescripcionComponente . ' ' . $nuevo_ef;
             $reg->idSecretaria = $d->idSecretaria;
             $reg->idUA = $d->idUA;
             $reg->Observaciones = $d->Observaciones;
@@ -142,10 +142,10 @@ class EjerciciosFiscalesController extends BaseController
             $reg->idSecretaria = $d->idSecretaria;
             $reg->idUA = $d->idUA;
             $reg->ClaveFuncional = $d->ClaveFuncional;
-            $reg->DescripcionComponente = $d->DescripcionComponente ;
+            $reg->DescripcionComponente = $d->DescripcionComponente . ' ' . $nuevo_ef;
             $reg->Anticorrupcion = $d->Anticorrupcion;
             $reg->idTipologia = $d->idTipologia;
-            $reg->DescripcionPrograma = $d->DescripcionPrograma ;
+            $reg->DescripcionPrograma = $d->DescripcionPrograma . ' ' . $nuevo_ef;
             $reg->ejercicioFiscal = $nuevo_ef;
 
             $reg->save();
