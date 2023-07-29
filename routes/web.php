@@ -270,5 +270,10 @@ Route::get('/Catalogos', function () {
     Route::post('ValidarMir','MirController@validarFormulas');
     Route::post('DeleteLog','MirController@deletelog');
     
-
-
+/***** EJERCICIOS FISCALES */
+Route::get('/EjerciciosFiscales', function () {
+    return view('EjerciciosFiscales');
+});
+Route::get('GetEjerciciosFiscales', "EjerciciosFiscalesController@lista");
+Route::post('GuardarEjercicioFiscal', "EjerciciosFiscalesController@guardar");
+Route::post('SetStatusEF', "EjerciciosFiscalesController@set_status");
