@@ -157,13 +157,14 @@ class MirController extends Controller
 
         // Eliminar información en carga
         $this->deleteCarga($request->caratula['consecutivo_caratula']);
-/* 
+        /*
         $delete = LogCarga::find($request->caratula['consecutivo_caratula']);
         if (is_null($delete)) {
             return response()->json(array('error' => true, 'result' => "No hay información en el log que eliminar.", 'code' => 404));
         }
         $delete->delete();
- */
+        */
+
         // C A R A T U L A
         try {
             
@@ -201,7 +202,7 @@ class MirController extends Controller
             array_push($info, array("caratula" => true));
             
         }catch (Exception $e) {
-            return response()->json(array('error' => true , 'result' => ("Anomalía detectada al guardar la caratula. " . $e->getMessage()), 'code' => 500));
+            return response()->json(array('error' => true , 'result' => ("Anomalía detectada al guardar la caratula. " . $e->getMessage() . " Línea de error: " . $e->getLine()), 'code' => 500));
         }
 
         // F I N
@@ -388,7 +389,7 @@ class MirController extends Controller
             array_push($info, array("fin" => true));
 
         }catch (Exception $e) {
-            return response()->json(array('error' => true , 'result' => ("Anomalía detectada al guardar el fin. " . $e->getMessage()), 'code' => 500));
+            return response()->json(array('error' => true , 'result' => ("Anomalía detectada al guardar el fin. " . $e->getMessage() . " Línea de error: " . $e->getLine()), 'code' => 500));
         }
 
         // P R O P O S I T O
@@ -575,7 +576,7 @@ class MirController extends Controller
             array_push($info, array("proposito" => true));
 
         }catch (Exception $e) {
-            return response()->json(array('error' => true , 'result' => ("Anomalía detectada al guardar el proposito. " . $e->getMessage()), 'code' => 500));
+            return response()->json(array('error' => true , 'result' => ("Anomalía detectada al guardar el proposito. " . $e->getMessage() . " Línea de error: " . $e->getLine()), 'code' => 500));
         }
 
         // C O M P O N E N T E
@@ -858,7 +859,7 @@ class MirController extends Controller
             array_push($info, array("componente" => true));
             
         }catch (Exception $e) {
-            return response()->json(array('error' => true , 'result' => ("Anomalía detectada al guardar el componente. " . $e->getMessage()), 'code' => 500));
+            return response()->json(array('error' => true , 'result' => ("Anomalía detectada al guardar el componente. " . $e->getMessage() . " Línea de error: " . $e->getLine()), 'code' => 500));
         }
 
         // A C T I V I D A D
@@ -1137,7 +1138,7 @@ class MirController extends Controller
             array_push($info, array("actividad" => true));
 
         }catch (Exception $e) {
-            return response()->json(array('error' => true , 'result' => ("Anomalía detectada al guardar la actividad. " . $e->getMessage()), 'code' => 500));
+            return response()->json(array('error' => true , 'result' => ("Anomalía detectada al guardar la actividad. " . $e->getMessage() . " Línea de error: " . $e->getLine()), 'code' => 500));
         }
 
         // Obtenemos la información para refrescar
@@ -1517,8 +1518,22 @@ class MirController extends Controller
                 $MetaAnualOriginal_Comp = $componente->MetaAnualOriginal;
                 $LineaBaseOriginal_Comp = $componente->LineaBaseOriginal;      
                 $ValorNumeradorOriginal_Comp = $componente->ValorNumeradorOriginal; 
-                $ValorDenominadorOriginal_Comp = $componente->ValorDenominadorOriginal;         
-                
+                $ValorDenominadorOriginal_Comp = $componente->ValorDenominadorOriginal;    
+                //     
+                $MetaAnualOriginal_Comp = str_replace(",", "", $MetaAnualOriginal_Comp);
+                $LineaBaseOriginal_Comp = str_replace(",", "", $LineaBaseOriginal_Comp);
+                $ValorNumeradorOriginal_Comp = str_replace(",", "", $ValorNumeradorOriginal_Comp);
+                $ValorDenominadorOriginal_Comp = str_replace(",", "", $ValorDenominadorOriginal_Comp);
+
+                $ResultadoMeta_Componente = 0;
+                $ResultadoLineaBase_Componente = 0;
+                $Resultado_MetaSemestral1 = 0;
+                $Resultado_MetaSemestral2 = 0;
+                $Resultado_MetaTrimestral1 = 0;
+                $Resultado_MetaTrimestral2 = 0;
+                $Resultado_MetaTrimestral3 = 0;
+                $Resultado_MetaTrimestral4 = 0;
+               
                 //echo "COMPONENTES: COMPONENTE [" . $componente . "]";
                 switch ($numero) {
                     case 1:
@@ -1593,13 +1608,13 @@ class MirController extends Controller
                             if ($Denominador == "" || $Denominador == "-" || $Denominador == "0" || $Denominador == "0.00" || $Denominador == 0 || $Denominador == 0.00){
                                 $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "VARIABLE 2 (DENOMINADOR)", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Denominador, "");
                             }else{
-                                $ResultadoMeta_Proposito = round(((floatval($Numerador) + floatval($Denominador)) / floatval($Denominador)) * 100, 2);
+                                $ResultadoMeta_Componente = round(((floatval($Numerador) + floatval($Denominador)) / floatval($Denominador)) * 100, 2);
                             }
     
                             if ($LineaBaseV2 == "" || $LineaBaseV2 == "-" || $LineaBaseV2 == "0" || $LineaBaseV2 == "0.00" || $LineaBaseV2 == 0 || $LineaBaseV2 == 0.00){
                                 $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "LÍNEA BASE V2", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $LineaBaseV2, "");
                             }else{
-                                $ResultadoLineaBase_Proposito = round(((floatval($LineaBaseV1) + floatval($LineaBaseV2)) / floatval($LineaBaseV2)) * 100, 2);
+                                $ResultadoLineaBase_Componente = round(((floatval($LineaBaseV1) + floatval($LineaBaseV2)) / floatval($LineaBaseV2)) * 100, 2);
                             }
                             if ($Frecuencia == "SEMESTRAL"){
                                 if ($Semestre1V1 == "" || $Semestre1V1 == "-" || $Semestre1V1 == "0" || $Semestre1V1 == "0.00" || $Semestre1V1 == 0 || $Semestre1V1 == 0.00){
@@ -1660,13 +1675,13 @@ class MirController extends Controller
                             if ($Numerador == "" || $Numerador == "-" || $Numerador == "0" || $Numerador == "0.00" || $Numerador == 0 || $Numerador == 0.00){
                                 $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "VARIABLE 1 (NUMERADOR)", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Numerador, "");
                             }else{
-                                $ResultadoMeta_Proposito = round(((floatval($Numerador) - floatval($Denominador)) / floatval($Numerador)) * 100, 2);
+                                $ResultadoMeta_Componente = round(((floatval($Numerador) - floatval($Denominador)) / floatval($Numerador)) * 100, 2);
                             }
     
                             if ($LineaBaseV1 == "" || $LineaBaseV1 == "-" || $LineaBaseV1 == "0" || $LineaBaseV1 == "0.00" || $LineaBaseV1 == 0 || $LineaBaseV1 == 0.00){
                                 $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "LÍNEA BASE V1", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $LineaBaseV1, "");
                             }else{
-                                $ResultadoLineaBase_Proposito = round(((floatval($LineaBaseV1) - floatval($LineaBaseV2)) / floatval($LineaBaseV1)) * 100, 2);
+                                $ResultadoLineaBase_Componente = round(((floatval($LineaBaseV1) - floatval($LineaBaseV2)) / floatval($LineaBaseV1)) * 100, 2);
                             }
                             if ($Frecuencia == "SEMESTRAL"){
                                 if ($Semestre1V1 == "" ||$Semestre1V1 == "-" ||$Semestre1V1 == "0" || $Semestre1V1 == "0.00" || $Semestre1V1 == 0 || $Semestre1V1 == 0.00){
@@ -1725,13 +1740,13 @@ class MirController extends Controller
                             if ($Numerador == "" || $Numerador == "-" || $Numerador == "0" || $Numerador == "0.00" || $Numerador == 0 || $Numerador == 0.00){
                                 $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "VARIABLE 1 (NUMERADOR)", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Numerador, "");
                             }else{
-                                $ResultadoMeta_Proposito = round(((floatval($Numerador) + floatval($Denominador)) / floatval($Numerador)) * 100, 2);
+                                $ResultadoMeta_Componente = round(((floatval($Numerador) + floatval($Denominador)) / floatval($Numerador)) * 100, 2);
                             }
     
                             if ($LineaBaseV1 == "" || $LineaBaseV1 == "-" || $LineaBaseV1 == "0" || $LineaBaseV1 == "0.00" || $LineaBaseV1 == 0 || $LineaBaseV1 == 0.00){
                                 $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "LÍNEA BASE V1", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $LineaBaseV1, "");
                             }else{
-                                $ResultadoLineaBase_Proposito = round(((floatval($LineaBaseV1) + floatval($LineaBaseV2)) / floatval($LineaBaseV1)) * 100, 2);
+                                $ResultadoLineaBase_Componente = round(((floatval($LineaBaseV1) + floatval($LineaBaseV2)) / floatval($LineaBaseV1)) * 100, 2);
                             }
                             if ($Frecuencia == "SEMESTRAL"){
                                 if ($Semestre1V1 == "" || $Semestre1V1 == "-" || $Semestre1V1 == "0" || $Semestre1V1 == "0.00" || $Semestre1V1 == 0 || $Semestre1V1 == 0.00){
@@ -1791,13 +1806,13 @@ class MirController extends Controller
                         if ($Denominador == "" || $Denominador == "-" || $Denominador == "0" || $Denominador == "0.00" || $Denominador == 0 || $Denominador == 0.00){
                             $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "VARIABLE 1 (DENOMINADOR)", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Numerador, "");
                         }else{
-                            $ResultadoMeta_Proposito = round(floatval($Numerador) / floatval($Denominador), 2);
+                            $ResultadoMeta_Componente = round(floatval($Numerador) / floatval($Denominador), 2);
                         }
     
                         if ($LineaBaseV2 == "" || $LineaBaseV2 == "-" || $LineaBaseV2 == "0" || $LineaBaseV2 == "0.00" || $LineaBaseV2 == 0 || $LineaBaseV2 == 0.00){
                             $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "LÍNEA BASE V2", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $LineaBaseV2, "");
                         }else{
-                            $ResultadoLineaBase_Proposito = round(floatval($LineaBaseV1) / floatval($LineaBaseV2), 2);
+                            $ResultadoLineaBase_Componente = round(floatval($LineaBaseV1) / floatval($LineaBaseV2), 2);
                         }
                         break;
                         if ($Frecuencia == "SEMESTRAL"){
@@ -1856,7 +1871,7 @@ class MirController extends Controller
                         if ($Denominador == "" || $Denominador == "-" || $Denominador == "0" || $Denominador == "0.00" || $Denominador == 0 || $Denominador == 0.00){
                             $this->addFormula($consecutivo, $idelemento_carga, $seccion_carga, "VARIABLE 1 (DENOMINADOR)", "NO PUEDE REALIZARSE LA OPERACIÓN CON CERO (0)", $Numerador, "");
                         }else{
-                            $ResultadoMeta_Proposito = round((floatval($Numerador) / floatval($Denominador))*100, 2);
+                            $ResultadoMeta_Componente = round((floatval($Numerador) / floatval($Denominador))*100, 2);
                         }
     
                         if ($LineaBaseV2 == "" || $LineaBaseV2 == "-" || $LineaBaseV2 == "0" || $LineaBaseV2 == "0.00" || $LineaBaseV2 == 0 || $LineaBaseV2 == 0.00){
@@ -1866,7 +1881,7 @@ class MirController extends Controller
                         }else{
                             // echo "Linea Base V1: $LineaBaseV1";
                             // echo "Linea BAse V2: $LineaBaseV2";
-                            $ResultadoLineaBase_Proposito = round((floatval($LineaBaseV1) / floatval($LineaBaseV2))*100, 2);
+                            $ResultadoLineaBase_Componente = round((floatval($LineaBaseV1) / floatval($LineaBaseV2))*100, 2);
                         }
                         break;
                         if ($Frecuencia == "SEMESTRAL"){
@@ -1922,8 +1937,16 @@ class MirController extends Controller
                         }
                 }
                 // APLICAR LA FORMULA Y VALIDAR
+                $MetaAnualOriginal_Comp = floatval($MetaAnualOriginal_Comp);
+                $LineaBaseOriginal_Comp = floatval($LineaBaseOriginal_Comp);
+                $ValorNumeradorOriginal_Comp = floatval($ValorNumeradorOriginal_Comp);
+                $ValorDenominadorOriginal_Comp = floatval($ValorDenominadorOriginal_Comp);
                 if ($Frecuencia == "SEMESTRAL"){
                     //META ANUAL
+                    // echo "Meta Anual Original Comp = $MetaAnualOriginal_Comp";
+                    // echo "Resultado Meta Comp = $ResultadoMeta_Componente";
+                    // $Total = $MetaAnualOriginal_Comp - $ResultadoMeta_Componente;
+                    // echo "Total = $Total";
                     if ($MetaAnualOriginal_Comp - $ResultadoMeta_Componente <= 0.01) {
     
                     }
@@ -2026,10 +2049,10 @@ class MirController extends Controller
             $insert->save();
 
         }catch (Exception $e) {
-            return response()->json(array('error' => true , 'result' => "Ha ocurrido una anomalía al realizar las validaciones. " . $e->getMessage(), 'code' => 500));
+            return response()->json(array('error' => true , 'result' => ("Ha ocurrido una anomalía al agregar la información de la carga de MIR. " . $e->getMessage() . " Línea de error: " . $e->getLine()), 'code' => 500));
         }
     }
-
+    
     public function addFormula($consecutivo, $id_elemento, $seccion, $elemento, $descripcion, $valor_original, $valor_modificado){
         try {
             $insert                 = new LogFormula();
@@ -2353,88 +2376,7 @@ class MirController extends Controller
     
         return trim(preg_replace('/\s+/', '', $numero));
     }
-
-    /*
-    public function index(Request $request)
-    {
-        try {
-            $query = "SELECT * FROM CAT_BENEFICIARIO WHERE idBeneficiario = $request->id_TipoBeneficiario;";
-            $informacion = DB::select($query);
-            return response()->json(array('error' => false, 'data' => $informacion, 'code' => 200));
-
-        }catch (Exception $e) {
-            return response()->json(array('error' => true , 'result' => $e->getMessage(), 'code' => 500));
-        }
-
-        return response()->json(array('error' => false, 'result' => $informacion , 'code' => 200));
-    }
-    
-    public function insert(Request $request)
-    {
-        try {
-            $insert                     = new Beneficiarios;
-            $insert->idCatBeneficiario  = $request->id_beneficiario;
-            $insert->idBeneficiario     = $request->id_tipobeneficiario;
-            $insert->Poblacion          = $request->descripcion;
-            $insert->save();
-
-        }catch (Exception $e) {
-            return response()->json(array('error' => true , 'result' => $e->getMessage(), 'code' => 500));
-        }
-
-        return response()->json(array('error' => false, 'result' => $insert , 'code' => 200));
-    }
-
-    public function delete(Request $request)
-    {
-
-        $delete = Beneficiarios::find($request->id_beneficiario);
-
-        if (is_null($delete)) {
-            return response()->json(array('error' => true, 'result' => "El beneficiario que intenta eliminar no existe.", 'code' => 404));
-        }
-
-        $delete->delete();
-
-        return response()->json(array('error' => false, 'result' => $delete , 'code' => 200));
-    }
-    
-    public function insert_tipo(Request $request)
-    {
-        try {
-            $insert                     = new TipoBeneficiarios;
-            $insert->idBeneficiario     = $request->id_tipobeneficiario;
-            $insert->TipoBeneficiario   = $request->descripcion;
-            $insert->save();
-
-        }catch (Exception $e) {
-            return response()->json(array('error' => true , 'result' => $e->getMessage(), 'code' => 500));
-        }
-
-        return response()->json(array('error' => false, 'result' => $insert , 'code' => 200));
-    }
-    
-    public function update_tipo(Request $request)
-    {
-        $update = TipoBeneficiarios::find($request->id_tipobeneficiario);
-
-        if (is_null($update)) {
-            return response()->json(array('error' => true, 'result' => "El tipo beneficiario que intenta editar no existe.", 'code' => 404));
-        }
-        
-        try {
-            $update->idBeneficiario     = $request->id_tipobeneficiario;
-            $update->TipoBeneficiario   = $request->descripcion;
-            $update->save();
-        }catch (Exception $e) {
-            return response()->json(array('error' => true , 'result' => $e->getMessage(), 'code' => 500));
-        }
-
-        return response()->json(array('error' => false, 'result' => $update , 'code' => 200));
-    }
-    */
     
 }
 
 ?>
-                                                                                                                                                                                                                                        

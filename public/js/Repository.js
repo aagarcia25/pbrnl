@@ -12,11 +12,9 @@ async function Requests(method = '', url = '', data = null) {
         referrer: 'no-referrer'
     };
 
-    if (data && method.toLowerCase() != "get") {
+    if (data) {
         options.body = JSON.stringify(data);
     }
-    else if(data)
-        url += "?" + new URLSearchParams(data).toString();
 
     const response = await fetch(url, options);
 
@@ -39,8 +37,8 @@ class Repository {
 
     constructor() {
         // Local
-       // this.Url = "http://evalua-pbr.nl.gob.mx/public";     
-        this.Url = "."; //funciona en local y producción
+        //this.Url = "http://127.0.0.1:8000";
+        this.Url = `http://${window.location.host}`;
 
         this._secretarias = null;
         this._conacadmin = null;
@@ -63,7 +61,6 @@ class Repository {
         this._mir = null;
         this._estrategias = null;
         this._lineasaccion = null;
-        this._ejercicios = null;
     }
 
     get Secretarias() {
@@ -234,13 +231,6 @@ class Repository {
         return this._lineasaccion;
     }
 
-    get EjerciciosFiscales() {
-        if (!this._ejercicios) {
-            this._ejercicios = new EjerciciosFiscalesController(this.Url);
-        }
-
-        return this._ejercicios;
-    }
 }
 
 class SecretariasController {
@@ -425,10 +415,6 @@ class LoginController {
     Recuperar(request) {
         return Requests('POST', this.Url + "/RecoverPassword", request);
     }
-
-    SolicitarRecuperacionContrasena(request) {
-        return Requests('POST', this.Url + "/SolicitarRecuperacionContrasena", request);
-    }
 }
 
 class RolesController {
@@ -474,9 +460,6 @@ class UsuariosController {
         return Requests('POST', this.Url + "/DeleteUsuario", id);
     }
 
-    ValidarId(id) {
-        return Requests('POST', this.Url + "/ValidarIdUsuario", id);
-    }
 }
 
 class ProgramasPresupuestalesController {
@@ -484,16 +467,16 @@ class ProgramasPresupuestalesController {
         this.Url = url;
     }
 
-    GetAllProgramasP(request) {
-        return Requests('GET', this.Url + "/GetAllProgramasPP", request);
+    GetAllProgramasP() {
+        return Requests('GET', this.Url + "/GetAllProgramasPP");
     }
 
-    GetAllCountProgramasP(request) {
-        return Requests('GET', this.Url + "/GetAllCountProgramasP", request);
+    GetAllCountProgramasP() {
+        return Requests('GET', this.Url + "/GetAllCountProgramasP");
     }
 
     GetCountProgramasP(request) {
-        return Requests('GET', this.Url + "/GetCountProgramasP", request);
+        return Requests('POST', this.Url + "/GetCountProgramasP", request);
     }
 
     GetProgramasP(request) {
@@ -522,16 +505,16 @@ class ActividadesInstitucionalesController {
         this.Url = url;
     }
 
-    GetAllActividadesI(request) {
-        return Requests('GET', this.Url + "/GetAllActividadesAI", request);
+    GetAllActividadesI() {
+        return Requests('GET', this.Url + "/GetAllActividadesAI");
     }
 
-    GetAllCountActividadesAI(request) {
-        return Requests('GET', this.Url + "/GetAllCountActividadesAI", request);
+    GetAllCountActividadesAI() {
+        return Requests('GET', this.Url + "/GetAllCountActividadesAI");
     }
 
     GetCountActividadesAI(request) {
-        return Requests('GET', this.Url + "/GetCountActividadesAI", request);
+        return Requests('POST', this.Url + "/GetCountActividadesAI", request);
     }
 
     GetActividadesI(request) {
@@ -560,16 +543,16 @@ class ProgramasProyectosInversionController {
         this.Url = url;
     }
 
-    GetAllPPI(request) {
-        return Requests('GET', this.Url + "/GetAllPPI", request);
+    GetAllPPI() {
+        return Requests('GET', this.Url + "/GetAllPPI");
     }
 
-    GetAllCountPPI(request) {
-        return Requests('GET', this.Url + "/GetAllCountPPI", request);
+    GetAllCountPPI() {
+        return Requests('GET', this.Url + "/GetAllCountPPI");
     }
 
     GetCountPPI(request) {
-        return Requests('GET', this.Url + "/GetCountPPI", request);
+        return Requests('POST', this.Url + "/GetCountPPI", request);
     }
 
     GetPPI(request) {
@@ -715,14 +698,6 @@ class BeneficiariosController {
     EditTipoBeneficiario(request) {
         return Requests('POST', this.Url + "/EditTipoBeneficiario", request);
     }
-
-    DeleteTipoBeneficiario(request) {
-        return Requests('POST', this.Url + "/DeleteTipoBeneficiario", request);
-    }
-
-    GetUltimoIdTipoBeneficiario() {
-        return Requests("GET", this.Url + "/GetUltimoIdTipoBeneficiario");
-    }
 }
 
 class MirController {
@@ -765,14 +740,14 @@ class MirController {
     SaveMir(request) {
         return Requests('POST', this.Url + "/SaveMir", request);
     }
-}
 
-class EjerciciosFiscalesController {
-    constructor(url = '') {
-        this.Url = url;
+    ValidarMir(request) {
+        return Requests('POST', this.Url + "/ValidarMir", request);
     }
 
-    Lista() {
-        return Requests('GET', this.Url + "/GetEjerciciosFiscales");
+    DeleteLogFormulas(request){
+        return Requests('POST', this.Url + "/DeleteLog", request);
     }
 }
+
+

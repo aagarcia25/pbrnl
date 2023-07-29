@@ -28,8 +28,7 @@ Route::get('/RecuperacionCredencial/{id_usuario}', function ($id_usuario) {
         'id_usuario' => $id_usuario
     ]);
 });
-Route::post('RecoverPassword','LoginController@recover'); 
-Route::post('SolicitarRecuperacionContrasena','LoginController@solicitar_recuperacion'); 
+Route::post('RecoverPassword','LoginController@recover');
 
 // Menu principal
 Route::get('/Menu', function () {
@@ -91,41 +90,39 @@ Route::get('/Catalogos', function () {
         return view('CatProgramasPresupuestales'); // En resources -> views - index.php -- Así se llama la vista principal donde entraran 
     });
     Route::get('GetAllProgramasPP','ProgramasPresupuestalesController@all');
+    Route::get('GetAllCountProgramasP','ProgramasPresupuestalesController@countall');
+    Route::post('GetCountProgramasP','ProgramasPresupuestalesController@count');
     Route::post('GetProgramasPP','ProgramasPresupuestalesController@index');
     Route::post('GetInfoComponentesPP','ProgramasPresupuestalesController@info');
     Route::post('GetComponentesPP','ProgramasPresupuestalesController@components');
     Route::post('EditComponentePP','ProgramasPresupuestalesController@updatecomponent');
     Route::post('EditProgramaPresupuestal','ProgramasPresupuestalesController@updatepp');
 
-    Route::get('GetAllCountProgramasP','ProgramasPresupuestalesController@countall');
-    Route::get('GetCountProgramasP','ProgramasPresupuestalesController@count');
-
-
     // Actividades institucionales
     Route::get('/ActividadesInstitucionales', function () {
         return view('CatActividadesInstitucionales'); // En resources -> views - index.php -- Así se llama la vista principal donde entraran 
     });
     Route::get('GetAllActividadesAI','ActividadesInstitucionalesController@all');
+    Route::get('GetAllCountActividadesAI','ActividadesInstitucionalesController@countall');
+    Route::post('GetCountActividadesAI','ActividadesInstitucionalesController@count');
     Route::post('GetActividadesAI','ActividadesInstitucionalesController@index');
     Route::post('GetInfoComponentesAI','ActividadesInstitucionalesController@info');
     Route::post('GetComponentesAI','ActividadesInstitucionalesController@components');
     Route::post('EditComponenteAI','ActividadesInstitucionalesController@updatecomponent');
     Route::post('EditActividadInstitucional','ActividadesInstitucionalesController@updatepp');
-    Route::get('GetAllCountActividadesAI','ActividadesInstitucionalesController@countall');
-    Route::get('GetCountActividadesAI','ActividadesInstitucionalesController@count');
 
     // Programas y proyectos de inversión
     Route::get('/ProgramasProyectosInversion', function () {
         return view('CatProgramasProyectosInversion'); // En resources -> views - index.php -- Así se llama la vista principal donde entraran 
     });
     Route::get('GetAllPPI','ProgramasProyectosInversionController@all');
+    Route::get('GetAllCountPPI','ProgramasProyectosInversionController@countall');
+    Route::post('GetCountPPI','ProgramasProyectosInversionController@count');
     Route::post('GetPPI','ProgramasProyectosInversionController@index');
     Route::post('GetInfoComponentesPPI','ProgramasProyectosInversionController@info');
     Route::post('GetComponentesPPI','ProgramasProyectosInversionController@components');
     Route::post('EditComponentePPI','ProgramasProyectosInversionController@updatecomponent');
     Route::post('EditProgramaPresupuestoInversion','ProgramasProyectosInversionController@updatepp');
-    Route::get('GetAllCountPPI','ProgramasProyectosInversionController@countall');
-    Route::get('GetCountPPI','ProgramasProyectosInversionController@count');
 
 // ========================================
 // C A T Á L O G O S   P L A N E A C I O N E S
@@ -217,9 +214,7 @@ Route::get('/Catalogos', function () {
     Route::post('DeleteBeneficiario','BeneficiariosController@delete');
     Route::post('AddTipoBeneficiario','BeneficiariosController@insert_tipo');
     Route::post('EditTipoBeneficiario','BeneficiariosController@update_tipo');
-    Route::post('DeleteTipoBeneficiario','BeneficiariosController@eliminar_tipo');
-    Route::get('GetUltimoIdTipoBeneficiario','BeneficiariosController@get_ultimo_tipo_beneficiario');
-    
+
 // ========================================
 // A D M I N I S T R A C I Ó N
 // ========================================
@@ -243,8 +238,6 @@ Route::get('/Catalogos', function () {
     Route::post('AddUsuario','UsuariosController@insert');
     Route::post('EditUsuario','UsuariosController@update');
     Route::post('DeleteUsuario','UsuariosController@delete');
-    Route::post('ValidarIdUsuario','UsuariosController@validar_id'); 
-
 
     // Roles
     Route::get('/Roles', function () {
@@ -273,15 +266,9 @@ Route::get('/Catalogos', function () {
     Route::post('GetMirActividades','MirController@actividades');
     Route::post('GetMirAutoriaCarga','MirController@auditoriacarga');
     Route::post('GetMirAutoriaFormulas','MirController@auditoriaformulas');
+    Route::post('SaveMir','MirController@save');
+    Route::post('ValidarMir','MirController@validarFormulas');
+    Route::post('DeleteLog','MirController@deletelog');
+    
 
-// ========================================
-// Ejercicios Fiscales
-// ========================================
 
-Route::get('/EjerciciosFiscales', function () {
-    return view('EjerciciosFiscales');
-});
-
-Route::get('GetEjerciciosFiscales', "EjerciciosFiscalesController@lista");
-Route::post('GuardarEjercicioFiscal', "EjerciciosFiscalesController@guardar");
-Route::post('SetStatusEF', "EjerciciosFiscalesController@set_status");

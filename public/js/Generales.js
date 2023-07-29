@@ -144,6 +144,16 @@ function Func_Cargando(Mensaje = "Cargando...") {
     });
 }
 
+function Func_Mensaje(Mensaje) {
+    swal.fire({
+        title: Mensaje,
+        allowOutsideClick: false,
+        didOpen: function() {
+            swal.showLoading()
+        }
+    });
+}
+
 function Func_Toast(icon, title, text, time = 5000) {
     $.toast({
         heading: title,
