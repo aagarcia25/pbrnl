@@ -29,7 +29,7 @@ Route::get('/RecuperacionCredencial/{id_usuario}', function ($id_usuario) {
     ]);
 });
 Route::post('RecoverPassword','LoginController@recover');
-
+Route::post('SolicitarRecuperacionContrasena','LoginController@solicitar_recuperacion');
 // Menu principal
 Route::get('/Menu', function () {
     return view('Menu'); // En resources -> views - index.php -- Así se llama la vista principal donde entraran 
@@ -91,7 +91,7 @@ Route::get('/Catalogos', function () {
     });
     Route::get('GetAllProgramasPP','ProgramasPresupuestalesController@all');
     Route::get('GetAllCountProgramasP','ProgramasPresupuestalesController@countall');
-    Route::post('GetCountProgramasP','ProgramasPresupuestalesController@count');
+    Route::get('GetCountProgramasP','ProgramasPresupuestalesController@count');
     Route::post('GetProgramasPP','ProgramasPresupuestalesController@index');
     Route::post('GetInfoComponentesPP','ProgramasPresupuestalesController@info');
     Route::post('GetComponentesPP','ProgramasPresupuestalesController@components');
@@ -104,7 +104,7 @@ Route::get('/Catalogos', function () {
     });
     Route::get('GetAllActividadesAI','ActividadesInstitucionalesController@all');
     Route::get('GetAllCountActividadesAI','ActividadesInstitucionalesController@countall');
-    Route::post('GetCountActividadesAI','ActividadesInstitucionalesController@count');
+    Route::get('GetCountActividadesAI','ActividadesInstitucionalesController@count');
     Route::post('GetActividadesAI','ActividadesInstitucionalesController@index');
     Route::post('GetInfoComponentesAI','ActividadesInstitucionalesController@info');
     Route::post('GetComponentesAI','ActividadesInstitucionalesController@components');
@@ -117,7 +117,7 @@ Route::get('/Catalogos', function () {
     });
     Route::get('GetAllPPI','ProgramasProyectosInversionController@all');
     Route::get('GetAllCountPPI','ProgramasProyectosInversionController@countall');
-    Route::post('GetCountPPI','ProgramasProyectosInversionController@count');
+    Route::get('GetCountPPI','ProgramasProyectosInversionController@count');
     Route::post('GetPPI','ProgramasProyectosInversionController@index');
     Route::post('GetInfoComponentesPPI','ProgramasProyectosInversionController@info');
     Route::post('GetComponentesPPI','ProgramasProyectosInversionController@components');

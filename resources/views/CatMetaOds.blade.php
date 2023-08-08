@@ -114,8 +114,8 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="row DDLFont">
-                                    <label for="select_ods" class="col-1 col-form-label col-form-label-sm DDLFont">ODS</label>
-                                    <select id="select_ods" class="col-11 selectpicker show-tick form-control border W95" title="Seleccione..." data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                    <label for="select_ods" class="col-3 col-form-label col-form-label-sm DDLFont">ODS</label>
+                                    <select id="select_ods" class="col-8 selectpicker show-tick form-control border W95" title="Seleccione..." data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
                                     </select>
                                 </div>
                             </div>
@@ -128,8 +128,8 @@
                                 <thead>
                                     <tr class="table-header text-center">
                                         <th scope="col" width="10%">Id ODS</th>
-                                        <th scope="col" width="10%">Id meta ODS</th>
-                                        <th scope="col" width="80%">Id conac funcional</th>
+                                        <th scope="col" width="10%">Id Meta ODS</th>
+                                        <th scope="col" width="80%">Descripción</th>
                                     </tr>
                                 </thead>
                                 <tbody></tbody>

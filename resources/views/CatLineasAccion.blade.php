@@ -101,10 +101,10 @@
             <div class="col-8">
                 <div class="container pagetitle mt-3">
                     <div class="row mb-3">
-                        <div class="col-1">
+                        <div class="col-2">
                             <img id="icon-cat-ods" class="icon-cat-secretaria" src="img/@php echo $img; @endphp" width="80" height="80">
                         </div>
-                        <div class="col-11 mt-4">
+                        <div class="col-9 mt-4">
                             <h1 class="TituloCatalogo">@php echo $view; @endphp</h1>
                         </div>
                     </div>
@@ -114,8 +114,8 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="row DDLFont">
-                                    <label for="select_eje" class="col-1 col-form-label col-form-label-sm DDLFont">Eje</label>
-                                    <select id="select_eje" class="col-11 selectpicker show-tick form-control W95" title="Seleccione..." data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                    <label for="select_eje" class="col-3 col-form-label col-form-label-sm DDLFont">Eje</label>
+                                    <select id="select_eje" class="col-8 selectpicker show-tick form-control W95" title="Seleccione..." data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
                                     </select>
                                 </div>
                             </div>
@@ -123,8 +123,8 @@
                         <div class="row">
                             <div class="col-12 mt-2">
                                 <div class="row DDLFont">
-                                    <label for="select_tema" class="col-1 col-form-label col-form-label-sm DDLFont">Tema</label>
-                                    <select id="select_tema" class="col-11 selectpicker show-tick form-control W95" title="Seleccione..." data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                    <label for="select_tema" class="col-3 col-form-label col-form-label-sm DDLFont">Tema</label>
+                                    <select id="select_tema" class="col-8 selectpicker show-tick form-control W95" title="Seleccione..." data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
                                     </select>
                                 </div>
                             </div>
@@ -132,8 +132,8 @@
                         <div class="row">
                             <div class="col-12 mt-2">
                                 <div class="row DDLFont">
-                                    <label for="select_objetivo" class="col-1 col-form-label col-form-label-sm DDLFont">Objetivo</label>
-                                    <select id="select_objetivo" class="col-11 selectpicker show-tick form-control W95" title="Seleccione..." data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                    <label for="select_objetivo" class="col-3 col-form-label col-form-label-sm DDLFont">Objetivo</label>
+                                    <select id="select_objetivo" class="col-8 selectpicker show-tick form-control W95" title="Seleccione..." data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
                                     </select>
                                 </div>
                             </div>
@@ -141,8 +141,8 @@
                         <div class="row mb-2">
                             <div class="col-12 mt-2 ">
                                 <div class="row DDLFont">
-                                    <label for="select_estrategia" class="col-1 col-form-label col-form-label-sm DDLFont2">Estrategia</label>
-                                    <select id="select_estrategia" class="col-11 selectpicker show-tick form-control W95" title="Seleccione..." data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                    <label for="select_estrategia" class="col-3 col-form-label col-form-label-sm DDLFont2">Estrategia</label>
+                                    <select id="select_estrategia" class="col-8 selectpicker show-tick form-control W95" title="Seleccione..." data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
                                     </select>
                                 </div>
                             </div>

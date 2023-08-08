@@ -68,21 +68,29 @@ class EstrategiasController extends Controller
 
     public function update(Request $request)
     {
-        $update = Estrategias::
-                where('IdEje', '=', $request->id_eje)
+        //https://stackoverflow.com/questions/36332005/laravel-model-with-two-primary-keys-update
+
+        // $builder = Estrategias::
+        //     where([
+        //         'IdEje' => $request->id_eje,
+        //         'IdTema' => $request->id_tema,
+        //         'IdObjetivo' => $request->id_objetivo,
+        //         'IdEstrategias' => $request->id_estrategia
+        //     ]);
+
+        // if (is_null($update)) {
+        //     return response()->json(array('error' => true, 'result' => "El objetivo que intenta editar no existe.", 'code' => 404));
+        // }
+        
+        try {
+            $update = DB::table("ESTRATEGIAS")
+                ->where('IdEje', '=', $request->id_eje)
                 ->where('IdTema', '=', $request->id_tema)
                 ->where('IdObjetivo', '=', $request->id_objetivo)
                 ->where('IdEstrategias', '=', $request->id_estrategia)
-                ->first();
-        
-        if (is_null($update)) {
-            return response()->json(array('error' => true, 'result' => "El objetivo que intenta editar no existe.", 'code' => 404));
-        }
-        
-        try {
-            $update->Descripcion    = $request->descripcion;
-            $update->Activo         = "S";
-            $update->save();
+                ->update(array(
+                    'Descripcion' => $request->descripcion
+                ));
         }catch (Exception $e) {
             return response()->json(array('error' => true , 'result' => $e->getMessage(), 'code' => 500));
         }

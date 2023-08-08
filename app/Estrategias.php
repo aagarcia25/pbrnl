@@ -20,6 +20,6 @@ class Estrategias extends Model
     public $incrementing = false;
 
     public function getKeyName(){
-        return "IdEstrategias";
+        return array('IdEje', 'IdTema', 'IdObjetivo', 'IdEstrategias');
     }
 }

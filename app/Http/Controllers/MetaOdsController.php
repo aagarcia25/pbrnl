@@ -36,18 +36,16 @@ class MetaOdsController extends Controller
 
     public function update(Request $request)
     {
-        $update = MetaOds::where('IdODS', '=', $request->id_ods)->where('IdMETAODS', '=', $request->id_metaods)->first();
-        
-        if (is_null($update)) {
-            return response()->json(array('error' => true, 'result' => "La meda ODS que intenta editar no existe.", 'code' => 404));
-        }
-        
         try {
-            $update->IdODS          = $request->id_ods;
-            $update->IdMETAODS      = $request->id_metaods;
-            $update->Descripcion    = $request->descripcion;
-            $update->Activo         = "S";
-            $update->save();
+            $update =  DB::table("METAODS")
+            ->where('IdODS', '=', $request->id_ods)
+            ->where('IdMETAODS', '=', $request->id_metaods)
+            ->update(array(
+                "IdODS" => $request->id_ods,
+                "IdMETAODS" =>$request->id_metaods,
+                "Descripcion" => $request->descripcion,
+                "Activo" => "S"
+            ));
         }catch (Exception $e) {
             return response()->json(array('error' => true , 'result' => $e->getMessage(), 'code' => 500));
         }

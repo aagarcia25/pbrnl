@@ -114,22 +114,22 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="row DDLFont">
-                                    <label for="select_eje" class="col-1 col-form-label col-form-label-sm DDLFont">Eje</label>
-                                    <select id="select_eje" class="col-11 selectpicker show-tick form-control W95" title="Seleccione..." data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                    <label for="select_eje" class="col-3 col-form-label col-form-label-sm DDLFont">Eje</label>
+                                    <select id="select_eje" class="col-18 selectpicker show-tick form-control W95" title="Seleccione..." data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-12 mt-2">
                                 <div class="row DDLFont">
-                                    <label for="select_tema" class="col-1 col-form-label col-form-label-sm DDLFont">Tema</label>
-                                    <select id="select_tema" class="col-11 selectpicker show-tick form-control W95" title="Seleccione..." data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                    <label for="select_tema" class="col-3 col-form-label col-form-label-sm DDLFont">Tema</label>
+                                    <select id="select_tema" class="col-8 selectpicker show-tick form-control W95" title="Seleccione..." data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-12 mt-2">
                                 <div class="row DDLFont">
-                                    <label for="select_objetivo" class="col-1 col-form-label col-form-label-sm DDLFont">Objetivo</label>
-                                    <select id="select_objetivo" class="col-11 selectpicker show-tick form-control W95" title="Seleccione..." data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                    <label for="select_objetivo" class="col-3 col-form-label col-form-label-sm DDLFont">Objetivo</label>
+                                    <select id="select_objetivo" class="col-8 selectpicker show-tick form-control W95" title="Seleccione..." data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
                                     </select>
                                 </div>
                             </div>
@@ -141,10 +141,10 @@
                             <table id="table" class="table table-striped table-hover">
                                 <thead>
                                     <tr class="table-header text-center">
-                                        <th scope="col" width="10%">Id eje</th>
-                                        <th scope="col" width="10%">Id tema</th>
-                                        <th scope="col" width="10%">Id objetivo</th>
-                                        <th scope="col" width="10%">Id estrategia</th>
+                                        <th scope="col" width="10%">Id Eje</th>
+                                        <th scope="col" width="10%">Id Tema</th>
+                                        <th scope="col" width="10%">Id Objetivo</th>
+                                        <th scope="col" width="10%">Id Estrategia</th>
                                         <th scope="col" width="60%">Descripción</th>
                                     </tr>
                                 </thead>
@@ -171,19 +171,19 @@
                     <div class="modal-body">
                         <div class="row g-3">
                             <div class="col-md-3">
-                                <label for="id_eje" class="form-label">Id eje</label>
+                                <label for="id_eje" class="form-label">Id Eje</label>
                                 <input type="text" class="form-control" id="id_eje" disabled style="background: white;" required>
                             </div>
                             <div class="col-md-3">
-                                <label for="id_tema" class="form-label">Id tema</label>
+                                <label for="id_tema" class="form-label">Id Tema</label>
                                 <input type="text" class="form-control" id="id_tema" disabled style="background: white;" required>
                             </div>
                             <div class="col-md-3">
-                                <label for="id_objetivo" class="form-label">Id objetivo</label>
+                                <label for="id_objetivo" class="form-label">Id Objetivo</label>
                                 <input type="text" class="form-control" id="id_objetivo" disabled style="background: white;" required>
                             </div>
                             <div class="col-md-3">
-                                <label for="id_estregia" class="form-label">Id estregia</label>
+                                <label for="id_estregia" class="form-label">Id Estregia</label>
                                 <input type="text" class="form-control" id="id_estregia" maxlength="2" style="background: white;" required>
                             </div>
                             <div class="col-md-12">
