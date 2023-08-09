@@ -37,7 +37,7 @@ class EjerciciosFiscalesController extends BaseController
         INNER JOIN
         (SELECT A.ejercicioFiscal, COUNT(*) AS PPI_C FROM PROGRAMATICO_PI_COMP AS A 
         INNER JOIN UNIDADES AS B ON A.idUA = B.idUnidad AND A.idSecretaria = B.idSecretaria
-        GROUP BY a.ejercicioFiscal
+        GROUP BY A.ejercicioFiscal
         ) PPI_C  ON PPI_C.ejercicioFiscal = EF.Id
         -- programas presupuestarios
         INNER JOIN
