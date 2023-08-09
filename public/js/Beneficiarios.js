@@ -162,30 +162,30 @@ function BtnEditarCatalogo(){
 }
 
 function BtnEliminarCatalogo(){
-    $("#BtnEliminarCatalogo").remove();
-    // $('#BtnEliminarCatalogo').click(function() {
-    //     var table = $('#table').DataTable();
-    //     var index = table.row('.selected').index();
-    //     var data = table.row(index).data();
+    //$("#BtnEliminarCatalogo").remove();
+    $('#BtnEliminarCatalogo').click(function() {
+        var table = $('#table').DataTable();
+        var index = table.row('.selected').index();
+        var data = table.row(index).data();
 
-    //     if (!table.rows('.selected').any()) {
-    //         Func_Aviso("Atención", "Para continuar favor de seleccionar un Beneficiario.", "info");
-    //         return false;
-    //     }
+        if (!table.rows('.selected').any()) {
+            Func_Aviso("Atención", "Para continuar favor de seleccionar un Beneficiario.", "info");
+            return false;
+        }
 
-    //     Func_DespliegaConfirmacion("Eliminar " + data[2], "¿Deseas eliminar el Beneficiario seleccionado?", "question", "Aceptar", "Cancelar", function(response) {
-    //         if (response) {
-    //             var id_beneficiario = data[0];
-    //             var request = {
-    //                 id_beneficiario: id_beneficiario
-    //             };
-    //             Func_Cargando();
-    //             repository.Beneficiarios.DeleteBeneficiario(request)
-    //                 .then(ResponseDeleteBeneficiario);
+        Func_DespliegaConfirmacion("Eliminar " + data[2], "¿Deseas eliminar el Beneficiario seleccionado?", "question", "Aceptar", "Cancelar", function(response) {
+            if (response) {
+                var id_beneficiario = data[0];
+                var request = {
+                    id_beneficiario: id_beneficiario
+                };
+                Func_Cargando();
+                repository.Beneficiarios.DeleteBeneficiario(request)
+                    .then(ResponseDeleteBeneficiario);
 
-    //         }
-    //     });
-    // });
+            }
+        });
+    });
 }
 
 function BtnGuardarBeneficiario(){
