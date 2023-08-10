@@ -177,10 +177,10 @@
                                 <div class="col-12">
                                     <div class="d-flex">
                                         <div class="p-2 flex-grow-1">
-                                            <img id="fin-izq" src="/img/icono izq.svg" class="tabs-internas cursor-pointer" onmouseover="img_over('fin-izq', '/img/icono izq activo.svg')" onmouseout="img_out('fin-izq', 'img/icono izq.svg')" data-superior="fin" data-seccion="findos" data-actual="finuno" data-texto="1/2" width="30" height="30">
+                                            <img id="fin-izq" src="img/icono izq.svg" class="tabs-internas cursor-pointer" onmouseover="img_over('fin-izq', 'img/icono izq activo.svg')" onmouseout="img_out('fin-izq', 'img/icono izq.svg')" data-superior="fin" data-seccion="findos" data-actual="finuno" data-texto="1/2" width="30" height="30">
                                         </div>
                                         <div class="p-2">
-                                            <b class="m-3 money-tabs-fin">1/2</b><img id="fin-der" src="/img/icono der.svg" class="tabs-internas cursor-pointer" onmouseover="img_over('fin-der', '/img/icono der activo.svg')" onmouseout="img_out('fin-der', 'img/icono der.svg')" data-superior="fin" data-seccion="finuno" data-actual="findos" data-texto="2/2" width="30" height="30">
+                                            <b class="m-3 money-tabs-fin">1/2</b><img id="fin-der" src="img/icono der.svg" class="tabs-internas cursor-pointer" onmouseover="img_over('fin-der', 'img/icono der activo.svg')" onmouseout="img_out('fin-der', 'img/icono der.svg')" data-superior="fin" data-seccion="finuno" data-actual="findos" data-texto="2/2" width="30" height="30">
                                         </div>
                                     </div>
                                 </div>
@@ -447,10 +447,10 @@
                                 <div class="col-12">
                                     <div class="d-flex">
                                         <div class="p-2 flex-grow-1">
-                                            <img id="proposito-izq" src="/img/icono izq.svg" class="tabs-internas cursor-pointer" onmouseover="img_over('proposito-izq', '/img/icono izq activo.svg')" onmouseout="img_out('proposito-izq', 'img/icono izq.svg')" data-superior="proposito" data-seccion="propositodos" data-actual="propositouno" data-texto="1/2" width="30" height="30">
+                                            <img id="proposito-izq" src="img/icono izq.svg" class="tabs-internas cursor-pointer" onmouseover="img_over('proposito-izq', 'img/icono izq activo.svg')" onmouseout="img_out('proposito-izq', 'img/icono izq.svg')" data-superior="proposito" data-seccion="propositodos" data-actual="propositouno" data-texto="1/2" width="30" height="30">
                                         </div>
                                         <div class="p-2">
-                                            <b class="m-3 money-tabs-proposito">1/2</b><img id="proposito-der" src="/img/icono der.svg" class="tabs-internas cursor-pointer" onmouseover="img_over('proposito-der', '/img/icono der activo.svg')" onmouseout="img_out('proposito-der', 'img/icono der.svg')" data-superior="proposito" data-seccion="propositouno" data-actual="propositodos" data-texto="2/2" width="30" height="30">
+                                            <b class="m-3 money-tabs-proposito">1/2</b><img id="proposito-der" src="img/icono der.svg" class="tabs-internas cursor-pointer" onmouseover="img_over('proposito-der', 'img/icono der activo.svg')" onmouseout="img_out('proposito-der', 'img/icono der.svg')" data-superior="proposito" data-seccion="propositouno" data-actual="propositodos" data-texto="2/2" width="30" height="30">
                                         </div>
                                     </div>
                                 </div>
@@ -718,10 +718,10 @@
                                 <div class="col-1">
                                     <div class="d-flex">
                                         <div class="p-2 flex-grow-1">
-                                            <img id="componente-anterior" class="tabs-select-componente cursor-pointer" data-tipo="-1" src="/img/icono anterior.svg" onmouseover="img_over('componente-anterior', '/img/icono anterior activo.svg')" onmouseout="img_out('componente-anterior', 'img/icono anterior.svg')" width="30" height="30">
+                                            <img id="componente-anterior" class="tabs-select-componente cursor-pointer" data-tipo="-1" src="img/icono anterior.svg" onmouseover="img_over('componente-anterior', 'img/icono anterior activo.svg')" onmouseout="img_out('componente-anterior', 'img/icono anterior.svg')" width="30" height="30">
                                         </div>
                                         <div class="p-2">
-                                            <img id="componente-siguiente" class="tabs-select-componente cursor-pointer" data-tipo="+1" src="/img/icono siguiente.svg" onmouseover="img_over('componente-siguiente', '/img/icono siguiente activo.svg')" onmouseout="img_out('componente-siguiente', 'img/icono siguiente.svg')" width="30" height="30">
+                                            <img id="componente-siguiente" class="tabs-select-componente cursor-pointer" data-tipo="+1" src="img/icono siguiente.svg" onmouseover="img_over('componente-siguiente', 'img/icono siguiente activo.svg')" onmouseout="img_out('componente-siguiente', 'img/icono siguiente.svg')" width="30" height="30">
                                         </div>
                                     </div>
                                 </div>
@@ -738,10 +738,10 @@
                                 <div class="col-12">
                                     <div class="d-flex">
                                         <div class="p-2 flex-grow-1">
-                                            <img id="componente-izq" src="/img/icono izq.svg" src="/img/icono izq activo.svg" onmouseover="img_over('componente-izq', '/img/icono izq activo.svg')" onmouseout="img_out('componente-izq', 'img/icono izq.svg')" class="tabs-internas cursor-pointer" data-superior="componentes" data-seccion="componentesdos" data-actual="componentesuno" data-texto="1/2" width="30" height="30">
+                                            <img id="componente-izq" src="img/icono izq.svg" src="img/icono izq activo.svg" onmouseover="img_over('componente-izq', 'img/icono izq activo.svg')" onmouseout="img_out('componente-izq', 'img/icono izq.svg')" class="tabs-internas cursor-pointer" data-superior="componentes" data-seccion="componentesdos" data-actual="componentesuno" data-texto="1/2" width="30" height="30">
                                         </div>
                                         <div class="p-2">
-                                            <b class="m-3 money-tabs-componentes">1/2</b><img id="componente-der" src="/img/icono der.svg" src="/img/icono der activo.svg" onmouseover="img_over('componente-der', '/img/icono der activo.svg')" onmouseout="img_out('componente-der', 'img/icono der.svg')" class="tabs-internas cursor-pointer" data-superior="componentes" data-seccion="componentesuno" data-actual="componentesdos" data-texto="2/2" width="30" height="30">
+                                            <b class="m-3 money-tabs-componentes">1/2</b><img id="componente-der" src="img/icono der.svg" src="img/icono der activo.svg" onmouseover="img_over('componente-der', 'img/icono der activo.svg')" onmouseout="img_out('componente-der', 'img/icono der.svg')" class="tabs-internas cursor-pointer" data-superior="componentes" data-seccion="componentesuno" data-actual="componentesdos" data-texto="2/2" width="30" height="30">
                                         </div>
                                     </div>
                                 </div>
@@ -1351,10 +1351,10 @@
                                 <div class="col-1">
                                     <div class="d-flex">
                                         <div class="p-2 flex-grow-1">
-                                            <img id="componenteactividad-anterior" class="cursor-pointer tabs-select-componente" data-tipo="-1" src="/img/icono anterior.svg" onmouseover="img_over('componenteactividad-anterior', '/img/icono anterior activo.svg')" onmouseout="img_out('componenteactividad-anterior', 'img/icono anterior.svg')" width="30" height="30">
+                                            <img id="componenteactividad-anterior" class="cursor-pointer tabs-select-componente" data-tipo="-1" src="img/icono anterior.svg" onmouseover="img_over('componenteactividad-anterior', 'img/icono anterior activo.svg')" onmouseout="img_out('componenteactividad-anterior', 'img/icono anterior.svg')" width="30" height="30">
                                         </div>
                                         <div class="p-2">
-                                            <img id="componenteactividad-siguiente" class="cursor-pointer tabs-select-componente" data-tipo="+1" src="/img/icono siguiente.svg" onmouseover="img_over('componenteactividad-siguiente', '/img/icono siguiente activo.svg')" onmouseout="img_out('componenteactividad-siguiente', 'img/icono siguiente.svg')" width="30" height="30">
+                                            <img id="componenteactividad-siguiente" class="cursor-pointer tabs-select-componente" data-tipo="+1" src="img/icono siguiente.svg" onmouseover="img_over('componenteactividad-siguiente', 'img/icono siguiente activo.svg')" onmouseout="img_out('componenteactividad-siguiente', 'img/icono siguiente.svg')" width="30" height="30">
                                         </div>
                                     </div>
                                 </div>
@@ -1371,10 +1371,10 @@
                                 <div class="col-12">
                                     <div class="d-flex">
                                         <div class="p-2 flex-grow-1">
-                                            <img id="actividad-izq" src="/img/icono izq.svg" src="/img/icono izq activo.svg" onmouseover="img_over('actividad-izq', '/img/icono izq activo.svg')" onmouseout="img_out('actividad-izq', 'img/icono izq.svg')" class="tabs-internas cursor-pointer" data-superior="actividades" data-seccion="actividadesdos" data-actual="actividadesuno" data-texto="1/2" width="30" height="30">
+                                            <img id="actividad-izq" src="img/icono izq.svg" src="img/icono izq activo.svg" onmouseover="img_over('actividad-izq', 'img/icono izq activo.svg')" onmouseout="img_out('actividad-izq', 'img/icono izq.svg')" class="tabs-internas cursor-pointer" data-superior="actividades" data-seccion="actividadesdos" data-actual="actividadesuno" data-texto="1/2" width="30" height="30">
                                         </div>
                                         <div class="p-2">
-                                            <b class="m-3 money-tabs-actividades">1/2</b><img id="componente-der" src="/img/icono der.svg" src="/img/icono der activo.svg" onmouseover="img_over('actividad-der', '/img/icono der activo.svg')" onmouseout="img_out('actividad-der', 'img/icono der.svg')" class="tabs-internas cursor-pointer" data-superior="actividades" data-seccion="actividadesuno" data-actual="actividadesdos" data-texto="2/2" width="30" height="30">
+                                            <b class="m-3 money-tabs-actividades">1/2</b><img id="componente-der" src="img/icono der.svg" src="img/icono der activo.svg" onmouseover="img_over('actividad-der', 'img/icono der activo.svg')" onmouseout="img_out('actividad-der', 'img/icono der.svg')" class="tabs-internas cursor-pointer" data-superior="actividades" data-seccion="actividadesuno" data-actual="actividadesdos" data-texto="2/2" width="30" height="30">
                                         </div>
                                     </div>
                                 </div>
@@ -1384,10 +1384,10 @@
                                     <div class="col-1">
                                         <div class="d-flex">
                                             <div class="p-2 flex-grow-1">
-                                                <img id="actividad-anterior" class="cursor-pointer tabs-select-actividad" data-tipo="-1" src="/img/icono anterior.svg" onmouseover="img_over('actividad-anterior', '/img/icono anterior activo.svg')" onmouseout="img_out('actividad-anterior', 'img/icono anterior.svg')" width="30" height="30">
+                                                <img id="actividad-anterior" class="cursor-pointer tabs-select-actividad" data-tipo="-1" src="img/icono anterior.svg" onmouseover="img_over('actividad-anterior', 'img/icono anterior activo.svg')" onmouseout="img_out('actividad-anterior', 'img/icono anterior.svg')" width="30" height="30">
                                             </div>
                                             <div class="p-2">
-                                                <img id="actividad-siguiente" class="cursor-pointer tabs-select-actividad" data-tipo="+1" src="/img/icono siguiente.svg" onmouseover="img_over('actividad-siguiente', '/img/icono siguiente activo.svg')" onmouseout="img_out('actividad-siguiente', 'img/icono siguiente.svg')" width="30" height="30">
+                                                <img id="actividad-siguiente" class="cursor-pointer tabs-select-actividad" data-tipo="+1" src="img/icono siguiente.svg" onmouseover="img_over('actividad-siguiente', 'img/icono siguiente activo.svg')" onmouseout="img_out('actividad-siguiente', 'img/icono siguiente.svg')" width="30" height="30">
                                             </div>
                                         </div>
                                     </div>
