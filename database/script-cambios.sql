@@ -49,3 +49,5 @@ UPDATE PROGRAMATICO_PI_COMP SET ejercicioFiscal=2023;
 ALTER TABLE PROGRAMATICO_PI_COMP
 	DROP PRIMARY KEY, 
 	ADD PRIMARY KEY (idObjetivoPED, idClasificacion, Consecutivo, Componente, idSecretaria, idUA, ejercicioFiscal);
+
+-- 11/08/2023: UPDATE REPO PRIVADO
