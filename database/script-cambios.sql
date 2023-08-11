@@ -51,3 +51,4 @@ ALTER TABLE PROGRAMATICO_PI_COMP
 	ADD PRIMARY KEY (idObjetivoPED, idClasificacion, Consecutivo, Componente, idSecretaria, idUA, ejercicioFiscal);
 
 -- 11/08/2023: UPDATE REPO PRIVADO
+-- 11/08/2023: NUEVO UPDATE, DESDE OTRA COMPUTADORA
