@@ -184,7 +184,7 @@
                                         <tr class="table-header text-center">
                                             <th width="10%">Id UA</th>
                                             <th width="40%">Descripción UA</th>
-                                            <th width="10%">Programas y Proyectos</th>
+                                            <th width="10%">Tipo de Proyectos</th>
                                             <th width="40%">Descripción</th>
                                         </tr>
                                     </thead>

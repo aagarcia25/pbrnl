@@ -118,7 +118,7 @@
                             <table id="table" class="table table-striped table-hover">
                                 <thead>
                                     <tr class="table-header text-center">
-                                        <th scope="col" width="20%">Id eje</th>
+                                        <th scope="col" width="20%">Id Eje</th>
                                         <th scope="col" width="80%">Descripción</th>
                                     </tr>
                                 </thead>
@@ -145,7 +145,7 @@
                     <div class="modal-body">
                         <div class="row g-3">
                             <div class="col-md-6">
-                                <label for="id_eje" class="form-label">Id eje</label>
+                                <label for="id_eje" class="form-label">Id Eje</label>
                                 <input type="text" class="form-control" id="id_eje" required maxlength="1">
                             </div>
                             <div class="col-md-12">
