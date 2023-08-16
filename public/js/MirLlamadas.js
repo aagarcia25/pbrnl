@@ -192,10 +192,34 @@ function GetAllBeneficiarios(){
 function ResponseGetAllBeneficiarios(response){
     if (!response.error) {
         info_beneficiarios = response.data;
-        GetMir();
+        GetEjercicios();
+        
     } else {
         swal.close();
         console.log(response.result)
         Func_Aviso("Anomalía detectada", "Ha ocurrido una anomalía al obtener la información del módulo, favor de intentarlo nuevamente.", "error");
     }
+}
+
+function GetEjercicios() {
+    repository.EjerciciosFiscales.Lista()
+    .then(response => {
+        swal.close();
+        if(response.error == true)
+        {
+            MostrarHttpError(response);
+            return;
+        }
+        response.data.forEach(element => {
+            $("#select_ef").append("<option value='"+element.Id+"'>" + element.Id);
+        });
+        $("#select_ef").val(response.data[0].Id);
+
+        $("#select_ef").selectpicker("refresh");
+        GetMir();
+    })
+    .catch((e)=>{
+        swal.close();
+        MostrarHttpError(e);
+    });
 }

@@ -18,28 +18,28 @@ class MirController extends Controller
 {
     public function index(Request $request)
     {
-
+        $ef = $request->ef;
         if ($request->id_secretaria == 0 && $request->id_ua == 0){
             
-            $query = "SELECT * FROM MIR_CARATULA_View ORDER BY Consecutivo;";
+            $query = "SELECT * FROM MIR_CARATULA_View where EjercicioFiscal=$ef ORDER BY Consecutivo;";
             $informacion = DB::select($query);
             return response()->json(array('error' => false, 'data' => $informacion, 'code' => 200));
 
         }else if ($request->id_secretaria != 0 && $request->id_ua == 0){
             
-            $query = "SELECT * FROM MIR_CARATULA_View WHERE idSecretaria = '$request->id_secretaria' ORDER BY Consecutivo;";
+            $query = "SELECT * FROM MIR_CARATULA_View WHERE idSecretaria = '$request->id_secretaria' and EjercicioFiscal=$ef ORDER BY Consecutivo;";
             $informacion = DB::select($query);
             return response()->json(array('error' => false, 'data' => $informacion, 'code' => 200));
 
         }else if ($request->id_secretaria == 0 && $request->id_ua != 0){
             
-            $query = "SELECT * FROM MIR_CARATULA_View WHERE idUA = '$request->id_ua' ORDER BY Consecutivo;";
+            $query = "SELECT * FROM MIR_CARATULA_View WHERE idUA = '$request->id_ua' and EjercicioFiscal=$ef ORDER BY Consecutivo;";
             $informacion = DB::select($query);
             return response()->json(array('error' => false, 'data' => $informacion, 'code' => 200));
 
         }else{
 
-            $query = "SELECT * FROM MIR_CARATULA_View WHERE idSecretaria = '$request->id_secretaria' AND idUA = '$request->id_ua' ORDER BY Consecutivo;";
+            $query = "SELECT * FROM MIR_CARATULA_View WHERE idSecretaria = '$request->id_secretaria' AND idUA = '$request->id_ua' and EjercicioFiscal=$ef ORDER BY Consecutivo;";
             $informacion = DB::select($query);
             return response()->json(array('error' => false, 'data' => $informacion, 'code' => 200));
 

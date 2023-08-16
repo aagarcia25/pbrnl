@@ -43,8 +43,7 @@ function ResponseGetSecretarias(response) {
         GetUnidadesAdministrativas();
     } else {
         swal.close();
-        console.log(response.result)
-        Func_Aviso("Anomalía detectada", "Ha ocurrido una anomalía al obtener la información del módulo, favor de intentarlo nuevamente.", "error");
+        MostrarHttpError(response);
     }
 }
 
@@ -146,6 +145,7 @@ function ResponseGetObjetivos(response){
             }));
         }
         $('#select_objetivo').selectpicker("refresh");
+
         GetMir();
     } else {
         swal.close();
@@ -188,6 +188,28 @@ function ResponseGetMir(response){
         console.log(response.result)
         Func_Aviso("Anomalía detectada", "Ha ocurrido una anomalía al obtener la información del módulo, favor de intentarlo nuevamente.", "error");
     }
+}
+
+function GetEjercicios() {
+    return repository.EjerciciosFiscales.Lista()
+    .then(response => {
+        swal.close();
+        if(response.error == true)
+        {
+            MostrarHttpError(response);
+            return;
+        }
+        response.data.forEach(element => {
+            $("#select_ef").append("<option value='"+element.Id+"'>" + element.Id);
+        });
+        $("#select_ef").val(response.data[0].Id);
+
+        $("#select_ef").selectpicker("refresh");
+    })
+    .catch((e)=>{
+        swal.close();
+        MostrarHttpError(e);
+    });
 }
 
 function Eventos() {
@@ -311,8 +333,6 @@ function ResponseDeleteUnidadeAdministrativa(response) {
         Func_Aviso("Anomalía detectada", "Ha ocurrido una anomalía al realizar el proceso, favor de intentarlo nuevamente.", "error");
     }
 }
-
-
 
 // ======================================================
 // Funciones

@@ -41,9 +41,11 @@ function maskNumber(){
 }
 
 function GetMir(){
+    
     request = {
         id_secretaria: ($('#select_Secretaria').val() == "" ? 0 : $('#select_Secretaria').val()),
-        id_ua: ($('#select_UnidadAdministrativa').val() == "" ? 0 : $('#select_UnidadAdministrativa').val())
+        id_ua: ($('#select_UnidadAdministrativa').val() == "" ? 0 : $('#select_UnidadAdministrativa').val()),
+        ef: $("#select_ef").val()
     }
     repository.Mir.GetMir(request)
         .then(ResponseGetMir);
@@ -539,6 +541,7 @@ function ResponseDeleteLogFormulas(response){
         Func_Aviso("Anomalía detectada", "Ha ocurrido una anomalía al realizar el proceso, favor de intentarlo nuevamente.", "error");
     }
 }
+
 
 // ======================================================
 // Funciones

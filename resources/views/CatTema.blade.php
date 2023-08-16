@@ -127,8 +127,8 @@
                             <table id="table" class="table table-striped table-hover">
                                 <thead>
                                     <tr class="table-header text-center">
-                                        <th scope="col" width="10%">Id eje</th>
-                                        <th scope="col" width="10%">Id tema</th>
+                                        <th scope="col" width="10%">Id Eje</th>
+                                        <th scope="col" width="10%">Id Tema</th>
                                         <th scope="col" width="80%">Descripción</th>
                                     </tr>
                                 </thead>

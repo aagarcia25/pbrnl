@@ -11,7 +11,7 @@ use App\ProgramasPresupuestales;
 use App\ProgramasPresupuestalesComponentes;
 use App\ActividadesInstitucionales;
 use App\ProgramasProyectosInversion;
-
+use App\MirCaratula;
 
 class EjerciciosFiscalesController extends BaseController
 {
@@ -77,6 +77,7 @@ class EjerciciosFiscalesController extends BaseController
         $programatico_comp = DB::select("SELECT * FROM PROGRAMATICO_COMP where ejercicioFiscal=$anterior_ef");
         $PROGRAMATICO_AI_COMP = DB::select("SELECT * FROM PROGRAMATICO_AI_COMP where ejercicioFiscal=$anterior_ef");
         $PROGRAMATICO_PI_COMP = DB::select("SELECT * FROM PROGRAMATICO_PI_COMP where ejercicioFiscal=$anterior_ef");
+        $MIR_CARATULA = DB::select("SELECT * FROM MIR_CARATULA where EjercicioFiscal=$anterior_ef");
 
         //copiar programaticos
         foreach ($programatico as $key => $d) {
@@ -147,6 +148,27 @@ class EjerciciosFiscalesController extends BaseController
             $reg->idTipologia = $d->idTipologia;
             $reg->DescripcionPrograma = $d->DescripcionPrograma . ' ' . $nuevo_ef;
             $reg->ejercicioFiscal = $nuevo_ef;
+
+            $reg->save();
+        }
+
+        //copiar MIR
+        foreach ($MIR_CARATULA as $key => $d) {
+            $reg = new MirCaratula();
+            
+            $reg->Consecutivo = $d->Consecutivo;
+            $reg->EjercicioFiscal = $nuevo_ef;
+            $reg->Estatus = $d->Estatus;
+            $reg->CONAC = $d->CONAC;
+            $reg->idCatBeneficiario = $d->idCatBeneficiario;
+            $reg->idEje = $d->idEje;
+            $reg->idTema = $d->idTema;
+            $reg->idObjetivo = $d->idObjetivo;
+            $reg->idEstrategia = $d->idEstrategia;
+            $reg->idLineaAccion2 = $d->idLineaAccion2;
+            $reg->ProgramaSectorial = $d->ProgramaSectorial;
+            $reg->idCatBeneficiario2 = $d->idCatBeneficiario2;
+            $reg->LineaBase = $d->LineaBase;
 
             $reg->save();
         }

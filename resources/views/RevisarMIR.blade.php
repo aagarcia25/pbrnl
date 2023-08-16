@@ -24,13 +24,18 @@
                 <div class="card bg-transparent border border-0">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-2">
+                                <label for="select_ef" class="form-label">Ejercicio Fiscal</label>
+                                <select id="select_ef" class="selectpicker show-tick form-control" title="Seleccione..." data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                </select>
+                            </div>
+                            <div class="col-5">
                                 <label for="select_Secretaria" class="form-label">Id Secretaría</label>
                                 <select id="select_Secretaria" class="selectpicker show-tick form-control select_border" title="Seleccione..." data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
                                     <option value="0">-</option>
                                 </select>
                             </div>
-                            <div class="col-6">
+                            <div class="col-5">
                                 <label for="select_UnidadAdministrativa" class="form-label">Id Unidad Administrativa</label>
                                 <select id="select_UnidadAdministrativa" class="selectpicker show-tick form-control" title="Seleccione..." data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
                                     <option value="0">-</option>
