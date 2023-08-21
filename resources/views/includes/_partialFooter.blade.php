@@ -21,15 +21,15 @@
 
     function start_timer() { }
 
-    $.jq_easy_session_timeout(
-        {
-            inactivityDialogDuration: 1800, //3600
-            maxInactivitySeconds: 1800, //3600
-            inactivityLogoutUrl: 'Logout',
-            inactivityLogoutUrl1: function () {
-                console.log('log out code goes here');
-            },
-        });
+    // $.jq_easy_session_timeout(
+    //     {
+    //         inactivityDialogDuration: 1800, //3600
+    //         maxInactivitySeconds: 1800, //3600
+    //         inactivityLogoutUrl: 'Logout',
+    //         inactivityLogoutUrl1: function () {
+    //             console.log('log out code goes here');
+    //         },
+    //     });
 
     $(document).on('click', '.btn_start_timer', function (event) {
         event.preventDefault();
