@@ -97,7 +97,11 @@ class MirController extends Controller
 
     public function componentes(Request $request)
     {
-        $query = "SELECT * FROM COMPONENTE1 WHERE ClasProgramatica = '$request->consecutivo';";
+        $query = "SELECT c1.*, cc.DescripcionComponente as Componente FROM 
+            COMPONENTE1 c1
+            INNER JOIN PROGRAMATICO_COMP cc
+            on c1.ComponenteId = cc.Id
+            WHERE ClasProgramatica = '$request->consecutivo';";
         $info = DB::select($query);
         return response()->json(array('error' => false, 'data' => $info, 'code' => 200));
     }
