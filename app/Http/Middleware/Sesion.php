@@ -26,6 +26,9 @@ class Sesion
         if(strlen($id) > 0) {
             //leemos el usuario y le actualizamos la hora de la sesión
             $usr = UsuariosEnLinea::find($id);
+            if($usr == null)
+                return $next($request);
+
             $usr->FechaLogin = date("Y-m-d H:i:s");
             $usr->save();
         }

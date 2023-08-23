@@ -53,6 +53,9 @@ ALTER TABLE PROGRAMATICO_PI_COMP
 -- 11/08/2023: UPDATE REPO PRIVADO
 -- 11/08/2023: NUEVO UPDATE, DESDE OTRA COMPUTADORA
 
+/************************************************
+		MIR
+*************************************************/
 
 -- CORREGIR LAS CLAVES PARA ENLAZAR LOS COMPONENTES CON LAS MIR
 
@@ -71,7 +74,7 @@ UPDATE PROGRAMATICO_COMP c SET ProgramaticoId =
 		AND p.Consecutivo = c.Consecutivo
 		AND p.idSecretaria = c.idSecretaria
 		AND p.ejercicioFiscal = c.ejercicioFiscal
-		)
+		);
 
 
 -- agregar al componente el id que estamos generando
@@ -86,7 +89,59 @@ ON
 	AND c1.ClasProgramatica = cc.Consecutivo
 SET ComponenteId = cc.Id;
 
--- agregar a la mir el id del programa presupuestario
+-- se quitan los puntos al final
+UPDATE COMPONENTE1 SET Componente=TRIM(TRAILING '.' FROM Componente) WHERE ComponenteId IS NULL
+
+-- se vuelven a actualizar para coincidir los más que se puedan
+UPDATE COMPONENTE1 c1 
+INNER JOIN
+	PROGRAMATICO_COMP cc
+ON 
+	c1.Componente = cc.descripcioncomponente
+	AND c1.ClasProgramatica = cc.Consecutivo
+SET ComponenteId = cc.Id;
+
+-- --------------------- actualización manual
+UPDATE COMPONENTE1 SET ComponenteId=401 WHERE Id=2;
+UPDATE COMPONENTE1 SET ComponenteId=470 WHERE Id=40;
+UPDATE COMPONENTE1 SET ComponenteId=337 WHERE Id=84;
+UPDATE COMPONENTE1 SET ComponenteId=339 WHERE Id=86;
+UPDATE COMPONENTE1 SET ComponenteId=334 WHERE Id=96;
+UPDATE COMPONENTE1 SET ComponenteId=1 WHERE Id=100;
+UPDATE COMPONENTE1 SET ComponenteId=8 WHERE Id=107;
+UPDATE COMPONENTE1 SET ComponenteId=12 WHERE Id=111;
+UPDATE COMPONENTE1 SET ComponenteId=223 WHERE Id=128;
+UPDATE COMPONENTE1 SET ComponenteId=351 WHERE Id=151;
+UPDATE COMPONENTE1 SET ComponenteId=263 WHERE Id=164;
+UPDATE COMPONENTE1 SET ComponenteId=67 WHERE Id=191;
+UPDATE COMPONENTE1 SET ComponenteId=280 WHERE Id=197;
+UPDATE COMPONENTE1 SET ComponenteId=168 WHERE Id=203;
+UPDATE COMPONENTE1 SET ComponenteId=171 WHERE Id=206;
+UPDATE COMPONENTE1 SET ComponenteId=173 WHERE Id=208;
+UPDATE COMPONENTE1 SET ComponenteId=174 WHERE Id=209;
+UPDATE COMPONENTE1 SET ComponenteId=462 WHERE Id=225;
+UPDATE COMPONENTE1 SET ComponenteId=465 WHERE Id=228;
+UPDATE COMPONENTE1 SET ComponenteId=70 WHERE Id=251;
+UPDATE COMPONENTE1 SET ComponenteId=182 WHERE Id=277;
+UPDATE COMPONENTE1 SET ComponenteId=183 WHERE Id=278;
+UPDATE COMPONENTE1 SET ComponenteId=33 WHERE Id=286;
+UPDATE COMPONENTE1 SET ComponenteId=241 WHERE Id=336;
+UPDATE COMPONENTE1 SET ComponenteId=245 WHERE Id=340;
+UPDATE COMPONENTE1 SET ComponenteId=215 WHERE Id=351;
+UPDATE COMPONENTE1 SET ComponenteId=216 WHERE Id=352;
+UPDATE COMPONENTE1 SET ComponenteId=317 WHERE Id=376;
+UPDATE COMPONENTE1 SET ComponenteId=323 WHERE Id=385;
+UPDATE COMPONENTE1 SET ComponenteId=137 WHERE Id=387;
+UPDATE COMPONENTE1 SET ComponenteId=138 WHERE Id=388;
+UPDATE COMPONENTE1 SET ComponenteId=142 WHERE Id=392;
+UPDATE COMPONENTE1 SET ComponenteId=109 WHERE Id=419;
+UPDATE COMPONENTE1 SET ComponenteId=112 WHERE Id=422;
+UPDATE COMPONENTE1 SET ComponenteId=114 WHERE Id=424;
+UPDATE COMPONENTE1 SET ComponenteId=155 WHERE Id=432;
+UPDATE COMPONENTE1 SET ComponenteId=156 WHERE Id=448;
+-- --------------------- actualización manual
+
+-- agregar a la mir el id del programa presupuestario al que pertenece
 ALTER TABLE MIR_CARATULA ADD ProgramaticoId INT;
 
 UPDATE MIR_CARATULA m
@@ -101,4 +156,4 @@ SET m.ProgramaticoId = c.Id
 -- -------------------------------------------
 ALTER TABLE COMPONENTE1 DROP PRIMARY KEY;
 ALTER TABLE COMPONENTE1 ADD Id INT PRIMARY KEY AUTO_INCREMENT;
-ALTER TABLE COMPONENTE1 DROP COLUMN Componente;
+
