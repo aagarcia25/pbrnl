@@ -2382,7 +2382,17 @@ class MirController extends Controller
     }
 
     public function ContarIndicadores(Request $request) {
-        
+        $query = "SELECT 
+            (SELECT COUNT(*) 
+                FROM PROGRAMATICO AS A 
+                INNER JOIN SECRETARIAS AS B ON A.idSecretaria = B.idSecretaria 
+                WHERE A.idClasificacion IN ('PP') 
+                    AND A.idSecretaria = '$request->id_secretaria' 
+                    AND A.ejercicioFiscal = $request->ejercicio_fiscal
+                ORDER BY A.Consecutivo) AS 'Programas',
+            (SELECT COUNT(*) FROM PROGRAMATICO_COMP AS A INNER JOIN UNIDADES AS B ON A.idUA = B.idUnidad AND A.idSecretaria = B.idSecretaria WHERE A.idSecretaria = '$request->id_secretaria') AS 'Componentes';";
+        $informacion = DB::select($query);
+        return response()->json(array('error' => false, 'data' => $informacion, 'code' => 200));
     }
 }
 
