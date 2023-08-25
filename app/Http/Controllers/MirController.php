@@ -2380,7 +2380,10 @@ class MirController extends Controller
     
         return trim(preg_replace('/\s+/', '', $numero));
     }
-    
+
+    public function ContarIndicadores(Request $request) {
+        
+    }
 }
 
 ?>

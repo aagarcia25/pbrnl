@@ -209,7 +209,7 @@
                                         </div>
                                     </div>
                                     <div class="col-12 mb-1 FormUsr FontMsg mt-3">
-                                        <label for="descripcionformula_fin" class="form-labelUsr4">Descripción de la fórmula</label>
+                                        <label for="descripcionformula_fin" class="form-labelUsr4">Descripción del método de cálculo</label>
                                         <textarea class="TextBoxUsr w-100 H-50" id="descripcionformula_fin" required maxlength="300" rows="2"></textarea>
                                     </div>
                                     <div class="col-3 mb-1 FormUsr FontMsg mt-3 Rows4">
@@ -221,7 +221,7 @@
                                         <textarea class="TextBoxUsr w-100" id="variable2_fin" required maxlength="300" rows="5"></textarea>
                                     </div>
                                     <div class="col-3 mb-1 FormUsr FontMsg mt-3">
-                                        <label for="variable3_fin" class="form-labelUsr4">Fórmula</label>
+                                        <label for="variable3_fin" class="form-labelUsr4">Método de cálculo</label>
                                         <textarea class="TextBoxUsr w-100" id="variable3_fin" required maxlength="300" rows="5"></textarea>
                                     </div>
                                     <div class="col-3 mb-1 FormUsr FontMsg mt-3">
@@ -341,7 +341,7 @@
                                     </div>
                                     <hr>
                                     <div class="FontMsg col-12 text-center">
-                                        ANÁLSIS CREMAA
+                                        ANÁLISIS CREMAA
                                     </div>
                                     <div class="row w-100">
                                         <div class="col-1 ms-3"></div>

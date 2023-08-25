@@ -80,6 +80,9 @@ UPDATE PROGRAMATICO_COMP c SET ProgramaticoId =
 -- agregar al componente el id que estamos generando
 ALTER TABLE COMPONENTE1 ADD ComponenteId INT;
 
+ALTER TABLE COMPONENTE1 DROP PRIMARY KEY;
+ALTER TABLE COMPONENTE1 ADD Id INT PRIMARY KEY AUTO_INCREMENT;
+
 -- actualizar el componente de la mir
 UPDATE COMPONENTE1 c1 
 INNER JOIN
@@ -90,7 +93,7 @@ ON
 SET ComponenteId = cc.Id;
 
 -- se quitan los puntos al final
-UPDATE COMPONENTE1 SET Componente=TRIM(TRAILING '.' FROM Componente) WHERE ComponenteId IS NULL
+UPDATE COMPONENTE1 SET Componente=TRIM(TRAILING '.' FROM Componente) WHERE ComponenteId IS NULL;
 
 -- se vuelven a actualizar para coincidir los más que se puedan
 UPDATE COMPONENTE1 c1 
@@ -152,8 +155,3 @@ UPDATE MIR_CARATULA m
 	AND m.idObjetivo = c.idObjetivoPED
 	AND c.EjercicioFiscal = 2023
 SET m.ProgramaticoId = c.Id
-
--- -------------------------------------------
-ALTER TABLE COMPONENTE1 DROP PRIMARY KEY;
-ALTER TABLE COMPONENTE1 ADD Id INT PRIMARY KEY AUTO_INCREMENT;
-
