@@ -2382,15 +2382,29 @@ class MirController extends Controller
     }
 
     public function ContarIndicadores(Request $request) {
+        $idSecretaria = $request->idSecretaria == '' ? '0' : $request->idSecretaria;
+        $ejercicio = $request->ejercicio_fiscal;
         $query = "SELECT 
-            (SELECT COUNT(*) 
-                FROM PROGRAMATICO AS A 
-                INNER JOIN SECRETARIAS AS B ON A.idSecretaria = B.idSecretaria 
-                WHERE A.idClasificacion IN ('PP') 
-                    AND A.idSecretaria = '$request->id_secretaria' 
-                    AND A.ejercicioFiscal = $request->ejercicio_fiscal
-                ORDER BY A.Consecutivo) AS 'Programas',
-            (SELECT COUNT(*) FROM PROGRAMATICO_COMP AS A INNER JOIN UNIDADES AS B ON A.idUA = B.idUnidad AND A.idSecretaria = B.idSecretaria WHERE A.idSecretaria = '$request->id_secretaria') AS 'Componentes';";
+        (-- contando los indicadores de los componentes
+        SELECT COUNT(*) 
+            FROM MIR_CARATULA_View mv
+            INNER JOIN COMPONENTE1 c1 ON mv.Consecutivo = c1.ClasProgramatica
+            INNER JOIN PROGRAMATICO_COMP pc ON pc.Id = c1.ComponenteId
+        WHERE 
+            pc.ejercicioFiscal = $ejercicio 
+            AND (CASE WHEN '$idSecretaria' <> '0' THEN mv.idSecretaria = '$idSecretaria' ELSE 1=1 END )
+        ) +
+        -- contando los indicadores de las actividades
+        (
+        SELECT COUNT(*) FROM 
+            ACTIVIDAD A
+            INNER JOIN COMPONENTE1 C1 ON A.ComponenteMirId = C1.ComponenteId
+            INNER JOIN MIR_CARATULA_View mv ON mv.Consecutivo = c1.ClasProgramatica
+            INNER JOIN PROGRAMATICO_COMP pc ON pc.Id = c1.ComponenteId
+        WHERE pc.ejercicioFiscal = $ejercicio 
+        AND (CASE WHEN '$idSecretaria' <> '0' THEN mv.idSecretaria = '$idSecretaria' ELSE 1=1 END )
+        ) AS indicadores";
+
         $informacion = DB::select($query);
         return response()->json(array('error' => false, 'data' => $informacion, 'code' => 200));
     }

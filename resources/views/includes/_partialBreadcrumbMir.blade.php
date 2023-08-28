@@ -22,14 +22,15 @@
             <img id="icon-cat-ods" class="icon-cat-secretaria" src="img/@php echo $img; @endphp" width="80" height="80">
         </div>
         <div class="col-11">
-            <h1 class="TituloCatalogo">@php echo $view; @endphp</h1>
-            <!--nav-- class="mt-3" aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="Menu">Inicio</a></li>
-                    <li class="breadcrumb-item"><a href="Catalogos">Cátalogos</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">@php echo $view; @endphp</li>
-                </ol>
-            </!--nav-->
+            <h1 class="TituloCatalogo mx-3">@php echo $view; @endphp</h1>
+            <h6 class="mx-3">
+                <span id="numProgramas">0</span>
+                Programas presupuestarios -
+                <span id="numComponentes">0</span>
+                Componentes -
+                <span id="numIndicadores">0</span>
+                Indicadores
+            </h6>
         </div>
     </div>
 </div>

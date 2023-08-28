@@ -155,3 +155,16 @@ UPDATE MIR_CARATULA m
 	AND m.idObjetivo = c.idObjetivoPED
 	AND c.EjercicioFiscal = 2023
 SET m.ProgramaticoId = c.Id
+
+/********************************************************/
+/*** 26/08/2023 ************/
+/* Agregar un id único a la carátula para facilitar la asociación con otras tablas */
+ALTER TABLE MIR_CARATULA DROP PRIMARY KEY;
+ALTER TABLE MIR_CARATULA ADD Id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT;
+
+-- modificar la tabla de actividad para eliminar la dependencia de las llaves primarias compuestas
+ALTER TABLE ACTIVIDAD DROP PRIMARY KEY;
+ALTER TABLE ACTIVIDAD ADD Id INT PRIMARY KEY AUTO_INCREMENT;
+
+ALTER TABLE ACTIVIDAD ADD ComponenteMirId INT;
+UPDATE ACTIVIDAD a SET ComponenteMirId = (SELECT Id FROM COMPONENTE1 mc WHERE mc.ClasProgramatica = a.ClasProgramatica AND mc.idComponente = a.idComponente)

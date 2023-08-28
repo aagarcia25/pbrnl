@@ -29,6 +29,7 @@ function Funciones_Iniciales() {
     maskNumber();
     Func_Cargando();
     GetSecretarias();
+    
 }
 
 function maskNumber(){
@@ -49,6 +50,8 @@ function GetMir(){
     }
     repository.Mir.GetMir(request)
         .then(ResponseGetMir);
+
+    GetConteos();
 }
 
 function ResponseGetMir(response){
@@ -141,6 +144,37 @@ function Eventos() {
 
     OnClic_DenominadorFijo();
     
+    $("#select_entepublido").on("change", (evt)=> {
+        var idSecretaria = $("#select_entepublido").val();
+        FiltrarUnidadesAdministrativas(idSecretaria);
+    });
+
+    $("#select_ejeped").on("change", ()=>{
+        FiltrarTemaPED($("#select_ejeped").val());
+    });
+    $("#select_temaped").on("change", ()=>{
+        FiltrarObjetivos($("#select_ejeped").val(), $("#select_temaped").val());
+    });
+
+    $("#select_objetivo").on("change", ()=> {
+        FiltrarEstrategias(
+            $("#select_ejeped").val(),
+            $("#select_temaped").val(),
+            $("#select_objetivo").val()
+        );
+    });
+
+    $("#select_estrategia").on("change", ()=>{
+        FiltrarLineasAccion(
+            $("#select_ejeped").val(), 
+            $("#select_temaped").val(),
+            $("#select_objetivo").val(),
+            $("#select_estrategia").val());
+    });
+
+    $("#select_tipobeneficiario").on("change", ()=> {
+        FiltrarBeneficiarios($("#select_tipobeneficiario").val());
+    })
 }
 
 function OnClic_DenominadorFijo() {
@@ -548,9 +582,8 @@ function ResponseDeleteLogFormulas(response){
 // ======================================================
 
 function Func_LimpiarModal() {
-    $(".form-control").val("");
-    $(".form-control").removeClass("is-invalid");
-    $(".form-control").removeClass("is-valid");
+    $("modal .form-control").val("");
+    $("modal .form-control").removeClass("is-invalid");
+    $("modal .form-control").removeClass("is-valid");
 }
-
 

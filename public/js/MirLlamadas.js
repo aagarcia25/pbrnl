@@ -88,14 +88,17 @@ function GetAllTemas() {
 function ResponseGetTemas(response) {
     if (!response.error) {
         info_temas = response.data;
-        $('#select_temaped').selectpicker("destroy");
-        for (var i = 0; i < response.data.length; i++) {
-            $('#select_temaped').append($('<option>', {
-                value: response.data[i].IdTema,
-                text: ("[" + response.data[i].IdTema + "] " + response.data[i].Descripcion)
-            }));
-        }
-        $('#select_temaped').selectpicker();
+        // $('#select_temaped').selectpicker("destroy");
+        // for (var i = 0; i < response.data.length; i++) {
+        //     $('#select_temaped').append($('<option>', {
+        //         value: response.data[i].IdTema,
+        //         text: ("[" + response.data[i].IdTema + "] " + response.data[i].Descripcion)
+        //     }));
+        // }
+        // $('#select_temaped').selectpicker();
+
+        FiltrarTemaPED()
+
         GetObjetivos();
     } else {
         swal.close();
@@ -112,14 +115,14 @@ function GetObjetivos(){
 function ResponseGetObjetivos(response){
     if (!response.error) {
         info_objetivos = response.data;
-        $('#select_objetivo').selectpicker("destroy");
-        for (var i = 0; i < response.data.length; i++) {
-            $('#select_objetivo').append($('<option>', {
-                value: response.data[i].IdObjetivo,
-                text: ("[" + response.data[i].IdObjetivo + "] " + response.data[i].Descripcion)
-            }));
-        }
-        $('#select_objetivo').selectpicker();
+        // $('#select_objetivo').selectpicker("destroy");
+        // for (var i = 0; i < response.data.length; i++) {
+        //     $('#select_objetivo').append($('<option>', {
+        //         value: response.data[i].IdObjetivo,
+        //         text: ("[" + response.data[i].IdObjetivo + "] " + response.data[i].Descripcion)
+        //     }));
+        // }
+        // $('#select_objetivo').selectpicker();
         GetAllEstretegias();
     } else {
         swal.close();
@@ -217,9 +220,41 @@ function GetEjercicios() {
 
         $("#select_ef").selectpicker("refresh");
         GetMir();
+        GetConteos();
     })
     .catch((e)=>{
         swal.close();
         MostrarHttpError(e);
     });
+}
+
+function GetConteos() {
+    var req = {
+        ejercicio_fiscal: $("#select_ef").val(),
+        idSecretaria: $("#select_Secretaria").val()
+    }
+    repository.Mir.ContarIndicadores(req)
+    .then((response)=>{
+        $("#numIndicadores").html(response.data[0].indicadores)
+    });
+
+    if(req.idSecretaria == '0' || req.idSecretaria == '') {
+        repository.ProgramasPresupuestales
+            .GetAllCountProgramasP({ejercicio_fiscal: req.ejercicio_fiscal})
+            .then((response)=> {
+                $("#numProgramas").text(response.data[0]['Programas']);
+                $("#numComponentes").text(response.data[0]['Componentes']);
+        });
+    }
+    else {
+        repository.ProgramasPresupuestales.GetCountProgramasP({
+            id_secretaria: req.idSecretaria,
+            ejercicio_fiscal: req.ejercicio_fiscal
+        })
+        .then((response)=>{
+            $("#numProgramas").text(response.data[0]['Programas']);
+            $("#numComponentes").text(response.data[0]['Componentes']);
+        });
+    }
+    
 }

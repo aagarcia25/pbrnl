@@ -774,6 +774,10 @@ class MirController {
     DeleteLogFormulas(request){
         return Requests('POST', this.Url + "/DeleteLog", request);
     }
+
+    ContarIndicadores(request){
+        return Requests('GET', this.Url + "/ContarIndicadores", request);
+    }
 }
 
 class EjerciciosFiscalesController {

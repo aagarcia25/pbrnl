@@ -18,7 +18,7 @@
 <div class="Margin-Top">
     @include('includes._partialBreadcrumbMir')
     
-    <section class="container section MT-Menos">
+    <section class="container section">
         <div class="row">
             <div class="col-lg-12">
                 <div class="card bg-transparent border border-0">

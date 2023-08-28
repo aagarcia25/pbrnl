@@ -1,3 +1,5 @@
+const { fill } = require("lodash");
+
 function ResponseGetMirComponentes(response) {
     if (!response.error) {
         info_componentes = response.data;
@@ -662,108 +664,27 @@ function ResponseGetMirCaratula(response) {
         $("#clave_programatica").val(`${response.data['CONAC']}${response.data['Consecutivo']}`);
         $("#ejercicio_fiscal").val(response.data['EjercicioFiscal']);
         $("#select_ejeped").selectpicker("val", response.data['idEje']);
+        
+        FiltrarTemaPED($("#select_ejeped").val());
         $("#select_temaped").selectpicker("val", response.data['idTema']);
+        
+        FiltrarObjetivos($("#select_ejeped").val(), $("#select_temaped").val());
         $("#select_objetivo").selectpicker("val", response.data['idObjetivo']);
+
         $("#programa_sectorial").val(response.data['ProgramaSectorial']);
         $("#select_tipobeneficiario").selectpicker("val", response.data['idBeneficiario']);
 
-        $('#select_estrategia').selectpicker("destroy");
-        $('#select_estrategia').children().remove();
-        for (let i = 0; i < info_estrategias.length; i++) {
-            const estrategias = info_estrategias[i];
-            
-            if (estrategias['IdEje'] == response.data['idEje'] && estrategias['IdTema'] == response.data['idTema'] && estrategias['IdObjetivo'] == response.data['idObjetivo']){
-                $('#select_estrategia').append($('<option>', {
-                    value: estrategias.IdEstrategias,
-                    text: ("[" + estrategias.IdEstrategias + "] " + estrategias.Descripcion)
-                }));
-            }
-        }
-        $('#select_estrategia').selectpicker();
-        
-        $('#select_lineaaccion1').selectpicker("destroy");
-        $('#select_lineaaccion2').selectpicker("destroy");
-        $('#select_lineaaccion1').children().remove();
-        $('#select_lineaaccion2').children().remove();
-        for (let j = 0; j < info_lineasaccion.length; j++) {
-            const lineaccion = info_lineasaccion[j];
-            
-            if (lineaccion['IdEje'] == response.data['idEje'] && lineaccion['IdTema'] == response.data['idTema'] && lineaccion['IdObjetivo'] == response.data['idObjetivo'] && lineaccion['IdEstrategia'] == response.data['idEstrategia']){
-                $('#select_lineaaccion1').append($('<option>', {
-                    value: lineaccion.IdLineaAccion,
-                    text: ("[" + lineaccion.IdLineaAccion + "] " + lineaccion.Descripcion)
-                }));
-                $('#select_lineaaccion2').append($('<option>', {
-                    value: lineaccion.IdLineaAccion,
-                    text: ("[" + lineaccion.IdLineaAccion + "] " + lineaccion.Descripcion)
-                }));
-            }
-        }
-        $('#select_lineaaccion1').selectpicker();
-        $('#select_lineaaccion2').selectpicker();
+        FiltrarEstrategias(response.data['idEje'], response.data['idTema'], response.data['idObjetivo']);
 
-        $('#select_descripcionampliabeneficiario1').selectpicker("destroy");
-        $('#select_descripcionampliabeneficiario2').selectpicker("destroy");
-        $('#select_descripcionampliabeneficiario1').children().remove();
-        $('#select_descripcionampliabeneficiario2').children().remove();
-        for (let k = 0; k < info_beneficiarios.length; k++) {
-            const beneficiario = info_beneficiarios[k];
-            
-            if (beneficiario['idBeneficiario'] == response.data['idBeneficiario'] ){
-                $('#select_descripcionampliabeneficiario1').append($('<option>', {
-                    value: beneficiario.idCatBeneficiario,
-                    text: ("[" + beneficiario.idCatBeneficiario + "] " + beneficiario.Poblacion)
-                }));
-                $('#select_descripcionampliabeneficiario2').append($('<option>', {
-                    value: beneficiario.idCatBeneficiario,
-                    text: ("[" + beneficiario.idCatBeneficiario + "] " + beneficiario.Poblacion)
-                }));
-            }
-        }
-        $('#select_descripcionampliabeneficiario1').selectpicker();
-        $('#select_descripcionampliabeneficiario2').selectpicker();
+        FiltrarLineasAccion(
+            response.data['idEje'], 
+            response.data['idTema'],
+            response.data['idObjetivo'],
+            response.data['idEstrategia']);
 
-        $("#select_uaresponsable").selectpicker("destroy");
-        $("#select_unidadresponsablereportar").selectpicker("destroy");
-        $("#select_unidadresponsablereportar_fin").selectpicker("destroy");
-        $("#select_unidadresponsablereportar_proposito").selectpicker("destroy");
-        $("#select_unidadresponsablereportar_componente").selectpicker("destroy");
-        $("#select_uaresponsable").children().remove();
-        $("#select_unidadresponsablereportar").children().remove();
-        $("#select_unidadresponsablereportar_fin").children().remove();
-        $("#select_unidadresponsablereportar_proposito").children().remove();
-        $("#select_unidadresponsablereportar_componente").children().remove();
-        for (let i = 0; i < info_unidadadministrativa.length; i++) {
-            const unidadadministrativa = info_unidadadministrativa[i];
-            
-            if (unidadadministrativa['idSecretaria'] == response.data['idSecretaria']){
-                $('#select_uaresponsable').append($('<option>', {
-                    value: unidadadministrativa.idUnidad,
-                    text: ("[" + unidadadministrativa.idUnidad + "] " + unidadadministrativa.Descripcion)
-                }));
-                $('#select_unidadresponsablereportar').append($('<option>', {
-                    value: unidadadministrativa.idUnidad,
-                    text: ("[" + unidadadministrativa.idUnidad + "] " + unidadadministrativa.Descripcion)
-                }));
-                $('#select_unidadresponsablereportar_fin').append($('<option>', {
-                    value: unidadadministrativa.idUnidad,
-                    text: ("[" + unidadadministrativa.idUnidad + "] " + unidadadministrativa.Descripcion)
-                }));
-                $('#select_unidadresponsablereportar_proposito').append($('<option>', {
-                    value: unidadadministrativa.idUnidad,
-                    text: ("[" + unidadadministrativa.idUnidad + "] " + unidadadministrativa.Descripcion)
-                }));
-                $('#select_unidadresponsablereportar_componente').append($('<option>', {
-                    value: unidadadministrativa.idUnidad,
-                    text: ("[" + unidadadministrativa.idUnidad + "] " + unidadadministrativa.Descripcion)
-                }));
-            }
-        }
-        $("#select_uaresponsable").selectpicker();
-        $("#select_unidadresponsablereportar").selectpicker();
-        $("#select_unidadresponsablereportar_fin").selectpicker();
-        $("#select_unidadresponsablereportar_proposito").selectpicker();
-        $("#select_unidadresponsablereportar_componente").selectpicker();
+        FiltrarBeneficiarios(response.data['idBeneficiario']);
+
+        FiltrarUnidadesAdministrativas(response.data['idSecretaria']);
 
         $("#select_uaresponsable").selectpicker("val", response.data['idUA']);
         $("#select_unidadresponsablereportar").selectpicker("val", response.data['idUA']);
@@ -773,13 +694,165 @@ function ResponseGetMirCaratula(response) {
         $("#select_descripcionampliabeneficiario1").selectpicker("val", response.data['idCatBeneficiario']);
         $("#select_descripcionampliabeneficiario2").selectpicker("val", response.data['idCatBeneficiario2']);
 
-        
         GetMirFin();
     } else {
         swal.close();
         console.log(response.result)
         Func_Aviso("Anomalía detectada", "Ha ocurrido una anomalía al obtener la información del módulo, favor de intentarlo nuevamente.", "error");
     }
+}
+
+function FiltrarUnidadesAdministrativas(idSecretaria) {
+    $("#select_uaresponsable").selectpicker("destroy");
+    $("#select_unidadresponsablereportar").selectpicker("destroy");
+    $("#select_unidadresponsablereportar_fin").selectpicker("destroy");
+    $("#select_unidadresponsablereportar_proposito").selectpicker("destroy");
+    $("#select_unidadresponsablereportar_componente").selectpicker("destroy");
+    $("#select_uaresponsable").children().remove();
+    $("#select_unidadresponsablereportar").children().remove();
+    $("#select_unidadresponsablereportar_fin").children().remove();
+    $("#select_unidadresponsablereportar_proposito").children().remove();
+    $("#select_unidadresponsablereportar_componente").children().remove();
+
+    for (let i = 0; i < info_unidadadministrativa.length; i++) {
+        const unidadadministrativa = info_unidadadministrativa[i];
+        
+        if (unidadadministrativa['idSecretaria'] == idSecretaria){
+            $('#select_uaresponsable').append($('<option>', {
+                value: unidadadministrativa.idUnidad,
+                text: ("[" + unidadadministrativa.idUnidad + "] " + unidadadministrativa.Descripcion)
+            }));
+            $('#select_unidadresponsablereportar').append($('<option>', {
+                value: unidadadministrativa.idUnidad,
+                text: ("[" + unidadadministrativa.idUnidad + "] " + unidadadministrativa.Descripcion)
+            }));
+            $('#select_unidadresponsablereportar_fin').append($('<option>', {
+                value: unidadadministrativa.idUnidad,
+                text: ("[" + unidadadministrativa.idUnidad + "] " + unidadadministrativa.Descripcion)
+            }));
+            $('#select_unidadresponsablereportar_proposito').append($('<option>', {
+                value: unidadadministrativa.idUnidad,
+                text: ("[" + unidadadministrativa.idUnidad + "] " + unidadadministrativa.Descripcion)
+            }));
+            $('#select_unidadresponsablereportar_componente').append($('<option>', {
+                value: unidadadministrativa.idUnidad,
+                text: ("[" + unidadadministrativa.idUnidad + "] " + unidadadministrativa.Descripcion)
+            }));
+        }
+    }
+
+    $("#select_uaresponsable").selectpicker();
+    $("#select_unidadresponsablereportar").selectpicker();
+    $("#select_unidadresponsablereportar_fin").selectpicker();
+    $("#select_unidadresponsablereportar_proposito").selectpicker();
+    $("#select_unidadresponsablereportar_componente").selectpicker();
+}
+
+function FiltrarTemaPED(idEje) {
+    $('#select_temaped').selectpicker("destroy");
+    $('#select_temaped').empty();
+
+    for (var i = 0; i < info_temas.length; i++) {
+        var tema = info_temas[i];
+        if(tema.IdEje == idEje) {
+            $('#select_temaped').append($('<option>', {
+                value: tema.IdTema,
+                text: ("[" + tema.IdTema + "] " + tema.Descripcion)
+            }));
+        }
+    }
+    $('#select_temaped').selectpicker();
+
+    FiltrarObjetivos("","");
+}
+
+function FiltrarObjetivos(idEje,idTema) {
+    $('#select_objetivo').selectpicker("destroy");
+    $('#select_objetivo').empty();
+
+    for (var i = 0; i < info_objetivos?.length; i++) {
+        var obj = info_objetivos[i];
+
+        if(obj.IdEje == idEje && obj.IdTema == idTema) {
+            $('#select_objetivo').append($('<option>', {
+                value: obj.IdObjetivo,
+                text: ("[" + obj.IdObjetivo + "] " + obj.Descripcion)
+            }));
+        }
+    }
+    $('#select_objetivo').selectpicker();
+
+    FiltrarEstrategias("","","");
+}
+
+function FiltrarEstrategias(idEje, idTema, idObjetivo){
+    $('#select_estrategia').selectpicker("destroy");
+    $('#select_estrategia').children().remove();
+    for (let i = 0; i < info_estrategias?.length; i++) {
+        const estrategias = info_estrategias[i];
+        
+        if (estrategias['IdEje'] == idEje 
+            && estrategias['IdTema'] == idTema 
+            && estrategias['IdObjetivo'] == idObjetivo) {
+            $('#select_estrategia').append($('<option>', {
+                value: estrategias.IdEstrategias,
+                text: ("[" + estrategias.IdEstrategias + "] " + estrategias.Descripcion)
+            }));
+        }
+    }
+    $('#select_estrategia').selectpicker();
+
+    FiltrarLineasAccion("","","","");
+}
+
+function FiltrarLineasAccion(idEje,idTema,idObjetivo,idEstrategia) {
+    $('#select_lineaaccion1').selectpicker("destroy");
+    $('#select_lineaaccion2').selectpicker("destroy");
+    $('#select_lineaaccion1').children().remove();
+    $('#select_lineaaccion2').children().remove();
+    for (let j = 0; j < info_lineasaccion?.length; j++) {
+        const lineaccion = info_lineasaccion[j];
+
+        if (lineaccion['IdEje'] == idEje 
+            && lineaccion['IdTema'] == idTema 
+            && lineaccion['IdObjetivo'] == idObjetivo 
+            && lineaccion['IdEstrategia'] == idEstrategia) {
+            $('#select_lineaaccion1').append($('<option>', {
+                value: lineaccion.IdLineaAccion,
+                text: ("[" + lineaccion.IdLineaAccion + "] " + lineaccion.Descripcion)
+            }));
+            $('#select_lineaaccion2').append($('<option>', {
+                value: lineaccion.IdLineaAccion,
+                text: ("[" + lineaccion.IdLineaAccion + "] " + lineaccion.Descripcion)
+            }));
+        }
+    }
+    $('#select_lineaaccion1').selectpicker();
+    $('#select_lineaaccion2').selectpicker();
+}
+
+
+function FiltrarBeneficiarios(idBeneficiario) {
+    $('#select_descripcionampliabeneficiario1').selectpicker("destroy");
+    $('#select_descripcionampliabeneficiario2').selectpicker("destroy");
+    $('#select_descripcionampliabeneficiario1').children().remove();
+    $('#select_descripcionampliabeneficiario2').children().remove();
+    for (let k = 0; k < info_beneficiarios.length; k++) {
+        const beneficiario = info_beneficiarios[k];
+        
+        if (beneficiario['idBeneficiario'] == idBeneficiario ){
+            $('#select_descripcionampliabeneficiario1').append($('<option>', {
+                value: beneficiario.idCatBeneficiario,
+                text: ("[" + beneficiario.idCatBeneficiario + "] " + beneficiario.Poblacion)
+            }));
+            $('#select_descripcionampliabeneficiario2').append($('<option>', {
+                value: beneficiario.idCatBeneficiario,
+                text: ("[" + beneficiario.idCatBeneficiario + "] " + beneficiario.Poblacion)
+            }));
+        }
+    }
+    $('#select_descripcionampliabeneficiario1').selectpicker();
+    $('#select_descripcionampliabeneficiario2').selectpicker();
 }
 
 function ResponseGetMirProposito(response) {
