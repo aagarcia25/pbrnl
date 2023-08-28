@@ -42,16 +42,16 @@ function maskNumber(){
 }
 
 function GetMir(){
+    GetConteos();
     
     request = {
         id_secretaria: ($('#select_Secretaria').val() == "" ? 0 : $('#select_Secretaria').val()),
         id_ua: ($('#select_UnidadAdministrativa').val() == "" ? 0 : $('#select_UnidadAdministrativa').val()),
         ef: $("#select_ef").val()
     }
-    repository.Mir.GetMir(request)
+    return repository.Mir.GetMir(request)
         .then(ResponseGetMir);
 
-    GetConteos();
 }
 
 function ResponseGetMir(response){
@@ -215,6 +215,7 @@ function Eventos() {
     });
 
     $("#select_ef").on("change", () => {
+        Func_Cargando();
         GetMir();
     });
 }
