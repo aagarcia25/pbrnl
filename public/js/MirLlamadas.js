@@ -229,6 +229,10 @@ function GetEjercicios() {
 }
 
 function GetConteos() {
+    $("#numIndicadores").html("...");
+    $("#numProgramas").text("...");
+    $("#numComponentes").text("...");
+
     var req = {
         ejercicio_fiscal: $("#select_ef").val(),
         idSecretaria: $("#select_Secretaria").val()
