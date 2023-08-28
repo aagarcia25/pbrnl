@@ -152,6 +152,7 @@ function Eventos() {
     $("#select_ejeped").on("change", ()=>{
         FiltrarTemaPED($("#select_ejeped").val());
     });
+
     $("#select_temaped").on("change", ()=>{
         FiltrarObjetivos($("#select_ejeped").val(), $("#select_temaped").val());
     });
@@ -175,6 +176,43 @@ function Eventos() {
     $("#select_tipobeneficiario").on("change", ()=> {
         FiltrarBeneficiarios($("#select_tipobeneficiario").val());
     })
+
+    //metaanual_fin, variable1numerador_fin, variable2numerador_fin
+    $("#variable1numerador_fin, #variable2numerador_fin").on("change", () => {
+        var calculo = Func_CalcularMeta(
+            $("#variable1numerador_fin").val(),
+            $("#variable2numerador_fin").val(),
+            "fin"
+        )
+        $("#metaanual_fin").val(calculo);
+    });
+
+    $("#lineabaseV1_fin, #lineabaseV2_fin").on("change", () => {
+        var calculo = Func_CalcularMeta(
+            $("#lineabaseV1_fin").val(),
+            $("#lineabaseV2_fin").val(),
+            "fin"
+        )
+        $("#lineabase_fin1").val(calculo);
+    });
+
+    $("#variable1numerador_proposito, #variable2numerador_proposito").on("change", () => {
+        var calculo = Func_CalcularMeta(
+            $("#variable1numerador_proposito").val(),
+            $("#variable2numerador_proposito").val(),
+            "proposito"
+        )
+        $("#metaanual_proposito").val(calculo);
+    });
+
+    $("#lineabaseV1_proposito, #lineabaseV2_proposito").on("change", () => {
+        var calculo = Func_CalcularMeta(
+            $("#lineabaseV1_proposito").val(),
+            $("#lineabaseV2_proposito").val(),
+            "fin"
+        )
+        $("#lineabase_proposito1").val(calculo);
+    });
 }
 
 function OnClic_DenominadorFijo() {
@@ -220,7 +258,8 @@ function Func_CalcularMeta(valor1, valor2, modulo){
 
     // Evalúa la fórmula y devuelve el resultado
     let resultado = eval(formula);
-    
+    resultado = resultado.toFixed(4);
+
     return resultado;
 }
 
@@ -501,7 +540,7 @@ function BtnGuardarMir(){
             componente: Func_GetRequestComponente(),
             actividad: Func_GetRequestActividad()
         };
-        
+
         // Func_Cargando();
         Func_Mensaje("Guardando MIR...");
         repository.Mir.SaveMir(request)

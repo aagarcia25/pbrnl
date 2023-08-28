@@ -555,7 +555,7 @@
                                         <input type="text" class="TextBoxUsr w-100 H-50" id="variable1numerador_proposito">
                                     </div>
                                     <div class="col-3 mb-1 FormUsr FontMsg mt-3">
-                                        <label for="variable2numerador_proposito" class="form-labelUsr4">Meta anual</label>
+                                        <label for="variable2numerador_proposito" class="form-labelUsr4">Variable 2 (Denominador)</label>
                                         <input type="text" class="TextBoxUsr w-100 H-50" id="variable2numerador_proposito">
                                     </div>
                                     <div class="col-3 mb-1 FormUsr FontMsg mt-3">

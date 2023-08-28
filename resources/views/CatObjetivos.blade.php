@@ -176,7 +176,7 @@
                             </div>
                             <div class="col-md-12">
                                 <label for="descripcion" class="form-label">Descripción</label>
-                                <textarea class="form-control input-bold" id="descripcion" required maxlength="200" rows="3"></textarea>
+                                <textarea class="form-control input-bold" id="descripcion" required maxlength="1000" rows="3"></textarea>
                             </div>
                         </div>
                     </div>
