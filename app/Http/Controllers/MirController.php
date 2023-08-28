@@ -2399,8 +2399,8 @@ class MirController extends Controller
         SELECT COUNT(*) FROM 
             ACTIVIDAD A
             INNER JOIN COMPONENTE1 C1 ON A.ComponenteMirId = C1.ComponenteId
-            INNER JOIN MIR_CARATULA_View mv ON mv.Consecutivo = c1.ClasProgramatica
-            INNER JOIN PROGRAMATICO_COMP pc ON pc.Id = c1.ComponenteId
+            INNER JOIN MIR_CARATULA_View mv ON mv.Consecutivo = C1.ClasProgramatica
+            INNER JOIN PROGRAMATICO_COMP pc ON pc.Id = C1.ComponenteId
         WHERE pc.ejercicioFiscal = $ejercicio 
         AND (CASE WHEN '$idSecretaria' <> '0' THEN mv.idSecretaria = '$idSecretaria' ELSE 1=1 END )
         ) AS indicadores";
