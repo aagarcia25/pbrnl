@@ -213,6 +213,10 @@ function Eventos() {
         )
         $("#lineabase_proposito1").val(calculo);
     });
+
+    $("#select_ef").on("change", () => {
+        GetMir();
+    });
 }
 
 function OnClic_DenominadorFijo() {
