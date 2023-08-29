@@ -263,7 +263,7 @@ function Func_CalcularMeta(valor1, valor2, modulo){
 
     // Evalúa la fórmula y devuelve el resultado
     let resultado = eval(formula);
-    resultado = resultado.toFixed(4);
+    resultado = resultado.toFixed(2);
 
     return resultado;
 }
@@ -563,6 +563,9 @@ function ResponseSaveMir(response) {
         consecutivo_seleccionado = null;
         Func_Toast("success", "Información Guardada", "La MIR ha sido guardada exitosamente.");
         $("#Modal").modal("hide");
+
+        GetMir();
+
     } else {
         Func_Aviso("Anomalía detectada", "Ha ocurrido una anomalía al realizar el proceso, favor de intentarlo nuevamente.", "error");
     }

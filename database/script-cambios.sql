@@ -168,3 +168,6 @@ ALTER TABLE ACTIVIDAD ADD Id INT PRIMARY KEY AUTO_INCREMENT;
 
 ALTER TABLE ACTIVIDAD ADD ComponenteMirId INT;
 UPDATE ACTIVIDAD a SET ComponenteMirId = (SELECT Id FROM COMPONENTE1 mc WHERE mc.ClasProgramatica = a.ClasProgramatica AND mc.idComponente = a.idComponente)
+
+/************ 28-08-2023 *******************/
+INSERT INTO mir_caratula VALUES (464,2023,'CARGADO','E','99.01','G',17,17,'02','03','04',NULL,NULL,2021,291,DEFAULT);
