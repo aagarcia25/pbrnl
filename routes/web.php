@@ -278,4 +278,9 @@ Route::get('/EjerciciosFiscales', function () {
 Route::get('GetEjerciciosFiscales', "EjerciciosFiscalesController@lista");
 Route::post('GuardarEjercicioFiscal', "EjerciciosFiscalesController@guardar");
 Route::post('SetStatusEF', "EjerciciosFiscalesController@set_status");
-/** carga de programas */
+/**** carga de programas *****/
+Route::get('/CargarProgramas', function () {
+    return view('CargarProgramas');
+});
+
+Route::post('CargarProgramas', "CargarProgramasController@CargarProgramas");
