@@ -420,7 +420,9 @@ function GetMirCaratula(request) {
 
 function GetMirFin() {
     var request = {
-        consecutivo: consecutivo_seleccionado
+        consecutivo: consecutivo_seleccionado,
+        ejercicioFiscal: $("#select_ef").val()
+
     }
     repository.Mir.GetMirFin(request)
         .then(ResponseGetMirFin);
@@ -430,7 +432,9 @@ function GetMirFin() {
 
 function GetMirProposito() {
     var request = {
-        consecutivo: consecutivo_seleccionado
+        consecutivo: consecutivo_seleccionado,
+        ejercicioFiscal: $("#select_ef").val()
+        
     }
     repository.Mir.GetMirProposito(request)
         .then(ResponseGetMirProposito);
@@ -438,7 +442,8 @@ function GetMirProposito() {
 
 function GetMirComponentes() {
     var request = {
-        consecutivo: consecutivo_seleccionado
+        consecutivo: consecutivo_seleccionado,
+        ejercicioFiscal: $("#select_ef").val()
     }
     repository.Mir.GetMirComponentes(request)
         .then(ResponseGetMirComponentes);
@@ -446,7 +451,8 @@ function GetMirComponentes() {
 
 function GetMirActividades() {
     var request = {
-        consecutivo: consecutivo_seleccionado
+        consecutivo: consecutivo_seleccionado,
+        ejercicioFiscal: $("#select_ef").val()
     }
     repository.Mir.GetMirActividades(request)
         .then(ResponseGetMirActividades);

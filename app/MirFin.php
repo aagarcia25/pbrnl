@@ -48,14 +48,15 @@ class MirFin extends Model
         'LineaBaseEjercicio',
         'TipoFormula',
         'MetaAnualOriginal',
-        'LineaBaseOriginal'
+        'LineaBaseOriginal',
+        'Id'
     ];
     protected $table = 'FIN1';
     public $timestamps = false;
-    protected $primaryKey = 'ClasProgramatica';
-    public $incrementing = false;
+    protected $primaryKey = 'Id';
+    public $incrementing = true;
 
     public function getKeyName(){
-        return "ClasProgramatica";
+        return "Id";
     }
 }

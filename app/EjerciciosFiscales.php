@@ -15,8 +15,9 @@ class EjerciciosFiscales extends Model
     public $timestamps = false;
 
     protected $primaryKey = array('Id');
-    public $incrementing = false;
+    public $incrementing = true;
+
     public function getKeyName(){
-        return array('Id');
+        return 'Id';
     }
 }

@@ -12,6 +12,11 @@ use App\ProgramasPresupuestalesComponentes;
 use App\ActividadesInstitucionales;
 use App\ProgramasProyectosInversion;
 use App\MirCaratula;
+use App\MirComponente;
+use App\MirActividad;
+use App\MirFin;
+use App\MirProposito;
+
 
 class EjerciciosFiscalesController extends BaseController
 {
@@ -78,11 +83,15 @@ class EjerciciosFiscalesController extends BaseController
         $PROGRAMATICO_AI_COMP = DB::select("SELECT * FROM PROGRAMATICO_AI_COMP where ejercicioFiscal=$anterior_ef");
         $PROGRAMATICO_PI_COMP = DB::select("SELECT * FROM PROGRAMATICO_PI_COMP where ejercicioFiscal=$anterior_ef");
         $MIR_CARATULA = DB::select("SELECT * FROM MIR_CARATULA where EjercicioFiscal=$anterior_ef");
+        $MIR_COMPONENTES = DB::select("SELECT * FROM COMPONENTE1  WHERE EjercicioFiscal=$anterior_ef");
+        $MIR_COMPONENTES_ACTIVIDADES = DB::select("SELECT * FROM ACTIVIDAD  WHERE EjercicioFiscal=$anterior_ef");
+        $FIN = DB::select("SELECT * FROM FIN1  WHERE EjercicioFiscal=$anterior_ef");
+        $PROPOSITO = DB::select("SELECT * FROM PROPOSITO  WHERE EjercicioFiscal=$anterior_ef");
 
         //copiar programaticos
         foreach ($programatico as $key => $d) {
             $programa = new ProgramasPresupuestales();
-            
+
             $programa->idObjetivoPED = $d->idObjetivoPED;
             $programa->idClasificacion = $d->idClasificacion;
             $programa->Consecutivo = $d->Consecutivo;
@@ -95,7 +104,7 @@ class EjerciciosFiscalesController extends BaseController
 
             $programa->save();
         }
-
+        $componentes = array();
         //copiar componentes
         foreach ($programatico_comp as $key => $d) {
             $reg = new ProgramasPresupuestalesComponentes();
@@ -112,6 +121,7 @@ class EjerciciosFiscalesController extends BaseController
             $reg->ejercicioFiscal = $nuevo_ef;
 
             $reg->save();
+            $componentes["" . $d->Id] = $reg->Id;
         }
 
         //copiar ais
@@ -165,10 +175,91 @@ class EjerciciosFiscalesController extends BaseController
             $reg->idTema = $d->idTema;
             $reg->idObjetivo = $d->idObjetivo;
             $reg->idEstrategia = $d->idEstrategia;
+            $reg->idLineaAccion = $d->idLineaAccion;
             $reg->idLineaAccion2 = $d->idLineaAccion2;
             $reg->ProgramaSectorial = $d->ProgramaSectorial;
             $reg->idCatBeneficiario2 = $d->idCatBeneficiario2;
             $reg->LineaBase = $d->LineaBase;
+
+            $reg->save();
+        }
+
+        //copiar mir componentes
+        foreach ($MIR_COMPONENTES as $k => $d) {
+            $reg = new MirComponente();
+
+            foreach (get_object_vars($d) as $key => $value) {
+                $reg->$key = $value;
+            }
+            $reg->EjercicioFiscal = $nuevo_ef;
+            $reg->Id = null;
+            try{
+                $reg->ComponenteId = $componentes[$d->ComponenteId];
+            }
+            catch (Exception $exception) {
+                $reg->ComponenteId = null;
+            }
+            $reg->save();
+        }
+
+        //Actualizar las MIR para que tengan la asociación con el programa presupuestario
+        $query = "UPDATE MIR_CARATULA mc 
+        SET ProgramaticoId = (SELECT Id FROM PROGRAMATICO p 
+        WHERE p.idObjetivoPED = mc.idObjetivo 
+        AND p.idClasificacion = 'PP' 
+        AND p.Consecutivo = mc.Consecutivo
+        AND p.EjercicioFiscal = $nuevo_ef)
+        where mc.EjercicioFiscal = $nuevo_ef"
+        ;
+
+        DB::update($query);
+
+        //copiar mir actividades
+        foreach ($MIR_COMPONENTES_ACTIVIDADES as $k => $d) {
+            $reg = new MirActividad();
+
+            foreach (get_object_vars($d) as $key => $value) {
+                $reg->$key = $value;
+            }
+            $reg->EjercicioFiscal = $nuevo_ef;
+            $reg->Id = null;
+            $reg->ComponenteMirId = null;
+
+            $reg->save();
+        }
+
+        $query = "UPDATE ACTIVIDAD a SET ComponenteMirId = 
+            (SELECT Id 
+                FROM COMPONENTE1 mc 
+                WHERE mc.ClasProgramatica = a.ClasProgramatica 
+                AND mc.idComponente = a.idComponente
+                and mc.ejercicioFiscal=$nuevo_ef
+                )
+            where a.EjercicioFiscal=$nuevo_ef";
+        DB::update($query);
+
+        //copiar fin
+        foreach ($FIN as $k => $d) {
+            $reg = new MirFin();
+
+            foreach (get_object_vars($d) as $key => $value) {
+                $reg->$key = $value;
+            }
+            $reg->EjercicioFiscal = $nuevo_ef;
+            $reg->Id = null;
+
+            $reg->save();
+        }
+
+        //copiar proposito
+        foreach ($PROPOSITO as $k => $d) {
+            $reg = new MirProposito();
+
+            foreach (get_object_vars($d) as $key => $value) {
+                $reg->$key = $value;
+            }
+            $reg->EjercicioFiscal = $nuevo_ef;
+            $reg->Id = null;
 
             $reg->save();
         }

@@ -65,14 +65,16 @@ class MirComponente extends Model
         'TipoFormula',
         'MetaAnualOriginal',
         'LineaBaseOriginal',
-        'DenominadorFijo'
+        'DenominadorFijo',
+        'EjercicioFiscal',
+        'Id'
     ];
     protected $table = 'COMPONENTE1';
     public $timestamps = false;
-    protected $primaryKey = ['ClasProgramatica', 'idComponente'];
-    public $incrementing = false;
+    protected $primaryKey = ['Id'];
+    public $incrementing = true;
 
     public function getKeyName(){
-        return "ClasProgramatica";
+        return "Id";
     }
 }

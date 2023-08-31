@@ -66,14 +66,17 @@ class MirActividad extends Model
         'TipoFormula',
         'MetaAnualOriginal',
         'LineaBaseOriginal',
-        'DenominadorFijo'
+        'DenominadorFijo',
+        'EjercicioFiscal',
+        'ComponenteMidId',
+        'Id'
     ];
     protected $table = 'ACTIVIDAD';
     public $timestamps = false;
-    protected $primaryKey = ['ClasProgramatica', 'idComponente', 'idActividad'];
+    protected $primaryKey = ['Id'];
     public $incrementing = false;
 
     public function getKeyName(){
-        return "ClasProgramatica";
+        return "Id";
     }
 }

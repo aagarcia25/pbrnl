@@ -91,8 +91,8 @@
                             <button class="nav-link tab-modal-caratula BotonesTab" id="tab-proposito" data-bs-toggle="tab" data-bs-target="#nav-proposito" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Propósito</button>
                             <button class="nav-link tab-modal-caratula BotonesTab" id="tab-componentes" data-bs-toggle="tab" data-bs-target="#nav-componentes" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Componentes</button>
                             <button class="nav-link tab-modal-caratula BotonesTab" id="tab-actividades" data-bs-toggle="tab" data-bs-target="#nav-actividades" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Actividades</button>
-                            <button class="nav-link tab-modal-caratula BotonesTab" id="tab-auditoriacarga" onclick="GetMirAutoriaCarga();" data-bs-toggle="tab" data-bs-target="#nav-auditoriacarga" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Auditoría de carga</button>
-                            <button class="nav-link tab-modal-caratula BotonesTab" id="tab-auditoriaformulas" onclick="GetMirAutoriaFormulas();" data-bs-toggle="tab" data-bs-target="#nav-auditoriaformulas" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Auditoría de fórmulas</button>
+                            <!-- <button class="nav-link tab-modal-caratula BotonesTab" id="tab-auditoriacarga" onclick="GetMirAutoriaCarga();" data-bs-toggle="tab" data-bs-target="#nav-auditoriacarga" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Auditoría de carga</button>
+                            <button class="nav-link tab-modal-caratula BotonesTab" id="tab-auditoriaformulas" onclick="GetMirAutoriaFormulas();" data-bs-toggle="tab" data-bs-target="#nav-auditoriaformulas" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Auditoría de fórmulas</button> -->
                         </div>
                     </nav>
                     <div class="tab-content" id="nav-tabContent">
@@ -611,7 +611,7 @@
                                     </div>
                                     <hr>
                                     <div class="col-12 text-center">
-                                        ANÁLSIS CREMAA
+                                        ANÁLISIS CREMAA
                                     </div>
                                     <div class="row w-100">
                                         <div class="col-1 ms-3"></div>
@@ -1056,7 +1056,7 @@
                                     </div>
                                     <div class="col-2">
                                         <div class="row d-flex align-items-center justify-content-center">
-                                            <input type="button" id="checkDenominadorFijo_componente" class="DenominadorFijoInactivo denominadorfijo ms-2" data-tipo="componente">
+                                            <input type="button" id="checkDenominadorFijo_componente" class="" data-tipo="componente">
                                         </div>
                                         <div class="row">
                                             <p class="LetretosFont text-center">Activar en caso de que el denominador sea una constante.</p>
@@ -1252,7 +1252,7 @@
                                     </div>
                                     <hr>
                                     <div class="FontMsg col-12 text-center">
-                                        ANÁLSIS CREMAA
+                                        ANÁLISIS CREMAA
                                     </div>
                                     <div class="row w-100">
                                         <div class="col-1 ms-3"></div>
@@ -1859,7 +1859,7 @@
                                     </div>
                                     <hr>
                                     <div class="col-12 text-center">
-                                        ANÁLSIS CREMAA
+                                        ANÁLISIS CREMAA
                                     </div>
                                     <div class="col-4 mb-3">
                                         <label class="form-label">Claridad</label>
@@ -1995,7 +1995,7 @@
                 <div class="modal-footer">
                     <div class="row w-100">
                         <div class="col-7 text-center">
-                            <label class="form-label text-danger fw-bold">Algunos datos no han sido capturados.<br/>Favor de consultar la Auditoría de Carga y de Fórmulas.</label>
+                            <!-- <label class="form-label text-danger fw-bold">Algunos datos no han sido capturados.<br/>Favor de consultar la Auditoría de Carga y de Fórmulas.</label> -->
                         </div>
                         <div class="col-5">
                             <input type="button" id="BtnValidar" class="buttonOutlineSucces150  text-capitalize" value="Validar Fórmulas" >

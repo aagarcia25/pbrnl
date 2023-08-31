@@ -20,14 +20,16 @@ class MirCaratula extends Model
         'idLineaAccion2',
     	'ProgramaSectorial',
         'idCatBeneficiario2',
-        'LineaBase'
+        'ProgramaticoId',
+        'LineaBase',
+        'Id'
     ];
     protected $table = 'MIR_CARATULA';
     public $timestamps = false;
-    protected $primaryKey = ['Consecutivo', 'EjercicioFiscal'];
-    public $incrementing = false;
+    protected $primaryKey = ['Id'];
+    public $incrementing = true;
 
     public function getKeyName(){
-        return "Consecutivo";
+        return "Id";
     }
 }
