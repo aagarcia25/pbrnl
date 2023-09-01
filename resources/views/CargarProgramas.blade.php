@@ -20,7 +20,9 @@
                 Cargar
             </button>
         </div>
-
+        <div>
+            v01.09.2023.01
+        </div>
     </div>
 @include('includes._partialFooter')
 <script src="js/Repository.js"></script>

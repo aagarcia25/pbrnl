@@ -10,7 +10,7 @@
             formData.append("archivo", f);
             cargarProgramasFactory.cargarProgramas(formData)
                 .then(result=>{
-    console.log("OK");
+                    alert("Datos cargados");
                 });
 
             /*var reader = new FileReader();
