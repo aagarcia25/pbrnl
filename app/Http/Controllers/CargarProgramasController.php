@@ -13,6 +13,7 @@ class CargarProgramasController extends BaseController
     public function CargarProgramas(Request $request)
     {
         $file = $request->file("archivo");
+        $nuevo_ef = 2024;
 
         $archivo = fopen($file->path());
 
@@ -28,7 +29,7 @@ class CargarProgramasController extends BaseController
             $programa->DescripcionPrograma = $data[5];
             $programa->idSecretaria = $data[6];
             $programa->idUA = $data[7];
-            $programa->ejercicioFiscal = 2023;
+            $programa->ejercicioFiscal = $nuevo_ef;
 
             $programa->save();
 
