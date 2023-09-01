@@ -15,14 +15,15 @@ class ProgramasPresupuestales extends Model
         'DescripcionPrograma',
         'idSecretaria',
         'idUA',
-        'ejercicioFiscal'
+        'ejercicioFiscal',
+        'Id'
     ];
     protected $table = 'PROGRAMATICO';
     public $timestamps = false;
     
-    protected $primaryKey = array('idObjetivoPED','idClasificacion','Consecutivo','ejercicioFiscal');
-    public $incrementing = false;
+    protected $primaryKey = "Id";
+    public $incrementing = true;
     public function getKeyName(){
-        return array('idObjetivoPED','idClasificacion','Consecutivo','ejercicioFiscal');
+        return "Id";
     }
 }
