@@ -15,9 +15,7 @@ class CargarProgramasController extends BaseController
         $file = $request->file("archivo");
         $nuevo_ef = 2024;
 
-        $archivo = fopen($file->path(),"r");
-
-        if (($handle = fopen($archivo, "r")) !== FALSE) {
+        if (($handle = fopen($file->path(), "r")) !== FALSE) {
             while (($data = fgetcsv($handle)) !== FALSE) {
                 //
                 $programa = new ProgramasPresupuestales();
