@@ -88,40 +88,60 @@ class ProgramasPresupuestalesController extends BaseController
 
     public function components(Request $request)
     {
-        $query = "SELECT A.idUA, B.Descripcion, A.Componente, A.DescripcionComponente
+        // $query = "SELECT A.idUA, B.Descripcion, A.Componente, A.DescripcionComponente
+        //         FROM PROGRAMATICO_COMP AS A
+        //         INNER JOIN UNIDADES AS B ON A.idUA = B.idUnidad 
+        //             AND A.idSecretaria = B.idSecretaria
+        //         WHERE A.idSecretaria = '$request->id_secretaria' 
+        //             AND A.idObjetivoPED = '$request->id_objetivo' 
+        //             AND A.idClasificacion = '$request->id_clasificacion' 
+        //             AND A.Consecutivo = '$request->consecutivo'
+        //             AND A.ejercicioFiscal = $request->ejercicio_fiscal
+        //             ;";
+
+        $id = $request->id;
+
+        $query = "SELECT A.Id, A.idUA, B.Descripcion, A.Componente, A.DescripcionComponente
                 FROM PROGRAMATICO_COMP AS A
-                INNER JOIN UNIDADES AS B ON A.idUA = B.idUnidad 
+                INNER JOIN UNIDADES AS B 
+                    ON A.idUA = B.idUnidad 
                     AND A.idSecretaria = B.idSecretaria
-                WHERE A.idSecretaria = '$request->id_secretaria' 
-                    AND A.idObjetivoPED = '$request->id_objetivo' 
-                    AND A.idClasificacion = '$request->id_clasificacion' 
-                    AND A.Consecutivo = '$request->consecutivo'
-                    AND A.ejercicioFiscal = $request->ejercicio_fiscal
+                WHERE A.ProgramaticoId = $id
                     ;";
+
         $informacion = DB::select($query);
         return response()->json(array('error' => false, 'data' => $informacion, 'code' => 200));
     }
 
-    public function updatecomponent(Request $request)
-    {
+    public function updatecomponent(Request $request) {
         if(!$this->validarEjercicioFiscal($request->ejercicio_fiscal))
         {
             return response()->json(array('error' => true , 'result' => "El ejercicio que está intentando modificar está cerrado", 'code' => 500));
         }
 
         try {
+            // $update = DB::table('PROGRAMATICO_COMP')
+            //     ->where('idObjetivoPED', '=', $request->id_objetivo)
+            //     ->where('idSecretaria', '=', $request->id_secretaria)
+            //     ->where('idClasificacion', '=', $request->id_clasificacion)
+            //     ->where('Consecutivo', '=', $request->consecutivo)
+            //     ->where('Componente', '=', $request->componente)
+            //     ->where('ejercicioFiscal', '=', $request->ejercicio_fiscal)
+            //     ->limit(1)
+            //     ->update(
+            //         array(
+            //             'DescripcionComponente' => $request->descripcion_componente,
+            //             'idUA' => $request->unidad_componente
+            //         )
+            //     );
             $update = DB::table('PROGRAMATICO_COMP')
-                ->where('idObjetivoPED', '=', $request->id_objetivo)
-                ->where('idSecretaria', '=', $request->id_secretaria)
-                ->where('idClasificacion', '=', $request->id_clasificacion)
-                ->where('Consecutivo', '=', $request->consecutivo)
-                ->where('Componente', '=', $request->componente)
-                ->where('ejercicioFiscal', '=', $request->ejercicio_fiscal)
+                ->where('Id', '=', $request->id)
                 ->limit(1)
                 ->update(
                     array(
                         'DescripcionComponente' => $request->descripcion_componente,
-                        'idUA' => $request->unidad_componente
+                        'idUA' => $request->unidad_componente,
+                        'idSecretaria' => $request->id_secretaria
                     )
                 );
         }catch (Exception $e) {

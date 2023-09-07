@@ -46,22 +46,34 @@ class LineasAccionController extends Controller
 
     public function update(Request $request)
     {
-        $update = LineasAccion::
-                where('IdEje', '=', $request->id_eje)
-                ->where('IdTema', '=', $request->id_tema)
-                ->where('IdObjetivo', '=', $request->id_objetivo)
-                ->where("IdEstrategia", '=', $request->id_estrategia)
-                ->where('IdLineaAccion', '=', $request->id_lineaccion)
-                ->first();
-        
-        if (is_null($update)) {
-            return response()->json(array('error' => true, 'result' => "El objetivo que intenta editar no existe.", 'code' => 404));
-        }
+        // $update = LineasAccion::
+        //         where('IdEje', '=', $request->id_eje)
+        //         ->where('IdTema', '=', $request->id_tema)
+        //         ->where('IdObjetivo', '=', $request->id_objetivo)
+        //         ->where("IdEstrategia", '=', $request->id_estrategia)
+        //         ->where('IdLineaAccion', '=', $request->id_lineaccion)
+        //         ->first();
+
+        // if (is_null($update)) {
+        //     return response()->json(array('error' => true, 'result' => "El objetivo que intenta editar no existe.", 'code' => 404));
+        // }
         
         try {
-            $update->Descripcion    = $request->descripcion;
-            $update->Activo         = "S";
-            $update->save();
+            // $update->Descripcion    = $request->descripcion;
+            // $update->Activo         = "S";
+
+            $update = DB::table("LINEASACCION")
+                ->where('IdEje', '=', $request->id_eje)
+                ->where('IdTema', '=', $request->id_tema)
+                ->where('IdObjetivo', '=', $request->id_objetivo)
+                ->where('IdEstrategia', '=', $request->id_estrategia)
+                ->where('IdLineaAccion', '=', $request->id_lineaccion)
+                ->update(array(
+                    'Descripcion' => $request->descripcion,
+                    'Activo' => 'S'
+                ));
+
+            //$update->save();
         }catch (Exception $e) {
             return response()->json(array('error' => true , 'result' => $e->getMessage(), 'code' => 500));
         }

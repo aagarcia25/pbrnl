@@ -33,7 +33,7 @@ class CargarProgramasController extends BaseController
                 $programa->idClasificacion = $data[0];
                 $programa->Consecutivo = $data[4];
                 $programa->Anticorrupcion = $data[2];
-                $programa->idTipologia = $data[3];
+                $programa->idTipologia = $data[3];  //CONAC TIPOLOGIA
                 $programa->DescripcionPrograma = $data[5];
                 $programa->idSecretaria = $data[6];
                 $programa->idUA = $data[7];

@@ -418,9 +418,9 @@ function ResponseDeleteLineaAccion(response) {
 // ======================================================
 
 function Func_LimpiarModal() {
-    $(".form-control").val("");
-    $(".form-control").removeClass("is-invalid");
-    $(".form-control").removeClass("is-valid");
+    $("#Modal .form-control").val("");
+    $("#Modal .form-control").removeClass("is-invalid");
+    $("#Modal .form-control").removeClass("is-valid");
 }
 
 

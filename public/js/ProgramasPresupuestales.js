@@ -6,6 +6,8 @@ var info_objetivos = null;
 var unidad_componente = null;
 var descripcion_componente = null;
 var id_componente = null;
+var programas ;
+var componentes ;
 
 $(document).ready(function() {
     Funciones_Iniciales();
@@ -105,6 +107,8 @@ function ResponseGetAllProgramasP(response) {
         DestroyDataTable("table");
         $("#table > tbody > tr").remove();
         if (response.data.length > 0) {
+            programas = response.data;
+
             for (var i = 0; i < response.data.length; i++) {
                 $("#table > tbody").append(`
                     <tr>
@@ -302,14 +306,20 @@ function ResponseGetInfoComponentes(response){
             $("#id_topologia").val("["+data['idTipologia']+"] " + data['Descripcion_Topologia']);
             $("#consecutivo").val(data['Consecutivo']);
             $("#descripcion").val(data['DescripcionPrograma']);
+            
+            var table = $('#table').DataTable();
+            var index = table.row('.selected').index();
+            const p = programas[index];
 
             var request = {
-                "id_secretaria": data['idSecretaria'],
-                "id_objetivo": data['IdObjetivo'],
-                "id_clasificacion": data['idClasificacion'],
-                "consecutivo": data['Consecutivo'],
-                "ejercicio_fiscal": $("#select_ef").val()
+                // "id_secretaria": data['idSecretaria'],
+                // "id_objetivo": data['IdObjetivo'],
+                // "id_clasificacion": data['idClasificacion'],
+                // "consecutivo": data['Consecutivo'],
+                // "ejercicio_fiscal": $("#select_ef").val()
+                "id" : p.Id
             }
+            
             GetComponentes(request);
         }else{
             Func_Aviso("Anomalía detectada", "Ha ocurrido una anomalía al obtener la información del registro, favor de intentarlo nuevamente.", "error");
@@ -329,6 +339,7 @@ function ResponseGetComponentes(response) {
         DestroyDataTable("table_componentes");
         $("#table_componentes > tbody > tr").remove();
         if (response.data.length > 0) {
+            componentes = response.data;
             for (var i = 0; i < response.data.length; i++) {
                 $("#table_componentes > tbody").append(`
                     <tr>
@@ -402,12 +413,9 @@ function GuardarComponente(){
         var request = {
             unidad_componente: $("#unidad_componente").val(),
             descripcion_componente: $("#descripcion_componente").val(),
-            componente: $("#id_componente").val(),
+            ejercicio_fiscal: $("#select_ef").val(),
             id_secretaria: $("#id_secretaria").val(),
-            id_objetivo: $("#id_objetivo").val(),
-            id_clasificacion: $("#id_clasificacion").val(),
-            consecutivo: $("#consecutivo").val(),
-            ejercicio_fiscal: $("#select_ef").val()
+            id: getSelectedComponente().Id
         }
 
         repository.ProgramasPresupuestales.EditComponente(request)
@@ -424,6 +432,22 @@ function GuardarComponente(){
     });
 }
 
+function getSelectedPrograma() {
+    var table = $('#table').DataTable();
+    var index = table.row('.selected').index();
+    const p = programas[index];
+
+    return p;
+}
+
+function getSelectedComponente() {
+    var table = $('#table_componentes').DataTable();
+    var index = table.row('.selected').index();
+    const p = componentes[index];
+
+    return p;
+}
+
 function ResponseEditComponente(response) {
     if (!response.error) {
         Func_Toast("success", "Componente editado.", "El componente fue editado exitosamente.");
@@ -432,14 +456,16 @@ function ResponseEditComponente(response) {
         $('#unidad_componente').selectpicker("destroy");
         $('#unidad_componente').children().remove();
         $('#unidad_componente').selectpicker();
-        var request = {
-            "id_secretaria": $("#id_secretaria").val(),
-            "id_objetivo": $("#id_objetivo").val(),
-            "id_clasificacion": $("#id_clasificacion").val(),
-            "consecutivo": $("#consecutivo").val(),
-            "ejercicio_fiscal": $("#select_ef").val()
-        }
-        GetComponentes(request);
+        // var request = {
+        //     "id_secretaria": $("#id_secretaria").val(),
+        //     "id_objetivo": $("#id_objetivo").val(),
+        //     "id_clasificacion": $("#id_clasificacion").val(),
+        //     "consecutivo": $("#consecutivo").val(),
+        //     "ejercicio_fiscal": $("#select_ef").val()
+        // }
+        var p = getSelectedPrograma();
+
+        GetComponentes({"id": p.Id});
     } else {
         console.log(response.result)
         Func_Aviso("Anomalía detectada", response.result, "error");
@@ -463,7 +489,7 @@ function BtnActualizarPP() {
         for (var i = 0; i < info_secretarias.length; i++) {
             $('#select_secretariapp').append($('<option>', {
                 value: info_secretarias[i].idSecretaria,
-                text: info_secretarias[i].Descripcion
+                text: "[" + info_secretarias[i].idSecretaria + "] " + info_secretarias[i].Descripcion
             }));
         }
         $('#select_secretariapp').selectpicker();

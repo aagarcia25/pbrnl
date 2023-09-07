@@ -114,7 +114,7 @@
                                         <th scope="col" width="10%">Id Secretaría</th>
                                         <th scope="col" width="10%">Id UA</th>
                                         <th scope="col" width="60%">Descripción</th>
-                                        <th scope="col" width="10%">Id CONAC funcional</th>
+                                        <th scope="col" width="10%">Id CONAC Funcional</th>
                                     </tr>
                                 </thead>
                                 <tbody></tbody>
