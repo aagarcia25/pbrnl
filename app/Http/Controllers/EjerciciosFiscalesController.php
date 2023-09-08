@@ -124,6 +124,17 @@ class EjerciciosFiscalesController extends BaseController
             $componentes["" . $d->Id] = $reg->Id;
         }
 
+        //ACTUALIZAR COMPONENTES DEL NUEVO EJERCICIO
+        $query = "UPDATE PROGRAMATICO_COMP c SET ProgramaticoId = 
+                (SELECT Id FROM PROGRAMATICO AS p 
+                    WHERE p.idObjetivoPED = c.idObjetivoPED
+                    AND p.idClasificacion = c.idClasificacion
+                    AND p.Consecutivo = c.Consecutivo
+                    AND p.idSecretaria = c.idSecretaria
+                    AND p.ejercicioFiscal = $nuevo_ef
+                    ) where c.ejercicioFiscal = $nuevo_ef";
+        $reg = DB::update($query);
+
         //copiar ais
         foreach ($PROGRAMATICO_AI_COMP as $key => $d) {
             $reg = new ActividadesInstitucionales();
