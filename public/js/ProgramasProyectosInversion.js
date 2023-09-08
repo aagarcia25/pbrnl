@@ -466,7 +466,7 @@ function BtnActualizarPP() {
         for (var i = 0; i < info_secretarias.length; i++) {
             $('#select_secretariapp').append($('<option>', {
                 value: info_secretarias[i].idSecretaria,
-                text: info_secretarias[i].Descripcion
+                text: "[" + info_secretarias[i].idSecretaria + "] " + info_secretarias[i].Descripcion
             }));
         }
         $('#select_secretariapp').selectpicker();
