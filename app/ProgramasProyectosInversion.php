@@ -16,14 +16,15 @@ class ProgramasProyectosInversion extends Model
         'idTipologia',
         'DescripcionPrograma',
         'idSecretaria',
-        'idUA'
+        'idUA',
+        'Id'
     ];
     protected $table = 'PROGRAMATICO_PI_COMP';
     public $timestamps = false;
     
-    protected $primaryKey = array('idObjetivoPED','idClasificacion','Consecutivo','ejercicioFiscal');
+    protected $primaryKey = 'Id';
     public $incrementing = false;
     public function getKeyName(){
-        return array('idObjetivoPED','idClasificacion','Consecutivo','ejercicioFiscal');
+        return 'Id';
     }
 }
