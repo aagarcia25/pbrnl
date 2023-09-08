@@ -7,7 +7,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class ProgramasProyectosInversionController extends Controller
+class ProgramasProyectosInversionController extends BaseController
 {
     public function all(Request $request)
     {
@@ -86,30 +86,50 @@ class ProgramasProyectosInversionController extends Controller
 
     public function components(Request $request)
     {
-        $query = "SELECT A.idUA, B.Descripcion, A.Componente, A.DescripcionComponente
-                FROM PROGRAMATICO_PI_COMP AS A
-                INNER JOIN UNIDADES AS B ON A.idUA = B.idUnidad AND A.idSecretaria = B.idSecretaria
-                WHERE A.idSecretaria = '$request->id_secretaria' 
-                    AND A.idObjetivoPED = '$request->id_objetivo' 
-                    AND A.idClasificacion = '$request->id_clasificacion' 
-                    AND A.Consecutivo = '$request->consecutivo'
-                    AND ejercicioFiscal = $request->ejercicio_fiscal;";
+        // $query = "SELECT A.idUA, B.Descripcion, A.Componente, A.DescripcionComponente
+        //         FROM PROGRAMATICO_PI_COMP AS A
+        //         INNER JOIN UNIDADES AS B ON A.idUA = B.idUnidad AND A.idSecretaria = B.idSecretaria
+        //         WHERE A.idSecretaria = '$request->id_secretaria' 
+        //             AND A.idObjetivoPED = '$request->id_objetivo' 
+        //             AND A.idClasificacion = '$request->id_clasificacion' 
+        //             AND A.Consecutivo = '$request->consecutivo'
+        //             AND ejercicioFiscal = $request->ejercicio_fiscal;";
+
+        $query = "SELECT A.Id, A.Id, A.idUA, B.Descripcion, A.Componente, A.DescripcionComponente
+        FROM PROGRAMATICO_PI_COMP AS A
+        left join PROGRAMATICO p on p.Id = A.ProgramaticoId 
+        left JOIN UNIDADES AS B ON A.idUA = B.idUnidad 
+            and B.idSecretaria = p.idSecretaria 
+        WHERE A.ProgramaticoId = $request->id";
+
         $informacion = DB::select($query);
         return response()->json(array('error' => false, 'data' => $informacion, 'code' => 200));
     }
 
     public function updatecomponent(Request $request)
     {
-        
+        if(!$this->validarEjercicioFiscal($request->ejercicio_fiscal))
+        {
+            return response()->json(array('error' => true , 'result' => "El ejercicio que está intentando modificar está cerrado", 'code' => 500));
+        }
         try {
+            // $update = DB::table('PROGRAMATICO_PI_COMP')
+            //     ->where('idObjetivoPED', '=', $request->id_objetivo)
+            //     ->where('idSecretaria', '=', $request->id_secretaria)
+            //     ->where('idClasificacion', '=', $request->id_clasificacion)
+            //     ->where('Consecutivo', '=', $request->consecutivo)
+            //     ->where('Componente', '=', $request->componente)
+            //     ->where('ejercicioFiscal', '=', $request->ejercicio_fiscal)
+            //     ->limit(1)
+            //     ->update(
+            //         array(
+            //             'DescripcionComponente' => $request->descripcion_componente,
+            //             'idUA' => $request->unidad_componente
+            //         )
+            //     );
+
             $update = DB::table('PROGRAMATICO_PI_COMP')
-                ->where('idObjetivoPED', '=', $request->id_objetivo)
-                ->where('idSecretaria', '=', $request->id_secretaria)
-                ->where('idClasificacion', '=', $request->id_clasificacion)
-                ->where('Consecutivo', '=', $request->consecutivo)
-                ->where('Componente', '=', $request->componente)
-                ->where('ejercicioFiscal', '=', $request->ejercicio_fiscal)
-                ->limit(1)
+                ->where('Id', '=', $request->id)
                 ->update(
                     array(
                         'DescripcionComponente' => $request->descripcion_componente,
@@ -126,17 +146,21 @@ class ProgramasProyectosInversionController extends Controller
 
     public function updatepp(Request $request)
     {
-        
+        if(!$this->validarEjercicioFiscal($request->ejercicio_fiscal))
+        {
+            return response()->json(array('error' => true , 'result' => "El ejercicio que está intentando modificar está cerrado", 'code' => 500));
+        }
         try {
             $update = DB::table('PROGRAMATICO')
-                ->where('idObjetivoPED', '=', $request->id_objetivo_real)
-                ->where('idClasificacion', '=', $request->id_clasificacion_real)
-                ->where('Consecutivo', '=', $request->consecutivo_real)
-                ->where('Anticorrupcion', '=', $request->id_anticorrupcion_real)
-                ->where('idTipologia', '=', $request->id_topologia_real)
-                ->where('idSecretaria', '=', $request->id_secretaria_real)
-                ->where('ejercicioFiscal', '=', $request->ejercicio_fiscal)
-                ->limit(1)
+                // ->where('idObjetivoPED', '=', $request->id_objetivo_real)
+                // ->where('idClasificacion', '=', $request->id_clasificacion_real)
+                // ->where('Consecutivo', '=', $request->consecutivo_real)
+                // ->where('Anticorrupcion', '=', $request->id_anticorrupcion_real)
+                // ->where('idTipologia', '=', $request->id_topologia_real)
+                // ->where('idSecretaria', '=', $request->id_secretaria_real)
+                // ->where('ejercicioFiscal', '=', $request->ejercicio_fiscal)
+                // ->limit(1)
+                ->where('Id', '=', $request->id)
                 ->update(
                     array(
                         'idSecretaria' => $request->id_secretaria,
@@ -146,7 +170,6 @@ class ProgramasProyectosInversionController extends Controller
                         'DescripcionPrograma' => $request->descripcion
                     )
                 );
-            
             /*if ($update == 0){
                 return response()->json(array('error' => true, 'result' => "No ha sido posible editar el programa presupuestario, favor de intentarlo nuevamente.", 'code' => 404));
             }*/

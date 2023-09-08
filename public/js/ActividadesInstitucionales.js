@@ -9,8 +9,7 @@ var id_componente = null;
 var actividades = [];
 var componentes = [];
 
-$(document).ready(function() {
-    Funciones_Iniciales();
+$(document).ready(function() {Funciones_Iniciales();
     Eventos();
 });
 
@@ -587,7 +586,6 @@ function Func_LimpiarModal() {
     $(".modal .form-control").removeClass("is-invalid");
     $(".modal .form-control").removeClass("is-valid");
 }
-
 
 function getSelectedAI() {
     var table = $('#table').DataTable();

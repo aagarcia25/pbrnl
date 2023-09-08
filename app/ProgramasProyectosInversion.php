@@ -17,13 +17,14 @@ class ProgramasProyectosInversion extends Model
         'DescripcionPrograma',
         'idSecretaria',
         'idUA',
+        'ProgramaticoId',
         'Id'
     ];
     protected $table = 'PROGRAMATICO_PI_COMP';
     public $timestamps = false;
     
     protected $primaryKey = 'Id';
-    public $incrementing = false;
+    public $incrementing = true;
     public function getKeyName(){
         return 'Id';
     }

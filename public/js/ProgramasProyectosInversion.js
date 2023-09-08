@@ -6,6 +6,8 @@ var info_objetivos = null;
 var unidad_componente = null;
 var descripcion_componente = null;
 var id_componente = null;
+var componentes = [];
+var ppis = [];
 
 $(document).ready(function() {
     Funciones_Iniciales();
@@ -215,6 +217,7 @@ function ResponseGetPPI(response) {
     if (!response.error) {
         DestroyDataTable("table");
         $("#table > tbody > tr").remove();
+        ppis = response.data;
         if (response.data.length > 0) {
             for (var i = 0; i < response.data.length; i++) {
                 $("#table > tbody").append(`
@@ -309,7 +312,8 @@ function ResponseGetInfoComponentesPPI(response){
                 "id_objetivo": data['IdObjetivo'],
                 "id_clasificacion": data['idClasificacion'],
                 "consecutivo": data['Consecutivo'],
-                "ejercicio_fiscal": $("#select_ef").val()
+                "ejercicio_fiscal": $("#select_ef").val(),
+                "id" : getSelectedPPI().Id
             }
             GetComponentesPPI(request);
         }else{
@@ -329,6 +333,7 @@ function ResponseGetComponentesPPI(response) {
     if (!response.error) {
         DestroyDataTable("table_componentes");
         $("#table_componentes > tbody > tr").remove();
+        componentes = response.data;
         if (response.data.length > 0) {
             for (var i = 0; i < response.data.length; i++) {
                 $("#table_componentes > tbody").append(`
@@ -367,6 +372,7 @@ function BtnEditarComponente() {
         Func_Cargando();
         var request = {
             id_Secretaria: $("#id_secretaria").val(),
+            id: getSelectedPPI().Id
         }
         repository.UnidadesAdministrativas.GetUnidadesAdministrativas(request)
             .then(ResponseGetUnidadesAdministrativas); 
@@ -408,7 +414,8 @@ function GuardarComponente(){
             id_objetivo: $("#id_objetivo").val(),
             id_clasificacion: $("#id_clasificacion").val(),
             consecutivo: $("#consecutivo").val(),
-            "ejercicio_fiscal": $("#select_ef").val()
+            "ejercicio_fiscal": $("#select_ef").val(),
+            "id": getSelectedComponente().Id
         }
 
         Func_DespliegaConfirmacion("Guardar", "¿Deseas guardar la información del actualizada del componente?", "question", "Aceptar", "Cancelar", function(response) {
@@ -430,12 +437,10 @@ function ResponseEditComponentePPI(response) {
         $('#unidad_componente').selectpicker("destroy");
         $('#unidad_componente').children().remove();
         $('#unidad_componente').selectpicker();
+
         var request = {
-            "id_secretaria": $("#id_secretaria").val(),
-            "id_objetivo": $("#id_objetivo").val(),
-            "id_clasificacion": $("#id_clasificacion").val(),
-            "consecutivo": $("#consecutivo").val(),
-            "ejercicio_fiscal": $("#select_ef").val()
+            "ejercicio_fiscal": $("#select_ef").val(),
+            "id": getSelectedPPI().Id
         }
         GetComponentesPPI(request);
     } else {
@@ -543,8 +548,10 @@ function GuardarActualizarPP(){
             id_anticorrupcion_real: $("#id_anticorrupcion_real").val(),
             id_topologia_real: $("#select_topologia_real").val(),
             consecutivo_real: $("#consecutivo_real").val(),
-            "ejercicio_fiscal": $("#select_ef").val()
 
+            id: getSelectedPPI().Id,
+
+            "ejercicio_fiscal": $("#select_ef").val()
         }
 
         Func_DespliegaConfirmacion("Guardar", "¿Deseas actualizar la información del programa presupuestario?", "question", "Aceptar", "Cancelar", function(response) {
@@ -581,9 +588,23 @@ function ResponseEditProgramaPresupuestoInversion(response) {
 // ======================================================
 
 function Func_LimpiarModal() {
-    $(".form-control").val("");
-    $(".form-control").removeClass("is-invalid");
-    $(".form-control").removeClass("is-valid");
+    $(".modal .form-control").val("");
+    $(".modal .form-control").removeClass("is-invalid");
+    $(".modal .form-control").removeClass("is-valid");
 }
 
+function getSelectedPPI() {
+    var table = $('#table').DataTable();
+    var index = table.row('.selected').index();
+    const p = ppis[index];
 
+    return p;
+}
+
+function getSelectedComponente() {
+    var table = $('#table_componentes').DataTable();
+    var index = table.row('.selected').index();
+    var data = componentes[index];
+
+    return data;
+}
