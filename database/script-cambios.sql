@@ -192,7 +192,7 @@ ALTER TABLE PROPOSITO DROP PRIMARY KEY;
 ALTER TABLE PROPOSITO ADD Id INT PRIMARY KEY AUTO_INCREMENT;
 
 /********* 07/09/2023 ************************/
-/* AGREGAR ID DE PROGRAMATICO EN COMPONENTES DE ACTIVIDADES INSTITUCIONALES (PROGRAMATICO_AI_COMP)
+/* AGREGAR ID DE PROGRAMATICO EN COMPONENTES DE ACTIVIDADES INSTITUCIONALES (PROGRAMATICO_AI_COMP)*/
 /* Y EN PROYECTOS DE INVERSION (PROGRAMATICO_PI_COMP) ASI COMO UN ID */
 ALTER TABLE PROGRAMATICO_AI_COMP ADD ProgramaticoId INT;
 ALTER TABLE PROGRAMATICO_PI_COMP ADD ProgramaticoId INT;
@@ -203,3 +203,35 @@ ALTER TABLE PROGRAMATICO_PI_COMP DROP PRIMARY KEY;
 ALTER TABLE PROGRAMATICO_AI_COMP ADD Id INT PRIMARY KEY AUTO_INCREMENT;
 ALTER TABLE PROGRAMATICO_PI_COMP ADD Id INT PRIMARY KEY AUTO_INCREMENT;
 
+UPDATE PROGRAMATICO_PI_COMP c SET ProgramaticoId = 
+                (SELECT Id FROM PROGRAMATICO AS p 
+                    WHERE p.idObjetivoPED = c.idObjetivoPED
+                    AND p.idClasificacion = c.idClasificacion
+                    AND p.Consecutivo = c.Consecutivo
+                    AND p.idSecretaria = c.idSecretaria
+                    AND p.ejercicioFiscal = 2023
+                    ) WHERE c.ejercicioFiscal = 2023;
+UPDATE PROGRAMATICO_PI_COMP c SET ProgramaticoId = 
+                (SELECT Id FROM PROGRAMATICO AS p 
+                    WHERE p.idObjetivoPED = c.idObjetivoPED
+                    AND p.idClasificacion = c.idClasificacion
+                    AND p.Consecutivo = c.Consecutivo
+                    AND p.idSecretaria = c.idSecretaria
+                    AND p.ejercicioFiscal = 2024
+                    ) WHERE c.ejercicioFiscal = 2024;
+UPDATE PROGRAMATICO_AI_COMP c SET ProgramaticoId = 
+                (SELECT Id FROM PROGRAMATICO AS p 
+                    WHERE p.idObjetivoPED = c.idObjetivoPED
+                    AND p.idClasificacion = c.idClasificacion
+                    AND p.Consecutivo = c.Consecutivo
+                    AND p.idSecretaria = c.idSecretaria
+                    AND p.ejercicioFiscal = 2024
+                    ) WHERE c.ejercicioFiscal = 2024;
+UPDATE PROGRAMATICO_AI_COMP c SET ProgramaticoId = 
+                (SELECT Id FROM PROGRAMATICO AS p 
+                    WHERE p.idObjetivoPED = c.idObjetivoPED
+                    AND p.idClasificacion = c.idClasificacion
+                    AND p.Consecutivo = c.Consecutivo
+                    AND p.idSecretaria = c.idSecretaria
+                    AND p.ejercicioFiscal = 2023
+                    ) WHERE c.ejercicioFiscal = 2023;

@@ -22,7 +22,7 @@ class ActividadesInstitucionales extends Model
     ];
     protected $table = 'PROGRAMATICO_AI_COMP';
     public $timestamps = false;
-    
+
     protected $primaryKey = 'Id';
     public $incrementing = false;
     public function getKeyName(){

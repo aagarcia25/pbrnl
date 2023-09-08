@@ -153,6 +153,17 @@ class EjerciciosFiscalesController extends BaseController
             $reg->save();
         }
 
+        //ACTUALIZAR AIS
+        $query = "UPDATE PROGRAMATICO_AI_COMP c SET ProgramaticoId = 
+                (SELECT Id FROM PROGRAMATICO AS p 
+                    WHERE p.idObjetivoPED = c.idObjetivoPED
+                    AND p.idClasificacion = c.idClasificacion
+                    AND p.Consecutivo = c.Consecutivo
+                    AND p.idSecretaria = c.idSecretaria
+                    AND p.ejercicioFiscal = $nuevo_ef
+                    ) where c.ejercicioFiscal = $nuevo_ef";
+        $reg = DB::update($query);
+
         //copiar proyectos de inversion
         foreach ($PROGRAMATICO_PI_COMP as $key => $d) {
             $reg = new ProgramasProyectosInversion();
@@ -172,6 +183,17 @@ class EjerciciosFiscalesController extends BaseController
 
             $reg->save();
         }
+
+        //ACTUALIZAR PPI
+        $query = "UPDATE PROGRAMATICO_PI_COMP c SET ProgramaticoId = 
+                (SELECT Id FROM PROGRAMATICO AS p 
+                    WHERE p.idObjetivoPED = c.idObjetivoPED
+                    AND p.idClasificacion = c.idClasificacion
+                    AND p.Consecutivo = c.Consecutivo
+                    AND p.idSecretaria = c.idSecretaria
+                    AND p.ejercicioFiscal = $nuevo_ef
+                    ) where c.ejercicioFiscal = $nuevo_ef";
+        $reg = DB::update($query);
 
         //copiar MIR
         foreach ($MIR_CARATULA as $key => $d) {

@@ -136,7 +136,6 @@ class ProgramasPresupuestalesController extends BaseController
             //     );
             $update = DB::table('PROGRAMATICO_COMP')
                 ->where('Id', '=', $request->id)
-                ->limit(1)
                 ->update(
                     array(
                         'DescripcionComponente' => $request->descripcion_componente,

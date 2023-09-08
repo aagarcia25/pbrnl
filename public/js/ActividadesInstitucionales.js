@@ -6,6 +6,8 @@ var info_objetivos = null;
 var unidad_componente = null;
 var descripcion_componente = null;
 var id_componente = null;
+var actividades = [];
+var componentes = [];
 
 $(document).ready(function() {
     Funciones_Iniciales();
@@ -104,6 +106,7 @@ function ResponseGetAllActividadesI(response) {
         DestroyDataTable("table");
         $("#table > tbody > tr").remove();
         if (response.data.length > 0) {
+            actividades = response.data;
             for (var i = 0; i < response.data.length; i++) {
                 $("#table > tbody").append(`
                     <tr>
@@ -302,12 +305,15 @@ function ResponseGetInfoComponentesAI(response){
             $("#consecutivo").val(data['Consecutivo']);
             $("#descripcion").val(data['DescripcionPrograma']);
 
+            var act = getSelectedAI().Id;
+
             var request = {
-                "id_secretaria": data['idSecretaria'],
-                "id_objetivo": data['IdObjetivo'],
-                "id_clasificacion": data['idClasificacion'],
-                "consecutivo": data['Consecutivo'],
-                "ejercicio_fiscal": $("#select_ef").val()
+                // "id_secretaria": data['idSecretaria'],
+                // "id_objetivo": data['IdObjetivo'],
+                // "id_clasificacion": data['idClasificacion'],
+                // "consecutivo": data['Consecutivo'],
+                // "ejercicio_fiscal": $("#select_ef").val(),
+                "id" : act
             }
             GetComponentesAI(request);
         }else{
@@ -327,6 +333,8 @@ function ResponseGetComponentesAI(response) {
     if (!response.error) {
         DestroyDataTable("table_componentes");
         $("#table_componentes > tbody > tr").remove();
+        componentes = response.data;
+
         if (response.data.length > 0) {
             for (var i = 0; i < response.data.length; i++) {
                 $("#table_componentes > tbody").append(`
@@ -401,12 +409,8 @@ function GuardarComponente(){
         var request = {
             unidad_componente: $("#unidad_componente").val(),
             descripcion_componente: $("#descripcion_componente").val(),
-            componente: $("#id_componente").val(),
-            id_secretaria: $("#id_secretaria").val(),
-            id_objetivo: $("#id_objetivo").val(),
-            id_clasificacion: $("#id_clasificacion").val(),
-            consecutivo: $("#consecutivo").val(),
             ejercicio_fiscal: $("#select_ef").val(),
+            id: getSelectedComponente().Id
         }
 
         Func_DespliegaConfirmacion("Guardar", "¿Deseas guardar la información del actualizada del componente?", "question", "Aceptar", "Cancelar", function(response) {
@@ -429,11 +433,12 @@ function ResponseEditComponenteAI(response) {
         $('#unidad_componente').children().remove();
         $('#unidad_componente').selectpicker();
         var request = {
-            "id_secretaria": $("#id_secretaria").val(),
-            "id_objetivo": $("#id_objetivo").val(),
-            "id_clasificacion": $("#id_clasificacion").val(),
-            "consecutivo": $("#consecutivo").val(),
-            "ejercicio_fiscal": $("#select_ef").val(),
+            // "id_secretaria": $("#id_secretaria").val(),
+            // "id_objetivo": $("#id_objetivo").val(),
+            // "id_clasificacion": $("#id_clasificacion").val(),
+            // "consecutivo": $("#consecutivo").val(),
+            // "ejercicio_fiscal": $("#select_ef").val(),
+            "id" : getSelectedAI().Id
         }
         GetComponentesAI(request);
     } else {
@@ -578,9 +583,24 @@ function ResponseEditActividadInstitucional(response) {
 // ======================================================
 
 function Func_LimpiarModal() {
-    $(".form-control").val("");
-    $(".form-control").removeClass("is-invalid");
-    $(".form-control").removeClass("is-valid");
+    $(".modal .form-control").val("");
+    $(".modal .form-control").removeClass("is-invalid");
+    $(".modal .form-control").removeClass("is-valid");
 }
 
 
+function getSelectedAI() {
+    var table = $('#table').DataTable();
+    var index = table.row('.selected').index();
+    const p = actividades[index];
+
+    return p;
+}
+
+function getSelectedComponente() {
+    var table = $('#table_componentes').DataTable();
+    var index = table.row('.selected').index();
+    var data = componentes[index];
+
+    return data;
+}
