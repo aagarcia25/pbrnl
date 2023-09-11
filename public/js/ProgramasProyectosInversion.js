@@ -105,6 +105,7 @@ function ResponseGetAllPPI(response) {
     if (!response.error) {
         DestroyDataTable("table");
         $("#table > tbody > tr").remove();
+        ppis = response.data;
         if (response.data.length > 0) {
             for (var i = 0; i < response.data.length; i++) {
                 $("#table > tbody").append(`

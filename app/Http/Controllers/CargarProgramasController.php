@@ -27,13 +27,56 @@ class CargarProgramasController extends BaseController
 
         if (($handle = fopen($file->path(), "r")) !== FALSE) {
             while (($data = fgetcsv($handle)) !== FALSE) {
+                // buscar el programa, si está solo actualizarlo, 
+                $programa = DB::table("PROGRAMATICO")
+                    ->where("idClasificacion","=",$data[0])
+                    ->where("idObjetivoPED","=",$data[1])
+                    ->where("Anticorrupcion","=",$data[2])
+                    ->where("idTipologia","=",$data[3])
+                    ->where("Consecutivo","=",$data[4])
+                    ->first()
+                    ;
+
+                if($programa != null)
+                {
+                    // hay que eliminar todo el programa con
+                    // sus componentes y lo que tenga en la MIR
+
+                    //componentes
+                    $componentes_eliminar = 
+                        DB::table("PROGRAMATICO_COMP")
+                        ->select("Id")
+                        ->where("ProgramaticoId", "=", $programa->Id);
+                    
+                    $arr_comp = $componentes_eliminar->get();
+                    $ids = array();
+                    foreach ($arr_comp as $key => $value) {
+                        # code...
+                        $ids[] = $value->Id;
+                    }
+
+                    $comp_eliminados = $componentes_eliminar->delete();
+
+                    //componentes de mir a eliminar
+                    $componentes_mir = DB::table("COMPONENTE1")
+                    ->whereIn("ComponenteId", $ids)
+                    ->delete();
+
+                    //mirs
+                    $mir_eliminar = DB::table("MIR_CARATULA")
+                    ->where("ProgramaticoId", "=", $programa->Id)
+                    ->delete();
+
+                    DB::table("PROGRAMATICO")->delete($programa->Id);
+                }
+
                 //
                 $programa = new ProgramasPresupuestales();
-                $programa->idObjetivoPED = $data[1];
                 $programa->idClasificacion = $data[0];
-                $programa->Consecutivo = $data[4];
+                $programa->idObjetivoPED = $data[1];
                 $programa->Anticorrupcion = $data[2];
                 $programa->idTipologia = $data[3];  //CONAC TIPOLOGIA
+                $programa->Consecutivo = $data[4];
                 $programa->DescripcionPrograma = $data[5];
                 $programa->idSecretaria = $data[6];
                 $programa->idUA = $data[7];
@@ -65,7 +108,7 @@ class CargarProgramasController extends BaseController
                     $reg->idClasificacion = $programa->idClasificacion;
                     $reg->Consecutivo = $programa->Consecutivo;
                     $reg->idSecretaria = $programa->idSecretaria;
-                    
+
                     $reg->DescripcionComponente = $data[$pivote_comp + $i];
                     $reg->Componente = substr($reg->DescripcionComponente, 0, 2);
                     if($reg->Componente == "")
@@ -88,8 +131,6 @@ class CargarProgramasController extends BaseController
                     $mirc->EjercicioFiscal = $nuevo_ef;
                     $mirc->save();
                 }
-
-                
             }
         }
 

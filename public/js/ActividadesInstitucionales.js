@@ -545,7 +545,8 @@ function GuardarActualizarPP(){
             id_anticorrupcion_real: $("#id_anticorrupcion_real").val(),
             id_topologia_real: $("#select_topologia_real").val(),
             consecutivo_real: $("#consecutivo_real").val(),
-            ejercicio_fiscal: $("#select_ef").val()
+            ejercicio_fiscal: $("#select_ef").val(),
+            id: getSelectedAI().Id
         }
 
         Func_DespliegaConfirmacion("Guardar", "¿Deseas actualizar la información de la Actividad Institucional?", "question", "Aceptar", "Cancelar", function(response) {

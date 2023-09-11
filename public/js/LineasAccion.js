@@ -349,7 +349,7 @@ function BtnGuardarLineaAccion(){
             id_objetivo: $("#id_objetivo").val(),
             id_estrategia: $("#id_estregia").val(),
             id_lineaccion: $("#id_lineaacion").val(),
-            descripcion: $("#descripcion").val()
+            descripcion: $("#descripcion").val(),
         };
 
         if ($("#modal_accion").text() == "Editar") {
