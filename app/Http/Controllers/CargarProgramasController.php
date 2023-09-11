@@ -34,6 +34,7 @@ class CargarProgramasController extends BaseController
                     ->where("Anticorrupcion","=",$data[2])
                     ->where("idTipologia","=",$data[3])
                     ->where("Consecutivo","=",$data[4])
+                    ->where("ejercicioFiscal","=",$nuevo_ef)
                     ->first()
                     ;
 
