@@ -28,15 +28,18 @@ class CargarProgramasController extends BaseController
         if (($handle = fopen($file->path(), "r")) !== FALSE) {
             while (($data = fgetcsv($handle)) !== FALSE) {
                 // buscar el programa, si está solo actualizarlo, 
-                $programa = DB::table("PROGRAMATICO")
-                    ->where("idClasificacion","=",$data[0])
+                //eliminar caracteres no alfanumericos para elimianr bug
+                $idClasificacion = preg_replace("/[^A-Za-z0-9 ]/", '', $data[0]);
+
+                $q = DB::table("PROGRAMATICO")
+                    ->where("idClasificacion","=", $idClasificacion)
                     ->where("idObjetivoPED","=",$data[1])
                     ->where("Anticorrupcion","=",$data[2])
                     ->where("idTipologia","=",$data[3])
                     ->where("Consecutivo","=",$data[4])
-                    ->where("ejercicioFiscal","=",$nuevo_ef)
-                    ->first()
-                    ;
+                    ->where("ejercicioFiscal","=",$nuevo_ef);
+
+                $programa = $q->first();
 
                 if($programa != null)
                 {
@@ -48,7 +51,7 @@ class CargarProgramasController extends BaseController
                         DB::table("PROGRAMATICO_COMP")
                         ->select("Id")
                         ->where("ProgramaticoId", "=", $programa->Id);
-                    
+
                     $arr_comp = $componentes_eliminar->get();
                     $ids = array();
                     foreach ($arr_comp as $key => $value) {
@@ -73,7 +76,7 @@ class CargarProgramasController extends BaseController
 
                 //
                 $programa = new ProgramasPresupuestales();
-                $programa->idClasificacion = $data[0];
+                $programa->idClasificacion = $idClasificacion;
                 $programa->idObjetivoPED = $data[1];
                 $programa->Anticorrupcion = $data[2];
                 $programa->idTipologia = $data[3];  //CONAC TIPOLOGIA
@@ -85,20 +88,24 @@ class CargarProgramasController extends BaseController
 
                 $programa->save();
 
-                //insertar la caratula de mir
-                $mir = new MirCaratula();
-            
-                $mir->Consecutivo = $programa->Consecutivo;
-                $mir->EjercicioFiscal = $nuevo_ef;
-                $mir->Estatus = "CARGADO";
+                // solo los programas presupuestarios (PP) tienen MIR
+                if($programa->idClasificacion == "PP")
+                {
+                    //insertar la caratula de mir
+                    $mir = new MirCaratula();
 
-                $mir->idEje = null;
-                $mir->idTema = null;
-                $mir->idObjetivo = $programa->idObjetivoPED;
-                
-                $mir->ProgramaticoId = $programa->Id;
+                    $mir->Consecutivo = $programa->Consecutivo;
+                    $mir->EjercicioFiscal = $nuevo_ef;
+                    $mir->Estatus = "CARGADO";
 
-                $mir->save();
+                    $mir->idEje = null;
+                    $mir->idTema = null;
+                    $mir->idObjetivo = $programa->idObjetivoPED;
+
+                    $mir->ProgramaticoId = $programa->Id;
+
+                    $mir->save();
+                }
 
                 $pivote_comp = 8;
                 for($i = 0; $i < 6; $i++) {
@@ -123,14 +130,15 @@ class CargarProgramasController extends BaseController
 
                     $reg->save();
 
-                    //agregar componentes de mir
-
-                    $mirc = new MirComponente();
-                    $mirc->ComponenteId = $reg->Id;
-                    $mirc->ClasProgramatica = $mir->Consecutivo;
-                    $mirc->idComponente = $reg->Componente;
-                    $mirc->EjercicioFiscal = $nuevo_ef;
-                    $mirc->save();
+                    if($programa->idClasificacion == "PP"){
+                        //agregar componentes de mir
+                        $mirc = new MirComponente();
+                        $mirc->ComponenteId = $reg->Id;
+                        $mirc->ClasProgramatica = $mir->Consecutivo;
+                        $mirc->idComponente = $reg->Componente;
+                        $mirc->EjercicioFiscal = $nuevo_ef;
+                        $mirc->save();
+                    }
                 }
             }
         }
