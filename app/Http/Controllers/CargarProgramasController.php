@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use App\EjerciciosFiscales;
 use App\ProgramasPresupuestales;
 use App\ProgramasPresupuestalesComponentes;
+use App\ActividadesInstitucionalesAccion;
 use App\ActividadesInstitucionales;
 use App\ProgramasProyectosInversion;
 use App\MirCaratula;
@@ -110,7 +111,13 @@ class CargarProgramasController extends BaseController
                 $pivote_comp = 8;
                 for($i = 0; $i < 6; $i++) {
                     //agregar los componentes
-                    $reg = new ProgramasPresupuestalesComponentes();
+                    // CORREGIR: LAS DOS TABLAS SON IGUALES,
+                    // SE DEBERÍA FUSIONAR EN UNA SOLA TABLA
+                    if($programa->idClasificacion == "PP") {
+                        $reg = new ProgramasPresupuestalesComponentes();
+                    }
+                    else
+                        $reg = new ActividadesInstitucionalesAccion();
 
                     $reg->idObjetivoPED = $programa->idObjetivoPED;
                     $reg->idClasificacion = $programa->idClasificacion;
