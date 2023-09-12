@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ProgramasPresupuestalesComponentes extends Model
+class ActividadesInstitucionalesAccion extends Model
 {
     protected $fillable = [
         'idObjetivoPED',

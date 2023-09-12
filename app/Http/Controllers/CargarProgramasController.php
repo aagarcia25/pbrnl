@@ -131,7 +131,6 @@ class CargarProgramasController extends BaseController
 
                     $reg->idUA = $data[$pivote_comp + $i + 6];
                     $reg->Observaciones = "";
-                    $reg->ConacF = null;
                     $reg->ejercicioFiscal = $nuevo_ef;
                     $reg->ProgramaticoId = $programa->Id;
 
