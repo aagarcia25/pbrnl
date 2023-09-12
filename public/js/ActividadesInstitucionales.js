@@ -104,8 +104,8 @@ function ResponseGetAllActividadesI(response) {
     if (!response.error) {
         DestroyDataTable("table");
         $("#table > tbody > tr").remove();
+        actividades = response.data;
         if (response.data.length > 0) {
-            actividades = response.data;
             for (var i = 0; i < response.data.length; i++) {
                 $("#table > tbody").append(`
                     <tr>
@@ -216,6 +216,7 @@ function ResponseGetActividadesI(response) {
     if (!response.error) {
         DestroyDataTable("table");
         $("#table > tbody > tr").remove();
+        actividades = response.data;
         if (response.data.length > 0) {
             for (var i = 0; i < response.data.length; i++) {
                 $("#table > tbody").append(`
