@@ -549,23 +549,6 @@ function BtnActualizarPP() {
             $("#id_uapp").val(programa.idUA);
         })
 
-        // repository.UnidadesAdministrativas.GetUnidadesAdministrativas({
-        //     id_Secretaria:id_secretaria
-        // }).then((response)=> {
-        //         $('#select_uapp').selectpicker("destroy");
-        //         $('#select_uapp').children().remove();
-        
-        //         for (let i = 0; i < response.data.length; i++) {
-        //             $('#select_uapp').append($('<option>', {
-        //                 value: response.data[i].idUnidad,
-        //                 text: ("[" + response.data[i].idUnidad + "] " + response.data[i].Descripcion)
-        //             }));
-        //         }
-        //         var programa = getSelectedPrograma();
-        //         $('#select_uapp').selectpicker("val",programa.idUA);
-        //         $("#id_uapp").val(programa.idUA);
-        //     }); 
-
         $("#ModalActualizacion").modal("show");
     });
 }

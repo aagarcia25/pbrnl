@@ -158,6 +158,9 @@ function Eventos() {
     GuardarActualizarPP();
 
     OnChange_Ejercicio();
+    $("#select_uapp").on("change", function() {
+        $("#id_uapp").val($("#select_uapp").val());
+    });
 }
 
 function SeleccionarTabla() {
@@ -274,11 +277,12 @@ function BtnComponentes(){
 
         $("#informacion_componente").addClass("d-none");
         var request = {
-            "id_secretaria": data[0],
-            "id_objetivo": data[2],
-            "id_clasificacion": data[1],
-            "consecutivo": data[5],
-            "ejercicio_fiscal": $("#select_ef").val()
+            // "id_secretaria": data[0],
+            // "id_objetivo": data[2],
+            // "id_clasificacion": data[1],
+            // "consecutivo": data[5],
+            // "ejercicio_fiscal": $("#select_ef").val()
+            id: getSelectedAI().Id
         }
         Func_Cargando();
         GetInfoComponentesAI(request);
@@ -304,6 +308,8 @@ function ResponseGetInfoComponentesAI(response){
             $("#id_topologia").val("["+data['idTipologia']+"] " + data['Descripcion_Topologia']);
             $("#consecutivo").val(data['Consecutivo']);
             $("#descripcion").val(data['DescripcionPrograma']);
+            $("#id_ua").val(data.idUA);
+            $("#descripcion_ua").val(data.Descripcion_UA);
 
             var act = getSelectedAI().Id;
 
@@ -517,6 +523,13 @@ function BtnActualizarPP() {
         $("#select_topologia_real").val(id_tipologia);
         $("#consecutivo_real").val(consecutivo);
 
+        GetUnidadesAdministrativas(id_secretaria)
+        .then((r)=>{
+            var programa = getSelectedAI();
+            $('#select_uapp').selectpicker("val",programa.idUA);
+            $("#id_uapp").val(programa.idUA);
+        })
+
         $("#ModalActualizacion").modal("show");
 
     });
@@ -526,6 +539,9 @@ function OnChange_SecretariaPP(){
     $("#select_secretariapp").on("change", function(){
         var Id_Secretaria = $(this).val();
         $("#id_secretariapp").val(Id_Secretaria);
+
+        GetUnidadesAdministrativas(Id_Secretaria);
+
     });
 }
 
@@ -539,13 +555,13 @@ function GuardarActualizarPP(){
             id_anticorrupcion: $("#id_anticorrupcionpp").val(),
             id_topologia: $("#select_topologiapp").val(),
             descripcion: $("#descripcionpp").val(),
-
-            id_secretaria_real: $("#id_secretaria_real").val(),
-            id_clasificacion_real: $("#id_clasificacion_real").val(),
-            id_objetivo_real: $("#select_objetivo_real").val(),
-            id_anticorrupcion_real: $("#id_anticorrupcion_real").val(),
-            id_topologia_real: $("#select_topologia_real").val(),
-            consecutivo_real: $("#consecutivo_real").val(),
+            id_ua: $("#select_uapp").val(),
+            // id_secretaria_real: $("#id_secretaria_real").val(),
+            // id_clasificacion_real: $("#id_clasificacion_real").val(),
+            // id_objetivo_real: $("#select_objetivo_real").val(),
+            // id_anticorrupcion_real: $("#id_anticorrupcion_real").val(),
+            // id_topologia_real: $("#select_topologia_real").val(),
+            // consecutivo_real: $("#consecutivo_real").val(),
             ejercicio_fiscal: $("#select_ef").val(),
             id: getSelectedAI().Id
         }
@@ -603,4 +619,22 @@ function getSelectedComponente() {
     var data = componentes[index];
 
     return data;
+}
+
+function GetUnidadesAdministrativas(id_secretaria) {
+    return repository.UnidadesAdministrativas.GetUnidadesAdministrativas({
+        id_Secretaria:id_secretaria
+    }).then((response)=> {
+            $('#select_uapp').selectpicker("destroy");
+            $('#select_uapp').children().remove();
+    
+            for (let i = 0; i < response.data.length; i++) {
+                $('#select_uapp').append($('<option>', {
+                    value: response.data[i].idUnidad,
+                    text: ("[" + response.data[i].idUnidad + "] " + response.data[i].Descripcion)
+                }));
+            }
+            $('#select_uapp').selectpicker();
+            $('#id_uapp').val("");
+        }); 
 }

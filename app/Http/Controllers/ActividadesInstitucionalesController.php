@@ -70,18 +70,33 @@ class ActividadesInstitucionalesController extends BaseController
 
     public function info(Request $request)
     {
-        $query = "SELECT B.idSecretaria, B.Descripcion 'Descripcion_Secretaria', C.Descripcion 'Descripcion_Topologia', A.idClasificacion, A.Anticorrupcion, A.idTipologia, C.Descripcion, A.Consecutivo, A.DescripcionPrograma,
-                D.IdObjetivo, D.Descripcion AS 'Descripcion_Objetivo'
+        $query = "SELECT 
+                    B.idSecretaria, 
+                    B.Descripcion 'Descripcion_Secretaria', 
+                    C.Descripcion 'Descripcion_Topologia', 
+                    A.idClasificacion, 
+                    A.Anticorrupcion, 
+                    A.idTipologia, 
+                    C.Descripcion, 
+                    A.Consecutivo, 
+                    A.DescripcionPrograma,
+                    D.IdObjetivo, 
+                    D.Descripcion AS 'Descripcion_Objetivo',
+                    A.idUA,
+                    U.Descripcion as 'Descripcion_UA'
                 FROM PROGRAMATICO AS A
                 INNER JOIN SECRETARIAS AS B ON A.idSecretaria = B.idSecretaria
                 INNER JOIN TIPOLOGIA AS C ON A.idTipologia = C.IdTipologia
                 INNER JOIN OBJETIVO AS D ON A.idObjetivoPED = D.IdObjetivo
-                WHERE A.idClasificacion IN ('AI') 
-                    AND A.idSecretaria = '$request->id_secretaria' 
-                    AND A.idObjetivoPED = '$request->id_objetivo' 
-                    AND A.idClasificacion = '$request->id_clasificacion' 
-                    AND A.Consecutivo = '$request->consecutivo' 
-                    AND A.ejercicioFiscal = $request->ejercicio_fiscal
+                INNER JOIN UNIDADES AS U ON A.idUA = U.idUnidad AND A.idSecretaria = U.idSecretaria
+                WHERE 
+                    -- A.idClasificacion IN ('AI') 
+                    -- AND A.idSecretaria = '$request->id_secretaria' 
+                    -- AND A.idObjetivoPED = '$request->id_objetivo' 
+                    -- AND A.idClasificacion = '$request->id_clasificacion' 
+                    -- AND A.Consecutivo = '$request->consecutivo' 
+                    -- AND A.ejercicioFiscal = $request->ejercicio_fiscal
+                    A.Id = $request->id
                     ORDER BY A.Consecutivo;";
         $informacion = DB::select($query);
 
@@ -150,7 +165,8 @@ class ActividadesInstitucionalesController extends BaseController
                         'idObjetivoPED' => $request->id_objetivo,
                         'Anticorrupcion' => $request->id_anticorrupcion,
                         'idTipologia' => $request->id_topologia,
-                        'DescripcionPrograma' => $request->descripcion
+                        'DescripcionPrograma' => $request->descripcion,
+                        'idUA' => $request->id_ua
                     )
                 );
             
