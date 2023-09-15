@@ -114,6 +114,8 @@ function ResponseGetMirComponentes(response) {
                     console.log("InicialTrimestral_Componente")
                 }
             }
+            $("#select_unidadresponsablereportar_componente").selectpicker("val", response.data[index_componente]['idUA']);
+
         }
         GetMirActividades();
     } else {
@@ -386,6 +388,7 @@ function OnClic_TabsComponentes(){
                 $("#select_sentidoindicador_componente").selectpicker("val", componente['SentidoIndicador']);
                 $("#select_tipoindicador_componente").selectpicker("val", componente['TipoIndicador']);
                 $("#select_dimensionindicador_componente").selectpicker("val", componente['DimensionIndicador']);
+
                 $("#select_unidadresponsablereportar_componente").selectpicker("val", componente.idUA);
 
                 $("#descripcionindicador_componente").val(componente['DescripcionIndicador']);
@@ -505,6 +508,8 @@ function OnClic_TabsComponentes(){
                     InicialTrimestral_Actividad();
                 }
             }
+            else
+                $("#select_unidadresponsablereportar_componente").selectpicker("val", componente.idUA);
             swal.close();
         }
     });
