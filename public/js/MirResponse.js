@@ -100,7 +100,7 @@ function ResponseGetMirComponentes(response) {
                 $("#select_sentidoindicador_componente").selectpicker("val", response.data[index_componente]['SentidoIndicador']);
                 $("#select_tipoindicador_componente").selectpicker("val", response.data[index_componente]['TipoIndicador']);
                 $("#select_dimensionindicador_componente").selectpicker("val", response.data[index_componente]['DimensionIndicador']);
-                $("#select_unidadresponsablereportar_componente").selectpicker("val", response.data[index_componente]['UnidadResponsable']);
+                $("#select_unidadresponsablereportar_componente").selectpicker("val", response.data[index_componente]['idUA']);
 
                 $("#descripcionindicador_componente").val(response.data[index_componente]['DescripcionIndicador']);
                 $("#descripcionnumerador_componente").val(response.data[index_componente]['DescripcionNumerador']);
@@ -234,7 +234,7 @@ function ResponseGetMirActividades(response) {
                 $("#select_sentidoindicador_actividad").selectpicker("val", info_actividades[id_componente]['items'][index_actividad]['SentidoIndicador']);
                 $("#select_tipoindicador_actividad").selectpicker("val", info_actividades[id_componente]['items'][index_actividad]['TipoIndicador']);
                 $("#select_dimensionindicador_actividad").selectpicker("val", info_actividades[id_componente]['items'][index_actividad]['DimensionIndicador']);
-                $("#select_unidadresponsablereportar_actividad").selectpicker("val", info_actividades[id_componente]['items'][index_actividad]['UnidadResponsable']);
+                $("#select_unidadresponsablereportar_actividad").selectpicker("val", info_actividades[id_componente]['items'][index_actividad]['idUA']);
 
                 $("#descripcionindicador_actividad").val(info_actividades[id_componente]['items'][index_actividad]['DescripcionIndicador']);
                 $("#descripcionnumerador_actividad").val(info_actividades[id_componente]['items'][index_actividad]['DescripcionNumerador']);
@@ -386,7 +386,7 @@ function OnClic_TabsComponentes(){
                 $("#select_sentidoindicador_componente").selectpicker("val", componente['SentidoIndicador']);
                 $("#select_tipoindicador_componente").selectpicker("val", componente['TipoIndicador']);
                 $("#select_dimensionindicador_componente").selectpicker("val", componente['DimensionIndicador']);
-                $("#select_unidadresponsablereportar_componente").selectpicker("val", componente['UnidadResponsable']);
+                $("#select_unidadresponsablereportar_componente").selectpicker("val", componente.idUA);
 
                 $("#descripcionindicador_componente").val(componente['DescripcionIndicador']);
                 $("#descripcionnumerador_componente").val(componente['DescripcionNumerador']);
@@ -493,7 +493,7 @@ function OnClic_TabsComponentes(){
                 $("#select_sentidoindicador_actividad").selectpicker("val", info_actividades[id_componente]['items'][index_actividad]['SentidoIndicador']);
                 $("#select_tipoindicador_actividad").selectpicker("val", info_actividades[id_componente]['items'][index_actividad]['TipoIndicador']);
                 $("#select_dimensionindicador_actividad").selectpicker("val", info_actividades[id_componente]['items'][index_actividad]['DimensionIndicador']);
-                $("#select_unidadresponsablereportar_actividad").selectpicker("val", info_actividades[id_componente]['items'][index_actividad]['UnidadResponsable']);
+                $("#select_unidadresponsablereportar_actividad").selectpicker("val", info_actividades[id_componente]['items'][index_actividad]['idUA']);
 
                 $("#descripcionindicador_actividad").val(info_actividades[id_componente]['items'][index_actividad]['DescripcionIndicador']);
                 $("#descripcionnumerador_actividad").val(info_actividades[id_componente]['items'][index_actividad]['DescripcionNumerador']);
@@ -632,7 +632,7 @@ function OnClic_TabsActividades(){
             $("#select_sentidoindicador_actividad").selectpicker("val", info_actividades[id_componente]['items'][index_actividad]['SentidoIndicador']);
             $("#select_tipoindicador_actividad").selectpicker("val", info_actividades[id_componente]['items'][index_actividad]['TipoIndicador']);
             $("#select_dimensionindicador_actividad").selectpicker("val", info_actividades[id_componente]['items'][index_actividad]['DimensionIndicador']);
-            $("#select_unidadresponsablereportar_actividad").selectpicker("val", info_actividades[id_componente]['items'][index_actividad]['UnidadResponsable']);
+            $("#select_unidadresponsablereportar_actividad").selectpicker("val", info_actividades[id_componente]['items'][index_actividad]['idUA']);
 
             $("#descripcionindicador_actividad").val(info_actividades[id_componente]['items'][index_actividad]['DescripcionIndicador']);
             $("#descripcionnumerador_actividad").val(info_actividades[id_componente]['items'][index_actividad]['DescripcionNumerador']);
@@ -717,11 +717,13 @@ function FiltrarUnidadesAdministrativas(idSecretaria) {
     $("#select_unidadresponsablereportar_fin").selectpicker("destroy");
     $("#select_unidadresponsablereportar_proposito").selectpicker("destroy");
     $("#select_unidadresponsablereportar_componente").selectpicker("destroy");
+    $("#select_unidadresponsablereportar_actividad").selectpicker("destroy");
     $("#select_uaresponsable").children().remove();
     $("#select_unidadresponsablereportar").children().remove();
     $("#select_unidadresponsablereportar_fin").children().remove();
     $("#select_unidadresponsablereportar_proposito").children().remove();
     $("#select_unidadresponsablereportar_componente").children().remove();
+    $("#select_unidadresponsablereportar_actividad").children().remove();
 
     for (let i = 0; i < info_unidadadministrativa.length; i++) {
         const unidadadministrativa = info_unidadadministrativa[i];
@@ -747,6 +749,10 @@ function FiltrarUnidadesAdministrativas(idSecretaria) {
                 value: unidadadministrativa.idUnidad,
                 text: ("[" + unidadadministrativa.idUnidad + "] " + unidadadministrativa.Descripcion)
             }));
+            $('#select_unidadresponsablereportar_actividad').append($('<option>', {
+                value: unidadadministrativa.idUnidad,
+                text: ("[" + unidadadministrativa.idUnidad + "] " + unidadadministrativa.Descripcion)
+            }));
         }
     }
 
@@ -755,6 +761,7 @@ function FiltrarUnidadesAdministrativas(idSecretaria) {
     $("#select_unidadresponsablereportar_fin").selectpicker();
     $("#select_unidadresponsablereportar_proposito").selectpicker();
     $("#select_unidadresponsablereportar_componente").selectpicker();
+    $("#select_unidadresponsablereportar_actividad").selectpicker();
 }
 
 function FiltrarTemaPED(idEje) {

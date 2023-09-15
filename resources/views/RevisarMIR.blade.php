@@ -185,7 +185,8 @@
                                             <img id="fin-izq" src="img/icono izq.svg" class="tabs-internas cursor-pointer" onmouseover="img_over('fin-izq', 'img/icono izq activo.svg')" onmouseout="img_out('fin-izq', 'img/icono izq.svg')" data-superior="fin" data-seccion="findos" data-actual="finuno" data-texto="1/2" width="30" height="30">
                                         </div>
                                         <div class="p-2">
-                                            <b class="m-3 money-tabs-fin">1/2</b><img id="fin-der" src="img/icono der.svg" class="tabs-internas cursor-pointer" onmouseover="img_over('fin-der', 'img/icono der activo.svg')" onmouseout="img_out('fin-der', 'img/icono der.svg')" data-superior="fin" data-seccion="finuno" data-actual="findos" data-texto="2/2" width="30" height="30">
+                                            <b class="m-3 money-tabs-fin">1/2</b>
+                                            <img id="fin-der" src="img/icono der.svg" class="tabs-internas cursor-pointer" onmouseover="img_over('fin-der', 'img/icono der activo.svg')" onmouseout="img_out('fin-der', 'img/icono der.svg')" data-superior="fin" data-seccion="finuno" data-actual="findos" data-texto="2/2" width="30" height="30">
                                         </div>
                                     </div>
                                 </div>

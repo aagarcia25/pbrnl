@@ -105,11 +105,13 @@ class MirController extends Controller
 
     public function componentes(Request $request)
     {
-        $query = "SELECT c1.*, cc.DescripcionComponente as Componente FROM 
+        $query = "SELECT c1.*, cc.DescripcionComponente as Componente, cc.idUA FROM 
             COMPONENTE1 c1
             LEFT JOIN PROGRAMATICO_COMP cc
             on c1.ComponenteId = cc.Id
-            WHERE ClasProgramatica = '$request->consecutivo' and c1.EjercicioFiscal = $request->ejercicioFiscal;";
+            WHERE ClasProgramatica = 
+                '$request->consecutivo' 
+                and c1.EjercicioFiscal = $request->ejercicioFiscal;";
         $info = DB::select($query);
         return response()->json(array('error' => false, 'data' => $info, 'code' => 200));
     }
@@ -123,7 +125,21 @@ class MirController extends Controller
 
     public function actividades(Request $request)
     {
-        $query = "SELECT * FROM ACTIVIDAD WHERE ClasProgramatica = '$request->consecutivo' and EjercicioFiscal=$request->ejercicioFiscal";
+        // $query = "SELECT * FROM 
+        //     ACTIVIDAD A 
+        //     inner join PROGRAMATICO_COMP C
+        //     WHERE 
+        //     C.
+        //     A. ClasProgramatica = '$request->consecutivo' and 
+        //     A. EjercicioFiscal=$request->ejercicioFiscal";
+
+        $query = "SELECT A.*, C.idUA FROM 
+        ACTIVIDAD A 
+        INNER JOIN PROGRAMATICO_COMP C ON A.ClasProgramatica = C.Consecutivo AND A.idComponente = C.Componente
+        WHERE
+        A.ClasProgramatica = '$request->consecutivo' AND 
+        A.EjercicioFiscal=$request->ejercicioFiscal";
+
         $info = DB::select($query);
         return response()->json(array('error' => false, 'data' => $info, 'code' => 200));
     }

@@ -88,12 +88,6 @@ class ProgramasPresupuestalesController extends BaseController
                 INNER JOIN OBJETIVO AS D ON A.idObjetivoPED = D.IdObjetivo
                 INNER JOIN UNIDADES AS U ON A.idUA = U.idUnidad AND A.idSecretaria = U.idSecretaria
                 WHERE 
-                    -- A.idClasificacion IN ('PP') 
-                    -- AND A.idSecretaria = '$request->id_secretaria' 
-                    -- AND A.idObjetivoPED = '$request->id_objetivo' 
-                    -- AND A.idClasificacion = '$request->id_clasificacion' 
-                    -- AND A.Consecutivo = '$request->consecutivo' 
-                    -- AND A.ejercicioFiscal = $request->ejercicio_fiscal
                     A.Id = $request->id
                     ORDER BY A.Consecutivo;";
         $informacion = DB::select($query);
@@ -103,17 +97,6 @@ class ProgramasPresupuestalesController extends BaseController
 
     public function components(Request $request)
     {
-        // $query = "SELECT A.idUA, B.Descripcion, A.Componente, A.DescripcionComponente
-        //         FROM PROGRAMATICO_COMP AS A
-        //         INNER JOIN UNIDADES AS B ON A.idUA = B.idUnidad 
-        //             AND A.idSecretaria = B.idSecretaria
-        //         WHERE A.idSecretaria = '$request->id_secretaria' 
-        //             AND A.idObjetivoPED = '$request->id_objetivo' 
-        //             AND A.idClasificacion = '$request->id_clasificacion' 
-        //             AND A.Consecutivo = '$request->consecutivo'
-        //             AND A.ejercicioFiscal = $request->ejercicio_fiscal
-        //             ;";
-
         $id = $request->id;
 
         $query = "SELECT A.Id, A.idUA, B.Descripcion, A.Componente, A.DescripcionComponente
@@ -135,20 +118,6 @@ class ProgramasPresupuestalesController extends BaseController
         }
 
         try {
-            // $update = DB::table('PROGRAMATICO_COMP')
-            //     ->where('idObjetivoPED', '=', $request->id_objetivo)
-            //     ->where('idSecretaria', '=', $request->id_secretaria)
-            //     ->where('idClasificacion', '=', $request->id_clasificacion)
-            //     ->where('Consecutivo', '=', $request->consecutivo)
-            //     ->where('Componente', '=', $request->componente)
-            //     ->where('ejercicioFiscal', '=', $request->ejercicio_fiscal)
-            //     ->limit(1)
-            //     ->update(
-            //         array(
-            //             'DescripcionComponente' => $request->descripcion_componente,
-            //             'idUA' => $request->unidad_componente
-            //         )
-            //     );
             $update = DB::table('PROGRAMATICO_COMP')
                 ->where('Id', '=', $request->id)
                 ->update(
