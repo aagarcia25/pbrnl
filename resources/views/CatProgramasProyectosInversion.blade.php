@@ -143,6 +143,14 @@
                             <input type="text" class="form-control" id="descripcion_secretaria" disabled style="background: white;">
                         </div>
                         <div class="col-md-3">
+                            <label for="id_ua" class="form-label">Id Unidad Administrativa</label>
+                            <input type="text" class="form-control" id="id_ua" disabled style="background: white;">
+                        </div>
+                        <div class="col-md-9">
+                            <label for="descripcion_ua" class="form-label">Descripción</label>
+                            <input type="text" class="form-control" id="descripcion_ua" disabled style="background: white;">
+                        </div>
+                        <div class="col-md-3">
                             <label for="id_clasificacion" class="form-label">Id Clasificación</label>
                             <input type="text" class="form-control" id="id_clasificacion" disabled style="background: white;">
                         </div>
@@ -240,6 +248,15 @@
                             <div class="col-md-9">
                                 <label for="select_secretariapp" class="form-label">Descripción</label>
                                 <select id="select_secretariapp" class="selectpicker show-tick form-control" title="Seleccione..." data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="id_uapp" class="form-label">Id Unidad Administrativa</label>
+                                <input type="text" class="form-control" id="id_uapp" disabled style="background: white;">
+                            </div>
+                            <div class="col-md-9">
+                                <label for="select_uapp" class="form-label">Descripción</label>
+                                <select id="select_uapp" class="selectpicker show-tick form-control" title="Seleccione..." data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
                                 </select>
                             </div>
                             <div class="col-md-3">
