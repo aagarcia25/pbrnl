@@ -99,8 +99,10 @@ class CargarProgramasController extends BaseController
                     $mir->EjercicioFiscal = $nuevo_ef;
                     $mir->Estatus = "CARGADO";
 
-                    $mir->idEje = null;
-                    $mir->idTema = null;
+                    $objetivo = DB::table("OBJETIVO")->where("idObjetivo","=",$programa->idObjetivoPED)->first();
+
+                    $mir->idEje = $objetivo->IdEje;
+                    $mir->idTema = $objetivo->IdTema;
                     $mir->idObjetivo = $programa->idObjetivoPED;
 
                     $mir->ProgramaticoId = $programa->Id;
@@ -147,6 +149,22 @@ class CargarProgramasController extends BaseController
                     }
                 }
             }
+        }
+
+        return response()->json(array('error' => false, 'data' => '', 'code' => 200));
+    }
+
+    public function ComponerObjetivosCaratulaMir(Request $request)
+    {
+        $incorrectos = MirCaratula::whereNull("idEje")->get();
+
+        foreach ($incorrectos as $key => $mir) {
+            $objetivo = DB::table("OBJETIVO")->where("IdObjetivo","=",$mir->idObjetivo)->first();
+
+            $mir->idEje = $objetivo->IdEje;
+            $mir->idTema = $objetivo->IdTema;
+
+            $mir->save();
         }
 
         return response()->json(array('error' => false, 'data' => '', 'code' => 200));

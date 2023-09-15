@@ -284,3 +284,4 @@ Route::get('/CargarProgramas', function () {
 });
 
 Route::post('CargarProgramas', "CargarProgramasController@CargarProgramas");
+Route::get('ComponerObjetivosCaratulaMir', "CargarProgramasController@ComponerObjetivosCaratulaMir");
