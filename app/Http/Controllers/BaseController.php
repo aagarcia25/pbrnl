@@ -2,9 +2,17 @@
 namespace App\Http\Controllers;
 use Exception;
 use Illuminate\Support\Facades\DB;
+use App\Usuarios;
 
 class BaseController extends Controller {
     
+    public function getUsuarioActual() {
+        $login = session()->get("id_usuario");
+        $usuario = Usuarios::where("idUsuario","=",$login)->first();
+
+        return $usuario;
+    }
+
     public function validarEjercicioFiscal($e) {
         $ejercicio = DB::table("EJERCICIOS_FISCALES")
             ->where("Id","=",$e)

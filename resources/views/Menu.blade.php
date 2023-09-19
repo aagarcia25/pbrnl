@@ -58,12 +58,10 @@ $view = "Menu de inicio";
         </div>
         <div class="col-lg-4">
             <div class="d-flex align-items-center justify-content-center">
-                <a @if (session('admin_mir') == 1) href="MenuMIR" @else href="#" @endif class="d-flex align-items-center justify-content-center">
+                <a href="MenuMIR" class="d-flex align-items-center justify-content-center">
                     <img class="BotonImagen4" 
-                    @if (session('admin_mir') == 1)
                         src="img/BotonMIR.svg"
-                    @else
-                        src="img/MIRDis.png" @endif alt="Logo de tesorería de Nuevo León" width="170" height="170">
+                        alt="Logo de tesorería de Nuevo León" width="170" height="170">
                 </a>
             </div>
             <div class="FontMenuInicio d-flex align-items-center justify-content-center text-center mt-3">

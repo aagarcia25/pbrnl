@@ -14,36 +14,30 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 
-class MirController extends Controller
+class MirController extends BaseController
 {
     public function index(Request $request)
     {
         $ef = $request->ef;
-        if ($request->id_secretaria == 0 && $request->id_ua == 0){
-            
-            $query = "SELECT * FROM MIR_CARATULA_View where EjercicioFiscal=$ef ORDER BY Consecutivo;";
-            $informacion = DB::select($query);
-            return response()->json(array('error' => false, 'data' => $informacion, 'code' => 200));
+        $usuario = $this->getUsuarioActual();
 
-        }else if ($request->id_secretaria != 0 && $request->id_ua == 0){
-            
-            $query = "SELECT * FROM MIR_CARATULA_View WHERE idSecretaria = '$request->id_secretaria' and EjercicioFiscal=$ef ORDER BY Consecutivo;";
-            $informacion = DB::select($query);
-            return response()->json(array('error' => false, 'data' => $informacion, 'code' => 200));
+        $query = "SELECT * FROM MIR_CARATULA_View where EjercicioFiscal=$ef ";
 
-        }else if ($request->id_secretaria == 0 && $request->id_ua != 0){
-            
-            $query = "SELECT * FROM MIR_CARATULA_View WHERE idUA = '$request->id_ua' and EjercicioFiscal=$ef ORDER BY Consecutivo;";
-            $informacion = DB::select($query);
-            return response()->json(array('error' => false, 'data' => $informacion, 'code' => 200));
-
-        }else{
-
-            $query = "SELECT * FROM MIR_CARATULA_View WHERE idSecretaria = '$request->id_secretaria' AND idUA = '$request->id_ua' and EjercicioFiscal=$ef ORDER BY Consecutivo;";
-            $informacion = DB::select($query);
-            return response()->json(array('error' => false, 'data' => $informacion, 'code' => 200));
-
+        if($usuario->TipoUsuario != "1") {
+            //solo puede ver las mir de su secretaria
+            $query .= "AND idSecretaria = '$usuario->idSecretaria' AND idUA = '$usuario->idUnidad'";
         }
+        else{
+            if($request->id_secretaria != 0)
+                $query .= "AND idSecretaria = '$usuario->id_secretaria' ";
+            if($request->id_ua != 0)
+                $query .= "AND idUA = '$request->id_ua' ";
+        }
+        $query .= " ORDER BY Consecutivo";
+
+        $informacion = DB::select($query);
+
+        return response()->json(array('error' => false, 'data' => $informacion, 'code' => 200));
     }
 
     public function caratula(Request $request)

@@ -3,16 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Secretaria;
+
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 
-class SecretariaController extends Controller
+class SecretariaController extends BaseController
 {
     public function index()
     {
-        $query = "SELECT * FROM SECRETARIAS WHERE Activo = 'S';";
+        $usuario = $this->getUsuarioActual();
+
+        //6-> enlace pbr, 1 administrador
+        if($usuario->TipoUsuario == 1)
+            $query = "SELECT * FROM SECRETARIAS WHERE Activo = 'S'";
+        else
+            $query = "SELECT * FROM SECRETARIAS WHERE  Activo = 'S'  AND idSecretaria=$usuario->idSecretaria";
+
         $secretarias = DB::select($query);
         return response()->json(array('error' => false, 'data' => $secretarias, 'code' => 200));
     }
