@@ -9,6 +9,7 @@ function ResponseGetSecretarias(response) {
         $('#select_Secretaria').children('option:not(:first)').remove();
         $('#select_entepublido').children('option:not(:first)').remove();
         info_secretarias = response.data;
+        
         for (var i = 0; i < response.data.length; i++) {
             $('#select_Secretaria').append($('<option>', {
                 value: response.data[i].idSecretaria,
@@ -21,6 +22,7 @@ function ResponseGetSecretarias(response) {
         }
         $('#select_Secretaria').selectpicker("refresh");
         $('#select_entepublido').selectpicker();
+        swal.close();
         GetUnidadesAdministrativas();
     } else {
         swal.close();
@@ -36,23 +38,32 @@ function GetUnidadesAdministrativas(){
 
 function ResponseGetUnidadesAdministrativas(response){
     if (!response.error) {
-        $('#select_UnidadAdministrativa').children().remove();
-        info_unidadadministrativa = response.data;
-        for (var i = 0; i < response.data.length; i++) {
-            $('#select_UnidadAdministrativa').append($('<option>', {
-                value: response.data[i].idUnidad,
-                text: ("[" + response.data[i].idUnidad + "] " + response.data[i].Descripcion)
-            }));
-        }
+        agregarUnidadesAdministrativas(response.data);
 
-        $('#select_UnidadAdministrativa').selectpicker("refresh");
-        
         GetEjes();
     } else {
         swal.close();
         console.log(response.result)
         Func_Aviso("Anomalía detectada", "Ha ocurrido una anomalía al obtener la información del módulo, favor de intentarlo nuevamente.", "error");
     }
+}
+
+function agregarUnidadesAdministrativas(data) {
+    $('#select_UnidadAdministrativa').selectpicker("destroy");
+    $('#select_UnidadAdministrativa').empty();
+    info_unidadadministrativa = data;
+    $('#select_UnidadAdministrativa').append($('<option>', {
+        value: "",
+        text: "-"
+    }));
+    for (var i = 0; i < data.length; i++) {
+        $('#select_UnidadAdministrativa').append($('<option>', {
+            value: data[i].idUnidad,
+            text: ("[" + data[i].idUnidad + "] " + data[i].Descripcion)
+        }));
+    }
+    $('#select_UnidadAdministrativa').selectpicker();
+    $('#select_UnidadAdministrativa').selectpicker("val","");
 }
 
 function GetEjes() {
@@ -235,7 +246,8 @@ function GetConteos() {
 
     var req = {
         ejercicio_fiscal: $("#select_ef").val(),
-        idSecretaria: $("#select_Secretaria").val()
+        idSecretaria: $("#select_Secretaria").val(),
+        id_unidad: $("#select_UnidadAdministrativa").val()
     }
     repository.Mir.ContarIndicadores(req)
     .then((response)=>{
@@ -253,7 +265,8 @@ function GetConteos() {
     else {
         repository.ProgramasPresupuestales.GetCountProgramasP({
             id_secretaria: req.idSecretaria,
-            ejercicio_fiscal: req.ejercicio_fiscal
+            ejercicio_fiscal: req.ejercicio_fiscal,
+            id_unidad: req.id_unidad
         })
         .then((response)=>{
             $("#numProgramas").text(response.data[0]['Programas']);

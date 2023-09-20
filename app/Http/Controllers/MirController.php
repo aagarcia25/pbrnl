@@ -28,8 +28,8 @@ class MirController extends BaseController
             $query .= "AND idSecretaria = '$usuario->idSecretaria' AND idUA = '$usuario->idUnidad'";
         }
         else{
-            if($request->id_secretaria != 0)
-                $query .= "AND idSecretaria = '$usuario->id_secretaria' ";
+            if($request->id_secretaria != 0 && $request->id_secretaria != '')
+                $query .= "AND idSecretaria = '$request->id_secretaria' ";
             if($request->id_ua != 0)
                 $query .= "AND idUA = '$request->id_ua' ";
         }

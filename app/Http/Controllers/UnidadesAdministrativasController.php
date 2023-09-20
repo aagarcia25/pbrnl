@@ -25,7 +25,8 @@ class UnidadesAdministrativasController extends BaseController
 
     public function index(Request $request)
     {
-        $query = "SELECT * FROM UNIDADES WHERE idSecretaria = '$request->id_Secretaria' AND Activo = 'S';";
+        $query = "SELECT * FROM UNIDADES 
+            WHERE idSecretaria = '$request->id_Secretaria' AND Activo = 'S';";
         $informacion = DB::select($query);
 
         return response()->json(array('error' => false, 'data' => $informacion, 'code' => 200));

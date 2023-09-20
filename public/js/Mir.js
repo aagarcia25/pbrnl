@@ -332,7 +332,15 @@ function SeleccionarTablaFormulas() {
 function OnChange_Secretaria(){
     $("#select_Secretaria").on("change", function(){
         Func_Cargando();
-        GetMir();
+
+        //traer unidades administrativas
+        repository.UnidadesAdministrativas.GetUnidadesAdministrativas({
+            id_Secretaria : $("#select_Secretaria").val()
+        })
+        .then((response)=>{
+            agregarUnidadesAdministrativas(response.data);
+            GetMir();
+        });
     });
 }
 
