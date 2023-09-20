@@ -49,26 +49,28 @@ class ProgramasPresupuestalesController extends BaseController
         if($usuario->TipoUsuario == 1) {
             //es un administrador
             $idSecretaria = $request->id_secretaria;
-            $idUA = '';
+            $idUA = $request->id_unidad;
         }
         else{
             $idSecretaria = $usuario->idSecretaria;
             $idUA = $usuario->idUnidad;
         }
+        $ejercicio_fiscal = $request->ejercicio_fiscal;
 
         $query = "SELECT 
             (SELECT COUNT(*) 
                 FROM PROGRAMATICO AS A 
                 INNER JOIN SECRETARIAS AS B ON A.idSecretaria = B.idSecretaria 
                 WHERE A.idClasificacion IN ('PP') 
-                    and A.ejercicioFiscal = $request->ejercicio_fiscal
+                    and A.ejercicioFiscal = $ejercicio_fiscal
                     AND case when '$idSecretaria' <> '' then A.idSecretaria = '$idSecretaria'  else 1 = 1 end
                     AND case when '$idUA' <> '' then A.idUA = '$idUA'  else 1 = 1 end
                 ORDER BY A.Consecutivo) AS 'Programas',
             (SELECT COUNT(*) FROM PROGRAMATICO_COMP AS A 
                 INNER JOIN UNIDADES AS B ON A.idUA = B.idUnidad 
                     AND A.idSecretaria = B.idSecretaria
-                WHERE A.idSecretaria = '$idSecretaria'
+                WHERE 
+                A.ejercicioFiscal = $ejercicio_fiscal
                 AND case when '$idSecretaria' <> '' then A.idSecretaria = '$idSecretaria'  else 1 = 1 end
                 AND case when '$idUA' <> '' then A.idUA = '$idUA'  else 1 = 1 end
                 ) 

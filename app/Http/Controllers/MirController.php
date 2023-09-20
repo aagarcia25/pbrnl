@@ -99,7 +99,8 @@ class MirController extends BaseController
 
     public function componentes(Request $request)
     {
-        $query = "SELECT c1.*, cc.DescripcionComponente as Componente, cc.idUA FROM 
+        $query = "SELECT c1.*, 
+                cc.DescripcionComponente as Componente, cc.idUA FROM 
             COMPONENTE1 c1
             LEFT JOIN PROGRAMATICO_COMP cc
             on c1.ComponenteId = cc.Id

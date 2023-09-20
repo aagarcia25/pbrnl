@@ -333,14 +333,24 @@ function OnChange_Secretaria(){
     $("#select_Secretaria").on("change", function(){
         Func_Cargando();
 
-        //traer unidades administrativas
-        repository.UnidadesAdministrativas.GetUnidadesAdministrativas({
-            id_Secretaria : $("#select_Secretaria").val()
-        })
-        .then((response)=>{
-            agregarUnidadesAdministrativas(response.data);
-            GetMir();
-        });
+        var id_secretaria = $("#select_Secretaria").val();
+        if(id_secretaria != "") {
+            //traer unidades administrativas
+            repository.UnidadesAdministrativas.GetUnidadesAdministrativas({
+                id_Secretaria : id_secretaria
+            })
+            .then((response)=>{
+                agregarUnidadesAdministrativas(response.data);
+                GetMir();
+            });
+        }
+        else {
+            repository.UnidadesAdministrativas.GetAllUnidadesAdministrativas()
+            .then((response) => {
+                agregarUnidadesAdministrativas(response.data);
+                GetMir();
+            });
+        }
     });
 }
 
