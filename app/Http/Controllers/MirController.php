@@ -16,6 +16,12 @@ use Illuminate\Support\Facades\DB;
 
 class MirController extends BaseController
 {
+    public function MirView(){
+        $usuario = $this->getUsuarioActual();
+
+        return view('RevisarMIR', ["tipoUsuario"=>$usuario->TipoUsuario]);
+    }
+
     public function index(Request $request)
     {
         $ef = $request->ef;
@@ -25,7 +31,10 @@ class MirController extends BaseController
 
         if($usuario->TipoUsuario != "1") {
             //solo puede ver las mir de su secretaria
-            $query .= "AND idSecretaria = '$usuario->idSecretaria' AND idUA = '$usuario->idUnidad'";
+            $query .= "AND idSecretaria = '$usuario->idSecretaria'";
+//los que no son de la secretaria 321 no importa la unidad
+            if($usuario->idSecretaria == '321')
+                $query .= " AND idUA = '$usuario->idUnidad'";
         }
         else{
             if($request->id_secretaria != 0 && $request->id_secretaria != '')
@@ -104,8 +113,7 @@ class MirController extends BaseController
             COMPONENTE1 c1
             LEFT JOIN PROGRAMATICO_COMP cc
             on c1.ComponenteId = cc.Id
-            WHERE ClasProgramatica = 
-                '$request->consecutivo' 
+            WHERE cc.Consecutivo = '$request->consecutivo' 
                 and c1.EjercicioFiscal = $request->ejercicioFiscal;";
         $info = DB::select($query);
         return response()->json(array('error' => false, 'data' => $info, 'code' => 200));

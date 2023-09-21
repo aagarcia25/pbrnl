@@ -1,6 +1,8 @@
 @php
    $view = "Revisar MIR";
    $img = "icono_revisar_MIR.svg";
+   $esEnlacePbr = $tipoUsuario != 1;
+   $disabled = $esEnlacePbr == 1 ? "disabled" : "";
 @endphp
 
  @include('includes._partialHeader')
@@ -8,6 +10,8 @@
 <link rel="stylesheet" type="text/css" href="css/EstilosPbR.css" />
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet" />
+
+
 
 <style>
     .input-background-white {
@@ -56,12 +60,13 @@
                             <table id="table" class="table table-striped table-hover">
                                 <thead>
                                     <tr class="table-header text-center">
-                                        <th scope="col" width="10%">CONAC</th>
-                                        <th scope="col" width="10%">Consecutivo</th>
-                                        <th scope="col" width="35%">Descripción Programa</th>
-                                        <th scope="col" width="15%">Tipo Programa</th>
+                                        <th scope="col" width="5%">CONAC</th>
+                                        <th scope="col" width="5%">Consecutivo</th>
+                                        <th scope="col" width="45%">Descripción Programa</th>
+                                        <th scope="col" width="5%">Tipo Programa</th>
                                         <th scope="col" width="20%">Tipo de Beneficiario</th>
-                                        <th scope="col" width="10%">Ejercicio</th>
+                                        
+                                        <th scope="col" width="20%">Estatus</th>
                                     </tr>
                                 </thead>
                                 <tbody></tbody>
@@ -102,7 +107,7 @@
                                 <input type="hidden" id="conac_caratula">
                                 <div class="col-6 mb-1 FormUsr FontMsg">
                                     <label for="select_entepublido" class="form-labelUsr3">Ente Público</label>
-                                    <select id="select_entepublido" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required Height="40px">
+                                    <select {{ $disabled }} id="select_entepublido" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required Height="40px">
                                     </select>
                                 </div>
                                 <div class="col-6 mb-1 FormUsr FontMsg">
@@ -124,22 +129,22 @@
                                 </div>
                                 <div class="col-6 mb-1 FormUsr FontMsg mt-3">
                                     <label for="select_ejeped" class="form-labelUsr3">Eje del PED</label>
-                                    <select id="select_ejeped" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                    <select {{ $disabled }} id="select_ejeped" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
                                     </select>
                                 </div>
                                 <div class="col-6 mb-1 FormUsr FontMsg mt-3">
                                     <label for="select_temaped" class="form-labelUsr3">Tema del PED</label>
-                                    <select id="select_temaped" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                    <select {{ $disabled }} id="select_temaped" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
                                     </select>
                                 </div>
                                 <div class="col-12 mb-1 FormUsr FontMsg mt-3">
                                     <label for="select_objetivo" class="form-labelUsr3">Id Objetivo</label>
-                                    <select id="select_objetivo" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                    <select {{ $disabled }} id="select_objetivo" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
                                     </select>
                                 </div>
                                 <div class="col-12 mb-1 FormUsr FontMsg mt-3">
                                     <label for="select_estrategia" class="form-labelUsr3">Id Estrategia</label>
-                                    <select id="select_estrategia" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                    <select {{ $disabled }} id="select_estrategia" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
                                     </select>
                                 </div>
                                 <div class="col-12 mb-1 FormUsr FontMsg mt-3">
@@ -158,19 +163,19 @@
                                 </div>
                                 <div class="col-4 align-self-center FormUsr FontMsg mt-3">
                                     <label for="select_tipobeneficiario" class="form-labelUsr3">Tipo de Beneficiario</label>
-                                    <select id="select_tipobeneficiario" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                    <select {{ $disabled }} id="select_tipobeneficiario" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
                                     </select>
                                 </div>
                                 <div class="col-8">
                                     <div class="row">
                                         <div class="col-12 mb-1 FormUsr FontMsg mt-3">
                                             <label for="select_descripcionampliabeneficiario1" class="form-labelUsr3">Descripción Amplia del Beneficiario 1 (Población o Area de Enfoque Objetivo)</label>
-                                            <select id="select_descripcionampliabeneficiario1" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                            <select {{ $disabled }} id="select_descripcionampliabeneficiario1" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
                                             </select>
                                         </div>
                                         <div class="col-12 mb-1 FormUsr FontMsg mt-3">
                                             <label for="select_descripcionampliabeneficiario2" class="form-labelUsr3">Descripción Amplia del Beneficiario 2 (Población o Area de Enfoque Objetivo)</label>
-                                            <select id="select_descripcionampliabeneficiario2" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                            <select {{ $disabled }} id="select_descripcionampliabeneficiario2" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
                                             </select>
                                         </div>
                                     </div>
@@ -196,7 +201,7 @@
                                 <div class="row">
                                     <div class="col-12 mb-1 FormUsr FontMsg mt-3">
                                         <label for="fin_fin" class="form-labelUsr4">Fin</label>
-                                        <textarea class="TextBoxUsr w-100 H-50" id="fin_fin" required maxlength="300" rows="2"></textarea>
+                                        <textarea {{ $disabled }} class="TextBoxUsr w-100 H-50" id="fin_fin" required maxlength="300" rows="2"></textarea>
                                     </div>
                                     <div class="col-2 mb-1 FormUsr FontMsg mt-3">
                                         <label for="claveindicador_fin" class="form-labelUsr4">Clave Indicador</label>
@@ -204,32 +209,32 @@
                                     </div>
                                     <div class="col-10 mb-1 FormUsr FontMsg mt-3">
                                         <label for="nombreindicar_fin" class="form-labelUsr4">Nombre del Indicador</label>
-                                        <textarea class="TextBoxUsr w-100 H-50" id="nombreindicar_fin" required maxlength="300" rows="2"></textarea>
+                                        <textarea {{ $disabled }} class="TextBoxUsr w-100 H-50" id="nombreindicar_fin" required maxlength="300" rows="2"></textarea>
                                         <div class="position-absolute bottom-0 end-0">
                                             <label id="lblContIndicadorFin" class="LabelContador me-4">0/30</label>
                                         </div>
                                     </div>
                                     <div class="col-12 mb-1 FormUsr FontMsg mt-3">
                                         <label for="descripcionformula_fin" class="form-labelUsr4">Descripción del método de cálculo</label>
-                                        <textarea class="TextBoxUsr w-100 H-50" id="descripcionformula_fin" required maxlength="300" rows="2"></textarea>
+                                        <textarea {{ $disabled }} class="TextBoxUsr w-100 H-50" id="descripcionformula_fin" required maxlength="300" rows="2"></textarea>
                                     </div>
                                     <div class="col-3 mb-1 FormUsr FontMsg mt-3 Rows4">
                                         <label for="variable1_fin" class="form-labelUsr4">Variable 1 (V1)</label>
-                                        <textarea class="TextBoxUsr w-100" id="variable1_fin" required maxlength="300" rows="5"></textarea>
+                                        <textarea {{ $disabled }} class="TextBoxUsr w-100" id="variable1_fin" required maxlength="300" rows="5"></textarea>
                                     </div>
                                     <div class="col-3 mb-1 FormUsr FontMsg mt-3">
                                         <label for="variable2_fin" class="form-labelUsr4">Variable 2 (V2)</label>
-                                        <textarea class="TextBoxUsr w-100" id="variable2_fin" required maxlength="300" rows="5"></textarea>
+                                        <textarea {{ $disabled }} class="TextBoxUsr w-100" id="variable2_fin" required maxlength="300" rows="5"></textarea>
                                     </div>
                                     <div class="col-3 mb-1 FormUsr FontMsg mt-3">
                                         <label for="variable3_fin" class="form-labelUsr4">Método de cálculo</label>
-                                        <textarea class="TextBoxUsr w-100" id="variable3_fin" required maxlength="300" rows="5"></textarea>
+                                        <textarea {{ $disabled }} class="TextBoxUsr w-100" id="variable3_fin" required maxlength="300" rows="5"></textarea>
                                     </div>
                                     <div class="col-3 mb-1 FormUsr FontMsg mt-3">
                                         <div class="row">
                                             <div class="col-12">
                                                 <label for="select_unidadmedida_fin" class="form-labelUsr3">Unidad de Medida</label>
-                                                <select id="select_unidadmedida_fin" class="TextBoxUsr unidad-medida select-mir w-100" data-tipo="fin" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                                <select {{ $disabled }} id="select_unidadmedida_fin" class="TextBoxUsr unidad-medida select-mir w-100" data-tipo="fin" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
                                                     <option value="-">-</option>
                                                     <option value="PORCENTAJE">PORCENTAJE</option>
                                                     <option value="ABSOLUTO">ABSOLUTO</option>
@@ -243,7 +248,7 @@
                                     </div>
                                     <div class="col-3 mb-1 FormUsr FontMsg mt-3">
                                         <label for="selectfrecuencia_fin" class="form-labelUsr3">Frecuencia</label>
-                                        <select id="selectfrecuencia_fin" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                        <select {{ $disabled }} id="selectfrecuencia_fin" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
                                             <option value="-">-</option>
                                             <option value="ANUAL">ANUAL</option>
                                             <option value="BIENAL">BIENAL</option>
@@ -261,7 +266,7 @@
                                                         <label for="ejecerciciofisca_fin" class="form-label">Ejercicio Fiscal:</label>
                                                     </div>
                                                     <div class="col-6">
-                                                        <select id="ejecerciciofisca_fin" class="selectpicker show-tick form-control" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                                        <select {{ $disabled }} id="ejecerciciofisca_fin" class="selectpicker show-tick form-control" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
                                                             <option value="-">-</option>
                                                             <option value="2020">2020</option>
                                                             <option value="2021">2021</option>
@@ -291,23 +296,23 @@
                                     </div>
                                     <div class="col-3 mb-1 FormUsr FontMsg mt-3">
                                         <label for="lineabaseV1_fin" class="form-labelUsr4">V1</label>
-                                        <input type="text" class="TextBoxUsr w-100 H-50 money" id="lineabaseV1_fin">
+                                        <input {{ $disabled }} type="text" class="TextBoxUsr w-100 H-50 money" id="lineabaseV1_fin">
                                     </div>
                                     <div class="col-3 mb-1 FormUsr FontMsg mt-3">
                                         <label for="lineabaseV2_fin" class="form-labelUsr4">V2</label>
-                                        <input type="text" class="TextBoxUsr w-100 H-50 money" id="lineabaseV2_fin">
+                                        <input {{ $disabled }} type="text" class="TextBoxUsr w-100 H-50 money" id="lineabaseV2_fin">
                                     </div>
                                     <div class="col-6 mb-1 FormUsr FontMsg mt-3">
                                         <label for="mediosverificacion_fin" class="form-labelUsr4">Medios de Verificación</label>
-                                        <input type="text" class="TextBoxUsr w-100 H-50" id="mediosverificacion_fin">
+                                        <input {{ $disabled }} type="text" class="TextBoxUsr w-100 H-50" id="mediosverificacion_fin">
                                     </div>
                                     <div class="col-6 mb-1 FormUsr FontMsg mt-3">
                                         <label for="fuentesinformacion_fin" class="form-labelUsr4">Fuentes de Información</label>
-                                        <input type="text" class="TextBoxUsr w-100 H-50" id="fuentesinformacion_fin">
+                                        <input {{ $disabled }} type="text" class="TextBoxUsr w-100 H-50" id="fuentesinformacion_fin">
                                     </div>
                                     <div class="col-12 mb-1 FormUsr FontMsg mt-3">
                                         <label for="supuestos_fin" class="form-labelUsr4">Supuestos</label>
-                                        <textarea class="TextBoxUsr w-100 H-50" id="supuestos_fin" required maxlength="300" rows="2"></textarea>
+                                        <textarea {{ $disabled }} class="TextBoxUsr w-100 H-50" id="supuestos_fin" required maxlength="300" rows="2"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -315,7 +320,7 @@
                                 <div class="row">
                                     <div class="col-4 mb-3 FormUsr FontMsg mt-3">
                                         <label for="select_sentidoindicador_fin" class="form-labelUsr3">Sentido del Indicador</label>
-                                        <select id="select_sentidoindicador_fin" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                        <select {{ $disabled }} id="select_sentidoindicador_fin" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
                                             <option value="-">-</option>
                                             <option value="ASCENDENTE">ASCENDENTE</option>
                                             <option value="DESCENDENTE">DESCENDENTE</option>
@@ -324,7 +329,7 @@
                                     </div>
                                     <div class="col-4 mb-3 FormUsr FontMsg mt-3">
                                         <label for="select_tipoindicador_fin" class="form-labelUsr3">Tipo de indicador</label>
-                                        <select id="select_tipoindicador_fin" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                        <select {{ $disabled }} id="select_tipoindicador_fin" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
                                             <option value="-">-</option>
                                             <option value="ESTRATÉGICO">ESTRATÉGICO</option>
                                             <option value="GESTIÓN">GESTIÓN</option>
@@ -332,7 +337,7 @@
                                     </div>
                                     <div class="col-4 mb-3 FormUsr FontMsg mt-3">
                                         <label for="select_dimensionindicador_fin" class="form-labelUsr3">Dimensión del indicador</label>
-                                        <select id="select_dimensionindicador_fin" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                        <select {{ $disabled }} id="select_dimensionindicador_fin" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
                                             <option value="-">-</option>
                                             <option value="CALIDAD">CALIDAD</option>
                                             <option value="ECONOMÍA">ECONOMÍA</option>
@@ -349,22 +354,22 @@
                                         <div class="col-3 mb-3 border border-2 rounded ms-4">
                                             <label class="form-label">Claridad</label>
                                             <div class="form-check">
-                                                <input class="form-check-input ms-5" type="radio" name="claridad_fin" id="claridad_finSi" value="S">
+                                                <input {{ $disabled }} class="form-check-input ms-5" type="radio" name="claridad_fin" id="claridad_finSi" value="S">
                                                 <label class="form-check-label ms-4" for="claridad_finSi">Si</label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input ms-5" type="radio" name="claridad_fin" id="claridad_finNo" value="N">
+                                                <input {{ $disabled }} class="form-check-input ms-5" type="radio" name="claridad_fin" id="claridad_finNo" value="N">
                                                 <label class="form-check-label ms-4" for="claridad_finNo">No</label>
                                             </div>
                                         </div>
                                         <div class="col-3 mb-3 border border-2 rounded ms-4">
                                             <label class="form-label">Relevancia</label>
                                             <div class="form-check">
-                                                <input class="form-check-input ms-5" type="radio" name="relevancia_fin" id="relevancia_finSi" value="S">
+                                                <input {{ $disabled }} class="form-check-input ms-5" type="radio" name="relevancia_fin" id="relevancia_finSi" value="S">
                                                 <label class="form-check-label ms-4" for="relevancia_finSi">Si</label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input ms-5" type="radio" name="relevancia_fin" id="relevancia_finNo" value="N">
+                                                <input {{ $disabled }} class="form-check-input ms-5" type="radio" name="relevancia_fin" id="relevancia_finNo" value="N">
                                                 <label class="form-check-label ms-4" for="relevancia_finNo">No</label>
                                             </div>
                                         </div>
@@ -375,7 +380,7 @@
                                                 <label class="form-check-label ms-4" for="economia_finSi">Si</label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input ms-5" type="radio" name="economia_fin" id="economia_finNo" value="N">
+                                                <input {{ $disabled }} class="form-check-input ms-5" type="radio" name="economia_fin" id="economia_finNo" value="N">
                                                 <label class="form-check-label ms-4" for="economia_finNo">No</label>
                                             </div>
                                         </div>    
@@ -386,33 +391,33 @@
                                         <div class="col-3 mb-3 border border-2 rounded ms-4">
                                             <label class="form-label">Monitoreable</label>
                                             <div class="form-check">
-                                                <input class="form-check-input ms-5" type="radio" name="monitoreable_fin" id="monitoreable_finSi" value="S">
+                                                <input {{ $disabled }} class="form-check-input ms-5" type="radio" name="monitoreable_fin" id="monitoreable_finSi" value="S">
                                                 <label class="form-check-label ms-4" for="monitoreable_finSi">Si</label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input ms-5" type="radio" name="monitoreable_fin" id="monitoreable_finNo" value="N">
+                                                <input {{ $disabled }} class="form-check-input ms-5" type="radio" name="monitoreable_fin" id="monitoreable_finNo" value="N">
                                                 <label class="form-check-label ms-4" for="monitoreable_finNo">No</label>
                                             </div>
                                         </div>
                                         <div class="col-3 mb-3 border border-2 rounded ms-4">
                                             <label class="form-label">Adecuado</label>
                                             <div class="form-check">
-                                                <input class="form-check-input ms-5" type="radio" name="adecuado_fin" id="adecuado_finSi" value="S">
+                                                <input {{ $disabled }} class="form-check-input ms-5" type="radio" name="adecuado_fin" id="adecuado_finSi" value="S">
                                                 <label class="form-check-label ms-4" for="adecuado_finSi">Si</label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input ms-5" type="radio" name="adecuado_fin" id="adecuado_finNo" value="N">
+                                                <input {{ $disabled }} class="form-check-input ms-5" type="radio" name="adecuado_fin" id="adecuado_finNo" value="N">
                                                 <label class="form-check-label ms-4" for="adecuado_finNo">No</label>
                                             </div>
                                         </div>
                                         <div class="col-3 mb-3 border border-2 rounded ms-4">
                                             <label class="form-label">Aporte marginal</label>
                                             <div class="form-check">
-                                                <input class="form-check-input ms-5" type="radio" name="aportemarginal_fin" id="aportemarginal_finSi" value="S">
+                                                <input {{ $disabled }} class="form-check-input ms-5" type="radio" name="aportemarginal_fin" id="aportemarginal_finSi" value="S">
                                                 <label class="form-check-label ms-4" for="aportemarginal_finSi">Si</label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input ms-5" type="radio" name="aportemarginal_fin" id="aportemarginal_finNo" value="N">
+                                                <input {{ $disabled }} class="form-check-input ms-5" type="radio" name="aportemarginal_fin" id="aportemarginal_finNo" value="N">
                                                 <label class="form-check-label ms-4" for="aportemarginal_finNo">No</label>
                                             </div>
                                         </div>    
@@ -420,27 +425,27 @@
                                     </div>
                                     <hr>
                                     <div class="col-12 mb-3 FormUsr FontMsg mt-3">
-                                        <label for="select_unidadresponsablereportar_fin" class="form-labelUsr3">Unidad responsable de reportar el indicador</label>
+                                        <label {{ $disabled }} for="select_unidadresponsablereportar_fin" class="form-labelUsr3">Unidad responsable de reportar el indicador</label>
                                         <select id="select_unidadresponsablereportar_fin" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
                                         </select>
                                     </div>
                                     <div class="col-4 mb-3 FormUsr FontMsg mt-3">
                                         <label for="descripcionindicador_fin" class="form-labelUsr4">Descripción Indicador</label>
-                                        <textarea class="form-control TextBoxUsr w-100" id="descripcionindicador_fin" required maxlength="300" rows="6"></textarea>
+                                        <textarea {{ $disabled }} class="form-control TextBoxUsr w-100" id="descripcionindicador_fin" required maxlength="300" rows="6"></textarea>
                                         <div class="position-absolute bottom-0 end-0">
                                             <label id="lblIndicaFin" class="LabelContador me-4">0/240</label>
                                         </div>
                                     </div>
                                     <div class="col-4 mb-3 FormUsr FontMsg mt-3">
                                         <label for="descripcionnumerador_fin" class="form-labelUsr4">Descripción Numerador</label>
-                                        <textarea class="form-control TextBoxUsr w-100" id="descripcionnumerador_fin" required maxlength="300" rows="6"></textarea>
+                                        <textarea {{ $disabled }} class="form-control TextBoxUsr w-100" id="descripcionnumerador_fin" required maxlength="300" rows="6"></textarea>
                                         <div class="position-absolute bottom-0 end-0">
                                             <label id="lblContDescNumFin" class="LabelContador me-4">0/240</label>
                                         </div>
                                     </div>
                                     <div class="col-4 mb-3 FormUsr FontMsg mt-3">
                                         <label for="descripciondenominador_fin" class="form-labelUsr4">Descripción Denominador</label>
-                                        <textarea class="form-control TextBoxUsr w-100" id="descripciondenominador_fin" required maxlength="300" rows="6"></textarea>
+                                        <textarea {{ $disabled }} class="form-control TextBoxUsr w-100" id="descripciondenominador_fin" required maxlength="300" rows="6"></textarea>
                                         <div class="position-absolute bottom-0 end-0">
                                             <label id="lblContDescDenomFin" class="LabelContador me-4">0/240</label>
                                         </div>
@@ -466,40 +471,40 @@
                                 <div class="row">
                                     <div class="col-12 mb-1 FormUsr FontMsg mt-3">
                                         <label for="proposito_proposito" class="form-labelUsr4">Proposito</label>
-                                        <textarea class="TextBoxUsr w-100 H-50" id="proposito_proposito" required maxlength="300" rows="2"></textarea>
+                                        <textarea {{ $disabled }} class="TextBoxUsr w-100 H-50" id="proposito_proposito" required maxlength="300" rows="2"></textarea>
                                     </div>
                                     <div class="col-2 mb-1 FormUsr FontMsg mt-3">
                                         <label for="claveindicador_proposito" class="form-labelUsr4">Clave indicador</label>
-                                        <input type="text" class="TextBoxUsrReadOnly w-100 H-50 text-center" id="claveindicador_proposito"  disabled="" style="background: white; color: gray;">
+                                        <input {{ $disabled }} type="text" class="TextBoxUsrReadOnly w-100 H-50 text-center" id="claveindicador_proposito"  disabled="" style="background: white; color: gray;">
                                     </div>
                                     <div class="col-10 mb-1 FormUsr FontMsg mt-3">
                                         <label for="nombreindicar_proposito" class="form-labelUsr4">Nombre del indicador</label>
-                                        <textarea class="TextBoxUsr w-100 H-50" id="nombreindicar_proposito" required maxlength="300" rows="2"></textarea>
+                                        <textarea {{ $disabled }} class="TextBoxUsr w-100 H-50" id="nombreindicar_proposito" required maxlength="300" rows="2"></textarea>
                                         <div class="position-absolute bottom-0 end-0">
                                             <label id="lblContIndicadorProp" class="LabelContador me-4">0/30</label>
                                         </div>
                                     </div>
                                     <div class="col-12 mb-1 FormUsr FontMsg mt-3">
                                         <label for="descripcionformula_proposito" class="form-labelUsr4">Descripción de la fórmula</label>
-                                        <textarea class="TextBoxUsr w-100 H-50" id="descripcionformula_proposito" required maxlength="300" rows="2"></textarea>
+                                        <textarea {{ $disabled }} class="TextBoxUsr w-100 H-50" id="descripcionformula_proposito" required maxlength="300" rows="2"></textarea>
                                     </div>
                                     <div class="col-3 mb-1 FormUsr FontMsg mt-3">
                                         <label for="variable1_proposito" class="form-labelUsr4">Variable 1 (V1)</label>
-                                        <textarea class="TextBoxUsr w-100" id="variable1_proposito" required maxlength="300" rows="5"></textarea>
+                                        <textarea {{ $disabled }} class="TextBoxUsr w-100" id="variable1_proposito" required maxlength="300" rows="5"></textarea>
                                     </div>
                                     <div class="col-3 mb-1 FormUsr FontMsg mt-3">
                                         <label for="variable2_proposito" class="form-labelUsr4">Variable 2 (V2)</label>
-                                        <textarea class="TextBoxUsr w-100" id="variable2_proposito" required maxlength="300" rows="5"></textarea>
+                                        <textarea {{ $disabled }} class="TextBoxUsr w-100" id="variable2_proposito" required maxlength="300" rows="5"></textarea>
                                     </div>
                                     <div class="col-3 mb-1 FormUsr FontMsg mt-3">
                                         <label for="variable3_proposito" class="form-labelUsr4">Variable 3 (V3)</label>
-                                        <textarea class="TextBoxUsr w-100" id="variable3_proposito" required maxlength="300" rows="5"></textarea>
+                                        <textarea {{ $disabled }} class="TextBoxUsr w-100" id="variable3_proposito" required maxlength="300" rows="5"></textarea>
                                     </div>
                                     <div class="col-3 mb-1 FormUsr FontMsg mt-3">
                                         <div class="row">
                                             <div class="col-12">
                                                 <label for="select_unidadmedida_proposito" class="form-labelUsr3">Unidad de medida</label>
-                                                <select id="select_unidadmedida_proposito" class="TextBoxUsr unidad-medida select-mir w-100" data-tipo="proposito" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                                <select {{ $disabled }} id="select_unidadmedida_proposito" class="TextBoxUsr unidad-medida select-mir w-100" data-tipo="proposito" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
                                                     <option value="-">-</option>
                                                     <option value="PORCENTAJE">PORCENTAJE</option>
                                                     <option value="ABSOLUTO">ABSOLUTO</option>
@@ -507,13 +512,13 @@
                                             </div>
                                             <div id="d-descripcionunidadmedida_proposito" class="col-12 d-none FormUsr FontMsg mt-3">
                                                 <label for="descripcionunidadmedida_proposito" class="form-labelUsr4">Descripción</label>
-                                                <input type="text" class="form-control TextBoxUsr w-100 H-50" id="descripcionunidadmedida_proposito">
+                                                <input {{ $disabled }} type="text" class="form-control TextBoxUsr w-100 H-50" id="descripcionunidadmedida_proposito">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-3 mb-1 FormUsr FontMsg mt-3">
                                         <label for="selectfrecuencia_proposito" class="form-labelUsr3">Frecuencia</label>
-                                        <select id="selectfrecuencia_proposito" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                        <select {{ $disabled }} id="selectfrecuencia_proposito" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
                                             <option value="-">-</option>
                                             <option value="ANUAL">ANUAL</option>
                                             <option value="BIENAL">BIENAL</option>
@@ -531,7 +536,7 @@
                                                         <label for="ejecerciciofisca_proposito" class="form-label">Ejercicio fiscal:</label>
                                                     </div>
                                                     <div class="col-6">
-                                                        <select id="ejecerciciofisca_proposito" class="selectpicker show-tick form-control" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                                        <select {{ $disabled }} id="ejecerciciofisca_proposito" class="selectpicker show-tick form-control" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
                                                             <option value="-">-</option>
                                                             <option value="2020">2020</option>
                                                             <option value="2021">2021</option>
@@ -544,7 +549,7 @@
                                                     <div class="col-6 mt-2">
                                                         <label for="lineabase_proposito1" class="form-label">Línea base</label>
                                                     </div>
-                                                    <div class="col-6">
+                                                    <div {{ $disabled }} class="col-6">
                                                         <input type="text" class="form-control" id="lineabase_proposito1" disabled="" style="background: white; color: gray;">
                                                     </div>
                                                 </div>
@@ -561,23 +566,23 @@
                                     </div>
                                     <div class="col-3 mb-1 FormUsr FontMsg mt-3">
                                         <label for="lineabaseV1_proposito" class="form-labelUsr4">V1</label>
-                                        <input type="text" class="TextBoxUsr w-100 H-50 money" id="lineabaseV1_proposito">
+                                        <input {{ $disabled }} type="text" class="TextBoxUsr w-100 H-50 money" id="lineabaseV1_proposito">
                                     </div>
                                     <div class="col-3 mb-1 FormUsr FontMsg mt-3">
                                         <label for="lineabaseV2_proposito" class="form-labelUsr4">V2</label>
-                                        <input type="text" class="TextBoxUsr w-100 H-50 money" id="lineabaseV2_proposito">
+                                        <input {{ $disabled }} type="text" class="TextBoxUsr w-100 H-50 money" id="lineabaseV2_proposito">
                                     </div>
                                     <div class="col-6 mb-1 FormUsr FontMsg mt-3">
                                         <label for="mediosverificacion_proposito" class="form-labelUsr4">Medios de Verificación</label>
-                                        <input type="text" class="TextBoxUsr w-100 H-50" id="mediosverificacion_proposito">
+                                        <input {{ $disabled }} type="text" class="TextBoxUsr w-100 H-50" id="mediosverificacion_proposito">
                                     </div>
                                     <div class="col-6 mb-1 FormUsr FontMsg mt-3">
                                         <label for="fuentesinformacion_proposito" class="form-labelUsr4">Fuentes de Información</label>
-                                        <input type="text" class="TextBoxUsr w-100 H-50" id="fuentesinformacion_proposito">
+                                        <input {{ $disabled }} type="text" class="TextBoxUsr w-100 H-50" id="fuentesinformacion_proposito">
                                     </div>
                                     <div class="col-12 mb-1 FormUsr FontMsg mt-3">
                                         <label for="supuestos_proposito" class="form-labelUsr4">Supuestos</label>
-                                        <textarea class="TextBoxUsr w-100 H-50" id="supuestos_proposito" required maxlength="300" rows="2"></textarea>
+                                        <textarea {{ $disabled }} class="TextBoxUsr w-100 H-50" id="supuestos_proposito" required maxlength="300" rows="2"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -585,7 +590,7 @@
                                 <div class="row">
                                     <div class="col-4 mb-3 FormUsr FontMsg mt-3">
                                         <label for="select_sentidoindicador_proposito" class="form-labelUsr3">Sentido del indicador</label>
-                                        <select id="select_sentidoindicador_proposito" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                        <select {{ $disabled }} id="select_sentidoindicador_proposito" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
                                             <option value="-">-</option>
                                             <option value="ASCENDENTE">ASCENDENTE</option>
                                             <option value="DESCENDENTE">DESCENDENTE</option>
@@ -594,7 +599,7 @@
                                     </div>
                                     <div class="col-4 mb-3 FormUsr FontMsg mt-3">
                                         <label for="select_tipoindicador_proposito" class="form-labelUsr3">Tipo de indicador</label>
-                                        <select id="select_tipoindicador_proposito" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                        <select {{ $disabled }} id="select_tipoindicador_proposito" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
                                             <option value="-">-</option>
                                             <option value="ESTRATÉGICO">ESTRATÉGICO</option>
                                             <option value="GESTIÓN">GESTIÓN</option>
@@ -602,7 +607,7 @@
                                     </div>
                                     <div class="col-4 mb-3 FormUsr FontMsg mt-3">
                                         <label for="select_dimensionindicador_proposito" class="form-labelUsr3">Dimensión del indicador</label>
-                                        <select id="select_dimensionindicador_proposito" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                        <select {{ $disabled }} id="select_dimensionindicador_proposito" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
                                             <option value="-">-</option>
                                             <option value="CALIDAD">CALIDAD</option>
                                             <option value="ECONOMÍA">ECONOMÍA</option>
@@ -619,33 +624,33 @@
                                         <div class="col-3 mb-3 border border-2 rounded ms-4">
                                             <label class="form-label">Claridad</label>
                                             <div class="form-check">
-                                                <input class="form-check-input ms-5" type="radio" name="claridad_proposito" id="claridad_propositoSi" value="S">
+                                                <input {{ $disabled }} class="form-check-input ms-5" type="radio" name="claridad_proposito" id="claridad_propositoSi" value="S">
                                                 <label class="form-check-label ms-4" for="claridad_finSi">Si</label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input ms-5" type="radio" name="claridad_proposito" id="claridad_propositoNo" value="N">
+                                                <input {{ $disabled }} class="form-check-input ms-5" type="radio" name="claridad_proposito" id="claridad_propositoNo" value="N">
                                                 <label class="form-check-label ms-4" for="claridad_propositoNo">No</label>
                                             </div>
                                         </div>
                                         <div class="col-3 mb-3 border border-2 rounded ms-4">
                                             <label class="form-label">Relevancia</label>
                                             <div class="form-check">
-                                                <input class="form-check-input ms-5" type="radio" name="relevancia_proposito" id="relevancia_propositoSi" value="S">
+                                                <input {{ $disabled }} class="form-check-input ms-5" type="radio" name="relevancia_proposito" id="relevancia_propositoSi" value="S">
                                                 <label class="form-check-label ms-4" for="relevancia_propositoSi">Si</label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input ms-5" type="radio" name="relevancia_proposito" id="relevancia_propositoNo" value="N">
+                                                <input {{ $disabled }} class="form-check-input ms-5" type="radio" name="relevancia_proposito" id="relevancia_propositoNo" value="N">
                                                 <label class="form-check-label ms-4" for="relevancia_propositoNo">No</label>
                                             </div>
                                         </div>
                                         <div class="col-3 mb-3 border border-2 rounded ms-4">
                                             <label class="form-label">Economía</label>
                                             <div class="form-check">
-                                                <input class="form-check-input ms-5" type="radio" name="economia_proposito" id="economia_propositoSi" value="S">
+                                                <input {{ $disabled }} class="form-check-input ms-5" type="radio" name="economia_proposito" id="economia_propositoSi" value="S">
                                                 <label class="form-check-label ms-4" for="economia_finSi">Si</label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input ms-5" type="radio" name="economia_proposito" id="economia_propositoNo" value="N">
+                                                <input {{ $disabled }} class="form-check-input ms-5" type="radio" name="economia_proposito" id="economia_propositoNo" value="N">
                                                 <label class="form-check-label ms-4" for="economia_propositoNo">No</label>
                                             </div>
                                         </div>
@@ -656,33 +661,33 @@
                                         <div class="col-3 mb-3 border border-2 rounded ms-4">
                                             <label class="form-label">Monitoreable</label>
                                             <div class="form-check">
-                                                <input class="form-check-input ms-5" type="radio" name="monitoreable_proposito" id="monitoreable_propositoSi" value="S">
+                                                <input {{ $disabled }} class="form-check-input ms-5" type="radio" name="monitoreable_proposito" id="monitoreable_propositoSi" value="S">
                                                 <label class="form-check-label ms-4" for="monitoreable_propositoSi">Si</label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input ms-5" type="radio" name="monitoreable_proposito" id="monitoreable_propositoNo" value="N">
+                                                <input {{ $disabled }} class="form-check-input ms-5" type="radio" name="monitoreable_proposito" id="monitoreable_propositoNo" value="N">
                                                 <label class="form-check-label ms-4" for="monitoreable_propositoNo">No</label>
                                             </div>
                                         </div>
                                         <div class="col-3 mb-3 border border-2 rounded ms-4">
                                             <label class="form-label">Adecuado</label>
                                             <div class="form-check">
-                                                <input class="form-check-input ms-5" type="radio" name="adecuado_proposito" id="adecuado_propositoSi" value="S">
+                                                <input {{ $disabled }} class="form-check-input ms-5" type="radio" name="adecuado_proposito" id="adecuado_propositoSi" value="S">
                                                 <label class="form-check-label ms-4" for="adecuado_propositoSi">Si</label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input ms-5" type="radio" name="adecuado_proposito" id="adecuado_propositoNo" value="N">
+                                                <input {{ $disabled }} class="form-check-input ms-5" type="radio" name="adecuado_proposito" id="adecuado_propositoNo" value="N">
                                                 <label class="form-check-label ms-4" for="adecuado_propositoNo">No</label>
                                             </div>
                                         </div>
                                         <div class="col-3 mb-3 border border-2 rounded ms-4">
                                             <label class="form-label">Aporte marginal</label>
                                             <div class="form-check">
-                                                <input class="form-check-input ms-5" type="radio" name="aportemarginal_proposito" id="aportemarginal_propositoSi" value="S">
+                                                <input {{ $disabled }} class="form-check-input ms-5" type="radio" name="aportemarginal_proposito" id="aportemarginal_propositoSi" value="S">
                                                 <label class="form-check-label ms-4" for="aportemarginal_finSi">Si</label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input ms-5" type="radio" name="aportemarginal_proposito" id="aportemarginal_propositoNo" value="N">
+                                                <input {{ $disabled }} class="form-check-input ms-5" type="radio" name="aportemarginal_proposito" id="aportemarginal_propositoNo" value="N">
                                                 <label class="form-check-label ms-5" for="aportemarginal_propositoNo">No</label>
                                             </div>
                                         </div>
@@ -691,26 +696,26 @@
                                     <hr>
                                     <div class="col-12 mb-3 FormUsr FontMsg mt-3">
                                         <label for="select_unidadresponsablereportar_proposito" class="form-labelUsr3">Unidad responsable de reportar el indicador</label>
-                                        <select id="select_unidadresponsablereportar_proposito" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                        <select {{ $disabled }} id="select_unidadresponsablereportar_proposito" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
                                         </select>
                                     </div>
                                     <div class="col-4 mb-3 FormUsr FontMsg mt-3">
                                         <label for="descripcionindicador_proposito" class="form-labelUsr4">Descripción Indicador</label>
-                                        <textarea class="form-control TextBoxUsr w-100" id="descripcionindicador_proposito" required maxlength="300" rows="6"></textarea>
+                                        <textarea {{ $disabled }} class="form-control TextBoxUsr w-100" id="descripcionindicador_proposito" required maxlength="300" rows="6"></textarea>
                                         <div class="position-absolute bottom-0 end-0">
                                             <label ID="lbContlIndicaProp" class="LabelContador me-4" >0/240</label>
                                         </div>
                                     </div>
                                     <div class="col-4 mb-3 FormUsr FontMsg mt-3">
                                         <label for="descripcionnumerador_proposito" class="form-labelUsr4">Descripción Numerador</label>
-                                        <textarea class="form-control TextBoxUsr w-100" id="descripcionnumerador_proposito" required maxlength="300" rows="6"></textarea>
+                                        <textarea {{ $disabled }} class="form-control TextBoxUsr w-100" id="descripcionnumerador_proposito" required maxlength="300" rows="6"></textarea>
                                         <div class="position-absolute bottom-0 end-0">
                                             <label ID="lblContDescNumProp" class="LabelContador me-4" >0/240</label>
                                         </div>
                                     </div>
                                     <div class="col-4 mb-3 FormUsr FontMsg mt-3">
                                         <label for="descripciondenominador_proposito" class="form-labelUsr4">Descripción Denominador</label>
-                                        <textarea class="form-control TextBoxUsr w-100" id="descripciondenominador_proposito" required maxlength="300" rows="6"></textarea>
+                                        <textarea {{ $disabled }} class="form-control TextBoxUsr w-100" id="descripciondenominador_proposito" required maxlength="300" rows="6"></textarea>
                                         <div class="position-absolute bottom-0 end-0">
                                             <label ID="lblContDescDenomProp" class="LabelContador me-4">0/240</label>
                                         </div>
@@ -737,7 +742,7 @@
                                 </div>
                                 <div class="col-9 mb-1 FormUsr FontMsg mt-3">
                                     <label for="nombre_componente" class="form-labelUsr4">Componente</label>
-                                    <input type="text" class="TextBoxUsr w-100 H-50" id="nombre_componente">
+                                    <input disabled type="text" class="TextBoxUsr w-100 H-50" id="nombre_componente">
                                 </div>
                             </div>
                             <div class="row">
@@ -760,32 +765,32 @@
                                     </div>
                                     <div class="col-10 mb-1 FormUsr FontMsg mt-3">
                                         <label for="nombreindicar_componente" class="form-labelUsr4">Nombre del Indicador</label>
-                                        <textarea class="TextBoxUsr w-100 H-50" id="nombreindicar_componente" required maxlength="300" rows="2"></textarea>
+                                        <textarea {{ $disabled }} class="TextBoxUsr w-100 H-50" id="nombreindicar_componente" required maxlength="300" rows="2"></textarea>
                                         <div class="position-absolute bottom-0 end-0">
                                             <label id="lblContIndicadorComp" class="LabelContador me-4">0/30</label>
                                         </div>
                                     </div>
                                     <div class="col-12 mb-1 FormUsr FontMsg mt-3">
                                         <label for="descripcionformula_componente" class="form-labelUsr4">Descripción de la Fórmula</label>
-                                        <textarea class="TextBoxUsr w-100 H-50" id="descripcionformula_componente" required maxlength="300" rows="2"></textarea>
+                                        <textarea {{ $disabled }} class="TextBoxUsr w-100 H-50" id="descripcionformula_componente" required maxlength="300" rows="2"></textarea>
                                     </div>
                                     <div class="col-3 mb-1 FormUsr FontMsg mt-3">
                                         <label for="variable1_componente" class="form-labelUsr4">Variable 1 (V1)</label>
-                                        <textarea class="TextBoxUsr w-100" id="variable1_componente" required maxlength="300" rows="5"></textarea>
+                                        <textarea {{ $disabled }} class="TextBoxUsr w-100" id="variable1_componente" required maxlength="300" rows="5"></textarea>
                                     </div>
                                     <div class="col-3 mb-1 FormUsr FontMsg mt-3">
                                         <label for="variable2_componente" class="form-labelUsr4">Variable 2 (V2)</label>
-                                        <textarea class="TextBoxUsr w-100" id="variable2_componente" required maxlength="300" rows="5"></textarea>
+                                        <textarea {{ $disabled }} class="TextBoxUsr w-100" id="variable2_componente" required maxlength="300" rows="5"></textarea>
                                     </div>
                                     <div class="col-3 mb-1 FormUsr FontMsg mt-3">
                                         <label for="variable3_componente" class="form-labelUsr4">Fórmula</label>
-                                        <textarea class="TextBoxUsr w-100" id="variable3_componente" required maxlength="300" rows="5"></textarea>
+                                        <textarea {{ $disabled }} class="TextBoxUsr w-100" id="variable3_componente" required maxlength="300" rows="5"></textarea>
                                     </div>
                                     <div class="col-3 mb-1 FormUsr FontMsg mt-3">
                                         <div class="row">
                                             <div class="col-12">
                                                 <label for="select_unidadmedida_componente" class="form-labelUsr3">Unidad de Medida</label>
-                                                <select id="select_unidadmedida_componente" class="TextBoxUsr unidad-medida select-mir w-100" data-tipo="componente" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                                <select {{ $disabled }} id="select_unidadmedida_componente" class="TextBoxUsr unidad-medida select-mir w-100" data-tipo="componente" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
                                                     <option value="-">-</option>
                                                     <option value="PORCENTAJE">PORCENTAJE</option>
                                                     <option value="ABSOLUTO">ABSOLUTO</option>
@@ -793,7 +798,7 @@
                                             </div>
                                             <div id="d-descripcionunidadmedida_componente" class="col-12 d-none FormUsr FontMsg mt-3">
                                                 <label for="descripcionunidadmedida_componente" class="form-labelUsr4">Descripción</label>
-                                                <input type="text" class="form-control TextBoxUsr w-100 H-50" id="descripcionunidadmedida_componente">
+                                                <input {{ $disabled }} type="text" class="form-control TextBoxUsr w-100 H-50" id="descripcionunidadmedida_componente">
                                             </div>
                                         </div>
                                     </div>
@@ -805,7 +810,7 @@
                                                         <label for="ejecerciciofisca_componente" class="form-label">Ejercicio Fiscal:</label>
                                                     </div>
                                                     <div class="col-6">
-                                                        <select id="ejecerciciofisca_componente" class="selectpicker show-tick form-control" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                                        <select {{ $disabled }} id="ejecerciciofisca_componente" class="selectpicker show-tick form-control" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
                                                             <option value="-">-</option>
                                                             <option value="2020">2020</option>
                                                             <option value="2021">2021</option>
@@ -819,7 +824,7 @@
                                                         <label for="lineabase_componente1" class="form-label">Línea Base</label>
                                                     </div>
                                                     <div class="col-6">
-                                                        <input type="text" class="form-control" id="lineabase_componente1">
+                                                        <input {{ $disabled }} type="text" class="form-control" id="lineabase_componente1">
                                                     </div>
                                                 </div>
                                             </div>
@@ -833,7 +838,7 @@
                                                         <label for="lineabaseV1_componente" class="form-label">V1</label>
                                                     </div>
                                                     <div class="col-9">
-                                                        <input type="text" class="form-control money" id="lineabaseV1_componente">
+                                                        <input {{ $disabled }} type="text" class="form-control money" id="lineabaseV1_componente">
                                                     </div>
                                                 </div>
                                             </div>
@@ -843,7 +848,7 @@
                                                         <label for="lineabaseV2_componente" class="form-label">V2</label>
                                                     </div>
                                                     <div class="col-9">
-                                                        <input type="text" class="form-control money" id="lineabaseV2_componente">
+                                                        <input {{ $disabled }} type="text" class="form-control money" id="lineabaseV2_componente">
                                                     </div>
                                                 </div>
                                             </div>
@@ -1214,19 +1219,19 @@
                                 <div class="row">
                                     <div class="col-6 mb-1 FormUsr FontMsg mt-3">
                                         <label for="mediosverificacion_componente" class="form-labelUsr4">Medios de Verificación</label>
-                                        <input type="text" class="TextBoxUsr w-100 H-50" id="mediosverificacion_componente">
+                                        <input {{ $disabled }} type="text" class="TextBoxUsr w-100 H-50" id="mediosverificacion_componente">
                                     </div>
                                     <div class="col-6 mb-1 FormUsr FontMsg mt-3">
                                         <label for="fuentesinformacion_componente" class="form-labelUsr4">Fuentes de Información</label>
-                                        <input type="text" class="TextBoxUsr w-100 H-50" id="fuentesinformacion_componente">
+                                        <input {{ $disabled }} type="text" class="TextBoxUsr w-100 H-50" id="fuentesinformacion_componente">
                                     </div>
                                     <div class="col-12 mb-1 FormUsr FontMsg mt-3">
                                         <label for="supuestos_componente" class="form-labelUsr4">Supuestos</label>
-                                        <textarea class="TextBoxUsr w-100 H-50" id="supuestos_componente" required maxlength="300" rows="2"></textarea>
+                                        <textarea {{ $disabled }} class="TextBoxUsr w-100 H-50" id="supuestos_componente" required maxlength="300" rows="2"></textarea>
                                     </div>
                                     <div class="col-4 mb-3 FormUsr FontMsg mt-3">
                                         <label for="select_sentidoindicador_componente" class="form-labelUsr3">Sentido del indicador</label>
-                                        <select id="select_sentidoindicador_componente" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                        <select {{ $disabled }} id="select_sentidoindicador_componente" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
                                             <option value="-">-</option>
                                             <option value="ASCENDENTE">ASCENDENTE</option>
                                             <option value="DESCENDENTE">DESCENDENTE</option>
@@ -1235,7 +1240,7 @@
                                     </div>
                                     <div class="col-4 mb-3 FormUsr FontMsg mt-3">
                                         <label for="select_tipoindicador_componente" class="form-labelUsr3">Tipo de indicador</label>
-                                        <select id="select_tipoindicador_componente" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                        <select {{ $disabled }} id="select_tipoindicador_componente" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
                                             <option value="-">-</option>
                                             <option value="ESTRATÉGICO">ESTRATÉGICO</option>
                                             <option value="GESTIÓN">GESTIÓN</option>
@@ -1243,7 +1248,7 @@
                                     </div>
                                     <div class="col-4 mb-3 FormUsr FontMsg mt-3">
                                         <label for="select_dimensionindicador_componente" class="form-labelUsr3">Dimensión del indicador</label>
-                                        <select id="select_dimensionindicador_componente" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                        <select {{ $disabled }} id="select_dimensionindicador_componente" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
                                             <option value="-">-</option>
                                             <option value="CALIDAD">CALIDAD</option>
                                             <option value="ECONOMÍA">ECONOMÍA</option>
@@ -1260,33 +1265,33 @@
                                         <div class="col-3 mb-3 border border-2 rounded ms-4">
                                             <label class="form-label">Claridad</label>
                                             <div class="form-check">
-                                                <input class="form-check-input ms-5" type="radio" name="claridad_componente" id="claridad_componenteSi" value="S">
+                                                <input {{ $disabled }} class="form-check-input ms-5" type="radio" name="claridad_componente" id="claridad_componenteSi" value="S">
                                                 <label class="form-check-label ms-4" for="claridad_finSi">Si</label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input ms-5" type="radio" name="claridad_componente" id="claridad_componenteNo" value="N">
+                                                <input {{ $disabled }} class="form-check-input ms-5" type="radio" name="claridad_componente" id="claridad_componenteNo" value="N">
                                                 <label class="form-check-label ms-4" for="claridad_componenteNo">No</label>
                                             </div>
                                         </div>
                                         <div class="col-3 mb-3 border border-2 rounded ms-4">
                                             <label class="form-label">Relevancia</label>
                                             <div class="form-check">
-                                                <input class="form-check-input ms-5" type="radio" name="relevancia_componente" id="relevancia_componenteSi" value="S">
+                                                <input {{ $disabled }} class="form-check-input ms-5" type="radio" name="relevancia_componente" id="relevancia_componenteSi" value="S">
                                                 <label class="form-check-label ms-4" for="relevancia_componenteSi">Si</label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input ms-5" type="radio" name="relevancia_componente" id="relevancia_componenteNo" value="N">
+                                                <input {{ $disabled }} class="form-check-input ms-5" type="radio" name="relevancia_componente" id="relevancia_componenteNo" value="N">
                                                 <label class="form-check-label ms-4" for="relevancia_componenteNo">No</label>
                                             </div>
                                         </div>
                                         <div class="col-3 mb-3 border border-2 rounded ms-4">
                                             <label class="form-label">Economía</label>
                                             <div class="form-check">
-                                                <input class="form-check-input ms-5" type="radio" name="economia_componente" id="economia_componenteSi" value="S">
+                                                <input {{ $disabled }} class="form-check-input ms-5" type="radio" name="economia_componente" id="economia_componenteSi" value="S">
                                                 <label class="form-check-label ms-4" for="economia_finSi">Si</label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input ms-5" type="radio" name="economia_componente" id="economia_componenteNo" value="N">
+                                                <input {{ $disabled }} class="form-check-input ms-5" type="radio" name="economia_componente" id="economia_componenteNo" value="N">
                                                 <label class="form-check-label ms-4" for="economia_componenteNo">No</label>
                                             </div>
                                         </div>
@@ -1297,33 +1302,33 @@
                                         <div class="col-3 mb-3 border border-2 rounded ms-4">
                                             <label class="form-label">Monitoreable</label>
                                             <div class="form-check">
-                                                <input class="form-check-input ms-5" type="radio" name="monitoreable_componente" id="monitoreable_componenteSi" value="S">
+                                                <input {{ $disabled }} class="form-check-input ms-5" type="radio" name="monitoreable_componente" id="monitoreable_componenteSi" value="S">
                                                 <label class="form-check-label ms-4" for="monitoreable_componenteSi">Si</label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input ms-5" type="radio" name="monitoreable_componente" id="monitoreable_componenteNo" value="N">
+                                                <input {{ $disabled }} class="form-check-input ms-5" type="radio" name="monitoreable_componente" id="monitoreable_componenteNo" value="N">
                                                 <label class="form-check-label ms-4" for="monitoreable_componenteNo">No</label>
                                             </div>
                                         </div>
                                         <div class="col-3 mb-3 border border-2 rounded ms-4">
                                             <label class="form-label">Adecuado</label>
                                             <div class="form-check">
-                                                <input class="form-check-input ms-5" type="radio" name="adecuado_componente" id="adecuado_componenteSi" value="S">
+                                                <input {{ $disabled }} class="form-check-input ms-5" type="radio" name="adecuado_componente" id="adecuado_componenteSi" value="S">
                                                 <label class="form-check-label ms-4" for="adecuado_componenteSi">Si</label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input ms-5" type="radio" name="adecuado_componente" id="adecuado_componenteNo" value="N">
+                                                <input {{ $disabled }} class="form-check-input ms-5" type="radio" name="adecuado_componente" id="adecuado_componenteNo" value="N">
                                                 <label class="form-check-label ms-4" for="adecuado_componenteNo">No</label>
                                             </div>
                                         </div>
                                         <div class="col-3 mb-3 border border-2 rounded ms-4">
                                             <label class="form-label">Aporte marginal</label>
                                             <div class="form-check">
-                                                <input class="form-check-input ms-5" type="radio" name="aportemarginal_componente" id="aportemarginal_componenteSi" value="S">
+                                                <input {{ $disabled }} class="form-check-input ms-5" type="radio" name="aportemarginal_componente" id="aportemarginal_componenteSi" value="S">
                                                 <label class="form-check-label ms-4" for="aportemarginal_finSi">Si</label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input ms-5" type="radio" name="aportemarginal_componente" id="aportemarginal_componenteNo" value="N">
+                                                <input {{ $disabled }} class="form-check-input ms-5" type="radio" name="aportemarginal_componente" id="aportemarginal_componenteNo" value="N">
                                                 <label class="form-check-label ms-4" for="aportemarginal_componenteNo">No</label>
                                             </div>
                                         </div>
@@ -1332,20 +1337,20 @@
                                     <hr>
                                     <div class="col-12 mb-3 FormUsr FontMsg mt-3">
                                         <label for="select_unidadresponsablereportar_componente" class="form-labelUsr3">Unidad responsable de reportar el indicador</label>
-                                        <select id="select_unidadresponsablereportar_componente" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                        <select {{ $disabled }} id="select_unidadresponsablereportar_componente" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
                                         </select>
                                     </div>
                                     <div class="col-4 mb-3 FormUsr FontMsg mt-3">
                                         <label for="descripcionindicador_componente" class="form-labelUsr4">Descripción Indicador</label>
-                                        <textarea class="form-control" id="descripcionindicador_componente" required maxlength="300" rows="6"></textarea>
+                                        <textarea {{ $disabled }} class="form-control" id="descripcionindicador_componente" required maxlength="300" rows="6"></textarea>
                                     </div>
                                     <div class="col-4 mb-3 FormUsr FontMsg mt-3">
                                         <label for="descripcionnumerador_componente" class="form-labelUsr4">Descripción Numerador</label>
-                                        <textarea class="form-control" id="descripcionnumerador_componente" required maxlength="300" rows="6"></textarea>
+                                        <textarea {{ $disabled }} class="form-control" id="descripcionnumerador_componente" required maxlength="300" rows="6"></textarea>
                                     </div>
                                     <div class="col-4 mb-3 FormUsr FontMsg mt-3">
                                         <label for="descripciondenominador_componente" class="form-labelUsr4">Descripción Denominador</label>
-                                        <textarea class="form-control" id="descripciondenominador_componente" required maxlength="300" rows="6"></textarea>
+                                        <textarea {{ $disabled }} class="form-control" id="descripciondenominador_componente" required maxlength="300" rows="6"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -1370,7 +1375,7 @@
                                 </div>
                                 <div class="col-8 mb-1 FormUsr FontMsg mt-3">
                                     <label for="nombre_componenteactividad" class="form-labelUsr4">Componente</label>
-                                    <input type="text" class="TextBoxUsr w-100 H-50" id="nombre_componenteactividad">
+                                    <input disabled type="text" class="TextBoxUsr w-100 H-50" id="nombre_componenteactividad">
                                 </div>
                             </div>
                             <div class="row">
@@ -1403,7 +1408,7 @@
                                     </div>
                                     <div class="col-8 mb-1 FormUsr FontMsg mt-3">
                                         <label for="nombre_actividad" class="form-labelUsr4">Actividad</label>
-                                        <input type="text" class="TextBoxUsr w-100 H-50" id="nombre_actividad" readonly>
+                                        <input disabled type="text" class="TextBoxUsr w-100 H-50" id="nombre_actividad" readonly>
                                     </div>
                                     <div class="col-2 mb-1 FormUsr FontMsg mt-3">
                                         <label for="claveindicador_actividad" class="form-labelUsr4">Clave indicador</label>
@@ -1411,32 +1416,32 @@
                                     </div>
                                     <div class="col-10 mb-1 FormUsr FontMsg mt-3">
                                         <label for="nombreindicar_actividad" class="form-labelUsr4">Nombre del indicador</label>
-                                        <textarea class="TextBoxUsr w-100 H-50" id="nombreindicar_actividad" required maxlength="300" rows="2"></textarea>
+                                        <textarea {{ $disabled }}  class="TextBoxUsr w-100 H-50" id="nombreindicar_actividad" required maxlength="300" rows="2"></textarea>
                                         <div class="position-absolute bottom-0 end-0">
                                             <label id="lblContIndicadorAct" class="LabelContador me-4">0/30</label>
                                         </div>
                                     </div>
                                     <div class="col-12 mb-1 FormUsr FontMsg mt-3">
                                         <label for="descripcionformula_actividad" class="form-labelUsr4">Descripción de la fórmula</label>
-                                        <textarea class="TextBoxUsr w-100 H-50" id="descripcionformula_actividad" required maxlength="300" rows="2"></textarea>
+                                        <textarea {{ $disabled }}  class="TextBoxUsr w-100 H-50" id="descripcionformula_actividad" required maxlength="300" rows="2"></textarea>
                                     </div>
                                     <div class="col-3 mb-1 FormUsr FontMsg mt-3">
                                         <label for="variable1_actividad" class="form-labelUsr4">Variable 1 (V1)</label>
-                                        <textarea class="TextBoxUsr w-100" id="variable1_actividad" required maxlength="300" rows="5"></textarea>
+                                        <textarea {{ $disabled }}  class="TextBoxUsr w-100" id="variable1_actividad" required maxlength="300" rows="5"></textarea>
                                     </div>
                                     <div class="col-3 mb-1 FormUsr FontMsg mt-3">
                                         <label for="variable2_actividad" class="form-labelUsr4">Variable 2 (V2)</label>
-                                        <textarea class="TextBoxUsr w-100" id="variable2_actividad" required maxlength="300" rows="5"></textarea>
+                                        <textarea {{ $disabled }} class="TextBoxUsr w-100" id="variable2_actividad" required maxlength="300" rows="5"></textarea>
                                     </div>
                                     <div class="col-3 mb-1 FormUsr FontMsg mt-3">
                                         <label for="variable3_actividad" class="form-labelUsr4">Variable 3 (V3)</label>
-                                        <textarea class="TextBoxUsr w-100" id="variable3_actividad" required maxlength="300" rows="5"></textarea>
+                                        <textarea {{ $disabled }} class="TextBoxUsr w-100" id="variable3_actividad" required maxlength="300" rows="5"></textarea>
                                     </div>
                                     <div class="col-3 mb-1">
                                         <div class="row">
                                             <div class="col-12">
                                                 <label for="select_unidadmedida_actividad" class="form-label">Unidad de medida</label>
-                                                <select id="select_unidadmedida_actividad" class="selectpicker unidad-medida show-tick form-control" data-tipo="actividad" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                                <select {{ $disabled }} id="select_unidadmedida_actividad" class="selectpicker unidad-medida show-tick form-control" data-tipo="actividad" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
                                                     <option value="-">-</option>
                                                     <option value="PORCENTAJE">PORCENTAJE</option>
                                                     <option value="ABSOLUTO">ABSOLUTO</option>
@@ -1444,13 +1449,13 @@
                                             </div>
                                             <div id="d-descripcionunidadmedida_actividad" class="col-12 d-none">
                                                 <label for="descripcionunidadmedida_actividad" class="form-label">Descripción</label>
-                                                <input type="text" class="form-control" id="descripcionunidadmedida_actividad">
+                                                <input {{ $disabled }} type="text" class="form-control" id="descripcionunidadmedida_actividad">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-3 mb-1">
                                         <label for="ejecerciciofisca_actividad" class="form-label">Ejercicio fiscal:</label>
-                                        <select id="ejecerciciofisca_actividad" class="selectpicker show-tick form-control" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                        <select  id="ejecerciciofisca_actividad" class="selectpicker show-tick form-control" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
                                             <option value="-">-</option>
                                             <option value="2020">2020</option>
                                             <option value="2021">2021</option>
@@ -1821,19 +1826,19 @@
                                 <div class="row">
                                     <div class="col-6 mb-1 FormUsr FontMsg mt-3">
                                         <label for="mediosverificacion_actividad" class="form-labelUsr4">Medios de Verificación</label>
-                                        <input type="text" class="TextBoxUsr w-100 H-50" id="mediosverificacion_actividad">
+                                        <input {{ $disabled }}  type="text" class="TextBoxUsr w-100 H-50" id="mediosverificacion_actividad">
                                     </div>
                                     <div class="col-6 mb-1 FormUsr FontMsg mt-3">
                                         <label for="fuentesinformacion_actividad" class="form-labelUsr4">Fuentes de Información</label>
-                                        <input type="text" class="TextBoxUsr w-100 H-50" id="fuentesinformacion_actividad">
+                                        <input {{ $disabled }} type="text" class="TextBoxUsr w-100 H-50" id="fuentesinformacion_actividad">
                                     </div>
                                     <div class="col-12 mb-1 FormUsr FontMsg mt-3">
                                         <label for="supuestos_actividad" class="form-labelUsr4">Supuestos</label>
-                                        <textarea class="TextBoxUsr w-100 H-50" id="supuestos_actividad" required maxlength="300" rows="2"></textarea>
+                                        <textarea {{ $disabled }} class="TextBoxUsr w-100 H-50" id="supuestos_actividad" required maxlength="300" rows="2"></textarea>
                                     </div>
                                     <div class="col-4 mb-3 FormUsr FontMsg mt-3">
                                         <label for="select_sentidoindicador_actividad" class="form-labelUsr3">Sentido del indicador</label>
-                                        <select id="select_sentidoindicador_actividad" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                        <select {{ $disabled }} id="select_sentidoindicador_actividad" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
                                             <option value="-">-</option>
                                             <option value="ASCENDENTE">ASCENDENTE</option>
                                             <option value="DESCENDENTE">DESCENDENTE</option>
@@ -1842,7 +1847,7 @@
                                     </div>
                                     <div class="col-4 mb-3 FormUsr FontMsg mt-3">
                                         <label for="select_tipoindicador_actividad" class="form-labelUsr3">Tipo de indicador</label>
-                                        <select id="select_tipoindicador_actividad" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                        <select {{ $disabled }} id="select_tipoindicador_actividad" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
                                             <option value="-">-</option>
                                             <option value="ESTRATÉGICO">ESTRATÉGICO</option>
                                             <option value="GESTIÓN">GESTIÓN</option>
@@ -1850,7 +1855,7 @@
                                     </div>
                                     <div class="col-4 mb-3 FormUsr FontMsg mt-3">
                                         <label for="select_dimensionindicador_actividad" class="form-labelUsr3">Dimensión del indicador</label>
-                                        <select id="select_dimensionindicador_actividad" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                        <select {{ $disabled }} id="select_dimensionindicador_actividad" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
                                             <option value="-">-</option>
                                             <option value="CALIDAD">CALIDAD</option>
                                             <option value="ECONOMÍA">ECONOMÍA</option>
@@ -1865,86 +1870,86 @@
                                     <div class="col-4 mb-3">
                                         <label class="form-label">Claridad</label>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="claridad_actividad" id="claridad_actividadSi" value="S">
+                                            <input {{ $disabled }} class="form-check-input" type="radio" name="claridad_actividad" id="claridad_actividadSi" value="S">
                                             <label class="form-check-label" for="claridad_finSi">Si</label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="claridad_actividad" id="claridad_actividadNo" value="N">
+                                            <input {{ $disabled }} class="form-check-input" type="radio" name="claridad_actividad" id="claridad_actividadNo" value="N">
                                             <label class="form-check-label" for="claridad_actividadNo">No</label>
                                         </div>
                                     </div>
                                     <div class="col-4 mb-3">
                                         <label class="form-label">Relevancia</label>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="relevancia_actividad" id="relevancia_actividadSi" value="S">
+                                            <input {{ $disabled }} class="form-check-input" type="radio" name="relevancia_actividad" id="relevancia_actividadSi" value="S">
                                             <label class="form-check-label" for="relevancia_actividadSi">Si</label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="relevancia_actividad" id="relevancia_actividadNo" value="N">
+                                            <input {{ $disabled }} class="form-check-input" type="radio" name="relevancia_actividad" id="relevancia_actividadNo" value="N">
                                             <label class="form-check-label" for="relevancia_actividadNo">No</label>
                                         </div>
                                     </div>
                                     <div class="col-4 mb-3">
                                         <label class="form-label">Economía</label>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="economia_actividad" id="economia_actividadSi" value="S">
+                                            <input {{ $disabled }} class="form-check-input" type="radio" name="economia_actividad" id="economia_actividadSi" value="S">
                                             <label class="form-check-label" for="economia_finSi">Si</label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="economia_actividad" id="economia_actividadNo" value="N">
+                                            <input {{ $disabled }} class="form-check-input" type="radio" name="economia_actividad" id="economia_actividadNo" value="N">
                                             <label class="form-check-label" for="economia_actividadNo">No</label>
                                         </div>
                                     </div>
                                     <div class="col-4 mb-3">
                                         <label class="form-label">Monitoreable</label>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="monitoreable_actividad" id="monitoreable_actividadSi" value="S">
+                                            <input {{ $disabled }} class="form-check-input" type="radio" name="monitoreable_actividad" id="monitoreable_actividadSi" value="S">
                                             <label class="form-check-label" for="monitoreable_actividadSi">Si</label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="monitoreable_actividad" id="monitoreable_actividadNo" value="N">
+                                            <input {{ $disabled }} class="form-check-input" type="radio" name="monitoreable_actividad" id="monitoreable_actividadNo" value="N">
                                             <label class="form-check-label" for="monitoreable_actividadNo">No</label>
                                         </div>
                                     </div>
                                     <div class="col-4 mb-3">
                                         <label class="form-label">Adecuado</label>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="adecuado_actividad" id="adecuado_actividadSi" value="S">
+                                            <input {{ $disabled }} class="form-check-input" type="radio" name="adecuado_actividad" id="adecuado_actividadSi" value="S">
                                             <label class="form-check-label" for="adecuado_actividadSi">Si</label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="adecuado_actividad" id="adecuado_actividadNo" value="N">
+                                            <input {{ $disabled }} class="form-check-input" type="radio" name="adecuado_actividad" id="adecuado_actividadNo" value="N">
                                             <label class="form-check-label" for="adecuado_actividadNo">No</label>
                                         </div>
                                     </div>
                                     <div class="col-4 mb-3">
                                         <label class="form-label">Aporte marginal</label>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="aportemarginal_actividad" id="aportemarginal_actividadSi" value="S">
+                                            <input {{ $disabled }} class="form-check-input" type="radio" name="aportemarginal_actividad" id="aportemarginal_actividadSi" value="S">
                                             <label class="form-check-label" for="aportemarginal_finSi">Si</label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="aportemarginal_actividad" id="aportemarginal_actividadNo" value="N">
+                                            <input {{ $disabled }} class="form-check-input" type="radio" name="aportemarginal_actividad" id="aportemarginal_actividadNo" value="N">
                                             <label class="form-check-label" for="aportemarginal_actividadNo">No</label>
                                         </div>
                                     </div>
                                     <hr>
                                     <div class="col-12 mb-3">
                                         <label for="select_unidadresponsablereportar_actividad" class="form-label">Unidad responsable de reportar el indicador</label>
-                                        <select id="select_unidadresponsablereportar_actividad" class="selectpicker show-tick form-control" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                        <select {{ $disabled }} id="select_unidadresponsablereportar_actividad" class="selectpicker show-tick form-control" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
                                         </select>
                                     </div>
                                     <div class="col-4 mb-3 FormUsr FontMsg mt-3">
                                         <label for="descripcionindicador_actividad" class="form-labelUsr4">Descripción Indicador</label>
-                                        <textarea class="TextBoxUsr w-100" id="descripcionindicador_actividad" required maxlength="300" rows="6"></textarea>
+                                        <textarea {{ $disabled }} class="TextBoxUsr w-100" id="descripcionindicador_actividad" required maxlength="300" rows="6"></textarea>
                                     </div>
                                     <div class="col-4 mb-3 FormUsr FontMsg mt-3">
                                         <label for="descripcionnumerador_actividad" class="form-labelUsr4">Descripción Numerador</label>
-                                        <textarea class="TextBoxUsr w-100" id="descripcionnumerador_actividad" required maxlength="300" rows="6"></textarea>
+                                        <textarea {{ $disabled }} class="TextBoxUsr w-100" id="descripcionnumerador_actividad" required maxlength="300" rows="6"></textarea>
                                     </div>
                                     <div class="col-4 mb-3 FormUsr FontMsg mt-3">
                                         <label for="descripciondenominador_actividad" class="form-labelUsr4">Descripción Denominador</label>
-                                        <textarea class="TextBoxUsr w-100" id="descripciondenominador_actividad" required maxlength="300" rows="6"></textarea>
+                                        <textarea {{ $disabled }} class="TextBoxUsr w-100" id="descripciondenominador_actividad" required maxlength="300" rows="6"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -1999,9 +2004,21 @@
                             <!-- <label class="form-label text-danger fw-bold">Algunos datos no han sido capturados.<br/>Favor de consultar la Auditoría de Carga y de Fórmulas.</label> -->
                         </div>
                         <div class="col-5">
-                            <input type="button" id="BtnValidar" class="buttonOutlineSucces150  text-capitalize" value="Validar Fórmulas" >
-                            <input type="button" id="BtnGuardar" class="buttonOutlineSucces150" value="Guardar y Cerrar" >
-                            <button type="button" class="buttonCloseModal" data-bs-dismiss="modal">Cerrar</button>                                    
+                            <input type="button" id="BtnValidar" class="buttonOutlineSucces150 text-capitalize" 
+                            value="Validar Fórmulas" style="display:none">
+                            <button type="button" class="buttonOutlineSucces150"  id="BtnGuardar">
+                                @if ($tipoUsuario <> 1) 
+                                    
+
+                                    <span id="lblBotonEnviar">Enviar a registro</span>
+
+                                @else
+                                    Registrar
+                                @endif
+                            </button>
+
+                            <button type="button" class="buttonCloseModal" 
+                                data-bs-dismiss="modal">Cerrar</button>                                    
                         </div>
                     </div>
                 </div>

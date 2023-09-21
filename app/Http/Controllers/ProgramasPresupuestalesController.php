@@ -15,7 +15,9 @@ class ProgramasPresupuestalesController extends BaseController
         $query = "SELECT A.* FROM 
             PROGRAMATICO AS A 
             INNER JOIN SECRETARIAS AS B ON A.idSecretaria = B.idSecretaria 
-            WHERE A.idClasificacion IN ('PP') AND A.ejercicioFiscal=$ef ORDER BY A.Consecutivo;";
+            WHERE A.idClasificacion IN ('PP') 
+            AND A.ejercicioFiscal=$ef 
+            ORDER BY A.Consecutivo";
         $informacion = DB::select($query);
         return response()->json(array('error' => false, 'data' => $informacion, 'code' => 200));
     }

@@ -235,3 +235,19 @@ UPDATE PROGRAMATICO_AI_COMP c SET ProgramaticoId =
                     AND p.idSecretaria = c.idSecretaria
                     AND p.ejercicioFiscal = 2023
                     ) WHERE c.ejercicioFiscal = 2023;
+
+/*********** 21/09/2023 ********************/
+/**** estatus de mir ********************/
+CREATE TABLE status_mir (
+	Id INT PRIMARY KEY,
+	Nombre VARCHAR(100)
+);
+
+INSERT INTO status_mir VALUES 
+	(1,'POR ENVIAR A REGISTRO'),
+	(2,'EN REVISION'),
+	(3,'REGISTRADO');
+
+ALTER TABLE MIR_CARATULA ADD StatusMirId INT;
+UPDATE MIR_CARATULA SET StatusMirId=1;
+

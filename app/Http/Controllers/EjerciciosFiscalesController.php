@@ -213,6 +213,7 @@ class EjerciciosFiscalesController extends BaseController
             $reg->ProgramaSectorial = $d->ProgramaSectorial;
             $reg->idCatBeneficiario2 = $d->idCatBeneficiario2;
             $reg->LineaBase = $d->LineaBase;
+            $reg->StatusMirId=1;
 
             $reg->save();
         }

@@ -255,9 +255,11 @@ Route::get('/Catalogos', function () {
     });
 
     // Revisar MIR
-    Route::get('/RevisarMIR', function () {
-        return view('RevisarMIR'); // En resources -> views - index.php -- Así se llama la vista principal donde entraran 
-    });
+    // Route::get('/RevisarMIR', function () {
+    //     return view('RevisarMIR'); // En resources -> views - index.php -- Así se llama la vista principal donde entraran 
+    // });
+
+    Route::get('/RevisarMIR', "MirController@MirView");
     Route::post('GetMir','MirController@index');
     Route::post('GetMirCaratula','MirController@caratula');
     Route::post('GetMirFin','MirController@fin');

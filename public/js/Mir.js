@@ -19,6 +19,7 @@ var index_actividad = null;
 var selectSecretaria = null;
 var selectUnidadAdministrativa = null;
 var consecutivo_seleccionado = null;
+var mirData = [];
 
 $(document).ready(function() {
     Funciones_Iniciales();
@@ -56,6 +57,7 @@ function GetMir(){
 
 function ResponseGetMir(response){
     if (!response.error) {
+        mirData = response.data;
         DestroyDataTable("table");
         $("#table > tbody > tr").remove();
         if (response.data.length > 0) {
@@ -67,7 +69,8 @@ function ResponseGetMir(response){
                         <td>${response.data[i].DescripcionPrograma}</td>
                         <td>${response.data[i].idClasificacion}</td>
                         <td>${response.data[i].TipoBeneficiario}</td>
-                        <td>${response.data[i].EjercicioFiscal}</td>
+                        
+                        <td>${response.data[i].Status}</td>
                     </tr>
                 `);
             }
@@ -415,7 +418,7 @@ function BtnEditarMir(){
         
         let conac = data[0];
         let consecutivo = data[1];
-        let ejercicio = data[5];
+        let ejercicio = $("#select_ef").val();
 
         consecutivo_seleccionado = consecutivo;
         var request = {
@@ -658,3 +661,9 @@ function Func_LimpiarModal() {
     $("modal .form-control").removeClass("is-valid");
 }
 
+function getSelectedPrograma(){
+    var table = $('#table').DataTable();
+    var index = table.row('.selected').index();
+    var data = mirData[index];
+    return data;
+}
