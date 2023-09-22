@@ -318,10 +318,10 @@ function ResponseGetInfoComponentes(response){
             var request = {
                 "id" : p.Id
             }
-            
+
             GetComponentes(request);
         }else{
-            Func_Aviso("Anomalía detectada", "Ha ocurrido una anomalía al obtener la información del registro, favor de intentarlo nuevamente.", "error");
+            Func_Aviso("Componentes", "No se encontraron componentes.", "error");
         }
     } else {
         Func_Aviso("Anomalía detectada", "Ha ocurrido una anomalía al obtener la información del registro, favor de intentarlo nuevamente.", "error");

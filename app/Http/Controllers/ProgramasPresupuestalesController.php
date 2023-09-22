@@ -24,24 +24,6 @@ class ProgramasPresupuestalesController extends BaseController
 
     public function countall(Request $request)
     {
-        // $ef = $request->ejercicio_fiscal;
-        // $query = "SELECT * FROM
-        // (SELECT COUNT(*) AS Programas 
-        //     FROM PROGRAMATICO AS A 
-        //     INNER JOIN SECRETARIAS AS B ON A.idSecretaria = B.idSecretaria 
-        //     WHERE 
-        //         A.idClasificacion IN ('PP') 
-        //         AND A.ejercicioFiscal=$ef 
-        //         ORDER BY A.Consecutivo) AS Programas,
-        // (SELECT COUNT(*) AS Componentes 
-        //     FROM PROGRAMATICO_COMP AS A 
-        //     INNER JOIN UNIDADES AS B ON A.idUA = B.idUnidad 
-        //         AND A.idSecretaria = B.idSecretaria
-        //     WHERE A.ejercicioFiscal=$ef)
-        //     AS Componentes";
-
-        // return $this->executeQuery($query);
-
         return $this->count($request);
     }
 
@@ -112,10 +94,10 @@ class ProgramasPresupuestalesController extends BaseController
                     A.idUA,
                     U.Descripcion as 'Descripcion_UA'
                 FROM PROGRAMATICO AS A
-                INNER JOIN SECRETARIAS AS B ON A.idSecretaria = B.idSecretaria
-                INNER JOIN TIPOLOGIA AS C ON A.idTipologia = C.IdTipologia
-                INNER JOIN OBJETIVO AS D ON A.idObjetivoPED = D.IdObjetivo
-                INNER JOIN UNIDADES AS U ON A.idUA = U.idUnidad AND A.idSecretaria = U.idSecretaria
+                LEFT JOIN SECRETARIAS AS B ON A.idSecretaria = B.idSecretaria
+                LEFT JOIN TIPOLOGIA AS C ON A.idTipologia = C.IdTipologia
+                LEFT JOIN OBJETIVO AS D ON A.idObjetivoPED = D.IdObjetivo
+                LEFT JOIN UNIDADES AS U ON A.idUA = U.idUnidad AND A.idSecretaria = U.idSecretaria
                 WHERE 
                     A.Id = $request->id
                     ORDER BY A.Consecutivo;";
