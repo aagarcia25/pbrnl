@@ -708,6 +708,21 @@ function ResponseGetMirCaratula(response) {
         $("#select_descripcionampliabeneficiario1").selectpicker("val", response.data['idCatBeneficiario']);
         $("#select_descripcionampliabeneficiario2").selectpicker("val", response.data['idCatBeneficiario2']);
 
+        if(tu != 1)
+        {
+            //enlace pbr
+            if(response.data.StatusId != 1) {
+                //ya fue enviada a revisión
+                $("#BtnGuardar").attr("disabled");
+            }
+        }
+        else {
+            if(response.data.StatusId == 1) {
+                //ya fue enviada a revisión
+                $("#BtnGuardar").attr("disabled");
+            }
+        }
+
         GetMirFin();
     } else {
         swal.close();

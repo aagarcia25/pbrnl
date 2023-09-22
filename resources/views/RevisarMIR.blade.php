@@ -11,8 +11,6 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet" />
 
-
-
 <style>
     .input-background-white {
         background-color: white;
@@ -21,7 +19,8 @@
 
 <div class="Margin-Top">
     @include('includes._partialBreadcrumbMir')
-    
+<script type="text/javascript">var tu = {{$tipoUsuario}};</script>
+
     <section class="container section">
         <div class="row">
             <div class="col-lg-12">
@@ -497,7 +496,7 @@
                                         <textarea {{ $disabled }} class="TextBoxUsr w-100" id="variable2_proposito" required maxlength="300" rows="5"></textarea>
                                     </div>
                                     <div class="col-3 mb-1 FormUsr FontMsg mt-3">
-                                        <label for="variable3_proposito" class="form-labelUsr4">Variable 3 (V3)</label>
+                                        <label for="variable3_proposito" class="form-labelUsr4">Método de cálculo</label>
                                         <textarea {{ $disabled }} class="TextBoxUsr w-100" id="variable3_proposito" required maxlength="300" rows="5"></textarea>
                                     </div>
                                     <div class="col-3 mb-1 FormUsr FontMsg mt-3">
@@ -783,7 +782,7 @@
                                         <textarea {{ $disabled }} class="TextBoxUsr w-100" id="variable2_componente" required maxlength="300" rows="5"></textarea>
                                     </div>
                                     <div class="col-3 mb-1 FormUsr FontMsg mt-3">
-                                        <label for="variable3_componente" class="form-labelUsr4">Fórmula</label>
+                                        <label for="variable3_componente" class="form-labelUsr4">Método de cálculo</label>
                                         <textarea {{ $disabled }} class="TextBoxUsr w-100" id="variable3_componente" required maxlength="300" rows="5"></textarea>
                                     </div>
                                     <div class="col-3 mb-1 FormUsr FontMsg mt-3">
@@ -2006,14 +2005,14 @@
                         <div class="col-5">
                             <input type="button" id="BtnValidar" class="buttonOutlineSucces150 text-capitalize" 
                             value="Validar Fórmulas" style="display:none">
-                            <button type="button" class="buttonOutlineSucces150"  id="BtnGuardar">
+                            <button 
+                                type="button" 
+                                class="buttonOutlineSucces150"
+                                id="BtnGuardar">
                                 @if ($tipoUsuario <> 1) 
-                                    
-
                                     <span id="lblBotonEnviar">Enviar a registro</span>
-
                                 @else
-                                    Registrar
+                                    <span id="lblBotonEnviar">Registrar</span>
                                 @endif
                             </button>
 
