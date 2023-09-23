@@ -2426,6 +2426,7 @@ class MirController extends BaseController
     public function ContarIndicadores(Request $request) {
         $idSecretaria = $request->idSecretaria == '' ? '0' : $request->idSecretaria;
         $ejercicio = $request->ejercicio_fiscal;
+        $idUnidad = $request->id_unidad;
         $query = "SELECT 
         (-- contando los indicadores de los componentes
         SELECT COUNT(*) 
@@ -2435,6 +2436,7 @@ class MirController extends BaseController
         WHERE 
             pc.ejercicioFiscal = $ejercicio 
             AND (CASE WHEN '$idSecretaria' <> '0' THEN mv.idSecretaria = '$idSecretaria' ELSE 1=1 END )
+            AND (CASE WHEN '$idUnidad' <> '0' THEN pc.idUA = '$idUnidad' ELSE 1=1 END )
         ) +
         -- contando los indicadores de las actividades
         (
@@ -2445,7 +2447,8 @@ class MirController extends BaseController
             INNER JOIN PROGRAMATICO_COMP pc ON pc.Id = C1.ComponenteId
         WHERE pc.ejercicioFiscal = $ejercicio 
         AND (CASE WHEN '$idSecretaria' <> '0' THEN mv.idSecretaria = '$idSecretaria' ELSE 1=1 END )
-        ) AS indicadores";
+        AND (CASE WHEN '$idUnidad' <> '0' THEN pc.idUA = '$idUnidad' ELSE 1=1 END )
+        ) + 2 AS indicadores";
 
         $informacion = DB::select($query);
         return response()->json(array('error' => false, 'data' => $informacion, 'code' => 200));

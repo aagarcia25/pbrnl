@@ -1432,7 +1432,7 @@
                                         <textarea {{ $disabled }} class="TextBoxUsr w-100" id="variable2_actividad" required maxlength="300" rows="5"></textarea>
                                     </div>
                                     <div class="col-3 mb-1 FormUsr FontMsg mt-3">
-                                        <label for="variable3_actividad" class="form-labelUsr4">Variable 3 (V3)</label>
+                                        <label for="variable3_actividad" class="form-labelUsr4">Método de cálculo</label>
                                         <textarea {{ $disabled }} class="TextBoxUsr w-100" id="variable3_actividad" required maxlength="300" rows="5"></textarea>
                                     </div>
                                     <div class="col-3 mb-1">
