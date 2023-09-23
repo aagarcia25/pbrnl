@@ -1,5 +1,3 @@
-const { fill } = require("lodash");
-
 function ResponseGetMirComponentes(response) {
     if (!response.error) {
         if(response.data != null && response.data.length > 0) {

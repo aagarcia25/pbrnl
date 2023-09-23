@@ -182,9 +182,17 @@ class MirController extends BaseController
         return response()->json(array('error' => false, 'data' => $info, 'code' => 200));
     }
 
+    public function revisar(Request $request) {
+        $usuario = $this->getUsuarioActual();
+        $update_caratula = MirCaratula::
+        where('Id', '=', $request->id)
+        ->first();
+    }
+
     public function save(Request $request)
     {
         $info = array();
+        $usuario = $this->getUsuarioActual();
 
         // Eliminar información en carga
         $this->deleteCarga($request->caratula['consecutivo_caratula']);
@@ -198,10 +206,10 @@ class MirController extends BaseController
 
         // C A R A T U L A
         try {
-            
             $update_caratula = MirCaratula::
                 where('EjercicioFiscal', '=', $request->caratula['ejercicio_fiscal'])
-                ->where('Consecutivo', '=', $request->caratula['consecutivo_caratula'])->first();
+                ->where('Consecutivo', '=', $request->caratula['consecutivo_caratula'])
+                ->first();
 
             if (is_null($update_caratula)) {
                 return response()->json(array('error' => true, 'result' => "No se ha encontrado la información de la carátula.", 'code' => 404));
@@ -217,17 +225,24 @@ class MirController extends BaseController
             }
 
             $update_caratula->Consecutivo       = $request->caratula['consecutivo_caratula'];
-                $update_caratula->EjercicioFiscal   = $request->caratula['ejercicio_fiscal'];
-                $update_caratula->CONAC             = $request->caratula['conac_caratula'];
-                $update_caratula->idCatBeneficiario = $request->caratula['select_descripcionampliabeneficiario1'];
-                $update_caratula->idEje             = $request->caratula['select_ejeped'];
-                $update_caratula->idTema            = $request->caratula['select_temaped'];
-                $update_caratula->idObjetivo        = $request->caratula['select_objetivo'];
-                $update_caratula->idEstrategia      = $request->caratula['select_estrategia'];
-                $update_caratula->idLineaAccion     = $request->caratula['select_lineaaccion1'];
-                $update_caratula->idLineaAccion2    = $request->caratula['select_lineaaccion2'];
-                $update_caratula->ProgramaSectorial = $request->caratula['programa_sectorial'];
-                $update_caratula->idCatBeneficiario2= $request->caratula['select_descripcionampliabeneficiario2'];
+            $update_caratula->EjercicioFiscal   = $request->caratula['ejercicio_fiscal'];
+            $update_caratula->CONAC             = $request->caratula['conac_caratula'];
+            $update_caratula->idCatBeneficiario = $request->caratula['select_descripcionampliabeneficiario1'];
+            $update_caratula->idEje             = $request->caratula['select_ejeped'];
+            $update_caratula->idTema            = $request->caratula['select_temaped'];
+            $update_caratula->idObjetivo        = $request->caratula['select_objetivo'];
+            $update_caratula->idEstrategia      = $request->caratula['select_estrategia'];
+            $update_caratula->idLineaAccion     = $request->caratula['select_lineaaccion1'];
+            $update_caratula->idLineaAccion2    = $request->caratula['select_lineaaccion2'];
+            $update_caratula->ProgramaSectorial = $request->caratula['programa_sectorial'];
+            $update_caratula->idCatBeneficiario2= $request->caratula['select_descripcionampliabeneficiario2'];
+            
+            // guardar el estado
+
+            if($usuario->TipoUsuario != 1 && $update_caratula->StatusMirId == 1){ //en espera de enviar a revision
+                $update_caratula->StatusMirId = 2;  //en revisión
+            }
+            
             $update_caratula->save();
 
             array_push($info, array("caratula" => true));

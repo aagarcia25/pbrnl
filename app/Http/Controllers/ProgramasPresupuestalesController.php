@@ -154,14 +154,7 @@ class ProgramasPresupuestalesController extends BaseController
 
         try {
             $update = DB::table('PROGRAMATICO')
-                // ->where('idObjetivoPED', '=', $request->id_objetivo_real)
-                // ->where('idClasificacion', '=', $request->id_clasificacion_real)
-                // ->where('Consecutivo', '=', $request->consecutivo_real)
-                // ->where('Anticorrupcion', '=', $request->id_anticorrupcion_real)
-                // ->where('idTipologia', '=', $request->id_topologia_real)
-                // ->where('idSecretaria', '=', $request->id_secretaria_real)
                 ->where('Id', '=', $request->id)
-                //->limit(1)
                 ->update(
                     array(
                         'idSecretaria' => $request->id_secretaria,
@@ -172,11 +165,6 @@ class ProgramasPresupuestalesController extends BaseController
                         'idUA' => $request->id_ua
                     )
                 );
-
-            /*if ($update == 0){
-                return response()->json(array('error' => true, 'result' => "No ha sido posible editar el programa presupuestario, favor de intentarlo nuevamente.", 'code' => 404));
-            }*/
-
         }catch (Exception $e) {
             return response()->json(array('error' => true , 'result' => $e->getMessage(), 'code' => 500));
         }

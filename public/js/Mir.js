@@ -20,6 +20,7 @@ var selectSecretaria = null;
 var selectUnidadAdministrativa = null;
 var consecutivo_seleccionado = null;
 var mirData = [];
+var mirSeleccionada = null;
 
 $(document).ready(function() {
     Funciones_Iniciales();
@@ -415,10 +416,11 @@ function BtnEditarMir(){
             Func_Aviso("Atención", "Para continuar favor de seleccionar un registro.", "info");
             return false;
         }
-        
+
         let conac = data[0];
         let consecutivo = data[1];
         let ejercicio = $("#select_ef").val();
+        mirSeleccionada = getSelectedPrograma();
 
         consecutivo_seleccionado = consecutivo;
         var request = {
