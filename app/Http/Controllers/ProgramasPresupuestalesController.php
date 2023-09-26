@@ -71,8 +71,14 @@ class ProgramasPresupuestalesController extends BaseController
             INNER JOIN SECRETARIAS AS B ON A.idSecretaria = B.idSecretaria 
             WHERE A.idClasificacion IN ('PP') 
                 AND A.idSecretaria = '$request->id_secretaria' 
-                AND A.ejercicioFiscal = $request->ejercicio_fiscal
-                ORDER BY A.Consecutivo;";
+                AND A.ejercicioFiscal = $request->ejercicio_fiscal ";
+
+        $ua = $request->id_ua;
+        if(isset($ua) && $ua != "" && $ua != "0")
+            $query .= "AND A.idUA = $ua";
+
+        $query.=" ORDER BY A.Consecutivo";
+                
         $informacion = DB::select($query);
         return response()->json(array('error' => false, 'data' => $informacion, 'code' => 200));
     }

@@ -32,7 +32,7 @@ function ResponseGetSecretarias(response) {
         $('#select_Secretaria').selectpicker("refresh");
         $('#select_entepublido').selectpicker();
 
-        $('#select_Secretaria').selectpicker("val", info_secretarias[0].idSecretaria);
+        //$('#select_Secretaria').selectpicker("val", info_secretarias[0].idSecretaria);
 
         swal.close();
         GetUnidadesAdministrativas();

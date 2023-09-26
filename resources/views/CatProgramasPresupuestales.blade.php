@@ -83,9 +83,15 @@
                                 <select id="select_ef" class="selectpicker show-tick form-control" title="Seleccione..." data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
                                 </select>
                             </div>
-                            <div class="col-10">
+                            <div class="col-5">
                                 <label for="select_secretaria" class="form-label">Secretaría</label>
                                 <select id="select_secretaria" class="selectpicker show-tick form-control" title="Seleccione..." data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                </select>
+                            </div>
+                            <div class="col-5">
+                                <label for="select_UnidadAdministrativa" class="form-label">Id Unidad Administrativa</label>
+                                <select id="select_UnidadAdministrativa" class="selectpicker show-tick form-control" title="Seleccione..." data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                    
                                 </select>
                             </div>
                         </div>

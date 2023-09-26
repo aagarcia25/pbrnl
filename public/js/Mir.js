@@ -53,7 +53,6 @@ function GetMir(){
     }
     return repository.Mir.GetMir(request)
         .then(ResponseGetMir);
-
 }
 
 function ResponseGetMir(response){
@@ -574,6 +573,10 @@ function BtnGuardarMir(){
             componente: Func_GetRequestComponente(),
             actividad: Func_GetRequestActividad()
         };
+        
+        $('input[type=text], textarea').val (function () {
+            return this.value.toUpperCase();
+        });
 
         // Func_Cargando();
         Func_Mensaje("Guardando MIR...");
@@ -658,9 +661,11 @@ function ResponseDeleteLogFormulas(response){
 // ======================================================
 
 function Func_LimpiarModal() {
-    $("modal .form-control").val("");
-    $("modal .form-control").removeClass("is-invalid");
-    $("modal .form-control").removeClass("is-valid");
+    $(".modal input, .modal select, .modal textarea")
+        .val("");
+    $(".modal input, .modal select, .modal textarea").removeClass("is-invalid");
+    $(".modal input, .modal select, .modal textarea").removeClass("is-valid");
+    $(".modal input[type='radio']").attr("checked", "checked");
 }
 
 function getSelectedPrograma(){

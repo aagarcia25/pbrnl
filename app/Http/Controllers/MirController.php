@@ -139,9 +139,8 @@ class MirController extends BaseController
         //     A. ClasProgramatica = '$request->consecutivo' and 
         //     A. EjercicioFiscal=$request->ejercicioFiscal";
 
-        $query = "SELECT A.*, C.idUA FROM 
+        $query = "SELECT A.* FROM 
         ACTIVIDAD A 
-        INNER JOIN PROGRAMATICO_COMP C ON A.ClasProgramatica = C.Consecutivo AND A.idComponente = C.Componente
         WHERE
         A.ClasProgramatica = '$request->consecutivo' AND 
         A.EjercicioFiscal=$request->ejercicioFiscal";
@@ -378,7 +377,7 @@ class MirController extends BaseController
                 $this->addCarga($consecutivo_carga, $idelemento_carga, $seccion_carga, "DESCRIPCIÓN DEL DENOMINADOR", "NÚMERO DE CARACTERES MAYOR A 300. CONTEO = " . strlen($request->fin['descripciondenominador_fin']));
             }
 
-            if ($request->fin['claridad_fin'] == "N"){
+            if (isset($request->fin['claridad_fin']) && $request->fin['claridad_fin'] == "N"){
                 $this->addCarga($consecutivo_carga, $idelemento_carga, $seccion_carga, "CLARIDAD", "REVISAR REGISTRO");
             }
 

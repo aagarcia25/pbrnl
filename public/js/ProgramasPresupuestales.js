@@ -166,6 +166,11 @@ function Eventos() {
     $("#select_uapp").on("change", function() {
         $("#id_uapp").val($("#select_uapp").val());
     });
+
+    $("#select_UnidadAdministrativa").on("change", function() {
+        GetProgramasP($("#select_secretaria").val(), 
+        $("#select_UnidadAdministrativa").val());
+    });
 }
 
 function SeleccionarTabla() {
@@ -196,8 +201,35 @@ function OnChange_Secretaria(){
     $("#select_secretaria").on("change", function(){
         var Id_Secretaria = $(this).val();
         Func_Cargando();
-        GetProgramasP(Id_Secretaria);
+        GetProgramasP(Id_Secretaria, "");
+        repository.UnidadesAdministrativas.GetUnidadesAdministrativas({
+            id_Secretaria: $("#select_secretaria").val()
+        })
+        .then((response)=> {
+            var data = response.data;
+            agregarUnidadesAdministrativas(data);
+        });
     });
+}
+
+function agregarUnidadesAdministrativas(data) {
+    $('#select_UnidadAdministrativa').selectpicker("destroy");
+    $('#select_UnidadAdministrativa').empty();
+    info_unidadadministrativa = data;
+    
+    $('#select_UnidadAdministrativa').append($('<option>', {
+        value: "",
+        text: "-"
+    }));
+
+    for (var i = 0; i < data.length; i++) {
+        $('#select_UnidadAdministrativa').append($('<option>', {
+            value: data[i].idUnidad,
+            text: ("[" + data[i].idUnidad + "] " + data[i].Descripcion)
+        }));
+    }
+
+    $('#select_UnidadAdministrativa').selectpicker();
 }
 
 function OnChange_Ejercicio() {
@@ -211,16 +243,19 @@ function OnChange_Ejercicio() {
     });
 }
 
-function GetProgramasP(id_secretaria) {
+function GetProgramasP(id_secretaria, id_unidad) {
+    Func_Cargando();
     var request = {
         "id_secretaria": id_secretaria,
-        "ejercicio_fiscal": $("#select_ef").val()
+        "ejercicio_fiscal": $("#select_ef").val(),
+        "id_ua": id_unidad
     }
     repository.ProgramasPresupuestales.GetProgramasP(request)
         .then(ResponseGetProgramasP);
 }
 
 function ResponseGetProgramasP(response) {
+    swal.close();
     if (!response.error) {
         DestroyDataTable("table");
         $("#table > tbody > tr").remove();
@@ -243,7 +278,6 @@ function ResponseGetProgramasP(response) {
         Func_DataTable("table");
         GetCountProgramasP();
     } else {
-        swal.close();
         console.log(response.result)
         Func_Aviso("Anomalía detectada", "Ha ocurrido una anomalía al obtener la información del módulo, favor de intentarlo nuevamente.", "error");
     }
@@ -638,9 +672,9 @@ function ResponseEditProgramaPresupuestal(response) {
 // ======================================================
 
 function Func_LimpiarModal() {
-    $(".form-control").val("");
-    $(".form-control").removeClass("is-invalid");
-    $(".form-control").removeClass("is-valid");
+    $(".modal .form-control").val("");
+    $(".modal .form-control").removeClass("is-invalid");
+    $(".modal .form-control").removeClass("is-valid");
 }
 
 

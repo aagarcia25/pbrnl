@@ -1,7 +1,7 @@
 function ResponseGetMirComponentes(response) {
     if (!response.error) {
+        info_componentes = response.data;
         if(response.data != null && response.data.length > 0) {
-            info_componentes = response.data;
             $("#claseprogramatica_componente").val(response.data[index_componente]['ClasProgramatica']);
             $("#id_componente").val(response.data[index_componente]['idComponente']);
             $("#nombre_componente").val(response.data[index_componente]['Componente']);
@@ -247,6 +247,8 @@ function ResponseGetMirActividades(response) {
                 }
             }
         }
+        else
+            info_actividades = [];
         //GetMirAutoriaCarga();
         $("#Modal").modal("show");
         swal.close();
