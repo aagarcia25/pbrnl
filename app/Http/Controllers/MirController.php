@@ -32,9 +32,12 @@ class MirController extends BaseController
         if($usuario->TipoUsuario != "1") {
             //solo puede ver las mir de su secretaria
             $query .= "AND idSecretaria = '$usuario->idSecretaria'";
-//los que no son de la secretaria 321 no importa la unidad
+
+            //los que son de la secretaria 321 solo pueden ver los de su unidad
             if($usuario->idSecretaria == '321')
                 $query .= " AND idUA = '$usuario->idUnidad'";
+            else if($request->id_ua != '' && $request->id_ua != '0')
+                $query .= " AND idUA = '$request->id_ua'";
         }
         else{
             if($request->id_secretaria != 0 && $request->id_secretaria != '')
@@ -239,9 +242,9 @@ class MirController extends BaseController
             
             // guardar el estado
 
-            if($usuario->TipoUsuario != 1 && $update_caratula->StatusMirId == 1){ //en espera de enviar a revision
-                $update_caratula->StatusMirId = 2;  //en revisión
-            }
+            // if($usuario->TipoUsuario != 1 && $update_caratula->StatusMirId == 1){ //en espera de enviar a revision
+            //     $update_caratula->StatusMirId = 2;  //en revisión
+            // }
             
             $update_caratula->save();
 

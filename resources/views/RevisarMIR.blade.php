@@ -35,13 +35,13 @@
                             <div class="col-5">
                                 <label for="select_Secretaria" class="form-label">Id Secretaría</label>
                                 <select id="select_Secretaria" class="selectpicker show-tick form-control select_border" title="Seleccione..." data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
-                                    <option value="0">-</option>
+                                    
                                 </select>
                             </div>
                             <div class="col-5">
                                 <label for="select_UnidadAdministrativa" class="form-label">Id Unidad Administrativa</label>
                                 <select id="select_UnidadAdministrativa" class="selectpicker show-tick form-control" title="Seleccione..." data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
-                                    <option value="0">-</option>
+                                    
                                 </select>
                             </div>
                         </div>
@@ -110,7 +110,7 @@
                                 </div>
                                 <div class="col-6 mb-1 FormUsr FontMsg">
                                     <label for="select_uaresponsable" class="form-labelUsr3">Unidad Administrativa Responsable</label>
-                                    <select id="select_uaresponsable" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required >
+                                    <select {{$disabled}} id="select_uaresponsable" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required >
                                     </select>
                                 </div>
                                 <div class="col-6 mb-1 FormUsr FontMsg mt-3">
@@ -146,13 +146,13 @@
                                     </select>
                                 </div>
                                 <div class="col-12 mb-1 FormUsr FontMsg mt-3">
-                                    <label for="select_lineaaccion1" class="form-labelUsr3">Id Línea Acción 1</label>
-                                    <select id="select_lineaaccion1" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                    <label  for="select_lineaaccion1" class="form-labelUsr3">Id Línea Acción 1</label>
+                                    <select {{ $disabled }} id="select_lineaaccion1" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
                                     </select>
                                 </div>
                                 <div class="col-12 mb-1 FormUsr FontMsg mt-3">
                                     <label for="select_lineaaccion2" class="form-labelUsr3">Id Línea Acción 2</label>
-                                    <select id="select_lineaaccion2" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                    <select {{ $disabled }} id="select_lineaaccion2" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
                                     </select>
                                 </div>
                                 <div class="col-12 mb-1 FormUsr FontMsg mt-3">
@@ -168,12 +168,12 @@
                                     <div class="row">
                                         <div class="col-12 mb-1 FormUsr FontMsg mt-3">
                                             <label for="select_descripcionampliabeneficiario1" class="form-labelUsr3">Descripción Amplia del Beneficiario 1 (Población o Area de Enfoque Objetivo)</label>
-                                            <select {{ $disabled }} id="select_descripcionampliabeneficiario1" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                            <select {{$disabled}} id="select_descripcionampliabeneficiario1" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
                                             </select>
                                         </div>
                                         <div class="col-12 mb-1 FormUsr FontMsg mt-3">
                                             <label for="select_descripcionampliabeneficiario2" class="form-labelUsr3">Descripción Amplia del Beneficiario 2 (Población o Area de Enfoque Objetivo)</label>
-                                            <select {{ $disabled }} id="select_descripcionampliabeneficiario2" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                            <select {{$disabled}} id="select_descripcionampliabeneficiario2" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
                                             </select>
                                         </div>
                                     </div>
@@ -294,11 +294,11 @@
                                     </div>
                                     <div class="col-3 mb-1 FormUsr FontMsg mt-3">
                                         <label for="lineabaseV1_fin" class="form-labelUsr4">V1</label>
-                                        <input {{ $disabled }} type="text" class="TextBoxUsr w-100 H-50 money" id="lineabaseV1_fin">
+                                        <input  type="text" class="TextBoxUsr w-100 H-50 money" id="lineabaseV1_fin">
                                     </div>
                                     <div class="col-3 mb-1 FormUsr FontMsg mt-3">
                                         <label for="lineabaseV2_fin" class="form-labelUsr4">V2</label>
-                                        <input {{ $disabled }} type="text" class="TextBoxUsr w-100 H-50 money" id="lineabaseV2_fin">
+                                        <input  type="text" class="TextBoxUsr w-100 H-50 money" id="lineabaseV2_fin">
                                     </div>
                                     <div class="col-6 mb-1 FormUsr FontMsg mt-3">
                                         <label for="mediosverificacion_fin" class="form-labelUsr4">Medios de Verificación</label>
@@ -429,21 +429,21 @@
                                     </div>
                                     <div class="col-4 mb-3 FormUsr FontMsg mt-3">
                                         <label for="descripcionindicador_fin" class="form-labelUsr4">Descripción Indicador</label>
-                                        <textarea {{ $disabled }} class="form-control TextBoxUsr w-100" id="descripcionindicador_fin" required maxlength="300" rows="6"></textarea>
+                                        <textarea class="form-control TextBoxUsr w-100" id="descripcionindicador_fin" required maxlength="300" rows="6"></textarea>
                                         <div class="position-absolute bottom-0 end-0">
                                             <label id="lblIndicaFin" class="LabelContador me-4">0/240</label>
                                         </div>
                                     </div>
                                     <div class="col-4 mb-3 FormUsr FontMsg mt-3">
                                         <label for="descripcionnumerador_fin" class="form-labelUsr4">Descripción Numerador</label>
-                                        <textarea {{ $disabled }} class="form-control TextBoxUsr w-100" id="descripcionnumerador_fin" required maxlength="300" rows="6"></textarea>
+                                        <textarea class="form-control TextBoxUsr w-100" id="descripcionnumerador_fin" required maxlength="300" rows="6"></textarea>
                                         <div class="position-absolute bottom-0 end-0">
                                             <label id="lblContDescNumFin" class="LabelContador me-4">0/240</label>
                                         </div>
                                     </div>
                                     <div class="col-4 mb-3 FormUsr FontMsg mt-3">
                                         <label for="descripciondenominador_fin" class="form-labelUsr4">Descripción Denominador</label>
-                                        <textarea {{ $disabled }} class="form-control TextBoxUsr w-100" id="descripciondenominador_fin" required maxlength="300" rows="6"></textarea>
+                                        <textarea class="form-control TextBoxUsr w-100" id="descripciondenominador_fin" required maxlength="300" rows="6"></textarea>
                                         <div class="position-absolute bottom-0 end-0">
                                             <label id="lblContDescDenomFin" class="LabelContador me-4">0/240</label>
                                         </div>
@@ -564,11 +564,11 @@
                                     </div>
                                     <div class="col-3 mb-1 FormUsr FontMsg mt-3">
                                         <label for="lineabaseV1_proposito" class="form-labelUsr4">V1</label>
-                                        <input {{ $disabled }} type="text" class="TextBoxUsr w-100 H-50 money" id="lineabaseV1_proposito">
+                                        <input type="text" class="TextBoxUsr w-100 H-50 money" id="lineabaseV1_proposito">
                                     </div>
                                     <div class="col-3 mb-1 FormUsr FontMsg mt-3">
                                         <label for="lineabaseV2_proposito" class="form-labelUsr4">V2</label>
-                                        <input {{ $disabled }} type="text" class="TextBoxUsr w-100 H-50 money" id="lineabaseV2_proposito">
+                                        <input type="text" class="TextBoxUsr w-100 H-50 money" id="lineabaseV2_proposito">
                                     </div>
                                     <div class="col-6 mb-1 FormUsr FontMsg mt-3">
                                         <label for="mediosverificacion_proposito" class="form-labelUsr4">Medios de Verificación</label>
@@ -2004,16 +2004,24 @@
                         <div class="col-5">
                             <input type="button" id="BtnValidar" class="buttonOutlineSucces150 text-capitalize" 
                             value="Validar Fórmulas" style="display:none">
+
                             <button 
                                 type="button" 
                                 class="buttonOutlineSucces150"
                                 id="BtnGuardar">
+                                Guardar
+                            </button>
+<!-- 
+                            <button 
+                                type="button" 
+                                class="buttonOutlineSucces150"
+                                id="BtnEnviar">
                                 @if ($tipoUsuario <> 1) 
                                     <span id="lblBotonEnviar">Enviar a registro</span>
                                 @else
                                     <span id="lblBotonEnviar">Registrar</span>
                                 @endif
-                            </button>
+                            </button> -->
 
                             <button type="button" class="buttonCloseModal" 
                                 data-bs-dismiss="modal">Cerrar</button>                                    

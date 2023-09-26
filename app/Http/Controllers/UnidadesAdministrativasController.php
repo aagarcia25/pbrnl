@@ -12,11 +12,17 @@ class UnidadesAdministrativasController extends BaseController
     public function all()
     {
         $usuario = $this->getUsuarioActual();
+        $id_secretaria = $usuario->idSecretaria;
+        $id_unidad = $usuario->idUnidad;
 
-        if($usuario->TipoUsuario == 1)
-            $query = "SELECT * FROM UNIDADES WHERE Activo = 'S'";
-        else
-            $query = "SELECT * FROM UNIDADES WHERE Activo = 'S' AND idUnidad=$usuario->idUnidad AND idSecretaria=$usuario->idSecretaria";
+        $query = "SELECT * FROM UNIDADES WHERE Activo = 'S'";
+
+        if($usuario->TipoUsuario != 1 && $id_secretaria != "321"){
+            $query .= "AND idSecretaria=$usuario->idSecretaria ";
+        }
+        else if($usuario->TipoUsuario != 1 && $id_secretaria == "321") {
+            $query .= "AND idUnidad=$usuario->idUnidad ";
+        }
 
         $informacion = DB::select($query);
 
@@ -25,8 +31,16 @@ class UnidadesAdministrativasController extends BaseController
 
     public function index(Request $request)
     {
-        $query = "SELECT * FROM UNIDADES 
-            WHERE idSecretaria = '$request->id_Secretaria' AND Activo = 'S';";
+        $usuario = $this->getUsuarioActual();
+
+        if($usuario->TipoUsuario == 1)
+            $query = "SELECT * FROM UNIDADES 
+                WHERE idSecretaria = '$request->id_Secretaria' AND Activo = 'S';";
+        else
+            $query = "SELECT * FROM UNIDADES WHERE 
+                Activo = 'S' AND idUnidad=$usuario->idUnidad 
+                AND idSecretaria=$usuario->idSecretaria";
+
         $informacion = DB::select($query);
 
         return response()->json(array('error' => false, 'data' => $informacion, 'code' => 200));

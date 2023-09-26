@@ -6,9 +6,16 @@ function GetSecretarias() {
 function ResponseGetSecretarias(response) {
     if (!response.error) {
         $('#select_entepublido').selectpicker("destroy");
-        $('#select_Secretaria').children('option:not(:first)').remove();
+        $('#select_Secretaria').children().remove();
         $('#select_entepublido').children('option:not(:first)').remove();
         info_secretarias = response.data;
+
+        if(info_secretarias.length > 1) {
+            $('#select_Secretaria').append($('<option>', {
+                value: "0",
+                text: "-"
+            }));
+        }
         
         for (var i = 0; i < response.data.length; i++) {
             $('#select_Secretaria').append($('<option>', {
@@ -20,8 +27,13 @@ function ResponseGetSecretarias(response) {
                 text: ("[" + response.data[i].idSecretaria + "] " + response.data[i].Descripcion)
             }));
         }
+
+
         $('#select_Secretaria').selectpicker("refresh");
         $('#select_entepublido').selectpicker();
+
+        $('#select_Secretaria').selectpicker("val", info_secretarias[0].idSecretaria);
+
         swal.close();
         GetUnidadesAdministrativas();
     } else {
@@ -52,10 +64,12 @@ function agregarUnidadesAdministrativas(data) {
     $('#select_UnidadAdministrativa').selectpicker("destroy");
     $('#select_UnidadAdministrativa').empty();
     info_unidadadministrativa = data;
-    $('#select_UnidadAdministrativa').append($('<option>', {
-        value: "",
-        text: "-"
-    }));
+    if(info_unidadadministrativa.length > 1) {
+        $('#select_UnidadAdministrativa').append($('<option>', {
+            value: "",
+            text: "-"
+        }));
+    }
     for (var i = 0; i < data.length; i++) {
         $('#select_UnidadAdministrativa').append($('<option>', {
             value: data[i].idUnidad,
@@ -63,7 +77,10 @@ function agregarUnidadesAdministrativas(data) {
         }));
     }
     $('#select_UnidadAdministrativa').selectpicker();
-    $('#select_UnidadAdministrativa').selectpicker("val","");
+    if(info_unidadadministrativa.length == 1)
+        $('#select_UnidadAdministrativa').selectpicker("val",info_unidadadministrativa[0].idUnidad);
+    else
+        $('#select_UnidadAdministrativa').selectpicker("val","");
 }
 
 function GetEjes() {
