@@ -63,7 +63,7 @@ function Func_FormatoMoneda(amount, decimals) {
     amount += '';
     Monto = amount;
     amount = parseFloat(amount.replace(/[^0-9\.]/g, ''));
-    decimals = decimals || 0;
+    decimals = decimals || 2;
 
     if (isNaN(amount) || amount === 0)
         return parseFloat(0).toFixed(decimals);

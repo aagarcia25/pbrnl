@@ -111,13 +111,89 @@ class MirController extends BaseController
 
     public function componentes(Request $request)
     {
-        $query = "SELECT c1.*, 
-                cc.DescripcionComponente as Componente, cc.idUA FROM 
-            COMPONENTE1 c1
-            LEFT JOIN PROGRAMATICO_COMP cc
-            on c1.ComponenteId = cc.Id
-            WHERE cc.Consecutivo = '$request->consecutivo' 
-                and c1.EjercicioFiscal = $request->ejercicioFiscal;";
+        // $query = "SELECT c1.*, 
+        //         cc.DescripcionComponente as Componente, cc.idUA FROM 
+        //     COMPONENTE1 c1
+        //     LEFT JOIN PROGRAMATICO_COMP cc
+        //     on c1.ComponenteId = cc.Id
+        //     WHERE cc.Consecutivo = '$request->consecutivo' 
+        //         and c1.EjercicioFiscal = $request->ejercicioFiscal;";
+
+        $id = $request->id;
+
+        $query = "SELECT 
+        c1.ClasProgramatica, 
+        c1.idComponente,	
+        cc.DescripcionComponente AS Componente,
+        cc.idUA,
+        c1.Indicador,
+        c1.Formula,
+        c1.V1,
+        c1.V2,
+        c1.FormulaV1V2,
+        c1.Frecuencia,
+        c1.MetaAnual,
+        c1.LineaBase,
+        c1.FuenteInformacion,
+        c1.Supuestos,
+        c1.ValorNumerador,
+        c1.ValorDenominador,
+        c1.ValorNumeradorOriginal,
+        c1.UnidadMedida,
+        c1.DescripAbsoluto,
+        c1.SentidoIndicador,
+        c1.TipoIndicador,
+        c1.DimensionIndicador,
+        c1.Claridad,
+        c1.Relevancia,
+        c1.`Relevancia`, 
+        `Economia`, 
+        `Monitoreable`, 
+        `Adecuado`, 
+        `AporteMarginal`, 
+        `UnidadResponsable`, 
+        `DescripcionIndicador`, 
+        `DescripcionNumerador`, 
+        `DescripcionDenominador`, 
+        `MetaSemestre1`, 
+        `MetaSemestre2`, 
+        `MetaTrimestre1`, 
+        `MetaTrimestre2`, 
+        `MetaTrimestre3`, 
+        `MetaTrimestre4`, 
+        `MediosVerificacion`, 
+        `ClaveIndicador`, 
+        `LineaBaseV1`, 
+        `LineaBaseV2`, 
+        `LineaBaseEjercicio`, 
+        `Semestre1V1`, 
+        `Semestre2V1`, 
+        `Semestre1V2`, 
+        `Semestre2V2`, 
+        `Trimestre1V1`, 
+        `Trimestre2V1`, 
+        `Trimestre3V1`, 
+        `Trimestre4V1`, 
+        `Trimestre1V2`, 
+        `Trimestre2V2`, 
+        `Trimestre3V2`, 
+        `Trimestre4V2`, 
+        `TipoFormula`, 
+        `MetaAnualOriginal`, 
+        `LineaBaseOriginal`, 
+        `DenominadorFijo`, 
+        `ComponenteId`, 
+        c1.`Id`, 
+        cc.`EjercicioFiscal`
+         FROM 
+    PROGRAMATICO_COMP cc
+    LEFT JOIN  
+        COMPONENTE1 c1
+        ON c1.ComponenteId = cc.Id
+        WHERE cc.programaticoId=$id
+        ORDER BY cc.DescripcionComponente
+        ";
+
         $info = DB::select($query);
         return response()->json(array('error' => false, 'data' => $info, 'code' => 200));
     }

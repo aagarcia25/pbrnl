@@ -234,7 +234,12 @@ function ResponseGetMirActividades(response) {
                 $("#select_sentidoindicador_actividad").selectpicker("val", info_actividades[id_componente]['items'][index_actividad]['SentidoIndicador']);
                 $("#select_tipoindicador_actividad").selectpicker("val", info_actividades[id_componente]['items'][index_actividad]['TipoIndicador']);
                 $("#select_dimensionindicador_actividad").selectpicker("val", info_actividades[id_componente]['items'][index_actividad]['DimensionIndicador']);
-                $("#select_unidadresponsablereportar_actividad").selectpicker("val", info_actividades[id_componente]['items'][index_actividad]['idUA']);
+
+                var unidadResponsable = info_actividades[id_componente]['items'][index_actividad]['idUA'];
+                if(unidadResponsable == null || unidadResponsable == "")
+                    $("#select_unidadresponsablereportar_actividad").selectpicker("val", $("#select_uaresponsable").val());
+                else
+                    $("#select_unidadresponsablereportar_actividad").selectpicker("val",unidadResponsable);
 
                 $("#descripcionindicador_actividad").val(info_actividades[id_componente]['items'][index_actividad]['DescripcionIndicador']);
                 $("#descripcionnumerador_actividad").val(info_actividades[id_componente]['items'][index_actividad]['DescripcionNumerador']);
@@ -249,7 +254,7 @@ function ResponseGetMirActividades(response) {
         }
         else
             info_actividades = [];
-        //GetMirAutoriaCarga();
+        $(".contador-letras").trigger("keyup");
         $("#Modal").modal("show");
         swal.close();
     } else {
@@ -299,11 +304,7 @@ function OnClic_TabsComponentes(){
             $("#claveindicador_componente").val(componente['ClaveIndicador']);
             $("#nombreindicar_componente").val(componente['Indicador']);
             
-            if(componente['Indicador']?.length > 0){
-                let splitNombreIndicador = componente['Indicador'].split(" ");
-                let contadorNombreIndicador = splitNombreIndicador.length;
-                $("#lblContIndicadorComp").text(`${contadorNombreIndicador}/30`);
-            
+            //if(componente['Indicador']?.length > 0){
 
                 $("#descripcionformula_componente").val(componente['Formula']);
                 $("#variable1_componente").val(componente['V1']);
@@ -507,9 +508,9 @@ function OnClic_TabsComponentes(){
                     console.log("InicialTrimestral_Actividad")
                     InicialTrimestral_Actividad();
                 }
-            }
-            else
-                $("#select_unidadresponsablereportar_componente").selectpicker("val", componente.idUA);
+            // }
+            // else
+            //     $("#select_unidadresponsablereportar_componente").selectpicker("val", componente.idUA);
             swal.close();
         }
     });
@@ -701,7 +702,7 @@ function ResponseGetMirCaratula(response) {
         FiltrarUnidadesAdministrativas(response.data['idSecretaria']);
 
         $("#select_uaresponsable").selectpicker("val", response.data['idUA']);
-        $("#select_unidadresponsablereportar").selectpicker("val", response.data['idUA']);
+
         $("#select_estrategia").selectpicker("val", response.data['idEstrategia']);
         $("#select_lineaaccion1").selectpicker("val", response.data['idLineaAccion']);
         $("#select_lineaaccion2").selectpicker("val", response.data['idLineaAccion2']);
@@ -940,7 +941,12 @@ function ResponseGetMirProposito(response) {
             $("#select_sentidoindicador_proposito").selectpicker("val", response.data['SentidoIndicador']);
             $("#select_tipoindicador_proposito").selectpicker("val", response.data['TipoIndicador']);
             $("#select_dimensionindicador_proposito").selectpicker("val", response.data['DimensionIndicador']);
-            $("#select_unidadresponsablereportar_proposito").selectpicker("val", response.data['UnidadResponsable']);
+
+            var unidadResponsable = response.data['UnidadResponsable'];
+            if(unidadResponsable == null || unidadResponsable == "")
+                $("#select_unidadresponsablereportar_proposito").selectpicker("val", $("#select_uaresponsable").val());
+            else
+                $("#select_unidadresponsablereportar_proposito").selectpicker("val",unidadResponsable);
             
             $("#descripcionindicador_proposito").val(response.data['DescripcionIndicador']);
             $("#descripcionnumerador_proposito").val(response.data['DescripcionNumerador']);
@@ -962,9 +968,8 @@ function ResponseGetMirFin(response) {
             $("#claveindicador_fin").val(response.data['ClaveIndicador']);
             $("#nombreindicar_fin").val(response.data['Indicador']);
             
-            let splitNombreIndicador = response.data['Indicador'].split(" ");
-            let contadorNombreIndicador = splitNombreIndicador.length;
-            $("#lblContIndicadorFin").text(`${contadorNombreIndicador}/30`);
+            let contadorNombreIndicador = response.data['Indicador'].length;
+            $("#lblContIndicadorFin").text(`${contadorNombreIndicador}/200`);
 
             $("#descripcionformula_fin").val(response.data['Formula']);
             $("#variable1_fin").val(response.data['V1']);
@@ -1003,8 +1008,13 @@ function ResponseGetMirFin(response) {
             $("#select_sentidoindicador_fin").selectpicker("val", response.data['SentidoIndicador']);
             $("#select_tipoindicador_fin").selectpicker("val", response.data['TipoIndicador']);
             $("#select_dimensionindicador_fin").selectpicker("val", response.data['DimensionIndicador']);
-            $("#select_unidadresponsablereportar_fin").selectpicker("val", response.data['UnidadResponsable']);
-            
+
+            var unidadResponsable = response.data['UnidadResponsable'];
+            if(unidadResponsable == null || unidadResponsable == "")
+                $("#select_unidadresponsablereportar_fin").selectpicker("val", $("#select_uaresponsable").val());
+            else
+                $("#select_unidadresponsablereportar_fin").selectpicker("val",unidadResponsable);
+
             $("#descripcionindicador_fin").val(response.data['DescripcionIndicador']);
             $("#descripcionnumerador_fin").val(response.data['DescripcionNumerador']);
             $("#descripciondenominador_fin").val(response.data['DescripcionDenominador']);

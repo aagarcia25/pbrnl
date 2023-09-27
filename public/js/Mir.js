@@ -181,7 +181,8 @@ function Eventos() {
     })
 
     //metaanual_fin, variable1numerador_fin, variable2numerador_fin
-    $("#variable1numerador_fin, #variable2numerador_fin").on("change", () => {
+    $("#variable1numerador_fin, #variable2numerador_fin").on("change", function() {
+        this.value = Func_FormatoMoneda(this.value);
         var calculo = Func_CalcularMeta(
             $("#variable1numerador_fin").val(),
             $("#variable2numerador_fin").val(),
@@ -190,7 +191,8 @@ function Eventos() {
         $("#metaanual_fin").val(calculo);
     });
 
-    $("#lineabaseV1_fin, #lineabaseV2_fin").on("change", () => {
+    $("#lineabaseV1_fin, #lineabaseV2_fin").on("change", function() {
+        this.value = Func_FormatoMoneda(this.value);
         var calculo = Func_CalcularMeta(
             $("#lineabaseV1_fin").val(),
             $("#lineabaseV2_fin").val(),
@@ -199,7 +201,8 @@ function Eventos() {
         $("#lineabase_fin1").val(calculo);
     });
 
-    $("#variable1numerador_proposito, #variable2numerador_proposito").on("change", () => {
+    $("#variable1numerador_proposito, #variable2numerador_proposito").on("change", function() {
+        this.value = Func_FormatoMoneda(this.value);
         var calculo = Func_CalcularMeta(
             $("#variable1numerador_proposito").val(),
             $("#variable2numerador_proposito").val(),
@@ -208,11 +211,12 @@ function Eventos() {
         $("#metaanual_proposito").val(calculo);
     });
 
-    $("#lineabaseV1_proposito, #lineabaseV2_proposito").on("change", () => {
+    $("#lineabaseV1_proposito, #lineabaseV2_proposito").on("change", function() {
+        this.value = Func_FormatoMoneda(this.value);
         var calculo = Func_CalcularMeta(
             $("#lineabaseV1_proposito").val(),
             $("#lineabaseV2_proposito").val(),
-            "fin"
+            "proposito"
         )
         $("#lineabase_proposito1").val(calculo);
     });
@@ -220,6 +224,22 @@ function Eventos() {
     $("#select_ef").on("change", () => {
         Func_Cargando();
         GetMir();
+    });
+
+    $(".contador-letras").on("keyup", (evt)=> {
+        var control = evt.target;
+        var cont = control.value.length;
+        var max = control.dataset.maxlength;
+        var label = $(evt.target).siblings().find("label");
+        label.text("" + cont + "/" + max);
+        if(cont > max){
+            label.css("color", "red");
+            control.setCustomValidity("Longitud máxima excedida");
+        }
+        else{
+            label.css("color", "black");
+            control.setCustomValidity("");
+        }
     });
 }
 
@@ -463,10 +483,17 @@ function GetMirProposito() {
 }
 
 function GetMirComponentes() {
+    var p = getSelectedPrograma();
+
+    // var request = {
+    //     consecutivo: consecutivo_seleccionado,
+    //     ejercicioFiscal: $("#select_ef").val()
+    // }
+
     var request = {
-        consecutivo: consecutivo_seleccionado,
-        ejercicioFiscal: $("#select_ef").val()
+        "id": p.ProgramaticoId
     }
+
     repository.Mir.GetMirComponentes(request)
         .then(ResponseGetMirComponentes);
 }
@@ -564,7 +591,16 @@ function ResponseGetMirAutoriaFormulas(response){
 
 function BtnGuardarMir(){
     $("#BtnGuardar").on("click", function(event) {
-        event.preventDefault();
+        var form = document.getElementById("frmModal");
+        var valido = form.checkValidity(); 
+        if(!valido) {
+            return;
+        }
+
+        //convertir todo a mayusculas
+        $('input[type=text], textarea').val (function () {
+            return this.value.toUpperCase();
+        });
 
         var request = {
             caratula: Func_GetRequestCaratual(),
@@ -573,10 +609,6 @@ function BtnGuardarMir(){
             componente: Func_GetRequestComponente(),
             actividad: Func_GetRequestActividad()
         };
-        
-        $('input[type=text], textarea').val (function () {
-            return this.value.toUpperCase();
-        });
 
         // Func_Cargando();
         Func_Mensaje("Guardando MIR...");
@@ -673,4 +705,10 @@ function getSelectedPrograma(){
     var index = table.row('.selected').index();
     var data = mirData[index];
     return data;
+}
+
+
+function flechas_click(event, seccion) {
+    var texto = event.target.dataset.texto;
+    $(".money-tabs-" + seccion).text(texto)
 }
