@@ -591,11 +591,11 @@ function ResponseGetMirAutoriaFormulas(response){
 
 function BtnGuardarMir(){
     $("#BtnGuardar").on("click", function(event) {
-        var form = document.getElementById("frmModal");
-        var valido = form.checkValidity(); 
-        if(!valido) {
-            return;
-        }
+        // var form = document.getElementById("frmModal");
+        // var valido = form.checkValidity(); 
+        // if(!valido) {
+        //     return;
+        // }
 
         //convertir todo a mayusculas
         $('input[type=text], textarea').val (function () {
@@ -620,13 +620,13 @@ function BtnGuardarMir(){
 function ResponseSaveMir(response) {
     swal.close();
     if (!response.error) {
-        info_componentes = null;
-        info_actividades = null;
-        index_componente = null;
-        index_actividad = null;
-        consecutivo_seleccionado = null;
+        // info_componentes = null;
+        // info_actividades = null;
+        // index_componente = null;
+        // index_actividad = null;
+        // consecutivo_seleccionado = null;
         Func_Toast("success", "Información Guardada", "La MIR ha sido guardada exitosamente.");
-        $("#Modal").modal("hide");
+        //$("#Modal").modal("hide");
 
         GetMir();
 

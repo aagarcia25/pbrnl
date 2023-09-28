@@ -1074,6 +1074,8 @@ function MetaS2V12_Componente(){
 
 function LineaBase_Fin(){
     $("#lineabaseV1_fin").on("change", function(){
+        this.value = Func_FormatoMoneda(this.value);
+
         let lineabaseV1 = parseFloat($("#lineabaseV1_fin").val());
         let lineabaseV2 = parseFloat($("#lineabaseV2_fin").val());
 
@@ -1082,6 +1084,8 @@ function LineaBase_Fin(){
     });
 
     $("#lineabaseV2_fin").on("change", function(){
+        this.value = Func_FormatoMoneda(this.value);
+
         let lineabaseV1 = parseFloat($("#lineabaseV1_fin").val());
         let lineabaseV2 = parseFloat($("#lineabaseV2_fin").val());
 
@@ -1092,6 +1096,8 @@ function LineaBase_Fin(){
 
 function LineaBase_Proposito(){
     $("#lineabaseV1_proposito").on("change", function(){
+        this.value = Func_FormatoMoneda(this.value);
+
         let lineabaseV1 = parseFloat($("#lineabaseV1_proposito").val());
         let lineabaseV2 = parseFloat($("#lineabaseV2_proposito").val());
 
@@ -1100,6 +1106,8 @@ function LineaBase_Proposito(){
     });
 
     $("#lineabaseV2_proposito").on("change", function(){
+        this.value = Func_FormatoMoneda(this.value);
+
         let lineabaseV1 = parseFloat($("#lineabaseV1_proposito").val());
         let lineabaseV2 = parseFloat($("#lineabaseV2_proposito").val());
 
@@ -1110,6 +1118,7 @@ function LineaBase_Proposito(){
 
 function LineaBase_Componente(){
     $("#lineabaseV1_componente").on("change", function(){
+        this.value = Func_FormatoMoneda(this.value);
         let lineabaseV1 = parseFloat($("#lineabaseV1_componente").val());
         let lineabaseV2 = parseFloat($("#lineabaseV2_componente").val());
 
@@ -1118,6 +1127,7 @@ function LineaBase_Componente(){
     });
 
     $("#lineabaseV2_componente").on("change", function(){
+        this.value = Func_FormatoMoneda(this.value);
         let lineabaseV1 = parseFloat($("#lineabaseV1_componente").val());
         let lineabaseV2 = parseFloat($("#lineabaseV2_componente").val());
 
@@ -1133,6 +1143,7 @@ function LineaBase_Componente(){
 
 function LineaBase_Actividad(){
     $("#lineabaseV1_actividad").on("change", function(){
+        this.value = Func_FormatoMoneda(this.value);
         let lineabaseV1 = parseFloat($("#lineabaseV1_actividad").val());
         let lineabaseV2 = parseFloat($("#lineabaseV2_actividad").val());
 
@@ -1141,6 +1152,7 @@ function LineaBase_Actividad(){
     });
 
     $("#lineabaseV2_actividad").on("change", function(){
+        this.value = Func_FormatoMoneda(this.value);
         let lineabaseV1 = parseFloat($("#lineabaseV1_actividad").val());
         let lineabaseV2 = parseFloat($("#lineabaseV2_actividad").val());
 
