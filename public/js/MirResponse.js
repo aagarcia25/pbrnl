@@ -191,8 +191,11 @@ function OnClic_TabsComponentes(){
 
             setComponente(componente);
             if(id_componente != null){
-                var actividad = info_actividades[id_componente]['items'][index_actividad];
-                setActividad(actividad);
+                var act_comp = info_actividades[id_componente];
+                if(act_comp){
+                    var actividad = act_comp['items'][index_actividad];
+                    setActividad(actividad);
+                }
             }
 
             $("#select_unidadresponsablereportar_componente").selectpicker("val", componente.idUA);

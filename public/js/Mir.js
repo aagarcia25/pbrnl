@@ -282,6 +282,12 @@ function OnClic_DenominadorFijo() {
 }
 
 function Func_CalcularMeta(valor1, valor2, modulo){
+    valor1 = "" + valor1;
+    valor2 = "" + valor2;
+
+    valor1 = valor1.replaceAll(",","");
+    valor2 = valor2.replaceAll(",","");
+
     if (valor1 == "" || valor1 == 0 || valor1 == null || valor1 == undefined || isNaN(valor1)){
         valor1 = "0";
     }
@@ -291,13 +297,8 @@ function Func_CalcularMeta(valor1, valor2, modulo){
     if (valor2 == "" || valor2 == 0 || valor2 == null || valor2 == undefined || isNaN(valor2)){
         valor2 = "0";
     }
-    else
-        valor2 = "" + valor2;
-    
-    let operacion = $(`#variable3_${modulo}`).val();
 
-    valor1 = valor1.replace(",","");
-    valor2 = valor2.replace(",","");
+    let operacion = $(`#variable3_${modulo}`).val();    
   
     // Reemplaza las variables v1 y v2 en la fórmula
     let formula = operacion.replace("V1", valor1).replace("V1", valor1).replace("V1", valor1).replace("V2", valor2).replace("V2", valor2).replace("V2", valor2);
@@ -621,6 +622,8 @@ function BtnGuardarMir(){
 
         $(".modal select.campo-error")
             .removeClass("campo-error");
+
+        $(".modal div.campo-error").removeClass("campo-error");
 
         $(".modal select.campo-error")
             .selectpicker("destroy")
