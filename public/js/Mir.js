@@ -241,6 +241,17 @@ function Eventos() {
             control.setCustomValidity("");
         }
     });
+
+    $("#BtnEnviar").on("click", (evt)=> {
+        Func_DespliegaConfirmacion(
+            "Confirmación",
+            "¿Seguro que quiere enviar a revisión la MIR? Ya no podrá hacer cambios",
+            "Aceptar","Cancelar", (response)=> {
+                if(!response)
+                    return;
+//enviar a confirmación
+            })
+    });
 }
 
 function OnClic_DenominadorFijo() {
@@ -600,13 +611,36 @@ function ResponseGetMirAutoriaFormulas(response){
 
 function BtnGuardarMir(){
     $("#frmModal").on("submit", function(event) {
+        event.preventDefault();
         console.log("submit");
         $("#lbl-errores").fadeOut();
         var form = document.getElementById("frmModal");
+
+        $("input.campo-error, select.campo-error, textarea.campo-error")
+            .removeClass("campo-error");
+
+        $(".modal select.campo-error")
+            .removeClass("campo-error");
+
+        $(".modal select.campo-error")
+            .selectpicker("destroy")
+            .selectpicker();
+
         var valido = form.checkValidity(); 
         if(!valido) {
             $("#lbl-errores").fadeIn();
-            return;
+
+            //errores
+            var errores = $("input:invalid, select:invalid, textarea:invalid");
+            errores.addClass("campo-error");
+            errores.each((index, element) => {
+                if(element.nodeName == "SELECT"){
+                    $(element).selectpicker("destroy").selectpicker();
+                    
+                }
+            });
+
+            return false;
         }
 
         //convertir todo a mayusculas

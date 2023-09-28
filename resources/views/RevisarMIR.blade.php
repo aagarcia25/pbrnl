@@ -15,6 +15,11 @@
     .input-background-white {
         background-color: white;
     }
+
+    .campo-error {
+        border: solid 1px red;
+        color: red;
+    }
 </style>
 
 <div class="Margin-Top">
@@ -2086,14 +2091,14 @@
                                     <button 
                                         type="button" 
                                         class="btn btn-success"
-                                        id="BtnEnviar">
+                                        id="BtnRegistrar">
                                         Registrar
                                     </button>
 
                                     <button 
                                         type="button" 
                                         class="btn btn-danger"
-                                        id="BtnEnviar">
+                                        id="BtnRechazar">
                                         Rechazar
                                     </button>
                                 </div>
@@ -2113,17 +2118,6 @@
                                         id="BtnGuardar">
                                         Guardar
                                     </button>
-                                    <!-- 
-                                    <button 
-                                        type="button" 
-                                        class="buttonOutlineSucces150"
-                                        id="BtnEnviar">
-                                        @if ($tipoUsuario <> 1) 
-                                            <span id="lblBotonEnviar">Enviar a registro</span>
-                                        @else
-                                            <span id="lblBotonEnviar">Registrar</span>
-                                        @endif
-                                    </button> -->
 
                                     <button type="button" 
                                         class="btn btn-light" 
