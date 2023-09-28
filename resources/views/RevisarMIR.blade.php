@@ -78,7 +78,7 @@
         </div>
     </section>
 
-    <form id="frmModal">
+    <form id="frmModal" novalidate>
         <div class="modal fade" id="Modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
             <div class="modal-dialog modal-xl modal-center">
                 <div class="modal-content">
