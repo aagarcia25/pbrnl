@@ -78,7 +78,7 @@
         </div>
     </section>
 
-    <form id="frmModal" novalidate>
+    <form id="frmModal">
         <div class="modal fade" id="Modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
             <div class="modal-dialog modal-xl modal-center">
                 <div class="modal-content">
@@ -174,7 +174,7 @@
                                             </div>
                                             <div class="col-12 mb-1 FormUsr FontMsg mt-3">
                                                 <label for="select_descripcionampliabeneficiario2" class="form-labelUsr3">Descripción Amplia del Beneficiario 2 (Población o Area de Enfoque Objetivo)</label>
-                                                <select {{$disabled}} id="select_descripcionampliabeneficiario2" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                                <select {{$disabled}} id="select_descripcionampliabeneficiario2" name="select_descripcionampliabeneficiario2" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
                                                 </select>
                                             </div>
                                         </div>
@@ -335,7 +335,7 @@
                                     <div class="row">
                                         <div class="col-4 mb-3 FormUsr FontMsg mt-3">
                                             <label for="select_sentidoindicador_fin" class="form-labelUsr3">Sentido del Indicador</label>
-                                            <select {{ $disabled }} id="select_sentidoindicador_fin" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                            <select {{ $disabled }} name="select_sentidoindicador_fin" id="select_sentidoindicador_fin" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
                                                 <option value="-">-</option>
                                                 <option value="ASCENDENTE">ASCENDENTE</option>
                                                 <option value="DESCENDENTE">DESCENDENTE</option>
@@ -344,7 +344,7 @@
                                         </div>
                                         <div class="col-4 mb-3 FormUsr FontMsg mt-3">
                                             <label for="select_tipoindicador_fin" class="form-labelUsr3">Tipo de indicador</label>
-                                            <select {{ $disabled }} id="select_tipoindicador_fin" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                            <select {{ $disabled }} name="select_tipoindicador_fin" id="select_tipoindicador_fin" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
                                                 <option value="-">-</option>
                                                 <option value="ESTRATÉGICO">ESTRATÉGICO</option>
                                                 <option value="GESTIÓN">GESTIÓN</option>
@@ -352,7 +352,7 @@
                                         </div>
                                         <div class="col-4 mb-3 FormUsr FontMsg mt-3">
                                             <label for="select_dimensionindicador_fin" class="form-labelUsr3">Dimensión del indicador</label>
-                                            <select {{ $disabled }} id="select_dimensionindicador_fin" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                            <select {{ $disabled }} name="select_dimensionindicador_fin" id="select_dimensionindicador_fin" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
                                                 <option value="-">-</option>
                                                 <option value="CALIDAD">CALIDAD</option>
                                                 <option value="ECONOMÍA">ECONOMÍA</option>
@@ -2108,7 +2108,7 @@
                                         value="Validar Fórmulas" style="display:none">
 
                                     <button 
-                                        type="button" 
+                                        type="submit" 
                                         class="btn btn-primary"
                                         id="BtnGuardar">
                                         Guardar
