@@ -78,7 +78,7 @@
         </div>
     </section>
 
-    <form id="frmModal">
+    <form id="frmModal" novalidate>
         <div class="modal fade" id="Modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
             <div class="modal-dialog modal-xl modal-center">
                 <div class="modal-content">
@@ -1109,7 +1109,7 @@
                                         </div>
                                         <div class="col-2">
                                             <div class="row d-flex align-items-center justify-content-center">
-                                                <input type="button" id="checkDenominadorFijo_componente" class="" data-tipo="componente">
+                                                <input type="button" id="checkDenominadorFijo_componente" class="DenominadorFijoInactivo denominadorfijo ms-2" data-tipo="componente">
                                             </div>
                                             <div class="row">
                                                 <p class="LetretosFont text-center">Activar en caso de que el denominador sea una constante.</p>
@@ -1728,7 +1728,7 @@
                                         </div>
                                         <div class="row mb-1">
                                         <div class="col-2 FormUsr FontMsg mt-3">
-                                            <label for="variableV2_actividad" class="form-labelUsr4">V1</label>
+                                            <label for="variableV2_actividad" class="form-labelUsr4">V2</label>
                                             <input type="text" class="TextBoxUsr w-100 H-50" id="variableV2_actividad" disabled="" >
                                         </div>
                                         <div class="col-2">
@@ -2097,6 +2097,11 @@
                                         Rechazar
                                     </button>
                                 </div>
+                                <div class="col">
+                                    <div class="alert alert-warning" id="lbl-errores" >
+                                        Algunos campos contienen errores, por favor verifique la información capturada e intente nuevamente
+                                    </span>
+                                </div>
                                 <div class="col" style="display:flex;justify-content:flex-end">
                                     <input type="button" id="BtnValidar" 
                                         class="buttonOutlineSucces150 text-capitalize" 
@@ -2133,12 +2138,14 @@
 </div>
 
 @include('includes._partialFooter')
+
 <script src="js/Repository.js"></script>
 <script src="js/MirLlamadas.js"></script>
 <script src="js/MirMetas.js"></script>
 <script src="js/MirResponse.js"></script>
 <script src="js/MirGuardar.js"></script>
 <script src="js/Mir.js"></script>
+
 
 </body>
 

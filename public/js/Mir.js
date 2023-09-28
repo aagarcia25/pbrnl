@@ -286,8 +286,10 @@ function Func_CalcularMeta(valor1, valor2, modulo){
 
     // Evalúa la fórmula y devuelve el resultado
     let resultado = eval(formula);
-    resultado = resultado.toFixed(2);
+    if(isNaN(resultado))
+        resultado = 0;
 
+    resultado = resultado.toFixed(2);
     return resultado;
 }
 
@@ -591,11 +593,13 @@ function ResponseGetMirAutoriaFormulas(response){
 
 function BtnGuardarMir(){
     $("#BtnGuardar").on("click", function(event) {
-        // var form = document.getElementById("frmModal");
-        // var valido = form.checkValidity(); 
-        // if(!valido) {
-        //     return;
-        // }
+        $("#lbl-errores").fadeOut();
+        var form = document.getElementById("frmModal");
+        var valido = form.checkValidity(); 
+        if(!valido) {
+            $("#lbl-errores").fadeIn();
+            return;
+        }
 
         //convertir todo a mayusculas
         $('input[type=text], textarea').val (function () {
