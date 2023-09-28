@@ -296,122 +296,12 @@ function OnClic_TabsComponentes(){
             let id_componente = componente['idComponente'];
 
             setComponente(componente);
-                
-                // Obtiene la info de actividades
-                $("#claseprogramatica_actividad").val(info_actividades[id_componente]['items'][index_actividad]['ClasProgramatica']);
-                $("#idcomponente_actividad").val(info_actividades[id_componente]['items'][index_actividad]['idComponente']);
-                $("#id_actividad").val(info_actividades[id_componente]['items'][index_actividad]['idActividad']);
-                $("#nombre_actividad").val(info_actividades[id_componente]['items'][index_actividad]['Actividad']);
-                $("#claveindicador_actividad").val(info_actividades[id_componente]['items'][index_actividad]['ClaveIndicador']);
-                $("#nombreindicar_actividad").val(info_actividades[id_componente]['items'][index_actividad]['Indicador']);
+            if(id_componente != null){
+                var actividad = info_actividades[id_componente]['items'][index_actividad];
+                setActividad(actividad);
+            }
 
-                let splitNombreIndicador1 = info_actividades[id_componente]['items'][index_actividad]['Indicador'].split(" ");
-                let contadorNombreIndicador1 = splitNombreIndicador1.length;
-                $("#lblContIndicadorAct").text(`${contadorNombreIndicador1}/30`);
-
-                $("#descripcionformula_actividad").val(info_actividades[id_componente]['items'][index_actividad]['Formula']);
-                $("#variable1_actividad").val(info_actividades[id_componente]['items'][index_actividad]['V1']);
-                $("#variable2_actividad").val(info_actividades[id_componente]['items'][index_actividad]['V2']);
-                $("#variable3_actividad").val(info_actividades[id_componente]['items'][index_actividad]['FormulaV1V2']);
-
-                $("#select_unidadmedida_actividad").selectpicker("val", info_actividades[id_componente]['items'][index_actividad]['UnidadMedida']);
-                if (info_actividades[id_componente]['items'][index_actividad]['UnidadMedida'] == "ABSOLUTO"){
-                    $("#d-descripcionunidadmedida_actividad").removeClass("d-none");
-                    $("#descripcionunidadmedida_actividad").val(info_actividades[id_componente]['items'][index_actividad]['DescripAbsoluto']);
-                }else{
-                    $("#d-descripcionunidadmedida_actividad").addClass("d-none");
-                    $("#descripcionunidadmedida_actividad").val("");
-                }
-
-                if (componente['Frecuencia'] == "SEMESTRAL"){
-                    console.log("InicialSemestral_Componente")
-                    InicialSemestral_Componente();
-                }else if (componente['Frecuencia'] == "TRIMESTRAL"){
-                    console.log("InicialTrimestral_Componente")
-                    InicialTrimestral_Componente();
-                }
-
-                $("#selectfrecuencia_actividad").selectpicker("val", info_actividades[id_componente]['items'][index_actividad]['Frecuencia']);
-                if (info_actividades[id_componente]['items'][index_actividad]['Frecuencia'] == "SEMESTRAL"){
-                    $(".d-trimestral-actividad").addClass("d-none");
-                    $(".d-metasemestral-actividad").removeClass("d-none");
-                }else if (info_actividades[id_componente]['items'][index_actividad]['Frecuencia'] == "TRIMESTRAL"){
-                    $(".d-metasemestral-actividad").addClass("d-none");
-                    $(".d-trimestral-actividad").removeClass("d-none");
-                }
-
-                $("#metaanual_actividad").val(info_actividades[id_componente]['items'][index_actividad]['MetaAnual']);
-                $("#lineabase_actividad1").val(info_actividades[id_componente]['items'][index_actividad]['LineaBase']);
-                $("#ejecerciciofisca_actividad").selectpicker("val", "2021");
-
-                $("#variableV1_actividad").val(info_actividades[id_componente]['items'][index_actividad]['ValorNumerador']);
-                $("#variableV2_actividad").val(info_actividades[id_componente]['items'][index_actividad]['ValorDenominador']);
-
-                // Trimestral
-                $("#metatrimestral1_actividad").val(info_actividades[id_componente]['items'][index_actividad]['MetaTrimestre1']);
-                $("#metatrimestral2_actividad").val(info_actividades[id_componente]['items'][index_actividad]['MetaTrimestre2']);
-                $("#metatrimestral3_actividad").val(info_actividades[id_componente]['items'][index_actividad]['MetaTrimestre3']);
-                $("#metatrimestral4_actividad").val(info_actividades[id_componente]['items'][index_actividad]['MetaTrimestre4']);
-                $("#metatrimestral1V1D_actividad").val(info_actividades[id_componente]['items'][index_actividad]['Trimestre1V1']);
-                $("#metatrimestral1V1A_actividad").val(info_actividades[id_componente]['items'][index_actividad]['']);
-                $("#metatrimestral1V2D_actividad").val(info_actividades[id_componente]['items'][index_actividad]['Trimestre1V2']);
-                $("#metatrimestral1V2A_actividad").val(info_actividades[id_componente]['items'][index_actividad]['']);
-
-                $("#metatrimestral2V1D_actividad").val(info_actividades[id_componente]['items'][index_actividad]['Trimestre2V1']);
-                $("#metatrimestral2V1A_actividad").val(info_actividades[id_componente]['items'][index_actividad]['']);
-                $("#metatrimestral2V2D_actividad").val(info_actividades[id_componente]['items'][index_actividad]['Trimestre2V2']);
-                $("#metatrimestral2V2A_actividad").val(info_actividades[id_componente]['items'][index_actividad]['']);
-
-                $("#metatrimestral3V1D_actividad").val(info_actividades[id_componente]['items'][index_actividad]['Trimestre3V1']);
-                $("#metatrimestral3V1A_actividad").val(info_actividades[id_componente]['items'][index_actividad]['']);
-                $("#metatrimestral3V2D_actividad").val(info_actividades[id_componente]['items'][index_actividad]['Trimestre3V2']);
-                $("#metatrimestral3V2A_actividad").val(info_actividades[id_componente]['items'][index_actividad]['']);
-
-                $("#metatrimestral4V1D_actividad").val(info_actividades[id_componente]['items'][index_actividad]['Trimestre4V1']);
-                $("#metatrimestral4V1A_actividad").val(info_actividades[id_componente]['items'][index_actividad]['']);
-                $("#metatrimestral4V2D_actividad").val(info_actividades[id_componente]['items'][index_actividad]['Trimestre4V2']);
-                $("#metatrimestral4V2A_actividad").val(info_actividades[id_componente]['items'][index_actividad]['']);
-
-                // Semestral
-                $("#metasemestral1_actividad").val(info_actividades[id_componente]['items'][index_actividad]['MetaSemestre1']);
-                $("#metasemestral2_actividad").val(info_actividades[id_componente]['items'][index_actividad]['MetaSemestre2']);
-                $("#metasemestral1V1D_actividad").val(info_actividades[id_componente]['items'][index_actividad]['Semestre1V1']);
-                $("#metasemestral1V1A_actividad").val(info_actividades[id_componente]['items'][index_actividad]['']);
-                $("#metasemestral2V1D_actividad").val(info_actividades[id_componente]['items'][index_actividad]['Semestre2V1']);
-                $("#metasemestral2V1A_actividad").val(info_actividades[id_componente]['items'][index_actividad]['']);
-                $("#metasemestral1V2D_actividad").val(info_actividades[id_componente]['items'][index_actividad]['Semestre1V2']);
-                $("#metasemestral1V2A_actividad").val(info_actividades[id_componente]['items'][index_actividad]['']);
-                $("#metasemestral2V2D_actividad").val(info_actividades[id_componente]['items'][index_actividad]['Semestre2V2']);
-                $("#metasemestral2V2A_actividad").val(info_actividades[id_componente]['items'][index_actividad]['']);
-
-                $("#mediosverificacion_actividad").val(info_actividades[id_componente]['items'][index_actividad]['MediosVerificacion']);
-                $("#fuentesinformacion_actividad").val(info_actividades[id_componente]['items'][index_actividad]['FuenteInformacion']);
-                $("#supuestos_actividad").val(info_actividades[id_componente]['items'][index_actividad]['Supuestos']);
-
-                $(`input[name=claridad_actividad][value="${info_actividades[id_componente]['items'][index_actividad]['Claridad'] == "S" ? "S" : "N"}"]`).prop("checked",true);
-                $(`input[name=relevancia_actividad][value="${info_actividades[id_componente]['items'][index_actividad]['Relevancia'] == "S" ? "S" : "N"}"]`).prop("checked",true);
-                $(`input[name=economia_actividad][value="${info_actividades[id_componente]['items'][index_actividad]['Economia'] == "S" ? "S" : "N"}"]`).prop("checked",true);
-                $(`input[name=monitoreable_actividad][value="${info_actividades[id_componente]['items'][index_actividad]['Monitoreable'] == "S" ? "S" : "N"}"]`).prop("checked",true);
-                $(`input[name=adecuado_actividad][value="${info_actividades[id_componente]['items'][index_actividad]['Adecuado'] == "S" ? "S" : "N"}"]`).prop("checked",true);
-                $(`input[name=aportemarginal_actividad][value="${info_actividades[id_componente]['items'][index_actividad]['AporteMarginal'] == "S" ? "S" : "N"}"]`).prop("checked",true);
-
-                $("#select_sentidoindicador_actividad").selectpicker("val", info_actividades[id_componente]['items'][index_actividad]['SentidoIndicador']);
-                $("#select_tipoindicador_actividad").selectpicker("val", info_actividades[id_componente]['items'][index_actividad]['TipoIndicador']);
-                $("#select_dimensionindicador_actividad").selectpicker("val", info_actividades[id_componente]['items'][index_actividad]['DimensionIndicador']);
-                $("#select_unidadresponsablereportar_actividad").selectpicker("val", info_actividades[id_componente]['items'][index_actividad]['idUA']);
-
-                $("#descripcionindicador_actividad").val(info_actividades[id_componente]['items'][index_actividad]['DescripcionIndicador']);
-                $("#descripcionnumerador_actividad").val(info_actividades[id_componente]['items'][index_actividad]['DescripcionNumerador']);
-                $("#descripciondenominador_actividad").val(info_actividades[id_componente]['items'][index_actividad]['DescripcionDenominador']);
-
-                if (info_actividades[id_componente]['items'][index_actividad]['Frecuencia'] == "SEMESTRAL"){
-                }else if (info_actividades[id_componente]['items'][index_actividad]['Frecuencia'] == "TRIMESTRAL"){
-                    console.log("InicialTrimestral_Actividad")
-                    InicialTrimestral_Actividad();
-                }
-            // }
-            // else
-            //     $("#select_unidadresponsablereportar_componente").selectpicker("val", componente.idUA);
+            $("#select_unidadresponsablereportar_componente").selectpicker("val", componente.idUA);
             swal.close();
         }
     });

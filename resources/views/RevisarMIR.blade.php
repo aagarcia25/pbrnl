@@ -440,8 +440,8 @@
                                         </div>
                                         <hr>
                                         <div class="col-12 mb-3 FormUsr FontMsg mt-3">
-                                            <label {{ $disabled }} for="select_unidadresponsablereportar_fin" class="form-labelUsr3">Unidad responsable de reportar el indicador</label>
-                                            <select id="select_unidadresponsablereportar_fin" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                            <label for="select_unidadresponsablereportar_fin" class="form-labelUsr3">Unidad responsable de reportar el indicador</label>
+                                            <select disabled id="select_unidadresponsablereportar_fin" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
                                             </select>
                                         </div>
                                         <div class="col-4 mb-3 FormUsr FontMsg mt-3">
@@ -730,7 +730,7 @@
                                         <hr>
                                         <div class="col-12 mb-3 FormUsr FontMsg mt-3">
                                             <label for="select_unidadresponsablereportar_proposito" class="form-labelUsr3">Unidad responsable de reportar el indicador</label>
-                                            <select {{ $disabled }} id="select_unidadresponsablereportar_proposito" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                            <select disabled id="select_unidadresponsablereportar_proposito" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
                                             </select>
                                         </div>
                                         <div class="col-4 mb-3 FormUsr FontMsg mt-3">
@@ -1384,7 +1384,7 @@
                                         <hr>
                                         <div class="col-12 mb-3 FormUsr FontMsg mt-3">
                                             <label for="select_unidadresponsablereportar_componente" class="form-labelUsr3">Unidad responsable de reportar el indicador</label>
-                                            <select {{ $disabled }} id="select_unidadresponsablereportar_componente" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                            <select disabled id="select_unidadresponsablereportar_componente" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
                                             </select>
                                         </div>
                                         <div class="col-4 mb-3 FormUsr FontMsg mt-3">
@@ -2000,7 +2000,7 @@
                                         <hr>
                                         <div class="col-12 mb-3">
                                             <label for="select_unidadresponsablereportar_actividad" class="form-label">Unidad responsable de reportar el indicador</label>
-                                            <select {{ $disabled }} id="select_unidadresponsablereportar_actividad" class="selectpicker show-tick form-control" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                            <select disabled id="select_unidadresponsablereportar_actividad" class="selectpicker show-tick form-control" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
                                             </select>
                                         </div>
                                         <div class="col-4 mb-3 FormUsr FontMsg mt-3">
@@ -2070,38 +2070,61 @@
                                 </div>
                             </div>
                         </div>
+
+                        
                     </div>
                     <div class="modal-footer">
-                        <div class="row w-100">
-                            <div class="col-7 text-center">
-                                <!-- <label class="form-label text-danger fw-bold">Algunos datos no han sido capturados.<br/>Favor de consultar la Auditoría de Carga y de Fórmulas.</label> -->
-                            </div>
-                            <div class="col-5">
-                                <input type="button" id="BtnValidar" class="buttonOutlineSucces150 text-capitalize" 
-                                value="Validar Fórmulas" style="display:none">
+                        <div class="row" style="width: 100%">
+                                <div class="col">
+                                    <button 
+                                        type="button" 
+                                        class="btn btn-info"
+                                        id="BtnEnviar">
+                                        Enviar a revisión
+                                    </button>
 
-                                <button 
-                                    type="button" 
-                                    class="buttonOutlineSucces150"
-                                    id="BtnGuardar">
-                                    Guardar
-                                </button>
-                                <!-- 
-                                <button 
-                                    type="button" 
-                                    class="buttonOutlineSucces150"
-                                    id="BtnEnviar">
-                                    @if ($tipoUsuario <> 1) 
-                                        <span id="lblBotonEnviar">Enviar a registro</span>
-                                    @else
-                                        <span id="lblBotonEnviar">Registrar</span>
-                                    @endif
-                                </button> -->
+                                    <button 
+                                        type="button" 
+                                        class="btn btn-success"
+                                        id="BtnEnviar">
+                                        Registrar
+                                    </button>
 
-                                <button type="button" class="buttonCloseModal" 
-                                    data-bs-dismiss="modal">Cerrar</button>                                    
+                                    <button 
+                                        type="button" 
+                                        class="btn btn-danger"
+                                        id="BtnEnviar">
+                                        Rechazar
+                                    </button>
+                                </div>
+                                <div class="col" style="display:flex;justify-content:flex-end">
+                                    <input type="button" id="BtnValidar" 
+                                        class="buttonOutlineSucces150 text-capitalize" 
+                                        value="Validar Fórmulas" style="display:none">
+
+                                    <button 
+                                        type="button" 
+                                        class="btn btn-primary"
+                                        id="BtnGuardar">
+                                        Guardar
+                                    </button>
+                                    <!-- 
+                                    <button 
+                                        type="button" 
+                                        class="buttonOutlineSucces150"
+                                        id="BtnEnviar">
+                                        @if ($tipoUsuario <> 1) 
+                                            <span id="lblBotonEnviar">Enviar a registro</span>
+                                        @else
+                                            <span id="lblBotonEnviar">Registrar</span>
+                                        @endif
+                                    </button> -->
+
+                                    <button type="button" 
+                                        class="btn btn-light" 
+                                        data-bs-dismiss="modal">Cerrar</button>
+                                </div>
                             </div>
-                        </div>
                     </div>
                 </div>
             </div>
