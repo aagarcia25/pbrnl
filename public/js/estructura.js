@@ -35,6 +35,7 @@
         }
 
         vm.getComponenteMir = function() {
+            vm.actividades = [];
             estructuraFactory.componenteMir(vm.filtros.componenteId)
             .then((response)=>{
                 vm.componenteMir = response.data.data;
@@ -53,7 +54,7 @@
 
             estructuraFactory.guardarComponenteMir(vm.componenteMir)
             .then((response)=> {
-                vm.ComponenteMirId.Id = response.data.data;
+                vm.componenteMir.Id = response.data.result;
                 alert("Datos guardados");
             })
         }

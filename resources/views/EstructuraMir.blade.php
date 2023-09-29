@@ -63,35 +63,45 @@
             </div>
         </div>
 
-        <h2>Actividades</h2>
-        <button type="button" class="btn btn-primary" ng-click="vm.agregandoActividad = !vm.agregandoActividad">
-            Agregar
-        </button>
-        <table class="table table-striped table-hover">
-            <thead>
-                <tr>
-                    <th>Actividad</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-if="vm.agregandoActividad">
-                    <td>
-                        <input type="text" class="form-control" ng-model="vm.actividad.Actividad">
-                    </td>
-                    <td>
-                        <a href="javascript:" class="btn btn-primary" ng-click="vm.guardarActividadMir()">Guardar</a>
-                        <a href="javascript:" class="btn btn-warning" ng-click="vm.agregandoActividad = false; vm.actividad={}">Cancelar</a>
-                    </td>
-                </tr>
-                <tr ng-repeat="a in vm.actividades">
-                    <td><% a.Actividad %></td>
-                    <td>
-                        <!-- <a href="javascript:" class="btn btn-danger" ng-click="vm.eliminarActividad(a)">Eliminar</a> -->
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <div ng-if="vm.componenteMir.Id > 0">
+            <h2>Actividades</h2>
+            <button type="button" class="btn btn-primary" ng-click="vm.agregandoActividad = !vm.agregandoActividad">
+                Agregar
+            </button>
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Id actividad</th>
+                        <th>Actividad</th>
+                        <th>Indicador</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-if="vm.agregandoActividad">
+                        <td>
+                            <input type="text" class="form-control" ng-model="vm.actividad.idActividad">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" ng-model="vm.actividad.Actividad">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" ng-model="vm.actividad.Indicador">
+                        </td>
+                        <td>
+                            <a href="javascript:" class="btn btn-primary" ng-click="vm.guardarActividadMir()">Guardar</a>
+                            <a href="javascript:" class="btn btn-warning" ng-click="vm.agregandoActividad = false; vm.actividad={}">Cancelar</a>
+                        </td>
+                    </tr>
+                    <tr ng-repeat="a in vm.actividades">
+                        <td><% a.Actividad %></td>
+                        <td>
+                            <!-- <a href="javascript:" class="btn btn-danger" ng-click="vm.eliminarActividad(a)">Eliminar</a> -->
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 

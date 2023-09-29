@@ -2606,7 +2606,9 @@ class MirController extends BaseController
                 MirActividad
                 ::where("Id","=",$id)
                 ->update(array(
-                    "Actividad" => $request->Actividad
+                    "Actividad" => $request->Actividad,
+                    "idActividad" => $request->idActividad,
+                    "Indicador" => $request->Indicador
                 ));
             }
             else
@@ -2614,9 +2616,12 @@ class MirController extends BaseController
                 $nuevo = new MirActividad();
                 $nuevo->ComponenteMirId = $request->ComponenteMirId;
                 $nuevo->Actividad = $request->Actividad;
+                $nuevo->idActividad = $request->idActividad;
+                $nuevo->Indicador = $request->Indicador;
                 $nuevo->save();
+                $id = $nuevo->Id;
             }
-            return response()->json(array('error' => false, 'result' => "Datos guardados", 'code' => 200));
+            return response()->json(array('error' => false, 'result' => $id, 'code' => 200));
         }
         catch(Exception $e){
             return response()->json(array('error' => true, 'result' => $e->getMessage(), 'code' => 500));
