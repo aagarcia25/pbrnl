@@ -20,6 +20,16 @@
         border: solid 1px red;
         color: red;
     }
+
+    .btn-enviar {
+        background-color: #d69224;
+        color:white;
+    }
+
+    .btn-enviar:hover {
+        background-color: #edaf34;
+        color:white;
+    }
 </style>
 
 <div class="Margin-Top">
@@ -39,9 +49,7 @@
                             </div>
                             <div class="col-5">
                                 <label for="select_Secretaria" class="form-label">Id Secretaría</label>
-                                <select id="select_Secretaria" class="selectpicker show-tick form-control select_border" title="Seleccione..." data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
-                                    
-                                </select>
+                                <select id="select_Secretaria" class="selectpicker show-tick form-control select_border" title="Seleccione..." data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required></select>
                             </div>
                             <div class="col-5">
                                 <label for="select_UnidadAdministrativa" class="form-label">Id Unidad Administrativa</label>
@@ -740,7 +748,7 @@
                                         </div>
                                         <div class="col-4 mb-3 FormUsr FontMsg mt-3">
                                             <label for="descripcionindicador_proposito" class="form-labelUsr4">Descripción Indicador</label>
-                                            <textarea class="form-control TextBoxUsr w-100 contador-letras" id="descripcionindicador_proposito" data-maxlength="300" required maxlength="300" rows="6"></textarea>
+                                            <textarea class="form-control TextBoxUsr w-100 contador-letras" id="descripcionindicador_proposito" data-maxlength="300" required rows="6"></textarea>
                                             <div class="position-absolute bottom-0 end-0">
                                                 <label ID="lbContlIndicaProp" class="LabelContador me-4" >0/240</label>
                                             </div>
@@ -2081,13 +2089,7 @@
                     <div class="modal-footer">
                         <div class="row" style="width: 100%">
                                 <div class="col">
-                                    <button 
-                                        type="button" 
-                                        class="btn btn-info"
-                                        id="BtnEnviar">
-                                        Enviar a revisión
-                                    </button>
-
+                                    @if (!$esEnlacePbr)
                                     <button 
                                         type="button" 
                                         class="btn btn-success"
@@ -2101,6 +2103,14 @@
                                         id="BtnRechazar">
                                         Rechazar
                                     </button>
+                                    @else
+                                    <button 
+                                        type="button" 
+                                        class="btn btn-enviar"
+                                        id="BtnEnviar">
+                                        Enviar a registro
+                                    </button>
+                                    @endif
                                 </div>
                                 <div class="col">
                                     <div class="alert alert-warning" id="lbl-errores" >

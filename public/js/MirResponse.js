@@ -41,6 +41,43 @@ function ResponseGetMirActividades(response) {
         $(".contador-letras").trigger("keyup");
         $(".money").trigger("change").trigger("blur");
         $("#lbl-errores").hide();
+
+        var mir = getSelectedPrograma();
+        if(mir.StatusId == 2) {
+            $("#BtnEnviar").hide();
+            if(tu == 1){
+                $("#BtnRegistrar").show();
+                $("#BtnRechazar").show();
+            }
+            else{
+                $("#BtnRegistrar").hide();
+                $("#BtnRechazar").hide();
+            }
+            if(tu != 1)
+                $(".modal select, .modal input, .modal textarea").attr("readonly");
+            else
+                $(".modal select, .modal input, .modal textarea").removeAttr("readonly");
+        }
+        else if (mir.StatusId == 1) {
+            if(tu != 1)     //enlace pbr
+                $("#BtnEnviar").show();
+            else{
+                $("#BtnEnviar").hide();
+                $("#BtnRegistrar").hide();
+                $("#BtnRechazar").hide();
+            }
+        }
+        else {
+
+            //ya está revisada, ocultar todo
+            $("#BtnEnviar").hide();
+            $("#BtnRegistrar").hide();
+            $("#BtnRechazar").hide();
+            $("#BtnGuardar").hide();
+        }
+
+        $(".modal select, .modal input, .modal textarea").attr("readonly");
+
         $("#Modal").modal("show");
         swal.close();
     } else {

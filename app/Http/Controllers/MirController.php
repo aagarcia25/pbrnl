@@ -2531,6 +2531,29 @@ class MirController extends BaseController
         $informacion = DB::select($query);
         return response()->json(array('error' => false, 'data' => $informacion, 'code' => 200));
     }
+
+    public function SetStatus(Request $request) {
+        $id = $request->id;
+        $status = $request->status;
+        $usuario = $this->getUsuarioActual();
+
+        if($status <> 2 && $usuario->TipoUsuario != 1)
+            return response()->json(array('error' => true, 'result' => 'Acceso denegado', 'code' => 200));
+
+        try{
+            $update_caratula = MirCaratula::
+                where('Id', '=', $id)
+                ->update(array(
+                    "StatusMirId" => $status
+                ));
+        }
+        catch(Exception $ex) {
+            return response()->json(array('error' => true, 'result' => $ex->getMessage(), 'code' => 200));
+
+        }
+
+        return response()->json(array('error' => false, 'result' => $update_caratula, 'code' => 200));
+    }
 }
 
 ?>

@@ -31,7 +31,6 @@ function Funciones_Iniciales() {
     maskNumber();
     Func_Cargando();
     GetSecretarias();
-    
 }
 
 function maskNumber(){
@@ -243,13 +242,81 @@ function Eventos() {
     });
 
     $("#BtnEnviar").on("click", (evt)=> {
+        if(!validarForm())
+            return false;
+
         Func_DespliegaConfirmacion(
             "Confirmación",
-            "¿Seguro que quiere enviar a revisión la MIR? Ya no podrá hacer cambios",
-            "Aceptar","Cancelar", (response)=> {
+            "¿Seguro que quiere enviar a revisión la MIR? Ya no podrá hacer cambios","",
+            "Aceptar",
+            "Cancelar", (response)=> {
                 if(!response)
                     return;
-//enviar a confirmación
+
+                repository.Mir.SetStatusMir({
+                    id: getSelectedPrograma().Id,
+                    status: 2
+                })
+                .then((response)=> {
+                    if(response.error)
+                        Func_Aviso("Error", response.result, "error");
+                    else{
+                        Func_Toast("", "Correcto", "La MIR se ha enviado a revisión correctamente");
+                        $("#Modal").modal("hide");
+                    }
+                })
+            })
+    });
+
+    $("#BtnRegistrar").on("click", (evt)=> {
+        if(!validarForm())
+            return false;
+
+        Func_DespliegaConfirmacion(
+            "Confirmación",
+            "¿Seguro que quiere marcar como registrada la MIR? Ya no podrá hacer cambios","",
+            "Aceptar",
+            "Cancelar", (response)=> {
+                if(!response)
+                    return;
+
+                repository.Mir.SetStatusMir({
+                    id: getSelectedPrograma().Id,
+                    status: 3
+                })
+                .then((response)=> {
+                    if(response.error)
+                        Func_Aviso("Error", response.result, "error");
+                    else{
+                        Func_Toast("", "Correcto", "La MIR se ha registrado correctamente");
+                        $("#Modal").modal("hide");
+                    }
+                })
+            })
+    });
+
+    $("#BtnRechazar").on("click", (evt)=> {
+
+        Func_DespliegaConfirmacion(
+            "Confirmación",
+            "¿Seguro que quiere rechazar los cambios de la MIR? El enlace PBR podrá ajustar los datos y deberá enviarla nuevamente a registro","",
+            "Aceptar",
+            "Cancelar", (response)=> {
+                if(!response)
+                    return;
+
+                repository.Mir.SetStatusMir({
+                    id: getSelectedPrograma().Id,
+                    status: 1
+                })
+                .then((response)=> {
+                    if(response.error)
+                        Func_Aviso("Error", response.result, "error");
+                    else{
+                        Func_Toast("", "Correcto", "La MIR se ha rechazado correctamente");
+                        $("#Modal").modal("hide");
+                    }
+                })
             })
     });
 }
@@ -301,7 +368,14 @@ function Func_CalcularMeta(valor1, valor2, modulo){
     let operacion = $(`#variable3_${modulo}`).val();    
   
     // Reemplaza las variables v1 y v2 en la fórmula
-    let formula = operacion.replace("V1", valor1).replace("V1", valor1).replace("V1", valor1).replace("V2", valor2).replace("V2", valor2).replace("V2", valor2);
+    let formula = operacion.replace("V1", valor1).
+        replace("V1", valor1).
+        replace("V1", valor1).
+        replace("V2", valor2).
+        replace("V2", valor2).
+        replace("V2", valor2)
+        .replaceAll(" ","")
+        ;   
 
     // Evalúa la fórmula y devuelve el resultado
     let resultado = eval(formula);
@@ -606,6 +680,41 @@ function ResponseGetMirAutoriaFormulas(response){
     }
 }
 
+function validarForm(){
+    $("#lbl-errores").fadeOut();
+    var form = document.getElementById("frmModal");
+
+    $("input.campo-error, select.campo-error, textarea.campo-error")
+        .removeClass("campo-error");
+
+    $(".modal select.campo-error")
+        .removeClass("campo-error");
+
+    $(".modal div.campo-error").removeClass("campo-error");
+
+    $(".modal select.campo-error")
+        .selectpicker("destroy")
+        .selectpicker();
+    var valido = form.checkValidity(); 
+    if(!valido) {
+        $("#lbl-errores").fadeIn();
+
+        //errores
+        var errores = $("input:invalid, select:invalid, textarea:invalid");
+        errores.addClass("campo-error");
+        errores.each((index, element) => {
+            if(element.nodeName == "SELECT"){
+                $(element).selectpicker("destroy").selectpicker();
+                
+            }
+        });
+
+        return false;
+    }
+
+    return true;
+}
+
 // ======================================================
 // B O T O N E S   D E   A C C I O N E S
 // ======================================================
@@ -613,35 +722,9 @@ function ResponseGetMirAutoriaFormulas(response){
 function BtnGuardarMir(){
     $("#frmModal").on("submit", function(event) {
         event.preventDefault();
-        console.log("submit");
-        $("#lbl-errores").fadeOut();
-        var form = document.getElementById("frmModal");
-
-        $("input.campo-error, select.campo-error, textarea.campo-error")
-            .removeClass("campo-error");
-
-        $(".modal select.campo-error")
-            .removeClass("campo-error");
-
-        $(".modal div.campo-error").removeClass("campo-error");
-
-        $(".modal select.campo-error")
-            .selectpicker("destroy")
-            .selectpicker();
-
-        var valido = form.checkValidity(); 
+        
+        var valido = validarForm();
         if(!valido) {
-            $("#lbl-errores").fadeIn();
-
-            //errores
-            var errores = $("input:invalid, select:invalid, textarea:invalid");
-            errores.addClass("campo-error");
-            errores.each((index, element) => {
-                if(element.nodeName == "SELECT"){
-                    $(element).selectpicker("destroy").selectpicker();
-                    
-                }
-            });
 
             return false;
         }

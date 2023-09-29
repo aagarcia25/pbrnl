@@ -778,6 +778,10 @@ class MirController {
     ContarIndicadores(request){
         return Requests('GET', this.Url + "/ContarIndicadores", request);
     }
+
+    SetStatusMir(request){
+        return Requests('POST', this.Url + "/SetStatusMir", request);
+    }
 }
 
 class EjerciciosFiscalesController {
