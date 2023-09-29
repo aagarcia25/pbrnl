@@ -28,7 +28,7 @@ class MirController extends BaseController
             return "";
         }
 
-        return view('EstructuraMIR');
+        return view('EstructuraMir');
     }
 
     public function index(Request $request)
