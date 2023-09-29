@@ -102,10 +102,10 @@ function OnBlur_MetaT2V1D_Componente(){
 }
 
 function MetaT2V1D_Componente(){
-    let metatrimestral1V1A = $("#metatrimestral1V1A_componente").val();
-    let total = $("#metatrimestral2V1D_componente").val();
+    let metatrimestral1V1A = $("#metatrimestral1V1A_componente").val().replaceAll(",","");
+    let total = $("#metatrimestral2V1D_componente").val().replaceAll(",","");
     $("#metatrimestral2V1D_componente").val(Func_FormatoMoneda(total,2));
-    let sumatoria = parseFloat($("#metatrimestral2V1D_componente").val()) + parseFloat(metatrimestral1V1A);
+    let sumatoria = parseFloat($("#metatrimestral2V1D_componente").val().replaceAll(",","")) + parseFloat(metatrimestral1V1A);
     $("#metatrimestral2V1A_componente").val(Func_FormatoMoneda(sumatoria, 2));
 }
 
@@ -116,10 +116,10 @@ function OnBlur_MetaT3V1D_Componente(){
 }
 
 function MetaT3V1D_Componente(){
-    let metatrimestral2V1A = $("#metatrimestral2V1A_componente").val();
-    let total = $("#metatrimestral3V1D_componente").val();
+    let metatrimestral2V1A = $("#metatrimestral2V1A_componente").val().replaceAll(",","");
+    let total = $("#metatrimestral3V1D_componente").val().replaceAll(",","");
     $("#metatrimestral3V1D_componente").val(Func_FormatoMoneda(total,2));
-    let sumatoria = parseFloat($("#metatrimestral3V1D_componente").val()) + parseFloat(metatrimestral2V1A);
+    let sumatoria = parseFloat($("#metatrimestral3V1D_componente").val().replaceAll(",","")) + parseFloat(metatrimestral2V1A);
     $("#metatrimestral3V1A_componente").val(Func_FormatoMoneda(sumatoria, 2));
 }
 
@@ -130,17 +130,17 @@ function OnBlur_MetaT4V1D_Componente(){
 }
 
 function MetaT4V1D_Componente(){
-    let metatrimestral3V1A = $("#metatrimestral3V1A_componente").val();
-    let total = $("#metatrimestral4V1D_componente").val();
+    let metatrimestral3V1A = $("#metatrimestral3V1A_componente").val().replaceAll(",","");
+    let total = $("#metatrimestral4V1D_componente").val().replaceAll(",","");
     $("#metatrimestral4V1D_componente").val(Func_FormatoMoneda(total,2));
-    let sumatoria = parseFloat($("#metatrimestral4V1D_componente").val()) + parseFloat(metatrimestral3V1A);
+    let sumatoria = parseFloat($("#metatrimestral4V1D_componente").val().replaceAll(",","")) + parseFloat(metatrimestral3V1A);
     $("#metatrimestral4V1A_componente").val(Func_FormatoMoneda(sumatoria, 2));
     $("#variableV1_componente").val(Func_FormatoMoneda(sumatoria, 2));
 }
 
 function OnBlur_MetaT1V2D_Componente(){
     $("#metatrimestral1V2D_componente").on("blur", function(){
-        let valor = $("#metatrimestral1V2D_componente").val();
+        let valor = $("#metatrimestral1V2D_componente").val().replaceAll(",","");
         if ($("#clicDenominador_componente").val() == 1){
 
             $("#metatrimestral1V2A_componente").val(Func_FormatoMoneda(valor,2));
@@ -183,10 +183,10 @@ function OnBlur_MetaT2V2D_Componente(){
 }
 
 function MetaT2V2D_Componente(){
-    let metatrimestral1V2A = $("#metatrimestral1V2A_componente").val();
-    let total = $("#metatrimestral2V2D_componente").val();
+    let metatrimestral1V2A = $("#metatrimestral1V2A_componente").val().replaceAll(",","");
+    let total = $("#metatrimestral2V2D_componente").val().replaceAll(",","");
     $("#metatrimestral2V2D_componente").val(Func_FormatoMoneda(total,2));
-    let sumatoria = parseFloat($("#metatrimestral2V2D_componente").val()) + parseFloat(metatrimestral1V2A);
+    let sumatoria = parseFloat($("#metatrimestral2V2D_componente").val().replaceAll(",","")) + parseFloat(metatrimestral1V2A);
 
     if ($("#clicDenominador_componente").val() == 0){
         $("#metatrimestral2V2A_componente").val(Func_FormatoMoneda(sumatoria, 2));
@@ -213,10 +213,10 @@ function OnBlur_MetaT3V2D_Componente(){
 }
 
 function MetaT3V2D_Componente(){
-    let metatrimestral3V2A = $("#metatrimestral2V2A_componente").val();
-    let total = $("#metatrimestral3V2D_componente").val();
+    let metatrimestral3V2A = $("#metatrimestral2V2A_componente").val().replaceAll(",","");
+    let total = $("#metatrimestral3V2D_componente").val().replaceAll(",","");
     $("#metatrimestral3V2D_componente").val(Func_FormatoMoneda(total,2));
-    let sumatoria = parseFloat($("#metatrimestral3V2D_componente").val()) + parseFloat(metatrimestral3V2A);
+    let sumatoria = parseFloat($("#metatrimestral3V2D_componente").val().replaceAll(",","")) + parseFloat(metatrimestral3V2A);
     
     if ($("#clicDenominador_componente").val() == 0){
         $("#metatrimestral3V2A_componente").val(Func_FormatoMoneda(sumatoria, 2));
@@ -243,11 +243,11 @@ function OnBlur_MetaT4V2D_Componente(){
 }
 
 function MetaT4V2D_Componente(){
-    let metatrimestral3V2A = $("#metatrimestral3V2A_componente").val();
-    let total = $("#metatrimestral4V2D_componente").val();
+    let metatrimestral3V2A = $("#metatrimestral3V2A_componente").val().replaceAll(",","");
+    let total = $("#metatrimestral4V2D_componente").val().replaceAll(",","");
     $("#metatrimestral4V2D_componente").val(Func_FormatoMoneda(total,2));
-    //let sumatoria = parseFloat($("#metatrimestral4V2D_componente").val()) + parseFloat(metatrimestral3V2A);
-    let sumatoria = parseFloat($("#metatrimestral4V2D_componente").val());
+    let sumatoria = parseFloat($("#metatrimestral4V2D_componente").val().replaceAll(",","")) + parseFloat(metatrimestral3V2A);
+    //let sumatoria = parseFloat($("#metatrimestral4V2D_componente").val());
     
     if ($("#clicDenominador_componente").val() == 0){
         $("#metatrimestral4V2A_componente").val(Func_FormatoMoneda(sumatoria, 2));
@@ -280,10 +280,14 @@ function OnBlur_MetaT2V1D_Actividad(){
 }
 
 function MetaT2V1D_Actividad(){
-    let metatrimestral1V1A = $("#metatrimestral1V1A_actividad").val();
-    let total = $("#metatrimestral2V1D_actividad").val();
+    let metatrimestral1V1A = $("#metatrimestral1V1A_actividad").val().replaceAll(",","");
+    let total = $("#metatrimestral2V1D_actividad").val().replaceAll(",","");
+
     $("#metatrimestral2V1D_actividad").val(Func_FormatoMoneda(total,2));
-    let sumatoria = parseFloat($("#metatrimestral2V1D_actividad").val()) + parseFloat(metatrimestral1V1A);
+
+    let sumatoria = parseFloat(
+            $("#metatrimestral2V1D_actividad").val().replaceAll(",")) + 
+            parseFloat(metatrimestral1V1A);
     $("#metatrimestral2V1A_actividad").val(Func_FormatoMoneda(sumatoria, 2));
 }
 
@@ -294,10 +298,10 @@ function OnBlur_MetaT3V1D_Actividad(){
 }
 
 function MetaT3V1D_Actividad(){
-    let metatrimestral2V1A = $("#metatrimestral2V1A_actividad").val();
-    let total = $("#metatrimestral3V1D_actividad").val();
+    let metatrimestral2V1A = $("#metatrimestral2V1A_actividad").val().replaceAll(",","");
+    let total = $("#metatrimestral3V1D_actividad").val().replaceAll(",","");
     $("#metatrimestral3V1D_actividad").val(Func_FormatoMoneda(total,2));
-    let sumatoria = parseFloat($("#metatrimestral3V1D_actividad").val()) + parseFloat(metatrimestral2V1A);
+    let sumatoria = parseFloat($("#metatrimestral3V1D_actividad").val().replaceAll(",","")) + parseFloat(metatrimestral2V1A);
     $("#metatrimestral3V1A_actividad").val(Func_FormatoMoneda(sumatoria, 2));
 }
 
@@ -308,10 +312,10 @@ function OnBlur_MetaT4V1D_Actividad(){
 }
 
 function MetaT4V1D_Actividad(){
-    let metatrimestral3V1A = $("#metatrimestral3V1A_actividad").val();
-    let total = $("#metatrimestral4V1D_actividad").val();
+    let metatrimestral3V1A = $("#metatrimestral3V1A_actividad").val().replaceAll(",","");
+    let total = $("#metatrimestral4V1D_actividad").val().replaceAll(",","");
     $("#metatrimestral4V1D_actividad").val(Func_FormatoMoneda(total,2));
-    let sumatoria = parseFloat($("#metatrimestral4V1D_actividad").val()) + parseFloat(metatrimestral3V1A);
+    let sumatoria = parseFloat($("#metatrimestral4V1D_actividad").val().replaceAll(",","")) + parseFloat(metatrimestral3V1A);
     $("#metatrimestral4V1A_actividad").val(Func_FormatoMoneda(sumatoria, 2));
     $("#variableV1_actividad").val(Func_FormatoMoneda(sumatoria, 2));
 }
@@ -362,10 +366,10 @@ function OnBlur_MetaT2V2D_Actividad(){
 }
 
 function MetaT2V2D_Actividad(){
-    let metatrimestral1V2A = $("#metatrimestral1V2A_actividad").val();
-    let total = $("#metatrimestral2V2D_actividad").val();
+    let metatrimestral1V2A = $("#metatrimestral1V2A_actividad").val().replaceAll(",","");
+    let total = $("#metatrimestral2V2D_actividad").val().replaceAll(",","");
     $("#metatrimestral2V2D_actividad").val(Func_FormatoMoneda(total,2));
-    let sumatoria = parseFloat($("#metatrimestral2V2D_actividad").val()) + parseFloat(metatrimestral1V2A);
+    let sumatoria = parseFloat($("#metatrimestral2V2D_actividad").val().replaceAll(",","")) + parseFloat(metatrimestral1V2A);
     
     if ($("#clicDenominador_actividad").val() == 0){
         $("#metatrimestral2V2A_actividad").val(Func_FormatoMoneda(sumatoria, 2));
@@ -392,10 +396,10 @@ function OnBlur_MetaT3V2D_Actividad(){
 }
 
 function MetaT3V2D_Actividad(){
-    let metatrimestral3V2A = $("#metatrimestral2V2A_actividad").val();
-    let total = $("#metatrimestral3V2D_actividad").val();
+    let metatrimestral3V2A = $("#metatrimestral2V2A_actividad").val().replaceAll(",","");
+    let total = $("#metatrimestral3V2D_actividad").val().replaceAll(",","");
     $("#metatrimestral3V2D_actividad").val(Func_FormatoMoneda(total,2));
-    let sumatoria = parseFloat($("#metatrimestral3V2D_actividad").val()) + parseFloat(metatrimestral3V2A);
+    let sumatoria = parseFloat($("#metatrimestral3V2D_actividad").val().replaceAll(",","")) + parseFloat(metatrimestral3V2A);
     
     if ($("#clicDenominador_actividad").val() == 0){
         $("#metatrimestral3V2A_actividad").val(Func_FormatoMoneda(sumatoria, 2));
@@ -422,11 +426,11 @@ function OnBlur_MetaT4V2D_Actividad(){
 }
 
 function MetaT4V2D_Actividad(){
-    let metatrimestral3V2A = $("#metatrimestral3V2A_actividad").val();
-    let total = $("#metatrimestral4V2D_actividad").val();
+    let metatrimestral3V2A = $("#metatrimestral3V2A_actividad").val().replaceAll(",","");
+    let total = $("#metatrimestral4V2D_actividad").val().replaceAll(",","");
     $("#metatrimestral4V2D_actividad").val(Func_FormatoMoneda(total,2));
-    //let sumatoria = parseFloat($("#metatrimestral4V2D_actividad").val()) + parseFloat(metatrimestral3V2A);
-    let sumatoria = parseFloat($("#metatrimestral4V2D_actividad").val());
+    let sumatoria = parseFloat($("#metatrimestral4V2D_actividad").val().replaceAll(",","")) + parseFloat(metatrimestral3V2A);
+    //let sumatoria = parseFloat($("#metatrimestral4V2D_actividad").val());
     
     if ($("#clicDenominador_actividad").val() == 0){
         $("#metatrimestral4V2A_actividad").val(Func_FormatoMoneda(sumatoria, 2));
