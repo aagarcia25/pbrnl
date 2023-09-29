@@ -115,6 +115,11 @@ class ProgramasPresupuestalesController extends BaseController
     public function components(Request $request)
     {
         $id = $request->id;
+        if($id <= 0)
+        {
+            return response()->json(array('error' => false, 'data' => array(), 'code' => 200));
+
+        }
 
         $query = "SELECT A.Id, A.idUA, B.Descripcion, A.Componente, A.DescripcionComponente
                 FROM PROGRAMATICO_COMP AS A

@@ -273,6 +273,10 @@ Route::get('/Catalogos', function () {
     Route::post('DeleteLog','MirController@deletelog');
     Route::get('ContarIndicadores','MirController@ContarIndicadores');
     Route::post('SetStatusMir','MirController@SetStatus');
+    Route::get('EstructuraMIR','MirController@EstructuraView');
+    Route::get('ComponenteMir','MirController@componente');
+    Route::post('GuardarComponenteMir','MirController@GuardarComponenteMir');
+    Route::post('GuardarActividadMir','MirController@GuardarActividadMir');
     
 /***** EJERCICIOS FISCALES */
 Route::get('/EjerciciosFiscales', function () {

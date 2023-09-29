@@ -22,6 +22,15 @@ class MirController extends BaseController
         return view('RevisarMIR', ["tipoUsuario"=>$usuario->TipoUsuario]);
     }
 
+    public function EstructuraView(){
+        $usuario = $this->getUsuarioActual();
+        if($usuario->TipoUsuario != 1){
+            return "";
+        }
+
+        return view('EstructuraMIR');
+    }
+
     public function index(Request $request)
     {
         $ef = $request->ef;
@@ -109,16 +118,21 @@ class MirController extends BaseController
         return $info;
     }
 
+    public function componente(Request $request)
+    {
+        $componenteId = $request->id;
+        if($componenteId == "0" || $componenteId == "")
+            return response()->json(array('error' => false, 'data' => "", 'code' => 200));
+
+
+        $info = DB::table("COMPONENTE1")
+            ->where("ComponenteId","=",$componenteId)
+            ->first();
+        return response()->json(array('error' => false, 'data' => $info, 'code' => 200));
+    }
+
     public function componentes(Request $request)
     {
-        // $query = "SELECT c1.*, 
-        //         cc.DescripcionComponente as Componente, cc.idUA FROM 
-        //     COMPONENTE1 c1
-        //     LEFT JOIN PROGRAMATICO_COMP cc
-        //     on c1.ComponenteId = cc.Id
-        //     WHERE cc.Consecutivo = '$request->consecutivo' 
-        //         and c1.EjercicioFiscal = $request->ejercicioFiscal;";
-
         $id = $request->id;
 
         $query = "SELECT 
@@ -207,19 +221,20 @@ class MirController extends BaseController
 
     public function actividades(Request $request)
     {
-        // $query = "SELECT * FROM 
-        //     ACTIVIDAD A 
-        //     inner join PROGRAMATICO_COMP C
-        //     WHERE 
-        //     C.
-        //     A. ClasProgramatica = '$request->consecutivo' and 
-        //     A. EjercicioFiscal=$request->ejercicioFiscal";
-
         $query = "SELECT A.* FROM 
         ACTIVIDAD A 
-        WHERE
-        A.ClasProgramatica = '$request->consecutivo' AND 
-        A.EjercicioFiscal=$request->ejercicioFiscal";
+        WHERE ";
+
+        if($request->componenteMirId != "") {
+            $query .= "A.ComponenteMirId = " . $request->componenteMirId;
+        }
+        else if($request->ejercicioFiscal > 0) {
+            $query .= "A.ClasProgramatica = '$request->consecutivo' AND 
+            A.EjercicioFiscal=$request->ejercicioFiscal";
+        }
+        else
+            return response()->json(array('error' => false, 'data' => array(), 'code' => 200));
+
 
         $info = DB::select($query);
         return response()->json(array('error' => false, 'data' => $info, 'code' => 200));
@@ -2553,6 +2568,59 @@ class MirController extends BaseController
         }
 
         return response()->json(array('error' => false, 'result' => $update_caratula, 'code' => 200));
+    }
+
+    public function GuardarComponenteMir(Request $request) {
+        $id = $request->Id;
+        try{
+            if($id > 0)
+            {
+                //modificando
+                MirComponente
+                ::where("Id","=",$id)
+                ->update(array(
+                    "Indicador" => $request->Indicador
+                ));
+            }
+            else
+            {
+                $nuevo = new MirComponente();
+                $nuevo->ComponenteId = $request->ComponenteId;
+                $nuevo->Indicador = $request->Indicador;
+                $nuevo->save();
+                $id = $nuevo->Id;
+            }
+            return response()->json(array('error' => false, 'result' => $id, 'code' => 200));
+        }
+        catch(Exception $e){
+            return response()->json(array('error' => true, 'result' => $e->getMessage(), 'code' => 500));
+        }
+    }
+
+    public function GuardarActividadMir(Request $request) {
+        $id = $request->Id;
+        try{
+            if($id > 0)
+            {
+                //modificando
+                MirActividad
+                ::where("Id","=",$id)
+                ->update(array(
+                    "Actividad" => $request->Actividad
+                ));
+            }
+            else
+            {
+                $nuevo = new MirActividad();
+                $nuevo->ComponenteMirId = $request->ComponenteMirId;
+                $nuevo->Actividad = $request->Actividad;
+                $nuevo->save();
+            }
+            return response()->json(array('error' => false, 'result' => "Datos guardados", 'code' => 200));
+        }
+        catch(Exception $e){
+            return response()->json(array('error' => true, 'result' => $e->getMessage(), 'code' => 500));
+        }
     }
 }
 
