@@ -137,7 +137,7 @@ class MirController extends BaseController
 
         $query = "SELECT 
         c1.ClasProgramatica, 
-        c1.idComponente,	
+        cc.Componente as idComponente,	
         cc.DescripcionComponente AS Componente,
         cc.idUA,
         c1.Indicador,
@@ -205,8 +205,7 @@ class MirController extends BaseController
         COMPONENTE1 c1
         ON c1.ComponenteId = cc.Id
         WHERE cc.programaticoId=$id
-        ORDER BY cc.DescripcionComponente
-        ";
+        ORDER BY cc.DescripcionComponente";
 
         $info = DB::select($query);
         return response()->json(array('error' => false, 'data' => $info, 'code' => 200));
