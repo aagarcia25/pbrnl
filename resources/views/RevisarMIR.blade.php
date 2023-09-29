@@ -1485,7 +1485,7 @@
                                         </div>
                                         <div class="col-8 mb-1 FormUsr FontMsg mt-3">
                                             <label for="nombre_actividad" class="form-labelUsr4">Actividad</label>
-                                            <input type="text" class="TextBoxUsr w-100 H-50" id="nombre_actividad" >
+                                            <input type="text" {{$disabled}} class="TextBoxUsr w-100 H-50" id="nombre_actividad" >
                                         </div>
                                         <div class="col-2 mb-1 FormUsr FontMsg mt-3">
                                             <label for="claveindicador_actividad" class="form-labelUsr4">Clave indicador</label>

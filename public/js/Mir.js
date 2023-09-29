@@ -721,14 +721,6 @@ function validarForm(){
 
 function BtnGuardarMir(){
     $("#frmModal").on("submit", function(event) {
-        event.preventDefault();
-        
-        var valido = validarForm();
-        if(!valido) {
-
-            return false;
-        }
-
         //convertir todo a mayusculas
         $('input[type=text], textarea').val (function () {
             return this.value.toUpperCase();
