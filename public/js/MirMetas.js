@@ -722,43 +722,43 @@ function MetaT4V12_Componente(){
 
 function MetaT12Anual_Actividad(){
     $("#metatrimestral2V1A_actividad").change(function(){
-        let metatrimestral2V1A = $("#metatrimestral2V1A_actividad").val();
-        let metatrimestral2V2A = $("#metatrimestral2V2A_actividad").val();
+        let metatrimestral2V1A = $("#metatrimestral2V1A_actividad").val().replaceAll(",","");
+        let metatrimestral2V2A = $("#metatrimestral2V2A_actividad").val().replaceAll(",","");
 
         let formula = Func_CalcularMeta(metatrimestral2V1A, metatrimestral2V2A, "actividad");
         $("#metatrimestral2_actividad").val(Func_FormatoMoneda(formula, 2));
     });
     $("#metatrimestral2V2A_actividad").change(function(){
-        let metatrimestral2V1A = $("#metatrimestral2V1A_actividad").val();
-        let metatrimestral2V2A = $("#metatrimestral2V2A_actividad").val();
+        let metatrimestral2V1A = $("#metatrimestral2V1A_actividad").val().replaceAll(",","");
+        let metatrimestral2V2A = $("#metatrimestral2V2A_actividad").val().replaceAll(",","");
 
         let formula = Func_CalcularMeta(metatrimestral2V1A, metatrimestral2V2A, "actividad");
         $("#metatrimestral2_actividad").val(Func_FormatoMoneda(formula, 2));
     });
     $("#metatrimestral3V1A_actividad").change(function(){
-        let metatrimestral3V1A = $("#metatrimestral3V1A_actividad").val();
-        let metatrimestral3V2A = $("#metatrimestral3V2A_actividad").val();
+        let metatrimestral3V1A = $("#metatrimestral3V1A_actividad").val().replaceAll(",","");
+        let metatrimestral3V2A = $("#metatrimestral3V2A_actividad").val().replaceAll(",","");
 
         let formula = Func_CalcularMeta(metatrimestral3V1A, metatrimestral3V2A, "actividad");
         $("#metatrimestral3_actividad").val(Func_FormatoMoneda(formula, 2));
     });
     $("#metatrimestral3V2A_actividad").change(function(){
-        let metatrimestral3V1A = $("#metatrimestral3V1A_actividad").val();
-        let metatrimestral3V2A = $("#metatrimestral3V2A_actividad").val();
+        let metatrimestral3V1A = $("#metatrimestral3V1A_actividad").val().replaceAll(",","");
+        let metatrimestral3V2A = $("#metatrimestral3V2A_actividad").val().replaceAll(",","");
 
         let formula = Func_CalcularMeta(metatrimestral3V1A, metatrimestral3V2A, "actividad");
         $("#metatrimestral3_actividad").val(Func_FormatoMoneda(formula, 2));
     });
     $("#metatrimestral4V1A_actividad").change(function(){
-        let metatrimestral4V1A = $("#metatrimestral4V1A_actividad").val();
-        let metatrimestral4V2A = $("#metatrimestral4V2A_actividad").val();
+        let metatrimestral4V1A = $("#metatrimestral4V1A_actividad").val().replaceAll(",","");
+        let metatrimestral4V2A = $("#metatrimestral4V2A_actividad").val().replaceAll(",","");
 
         let formula = Func_CalcularMeta(metatrimestral4V1A, metatrimestral4V2A, "actividad");
         $("#metatrimestral4_actividad").val(Func_FormatoMoneda(formula, 2));
     });
     $("#metatrimestral4V2A_actividad").change(function(){
-        let metatrimestral4V1A = $("#metatrimestral4V1A_actividad").val();
-        let metatrimestral4V2A = $("#metatrimestral4V2A_actividad").val();
+        let metatrimestral4V1A = $("#metatrimestral4V1A_actividad").val().replaceAll(",","");
+        let metatrimestral4V2A = $("#metatrimestral4V2A_actividad").val().replaceAll(",","");
 
         let formula = Func_CalcularMeta(metatrimestral4V1A, metatrimestral4V2A, "actividad");
         $("#metatrimestral4_actividad").val(Func_FormatoMoneda(formula, 2));
@@ -766,22 +766,22 @@ function MetaT12Anual_Actividad(){
 
 
     $("#metatrimestral1_actividad").change(function(){
-        let metatrimestral4 = $("#metatrimestral4_actividad").val();
+        let metatrimestral4 = $("#metatrimestral4_actividad").val().replaceAll(",","");
 
         $("#metaanual_actividad").val(Func_FormatoMoneda(metatrimestral4, 2));
     });
     $("#metatrimestral2_actividad").change(function(){
-        let metatrimestral4 = $("#metatrimestral4_actividad").val();
+        let metatrimestral4 = $("#metatrimestral4_actividad").val().replaceAll(",","");;
 
         $("#metaanual_actividad").val(Func_FormatoMoneda(metatrimestral4, 2));
     });
     $("#metatrimestral3_actividad").change(function(){
-        let metatrimestral4 = $("#metatrimestral4_actividad").val();
+        let metatrimestral4 = $("#metatrimestral4_actividad").val().replaceAll(",","");;
 
         $("#metaanual_actividad").val(Func_FormatoMoneda(metatrimestral4, 2));
     });
     $("#metatrimestral4_actividad").change(function(){
-        let metatrimestral4 = $("#metatrimestral4_actividad").val();
+        let metatrimestral4 = $("#metatrimestral4_actividad").val().replaceAll(",","");;
 
         $("#metaanual_actividad").val(Func_FormatoMoneda(metatrimestral4, 2));
     });
@@ -798,8 +798,8 @@ function MetaT1V12_Actividad(){
         MetaT3V2D_Actividad();
         MetaT4V2D_Actividad();
 
-        let metatrimestral1V2A = parseFloat($("#metatrimestral1V1A_actividad").val());
-        let metatrimestral2V2A = parseFloat($("#metatrimestral1V2A_actividad").val());
+        let metatrimestral1V2A = parseFloat($("#metatrimestral1V1A_actividad").val().replaceAll(",",""));
+        let metatrimestral2V2A = parseFloat($("#metatrimestral1V2A_actividad").val().replaceAll(",",""));
         
         let formula = Func_CalcularMeta(metatrimestral1V2A, metatrimestral2V2A, "actividad");
         $("#metatrimestral1_actividad").val(Func_FormatoMoneda(formula, 2));
@@ -821,8 +821,8 @@ function MetaT1V12_Actividad(){
         MetaT3V2D_Actividad();
         MetaT4V2D_Actividad();
 
-        let metatrimestral1V2A = parseFloat($("#metatrimestral1V1A_actividad").val());
-        let metatrimestral2V2A = parseFloat($("#metatrimestral1V2A_actividad").val());
+        let metatrimestral1V2A = parseFloat($("#metatrimestral1V1A_actividad").val().replaceAll(",",""));
+        let metatrimestral2V2A = parseFloat($("#metatrimestral1V2A_actividad").val().replaceAll(",",""));
         
         let formula = Func_CalcularMeta(metatrimestral1V2A, metatrimestral2V2A, "actividad");
         $("#metatrimestral1_actividad").val(Func_FormatoMoneda(formula, 2));
@@ -847,8 +847,8 @@ function MetaT2V12_Actividad(){
         MetaT3V2D_Actividad();
         MetaT4V2D_Actividad();
 
-        let metatrimestral1V2A = parseFloat($("#metatrimestral2V1A_actividad").val());
-        let metatrimestral2V2A = parseFloat($("#metatrimestral2V2A_actividad").val());
+        let metatrimestral1V2A = parseFloat($("#metatrimestral2V1A_actividad").val().replaceAll(",",""));
+        let metatrimestral2V2A = parseFloat($("#metatrimestral2V2A_actividad").val().replaceAll(",",""));
         
         let formula = Func_CalcularMeta(metatrimestral1V2A, metatrimestral2V2A, "actividad");
         $("#metatrimestral2_actividad").val(Func_FormatoMoneda(formula, 2));
@@ -870,8 +870,8 @@ function MetaT2V12_Actividad(){
         MetaT3V2D_Actividad();
         MetaT4V2D_Actividad();
 
-        let metatrimestral1V2A = parseFloat($("#metatrimestral2V1A_actividad").val());
-        let metatrimestral2V2A = parseFloat($("#metatrimestral2V2A_actividad").val());
+        let metatrimestral1V2A = parseFloat($("#metatrimestral2V1A_actividad").val().replaceAll(",",""));
+        let metatrimestral2V2A = parseFloat($("#metatrimestral2V2A_actividad").val().replaceAll(",",""));
         
         let formula = Func_CalcularMeta(metatrimestral1V2A, metatrimestral2V2A, "actividad");
         $("#metatrimestral2_actividad").val(Func_FormatoMoneda(formula, 2));
@@ -896,8 +896,8 @@ function MetaT3V12_Actividad(){
         MetaT3V2D_Actividad();
         MetaT4V2D_Actividad();
 
-        let metatrimestral1V2A = parseFloat($("#metatrimestral3V1A_actividad").val());
-        let metatrimestral2V2A = parseFloat($("#metatrimestral3V2A_actividad").val());
+        let metatrimestral1V2A = parseFloat($("#metatrimestral3V1A_actividad").val().replaceAll(",",""));
+        let metatrimestral2V2A = parseFloat($("#metatrimestral3V2A_actividad").val().replaceAll(",",""));
         
         let formula = Func_CalcularMeta(metatrimestral1V2A, metatrimestral2V2A, "actividad");
         $("#metatrimestral3_actividad").val(Func_FormatoMoneda(formula, 2));
@@ -919,8 +919,8 @@ function MetaT3V12_Actividad(){
         MetaT3V2D_Actividad();
         MetaT4V2D_Actividad();
 
-        let metatrimestral1V2A = parseFloat($("#metatrimestral3V1A_actividad").val());
-        let metatrimestral2V2A = parseFloat($("#metatrimestral3V2A_actividad").val());
+        let metatrimestral1V2A = parseFloat($("#metatrimestral3V1A_actividad").val().replaceAll(",",""));
+        let metatrimestral2V2A = parseFloat($("#metatrimestral3V2A_actividad").val().replaceAll(",",""));
         
         let formula = Func_CalcularMeta(metatrimestral1V2A, metatrimestral2V2A, "actividad");
         $("#metatrimestral3_actividad").val(Func_FormatoMoneda(formula, 2));
@@ -945,8 +945,8 @@ function MetaT4V12_Actividad(){
         MetaT3V2D_Actividad();
         MetaT4V2D_Actividad();
 
-        let metatrimestral1V2A = parseFloat($("#metatrimestral4V1A_actividad").val());
-        let metatrimestral2V2A = parseFloat($("#metatrimestral4V2A_actividad").val());
+        let metatrimestral1V2A = parseFloat($("#metatrimestral4V1A_actividad").val().replaceAll(",",""));
+        let metatrimestral2V2A = parseFloat($("#metatrimestral4V2A_actividad").val().replaceAll(",",""));
         
         let formula = Func_CalcularMeta(metatrimestral1V2A, metatrimestral2V2A, "actividad");
         $("#metatrimestral4_actividad").val(Func_FormatoMoneda(formula, 2));
@@ -968,8 +968,8 @@ function MetaT4V12_Actividad(){
         MetaT3V2D_Actividad();
         MetaT4V2D_Actividad();
 
-        let metatrimestral1V2A = parseFloat($("#metatrimestral4V1A_actividad").val());
-        let metatrimestral2V2A = parseFloat($("#metatrimestral4V2A_actividad").val());
+        let metatrimestral1V2A = parseFloat($("#metatrimestral4V1A_actividad").val().replaceAll(",",""));
+        let metatrimestral2V2A = parseFloat($("#metatrimestral4V2A_actividad").val().replaceAll(",",""));
         
         let formula = Func_CalcularMeta(metatrimestral1V2A, metatrimestral2V2A, "actividad");
         $("#metatrimestral4_actividad").val(Func_FormatoMoneda(formula, 2));
@@ -990,22 +990,22 @@ function MetaT4V12_Actividad(){
 
 function MetaS12Anual_Componente(){
     $("#metasemestral2V1A_componente").change(function(){
-        let metasemestral1V2A = $("#metasemestral2V1A_componente").val();
+        let metasemestral1V2A = $("#metasemestral2V1A_componente").val().replaceAll(",","");
 
         $("#variableV1_componente").val(Func_FormatoMoneda(metasemestral1V2A, 2));
     });
     $("#metasemestral2V2A_componente").change(function(){
-        let metasemestral2V2A = $("#metasemestral2V2A_componente").val();
+        let metasemestral2V2A = $("#metasemestral2V2A_componente").val().replaceAll(",","");
 
         $("#variableV2_componente").val(Func_FormatoMoneda(metasemestral2V2A, 2));
     });
     $("#metasemestral1_componente").change(function(){
-        let metasemestral2 = $("#metasemestral2_componente").val();
+        let metasemestral2 = $("#metasemestral2_componente").val().replaceAll(",","");
 
         $("#metaanual_componente").val(Func_FormatoMoneda(metasemestral2, 2));
     });
     $("#metasemestral2_componente").change(function(){
-        let metasemestral2 = $("#metasemestral2_componente").val();
+        let metasemestral2 = $("#metasemestral2_componente").val().replaceAll(",","");
 
         $("#metaanual_componente").val(Func_FormatoMoneda(metasemestral2, 2));
     });
@@ -1018,8 +1018,8 @@ function MetaS1V12_Componente(){
         MetaS2V1D_Componente();
         MetaS2V2D_Componente();
 
-        let metasemestral1V1A = parseFloat($("#metasemestral1V1A_componente").val());
-        let metasemestral1V2A = parseFloat($("#metasemestral1V2A_componente").val());
+        let metasemestral1V1A = parseFloat($("#metasemestral1V1A_componente").val().replaceAll(",",""));
+        let metasemestral1V2A = parseFloat($("#metasemestral1V2A_componente").val().replaceAll(",",""));
         
         let formula = Func_CalcularMeta(metasemestral1V1A, metasemestral1V2A, "componente");
         $("#metasemestral1_componente").val(Func_FormatoMoneda(formula, 2));
@@ -1032,8 +1032,8 @@ function MetaS1V12_Componente(){
         MetaS2V1D_Componente();
         MetaS2V2D_Componente();
 
-        let metasemestral1V1A = parseFloat($("#metasemestral1V1A_componente").val());
-        let metasemestral1V2A = parseFloat($("#metasemestral1V2A_componente").val());
+        let metasemestral1V1A = parseFloat($("#metasemestral1V1A_componente").val().replaceAll(",",""));
+        let metasemestral1V2A = parseFloat($("#metasemestral1V2A_componente").val().replaceAll(",",""));
         
         let formula = Func_CalcularMeta(metasemestral1V1A, metasemestral1V2A, "componente");
         $("#metasemestral1_componente").val(Func_FormatoMoneda(formula, 2));
@@ -1049,8 +1049,8 @@ function MetaS2V12_Componente(){
         MetaS2V1D_Componente();
         MetaS2V2D_Componente();
 
-        let metasemestral2V1A = parseFloat($("#metasemestral2V1A_componente").val());
-        let metasemestral2V2A = parseFloat($("#metasemestral2V2A_componente").val());
+        let metasemestral2V1A = parseFloat($("#metasemestral2V1A_componente").val().replaceAll(",",""));
+        let metasemestral2V2A = parseFloat($("#metasemestral2V2A_componente").val().replaceAll(",",""));
         
         let formula = Func_CalcularMeta(metasemestral2V1A, metasemestral2V2A, "componente");
         $("#metasemestral2_componente").val(Func_FormatoMoneda(formula, 2));
@@ -1063,8 +1063,8 @@ function MetaS2V12_Componente(){
         MetaS2V1D_Componente();
         MetaS2V2D_Componente();
 
-        let metasemestral2V1A = parseFloat($("#metasemestral2V1A_componente").val());
-        let metasemestral2V2A = parseFloat($("#metasemestral2V2A_componente").val());
+        let metasemestral2V1A = parseFloat($("#metasemestral2V1A_componente").val().replaceAll(",",""));
+        let metasemestral2V2A = parseFloat($("#metasemestral2V2A_componente").val().replaceAll(",",""));
         
         let formula = Func_CalcularMeta(metasemestral2V1A, metasemestral2V2A, "componente");
         $("#metasemestral2_componente").val(Func_FormatoMoneda(formula, 2));
@@ -1082,8 +1082,8 @@ function LineaBase_Fin(){
     $("#lineabaseV1_fin").on("change", function(){
         this.value = Func_FormatoMoneda(this.value);
 
-        let lineabaseV1 = parseFloat($("#lineabaseV1_fin").val());
-        let lineabaseV2 = parseFloat($("#lineabaseV2_fin").val());
+        let lineabaseV1 = parseFloat($("#lineabaseV1_fin").val().replaceAll(",",""));
+        let lineabaseV2 = parseFloat($("#lineabaseV2_fin").val().replaceAll(",",""));
 
         let formula = Func_CalcularMeta(lineabaseV1, lineabaseV2, "fin");
         $("#lineabase_fin1").val(Func_FormatoMoneda(formula, 2));
@@ -1092,8 +1092,8 @@ function LineaBase_Fin(){
     $("#lineabaseV2_fin").on("change", function(){
         this.value = Func_FormatoMoneda(this.value);
 
-        let lineabaseV1 = parseFloat($("#lineabaseV1_fin").val());
-        let lineabaseV2 = parseFloat($("#lineabaseV2_fin").val());
+        let lineabaseV1 = parseFloat($("#lineabaseV1_fin").val().replaceAll(",",""));
+        let lineabaseV2 = parseFloat($("#lineabaseV2_fin").val().replaceAll(",",""));
 
         let formula = Func_CalcularMeta(lineabaseV1, lineabaseV2, "fin");
         $("#lineabase_fin1").val(Func_FormatoMoneda(formula, 2));
@@ -1104,8 +1104,8 @@ function LineaBase_Proposito(){
     $("#lineabaseV1_proposito").on("change", function(){
         this.value = Func_FormatoMoneda(this.value);
 
-        let lineabaseV1 = parseFloat($("#lineabaseV1_proposito").val());
-        let lineabaseV2 = parseFloat($("#lineabaseV2_proposito").val());
+        let lineabaseV1 = parseFloat($("#lineabaseV1_proposito").val().replaceAll(",",""));
+        let lineabaseV2 = parseFloat($("#lineabaseV2_proposito").val().replaceAll(",",""));
 
         let formula = Func_CalcularMeta(lineabaseV1, lineabaseV2, "proposito");
         $("#lineabase_proposito1").val(Func_FormatoMoneda(formula, 2));
@@ -1114,8 +1114,8 @@ function LineaBase_Proposito(){
     $("#lineabaseV2_proposito").on("change", function(){
         this.value = Func_FormatoMoneda(this.value);
 
-        let lineabaseV1 = parseFloat($("#lineabaseV1_proposito").val());
-        let lineabaseV2 = parseFloat($("#lineabaseV2_proposito").val());
+        let lineabaseV1 = parseFloat($("#lineabaseV1_proposito").val().replaceAll(",",""));
+        let lineabaseV2 = parseFloat($("#lineabaseV2_proposito").val().replaceAll(",",""));
 
         let formula = Func_CalcularMeta(lineabaseV1, lineabaseV2, "proposito");
         $("#lineabase_proposito1").val(Func_FormatoMoneda(formula, 2));
@@ -1125,8 +1125,8 @@ function LineaBase_Proposito(){
 function LineaBase_Componente(){
     $("#lineabaseV1_componente").on("change", function(){
         this.value = Func_FormatoMoneda(this.value);
-        let lineabaseV1 = parseFloat($("#lineabaseV1_componente").val());
-        let lineabaseV2 = parseFloat($("#lineabaseV2_componente").val());
+        let lineabaseV1 = parseFloat($("#lineabaseV1_componente").val().replaceAll(",",""));
+        let lineabaseV2 = parseFloat($("#lineabaseV2_componente").val().replaceAll(",",""));
 
         let formula = Func_CalcularMeta(lineabaseV1, lineabaseV2, "componente");
         $("#lineabase_componente1").val(Func_FormatoMoneda(formula, 2));
@@ -1134,8 +1134,8 @@ function LineaBase_Componente(){
 
     $("#lineabaseV2_componente").on("change", function(){
         this.value = Func_FormatoMoneda(this.value);
-        let lineabaseV1 = parseFloat($("#lineabaseV1_componente").val());
-        let lineabaseV2 = parseFloat($("#lineabaseV2_componente").val());
+        let lineabaseV1 = parseFloat($("#lineabaseV1_componente").val().replaceAll(",",""));
+        let lineabaseV2 = parseFloat($("#lineabaseV2_componente").val().replaceAll(",",""));
 
         let formula = Func_CalcularMeta(lineabaseV1, lineabaseV2, "componente");
         $("#lineabase_componente1").val(Func_FormatoMoneda(formula, 2));
@@ -1150,8 +1150,8 @@ function LineaBase_Componente(){
 function LineaBase_Actividad(){
     $("#lineabaseV1_actividad").on("change", function(){
         this.value = Func_FormatoMoneda(this.value);
-        let lineabaseV1 = parseFloat($("#lineabaseV1_actividad").val());
-        let lineabaseV2 = parseFloat($("#lineabaseV2_actividad").val());
+        let lineabaseV1 = parseFloat($("#lineabaseV1_actividad").val().replaceAll(",",""));
+        let lineabaseV2 = parseFloat($("#lineabaseV2_actividad").val().replaceAll(",",""));
 
         let formula = Func_CalcularMeta(lineabaseV1, lineabaseV2, "actividad");
         $("#lineabase_actividad1").val(Func_FormatoMoneda(formula, 2));
@@ -1159,8 +1159,8 @@ function LineaBase_Actividad(){
 
     $("#lineabaseV2_actividad").on("change", function(){
         this.value = Func_FormatoMoneda(this.value);
-        let lineabaseV1 = parseFloat($("#lineabaseV1_actividad").val());
-        let lineabaseV2 = parseFloat($("#lineabaseV2_actividad").val());
+        let lineabaseV1 = parseFloat($("#lineabaseV1_actividad").val().replaceAll(",",""));
+        let lineabaseV2 = parseFloat($("#lineabaseV2_actividad").val().replaceAll(",",""));
 
         let formula = Func_CalcularMeta(lineabaseV1, lineabaseV2, "actividad");
         $("#lineabase_actividad1").val(Func_FormatoMoneda(formula, 2));
@@ -1181,8 +1181,8 @@ function InicialTrimestral_Componente(){
     MetaT3V2D_Componente();
     MetaT4V2D_Componente();
 
-    let metatrimestral1V2A = parseFloat($("#metatrimestral4V1A_componente").val());
-    let metatrimestral2V2A = parseFloat($("#metatrimestral4V2A_componente").val());
+    let metatrimestral1V2A = parseFloat($("#metatrimestral4V1A_componente").val().replaceAll(",",""));
+    let metatrimestral2V2A = parseFloat($("#metatrimestral4V2A_componente").val().replaceAll(",",""));
     
     let formula = Func_CalcularMeta(metatrimestral1V2A, metatrimestral2V2A, "componente");
     $("#metatrimestral4_componente").val(Func_FormatoMoneda(formula, 2));
@@ -1201,8 +1201,8 @@ function InicialSemestral_Componente(){
     MetaS2V1D_Componente();
     MetaS2V2D_Componente();
 
-    let metasemestral2V1A = parseFloat($("#metasemestral2V1A_componente").val());
-    let metasemestral2V2A = parseFloat($("#metasemestral2V2A_componente").val());
+    let metasemestral2V1A = parseFloat($("#metasemestral2V1A_componente").val().replaceAll(",",""));
+    let metasemestral2V2A = parseFloat($("#metasemestral2V2A_componente").val().replaceAll(",",""));
     
     let formula = Func_CalcularMeta(metasemestral2V1A, metasemestral2V2A, "componente");
     $("#metasemestral2_componente").val(Func_FormatoMoneda(formula, 2));
@@ -1220,8 +1220,8 @@ function InicialTrimestral_Actividad(){
     MetaT3V2D_Actividad();
     MetaT4V2D_Actividad();
 
-    let metatrimestral1V2A = parseFloat($("#metatrimestral1V1A_actividad").val());
-    let metatrimestral2V2A = parseFloat($("#metatrimestral1V2A_actividad").val());
+    let metatrimestral1V2A = parseFloat($("#metatrimestral1V1A_actividad").val().replaceAll(",",""));
+    let metatrimestral2V2A = parseFloat($("#metatrimestral1V2A_actividad").val().replaceAll(",",""));
     
     let formula = Func_CalcularMeta(metatrimestral1V2A, metatrimestral2V2A, "actividad");
     $("#metatrimestral1_actividad").val(Func_FormatoMoneda(formula, 2));
@@ -1252,7 +1252,7 @@ function InicialDenominadorFijoTrimestral_Componente(){
 }
 
 function InicialDenominadorFijoSemestral_Componente(){
-    let valor = $("#metasemestral1V2D_componente").val();
+    let valor = $("#metasemestral1V2D_componente").val().replaceAll(",","");
     if ($("#clicDenominador_componente").val() == 1){
 
         $("#metasemestral1V2D_componente").val(Func_FormatoMoneda(valor,2));
@@ -1266,7 +1266,7 @@ function InicialDenominadorFijoSemestral_Componente(){
 }
 
 function InicialDenominadorFijoTrimestral_Actividad(){
-    let valor = $("#metatrimestral1V2D_actividad").val();
+    let valor = $("#metatrimestral1V2D_actividad").val().replaceAll(",","");
     if ($("#clicDenominador_actividad").val() == 1){
 
         $("#metatrimestral1V2A_actividad").val(Func_FormatoMoneda(valor,2));
