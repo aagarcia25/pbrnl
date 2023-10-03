@@ -34,6 +34,7 @@ Route::post('SolicitarRecuperacionContrasena','LoginController@solicitar_recuper
 Route::get('/Menu', function () {
     return view('Menu'); // En resources -> views - index.php -- Así se llama la vista principal donde entraran 
 });
+Route::post('ValidarIdUsuario','UsuariosController@validar_id');
 
 // Catalogos
 Route::get('/Catalogos', function () {
