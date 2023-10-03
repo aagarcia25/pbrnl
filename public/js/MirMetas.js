@@ -11,7 +11,7 @@ function OnBlur_MetaS1V1D_Componente(){
 }
 
 function MetaS1V1D_Componente(){
-    let total = $("#metasemestral1V1D_componente").val();
+    let total = $("#metasemestral1V1D_componente").val().replaceAll(",","");
     $("#metasemestral1V1D_componente").val(Func_FormatoMoneda(total,2));
     $("#metasemestral1V1A_componente").val(Func_FormatoMoneda(total, 2));
 }
@@ -23,16 +23,16 @@ function OnBlur_MetaS2V1D_Componente(){
 }
 
 function MetaS2V1D_Componente(){
-    let metasemestral1V1A = $("#metasemestral1V1A_componente").val();
-    let total = $("#metasemestral2V1D_componente").val();
+    let metasemestral1V1A = $("#metasemestral1V1A_componente").val().replaceAll(",","");
+    let total = $("#metasemestral2V1D_componente").val().replaceAll(",","");
     $("#metasemestral2V1D_componente").val(Func_FormatoMoneda(total,2));
-    let sumatoria = parseFloat($("#metasemestral2V1D_componente").val()) + parseFloat(metasemestral1V1A);
+    let sumatoria = parseFloat($("#metasemestral2V1D_componente").val().replaceAll(",","")) + parseFloat(metasemestral1V1A);
     $("#metasemestral2V1A_componente").val(Func_FormatoMoneda(sumatoria, 2));
 }
 
 function OnBlur_MetaS1V2D_Componente(){
     $("#metasemestral1V2D_componente").on("blur", function(){
-        let valor = $("#metasemestral1V2D_componente").val();
+        let valor = $("#metasemestral1V2D_componente").val().replaceAll(",","");
         if ($("#clicDenominador_componente").val() == 1){
 
             $("#metasemestral1V2D_componente").val(Func_FormatoMoneda(valor,2));
@@ -47,14 +47,14 @@ function OnBlur_MetaS1V2D_Componente(){
 }
 
 function MetaS1V2D_Componente(){
-    let total = $("#metasemestral1V2D_componente").val();
+    let total = $("#metasemestral1V2D_componente").val().replaceAll(",","");
     $("#metasemestral1V2D_componente").val(Func_FormatoMoneda(total,2));
     $("#metasemestral1V2A_componente").val(Func_FormatoMoneda(total, 2));
 }
 
 function OnBlur_MetaS2V2D_Componente(){
     $("#metasemestral2V2D_componente").on("blur", function(){
-        let valor = $("#metasemestral2V2D_componente").val();
+        let valor = $("#metasemestral2V2D_componente").val().replaceAll(",","");
         if ($("#clicDenominador_componente").val() == 1){
 
             $("#metasemestral1V2D_componente").val(Func_FormatoMoneda(valor,2));
@@ -68,10 +68,11 @@ function OnBlur_MetaS2V2D_Componente(){
 }
 
 function MetaS2V2D_Componente(){
-    let metasemestral1V2A = $("#metasemestral1V2A_componente").val();
-    let total = $("#metasemestral2V2D_componente").val();
+    let metasemestral1V2A = $("#metasemestral1V2A_componente").val().replaceAll(",","");
+    let total = $("#metasemestral2V2D_componente").val().replaceAll(",","");
     $("#metasemestral2V2D_componente").val(Func_FormatoMoneda(total,2));
-    let sumatoria = parseFloat($("#metasemestral2V2D_componente").val()) + parseFloat(metasemestral1V2A);
+    let sumatoria = parseFloat($("#metasemestral2V2D_componente").val().replaceAll(",","")) 
+        + parseFloat(metasemestral1V2A);
     
     if ($("#clicDenominador_componente").val() == 0){
         $("#metasemestral2V2A_componente").val(Func_FormatoMoneda(sumatoria, 2));
