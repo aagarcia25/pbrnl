@@ -2591,7 +2591,10 @@ class MirController extends BaseController
                 $nuevo = new MirComponente();
                 $nuevo->ComponenteId = $request->ComponenteId;
                 $nuevo->Indicador = $request->Indicador;
-                $nuevo->ClaveIndicador = $componente->Consecutivo . "." . $componente->Consecutivo;
+                $nuevo->ClaveIndicador = $componente->Consecutivo . "." . $componente->Componente;
+                $nuevo->idComponente = $componente->Componente;
+                $nuevo->ClasProgramatica = $componente->Consecutivo;
+                
                 $nuevo->save();
                 $id = $nuevo->Id;
             }
