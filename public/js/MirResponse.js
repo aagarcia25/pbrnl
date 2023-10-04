@@ -42,21 +42,23 @@ function ResponseGetMirActividades(response) {
         $(".money").trigger("change").trigger("blur");
         $("#lbl-errores").hide();
 
+        swal.close();
+        $("#Modal").modal("show");
+
         var mir = getSelectedPrograma();
         if(mir.StatusId == 2) {
             $("#BtnEnviar").hide();
             if(tu == 1){
                 $("#BtnRegistrar").show();
                 $("#BtnRechazar").show();
+                $(".modal select, .modal input, .modal textarea").removeAttr("readonly");
             }
             else{
                 $("#BtnRegistrar").hide();
                 $("#BtnRechazar").hide();
+                $("#BtnGuardar").hide();
+                $(".Modal select, .modal input, .modal textarea").attr("readonly","");
             }
-            if(tu != 1)
-                $(".modal select, .modal input, .modal textarea").attr("readonly");
-            else
-                $(".modal select, .modal input, .modal textarea").removeAttr("readonly");
         }
         else if (mir.StatusId == 1) {
             if(tu != 1)     //enlace pbr
@@ -75,11 +77,6 @@ function ResponseGetMirActividades(response) {
             $("#BtnRechazar").hide();
             $("#BtnGuardar").hide();
         }
-
-        $(".modal select, .modal input, .modal textarea").attr("readonly");
-
-        $("#Modal").modal("show");
-        swal.close();
     } else {
         swal.close();
         console.log(response.result)

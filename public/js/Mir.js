@@ -263,6 +263,7 @@ function Eventos() {
                     else{
                         Func_Toast("", "Correcto", "La MIR se ha enviado a revisión correctamente");
                         $("#Modal").modal("hide");
+                        GetMir();
                     }
                 })
             })
@@ -290,6 +291,7 @@ function Eventos() {
                     else{
                         Func_Toast("", "Correcto", "La MIR se ha registrado correctamente");
                         $("#Modal").modal("hide");
+                        GetMir();
                     }
                 })
             })
@@ -315,6 +317,7 @@ function Eventos() {
                     else{
                         Func_Toast("", "Correcto", "La MIR se ha rechazado correctamente");
                         $("#Modal").modal("hide");
+                        GetMir();
                     }
                 })
             })

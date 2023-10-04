@@ -16,7 +16,7 @@ function ResponseGetSecretarias(response) {
                 text: "-"
             }));
         }
-        
+
         for (var i = 0; i < response.data.length; i++) {
             $('#select_Secretaria').append($('<option>', {
                 value: response.data[i].idSecretaria,
@@ -27,7 +27,6 @@ function ResponseGetSecretarias(response) {
                 text: ("[" + response.data[i].idSecretaria + "] " + response.data[i].Descripcion)
             }));
         }
-
 
         $('#select_Secretaria').selectpicker("refresh");
         $('#select_entepublido').selectpicker();

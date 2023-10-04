@@ -14,7 +14,6 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-
 class MirController extends BaseController
 {
     public function MirView(){
@@ -25,6 +24,10 @@ class MirController extends BaseController
 
     public function EstructuraView(){
         $usuario = $this->getUsuarioActual();
+        if($usuario == null) {
+            return redirect("/");
+        }
+
         if($usuario->TipoUsuario != 1){
             return "";
         }
