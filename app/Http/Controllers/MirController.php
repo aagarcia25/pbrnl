@@ -357,11 +357,11 @@ class MirController extends BaseController
                 ->first();
 
             if (is_null($update_fin)) {
-                $fin = new MirFin();
-                $fin->ClasProgramatica = $request->caratula['consecutivo_caratula'];
-                $fin->EjercicioFiscal = $ef;
-                $fin->ClaveIndicador = $request->caratula['consecutivo_caratula'] . "F";
-                $fin->save();
+                $update_fin = new MirFin();
+                $update_fin->ClasProgramatica = $request->caratula['consecutivo_caratula'];
+                $update_fin->EjercicioFiscal = $ef;
+                $update_fin->ClaveIndicador = $request->caratula['consecutivo_caratula'] . "F";
+                $update_fin->save();
             }
             
             // Validaciones de fin
@@ -550,11 +550,11 @@ class MirController extends BaseController
                 ->first();
 
             if (is_null($update_proposito)) {
-                $proposito = new MirProposito();
-                $proposito->ClaveIndicador = $request->caratula['consecutivo_caratula'] . "F";
-                $proposito->ClasProgramatica = $request->caratula['consecutivo_caratula'];
-                $proposito->EjercicioFiscal = $ef;
-                $proposito->save();
+                $update_proposito = new MirProposito();
+                $update_proposito->ClaveIndicador = $request->caratula['consecutivo_caratula'] . "F";
+                $update_proposito->ClasProgramatica = $request->caratula['consecutivo_caratula'];
+                $update_proposito->EjercicioFiscal = $ef;
+                $update_proposito->save();
             }
 
             // Validaciones de proposito
