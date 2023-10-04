@@ -22,6 +22,9 @@ class EjerciciosFiscalesController extends BaseController
 {
     public function lista()
     {
+        $usuario = $this->getUsuarioActual();
+        
+
         $query = "SELECT 
         EF.Id,
         EF.Comentarios,
@@ -67,7 +70,13 @@ class EjerciciosFiscalesController extends BaseController
         (SELECT A.ejercicioFiscal, COUNT(*) AS AI_C FROM PROGRAMATICO_AI_COMP AS A 
         INNER JOIN UNIDADES AS B ON A.idUA = B.idUnidad AND A.idSecretaria = B.idSecretaria
         GROUP BY A.ejercicioFiscal) AI_C ON EF.Id = AI_C.ejercicioFiscal
-    ORDER BY EF.Id desc";
+        ";
+        if($usuario->TipoUsuario != 1) {
+            //enlace pbr solo ve los activos
+            $query.=" WHERE EF.Estatus = 'A' ";
+        }
+
+        $query.=" ORDER BY EF.Id desc";
         
         $informacion = DB::select($query);
         return response()->json(array('error' => false, 'data' => $informacion, 'code' => 200));

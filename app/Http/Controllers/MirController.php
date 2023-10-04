@@ -9,6 +9,7 @@ use App\MirComponente;
 use App\MirActividad;
 use App\LogCarga;
 use App\LogFormula;
+use App\ProgramasPresupuestalesComponentes;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -2583,9 +2584,14 @@ class MirController extends BaseController
             }
             else
             {
+                $componente = ProgramasPresupuestalesComponentes::
+                where("Id","=",$request->ComponenteId)
+                ->first();
+
                 $nuevo = new MirComponente();
                 $nuevo->ComponenteId = $request->ComponenteId;
                 $nuevo->Indicador = $request->Indicador;
+                $nuevo->ClaveIndicador = $componente->Consecutivo . "." . $componente->Consecutivo;
                 $nuevo->save();
                 $id = $nuevo->Id;
             }

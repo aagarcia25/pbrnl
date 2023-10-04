@@ -978,7 +978,7 @@
                                                             <label for="metasemestral1V1D_componente" class="form-label">D:</label>
                                                         </div>
                                                         <div class="col-11">
-                                                            <input type="text" class="form-control money" id="metasemestral1V1D_componente" onkeypress="return justNumbers(event);">
+                                                            <input type="text" class="form-control money" id="metasemestral1V1D_componente" onkeypress="return justNumbers(event);" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1002,7 +1002,7 @@
                                                             <label for="metasemestral2V1D_componente" class="form-label">D:</label>
                                                         </div>
                                                         <div class="col-11">
-                                                            <input type="text" class="form-control money" id="metasemestral2V1D_componente" onkeypress="return justNumbers(event);">
+                                                            <input type="text" class="form-control money" id="metasemestral2V1D_componente" onkeypress="return justNumbers(event);" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1026,7 +1026,7 @@
                                                             <label for="metatrimestral1V1D_componente" class="form-label">D:</label>
                                                         </div>
                                                         <div class="col-10">
-                                                            <input type="text" class="form-control money" id="metatrimestral1V1D_componente" onkeypress="return justNumbers(event);">
+                                                            <input type="text" class="form-control money" id="metatrimestral1V1D_componente" onkeypress="return justNumbers(event);" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1050,7 +1050,7 @@
                                                             <label for="metatrimestral2V1D_componente" class="form-label">D:</label>
                                                         </div>
                                                         <div class="col-10">
-                                                            <input type="text" class="form-control money" id="metatrimestral2V1D_componente" onkeypress="return justNumbers(event);">
+                                                            <input type="text" class="form-control money" id="metatrimestral2V1D_componente" onkeypress="return justNumbers(event);" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1074,7 +1074,7 @@
                                                             <label for="metatrimestral3V1D_componente" class="form-label">D:</label>
                                                         </div>
                                                         <div class="col-10">
-                                                            <input type="text" class="form-control money" id="metatrimestral3V1D_componente" onkeypress="return justNumbers(event);">
+                                                            <input type="text" class="form-control money" id="metatrimestral3V1D_componente" onkeypress="return justNumbers(event);" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1098,7 +1098,7 @@
                                                             <label for="metatrimestral4V1D_componente" class="form-label">D:</label>
                                                         </div>
                                                         <div class="col-10">
-                                                            <input type="text" class="form-control money" id="metatrimestral4V1D_componente" onkeypress="return justNumbers(event);">
+                                                            <input type="text" class="form-control money" id="metatrimestral4V1D_componente" onkeypress="return justNumbers(event);" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1137,7 +1137,7 @@
                                                             <label for="metasemestral1V2D_componente" class="form-label">D:</label>
                                                         </div>
                                                         <div class="col-11">
-                                                            <input type="text" class="form-control money" id="metasemestral1V2D_componente" onkeypress="return justNumbers(event);">
+                                                            <input type="text" class="form-control money" id="metasemestral1V2D_componente" onkeypress="return justNumbers(event);" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1147,7 +1147,7 @@
                                                             <label for="metasemestral1V2A_componente" class="form-label" >A:</label>
                                                         </div>
                                                         <div class="col-11">
-                                                            <input type="text" class="form-control" disabled=""  id="metasemestral1V2A_componente">
+                                                            <input type="text" class="form-control" disabled=""  id="metasemestral1V2A_componente" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1161,7 +1161,7 @@
                                                             <label for="metasemestral2V2D_componente" class="form-label">D:</label>
                                                         </div>
                                                         <div class="col-11">
-                                                            <input type="text" class="form-control money" id="metasemestral2V2D_componente" onkeypress="return justNumbers(event);">
+                                                            <input type="text" class="form-control money" id="metasemestral2V2D_componente" onkeypress="return justNumbers(event);" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1171,7 +1171,7 @@
                                                             <label for="metasemestral2V2A_componente" class="form-label" >A:</label>
                                                         </div>
                                                         <div class="col-11">
-                                                            <input type="text" class="form-control" disabled=""  id="metasemestral2V2A_componente">
+                                                            <input type="text" class="form-control" disabled=""  id="metasemestral2V2A_componente" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1185,7 +1185,7 @@
                                                             <label for="metatrimestral1V2D_componente" class="form-label">D:</label>
                                                         </div>
                                                         <div class="col-10">
-                                                            <input type="text" class="form-control money" id="metatrimestral1V2D_componente" onkeypress="return justNumbers(event);">
+                                                            <input type="text" class="form-control money" id="metatrimestral1V2D_componente" onkeypress="return justNumbers(event);" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1195,7 +1195,7 @@
                                                             <label for="metatrimestral1V2A_componente" class="form-label" >A:</label>
                                                         </div>
                                                         <div class="col-10">
-                                                            <input type="text" class="form-control" disabled=""  id="metatrimestral1V2A_componente">
+                                                            <input type="text" class="form-control" disabled=""  id="metatrimestral1V2A_componente" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1209,7 +1209,7 @@
                                                             <label for="metatrimestral2V2D_componente" class="form-label">D:</label>
                                                         </div>
                                                         <div class="col-10">
-                                                            <input type="text" class="form-control money" id="metatrimestral2V2D_componente" onkeypress="return justNumbers(event);">
+                                                            <input type="text" class="form-control money" id="metatrimestral2V2D_componente" onkeypress="return justNumbers(event);" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1219,7 +1219,7 @@
                                                             <label for="metatrimestral2V2A_componente" class="form-label" >A:</label>
                                                         </div>
                                                         <div class="col-10">
-                                                            <input type="text" class="form-control" disabled=""  id="metatrimestral2V2A_componente">
+                                                            <input type="text" class="form-control" disabled=""  id="metatrimestral2V2A_componente" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1233,7 +1233,7 @@
                                                             <label for="metatrimestral3V2D_componente" class="form-label">D:</label>
                                                         </div>
                                                         <div class="col-10">
-                                                            <input type="text" class="form-control money" id="metatrimestral3V2D_componente" onkeypress="return justNumbers(event);">
+                                                            <input type="text" class="form-control money" id="metatrimestral3V2D_componente" onkeypress="return justNumbers(event);" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1257,7 +1257,7 @@
                                                             <label for="metatrimestral4V2D_componente" class="form-label">D:</label>
                                                         </div>
                                                         <div class="col-10">
-                                                            <input type="text" class="form-control money" id="metatrimestral4V2D_componente" onkeypress="return justNumbers(event);">
+                                                            <input type="text" class="form-control money" id="metatrimestral4V2D_componente" onkeypress="return justNumbers(event);" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1602,7 +1602,7 @@
                                                             <label for="metasemestral1V1D_actividad" class="form-label">D:</label>
                                                         </div>
                                                         <div class="col-11">
-                                                            <input type="text" class="form-control money" id="metasemestral1V1D_actividad" onkeypress="return justNumbers(event);">
+                                                            <input type="text" class="form-control money" id="metasemestral1V1D_actividad" onkeypress="return justNumbers(event);" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1626,7 +1626,7 @@
                                                             <label for="metasemestral2V1D_actividad" class="form-label">D:</label>
                                                         </div>
                                                         <div class="col-11">
-                                                            <input type="text" class="form-control money" id="metasemestral2V1D_actividad" onkeypress="return justNumbers(event);">
+                                                            <input type="text" class="form-control money" id="metasemestral2V1D_actividad" onkeypress="return justNumbers(event);" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1650,7 +1650,7 @@
                                                             <label for="metatrimestral1V1D_actividad" class="form-label">D:</label>
                                                         </div>
                                                         <div class="col-10">
-                                                            <input type="text" class="form-control money" id="metatrimestral1V1D_actividad" onkeypress="return justNumbers(event);">
+                                                            <input type="text" class="form-control money" id="metatrimestral1V1D_actividad" onkeypress="return justNumbers(event);" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1674,7 +1674,7 @@
                                                             <label for="metatrimestral2V1D_actividad" class="form-label">D:</label>
                                                         </div>
                                                         <div class="col-10">
-                                                            <input type="text" class="form-control money" id="metatrimestral2V1D_actividad" onkeypress="return justNumbers(event);">
+                                                            <input type="text" class="form-control money" id="metatrimestral2V1D_actividad" onkeypress="return justNumbers(event);" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1698,7 +1698,7 @@
                                                             <label for="metatrimestral3V1D_actividad" class="form-label">D:</label>
                                                         </div>
                                                         <div class="col-10">
-                                                            <input type="text" class="form-control money" id="metatrimestral3V1D_actividad" onkeypress="return justNumbers(event);">
+                                                            <input type="text" class="form-control money" id="metatrimestral3V1D_actividad" onkeypress="return justNumbers(event);" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1722,7 +1722,7 @@
                                                             <label for="metatrimestral4V1D_actividad" class="form-label">D:</label>
                                                         </div>
                                                         <div class="col-10">
-                                                            <input type="text" class="form-control money" id="metatrimestral4V1D_actividad" onkeypress="return justNumbers(event);">
+                                                            <input type="text" class="form-control money" id="metatrimestral4V1D_actividad" onkeypress="return justNumbers(event);" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1761,7 +1761,7 @@
                                                             <label for="metasemestral1V2D_actividad" class="form-label">D:</label>
                                                         </div>
                                                         <div class="col-11">
-                                                            <input type="text" class="form-control money" id="metasemestral1V2D_actividad" onkeypress="return justNumbers(event);">
+                                                            <input type="text" class="form-control money" id="metasemestral1V2D_actividad" onkeypress="return justNumbers(event);" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1785,7 +1785,7 @@
                                                             <label for="metasemestral2V2D_actividad" class="form-label">D:</label>
                                                         </div>
                                                         <div class="col-11">
-                                                            <input type="text" class="form-control money" id="metasemestral2V2D_actividad" onkeypress="return justNumbers(event);">
+                                                            <input type="text" class="form-control money" id="metasemestral2V2D_actividad" onkeypress="return justNumbers(event);" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1809,7 +1809,7 @@
                                                             <label for="metatrimestral1V2D_actividad" class="form-label">D:</label>
                                                         </div>
                                                         <div class="col-10">
-                                                            <input type="text" class="form-control money" id="metatrimestral1V2D_actividad" onkeypress="return justNumbers(event);">
+                                                            <input type="text" class="form-control money" id="metatrimestral1V2D_actividad" onkeypress="return justNumbers(event);" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1833,7 +1833,7 @@
                                                             <label for="metatrimestral2V2D_actividad" class="form-label">D:</label>
                                                         </div>
                                                         <div class="col-10">
-                                                            <input type="text" class="form-control money" id="metatrimestral2V2D_actividad" onkeypress="return justNumbers(event);">
+                                                            <input type="text" class="form-control money" id="metatrimestral2V2D_actividad" onkeypress="return justNumbers(event);" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1857,7 +1857,7 @@
                                                             <label for="metatrimestral3V2D_actividad" class="form-label">D:</label>
                                                         </div>
                                                         <div class="col-10">
-                                                            <input type="text" class="form-control money" id="metatrimestral3V2D_actividad" onkeypress="return justNumbers(event);">
+                                                            <input type="text" class="form-control money" id="metatrimestral3V2D_actividad" onkeypress="return justNumbers(event);" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1881,7 +1881,7 @@
                                                             <label for="metatrimestral4V2D_actividad" class="form-label">D:</label>
                                                         </div>
                                                         <div class="col-10">
-                                                            <input type="text" class="form-control money" id="metatrimestral4V2D_actividad" onkeypress="return justNumbers(event);">
+                                                            <input type="text" class="form-control money" id="metatrimestral4V2D_actividad" onkeypress="return justNumbers(event);" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -2108,13 +2108,13 @@
                                         type="button" 
                                         class="btn btn-enviar"
                                         id="BtnEnviar">
-                                        Enviar a registro
+                                        Enviar a revisión
                                     </button>
                                     @endif
                                 </div>
                                 <div class="col">
                                     <div class="alert alert-warning" id="lbl-errores" >
-                                        Algunos campos contienen errores, por favor verifique la información capturada e intente nuevamente
+                                        Algunos campos contienen errores, por favor verifique la información capturada e intente nuevamente.
                                     </span>
                                 </div>
                                 <div class="col" style="display:flex;justify-content:flex-end">
