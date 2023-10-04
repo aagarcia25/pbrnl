@@ -286,6 +286,7 @@ class MirController extends BaseController
     {
         $info = array();
         $usuario = $this->getUsuarioActual();
+        $ef = $request->ejercicio_fiscal;
 
         // Eliminar información en carga
         $this->deleteCarga($request->caratula['consecutivo_caratula']);
@@ -302,6 +303,7 @@ class MirController extends BaseController
             $update_caratula = MirCaratula::
                 where('EjercicioFiscal', '=', $request->caratula['ejercicio_fiscal'])
                 ->where('Consecutivo', '=', $request->caratula['consecutivo_caratula'])
+                ->where('EjercicioFiscal', '=', $ef)
                 ->first();
 
             if (is_null($update_caratula)) {
@@ -347,7 +349,9 @@ class MirController extends BaseController
         // F I N
         try {
             $update_fin = MirFin::
-                where('ClasProgramatica', '=', $request->fin['claseprogramatica_fin'])->first();
+                where('ClasProgramatica', '=', $request->fin['claseprogramatica_fin'])
+                ->where('EjercicioFiscal', '=', $ef)
+                ->first();
 
             if (is_null($update_fin)) {
                 return response()->json(array('error' => true, 'result' => "No se ha encontrado la información del fin.", 'code' => 404));
@@ -534,7 +538,9 @@ class MirController extends BaseController
         // P R O P O S I T O
         try {
             $update_proposito = MirProposito::
-                where('ClasProgramatica', '=', $request->proposito['claseprogramatica_proposito'])->first();
+                where('ClasProgramatica', '=', $request->proposito['claseprogramatica_proposito'])
+                ->where('EjercicioFiscal', '=', $ef)
+                ->first();
 
             if (is_null($update_proposito)) {
                 return response()->json(array('error' => true, 'result' => "No se ha encontrado la información del proposito.", 'code' => 404));
@@ -723,7 +729,9 @@ class MirController extends BaseController
             
             $update_verify_componente = MirComponente::
                 where('ClasProgramatica', '=', $request->componente['claseprogramatica_componente'])
-                ->where('idComponente', '=', $request->componente['id_componente'])->first();
+                ->where('EjercicioFiscal', '=', $ef)
+                ->where('idComponente', '=', $request->componente['id_componente'])
+                ->first();
 
             if (is_null($update_verify_componente)) {
                 return response()->json(array('error' => true, 'result' => "No se ha encontrado la información del componente.", 'code' => 404));
@@ -1006,6 +1014,7 @@ class MirController extends BaseController
             $update_verify_actividad = MirActividad::
                 where('ClasProgramatica', '=', $request->actividad['claseprogramatica_actividad'])
                 ->where('idComponente', '=', $request->actividad['idcomponente_actividad'])
+                ->where('EjercicioFiscal', '=', $ef)
                 ->where('idActividad', '=', $request->actividad['id_actividad'])->first();
 
             if (is_null($update_verify_actividad)) {
@@ -2588,15 +2597,31 @@ class MirController extends BaseController
                 where("Id","=",$request->ComponenteId)
                 ->first();
 
-                $nuevo = new MirComponente();
-                $nuevo->ComponenteId = $request->ComponenteId;
-                $nuevo->Indicador = $request->Indicador;
-                $nuevo->ClaveIndicador = $componente->Consecutivo . "." . $componente->Componente;
-                $nuevo->idComponente = $componente->Componente;
-                $nuevo->ClasProgramatica = $componente->Consecutivo;
-                
-                $nuevo->save();
-                $id = $nuevo->Id;
+                $m_query = MirComponente::
+                where("ClasProgramatica","=",$componente->Consecutivo)
+                ->where("EjercicioFiscal","=",$request->EjercicioFiscal)
+                ->where("idComponente","=",$componente->Componente);
+
+                $update = $m_query->update(array(
+                    "ComponenteId" => $request->ComponenteId,
+                    "Indicador" => $request->Indicador
+                ));
+
+                if($update == 0) {
+                    //no lo actualizó
+                    $nuevo = new MirComponente();
+                    $nuevo->ComponenteId = $request->ComponenteId;
+                    $nuevo->Indicador = $request->Indicador;
+                    $nuevo->ClaveIndicador = $componente->Consecutivo . "." . $componente->Componente;
+                    $nuevo->idComponente = $componente->Componente;
+                    $nuevo->ClasProgramatica = $componente->Consecutivo;
+                    $nuevo->EjercicioFiscal = $request->EjercicioFiscal;
+
+                    $nuevo->save();
+                    $id = $nuevo->Id;
+                }
+                else
+                    $id = $m_query->first()->Id;
             }
             return response()->json(array('error' => false, 'result' => $id, 'code' => 200));
         }
@@ -2626,6 +2651,7 @@ class MirController extends BaseController
                 $nuevo->Actividad = $request->Actividad;
                 $nuevo->idActividad = $request->idActividad;
                 $nuevo->Indicador = $request->Indicador;
+                $nuevo->EjercicioFiscal = $request->ejercicio_fiscal;
                 $nuevo->save();
                 $id = $nuevo->Id;
             }

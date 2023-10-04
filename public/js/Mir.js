@@ -721,6 +721,7 @@ function validarForm(){
 
 function BtnGuardarMir(){
     $("#frmModal").on("submit", function(event) {
+        event.preventDefault();
         //convertir todo a mayusculas
         $('input[type=text], textarea').val (function () {
             return this.value.toUpperCase();
@@ -731,7 +732,8 @@ function BtnGuardarMir(){
             fin: Func_GetRequestFin(),
             proposito: Func_GetRequestProposito(),
             componente: Func_GetRequestComponente(),
-            actividad: Func_GetRequestActividad()
+            actividad: Func_GetRequestActividad(),
+            ejercicio_fiscal : $("#select_ef").val()
         };
 
         // Func_Cargando();
@@ -752,7 +754,7 @@ function ResponseSaveMir(response) {
         Func_Toast("success", "Información Guardada", "La MIR ha sido guardada exitosamente.");
         //$("#Modal").modal("hide");
 
-        GetMir();
+        //GetMir();
 
     } else {
         Func_Aviso("Anomalía detectada", "Ha ocurrido una anomalía al realizar el proceso, favor de intentarlo nuevamente.", "error");

@@ -51,6 +51,7 @@
 
         vm.guardarComponenteMir = function() {
             vm.componenteMir.ComponenteId = vm.filtros.componenteId;
+            vm.componenteMir.EjercicioFiscal = vm.filtros.ejercicio_fiscal;
 
             estructuraFactory.guardarComponenteMir(vm.componenteMir)
             .then((response)=> {
