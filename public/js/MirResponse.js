@@ -85,6 +85,9 @@ function ResponseGetMirActividades(response) {
 }
 
 function setActividad(actividad) {
+    $("#clicDenominador_actividad").val("1");
+    $("#checkDenominadorFijo_actividad").trigger("click");
+
     $("#claseprogramatica_actividad").val(actividad['ClasProgramatica']);
     $("#idcomponente_actividad").val(actividad['idComponente']);
     $("#id_actividad").val(actividad['idActividad']);
@@ -244,6 +247,9 @@ function OnClic_TabsComponentes(){
 }
 
 function setComponente(componente) {
+    $(`#clicDenominador_componente`).val("1");
+    $(".denominadorfijo").trigger("click");
+
     $("#claseprogramatica_componente").val(componente['ClasProgramatica']);
     $("#id_componente").val(componente['idComponente']);
     $("#nombre_componente").val(componente['Componente']);
