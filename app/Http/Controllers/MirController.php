@@ -360,7 +360,7 @@ class MirController extends BaseController
                 $update_fin = new MirFin();
                 $update_fin->ClasProgramatica = $request->caratula['consecutivo_caratula'];
                 $update_fin->EjercicioFiscal = $ef;
-                $update_fin->ClaveIndicador = $request->caratula['consecutivo_caratula'] . "F";
+                $update_fin->ClaveIndicador = $request->caratula['consecutivo_caratula'] . ".F";
                 $update_fin->save();
             }
             
@@ -551,7 +551,7 @@ class MirController extends BaseController
 
             if (is_null($update_proposito)) {
                 $update_proposito = new MirProposito();
-                $update_proposito->ClaveIndicador = $request->caratula['consecutivo_caratula'] . "F";
+                $update_proposito->ClaveIndicador = $request->caratula['consecutivo_caratula'] . ".P";
                 $update_proposito->ClasProgramatica = $request->caratula['consecutivo_caratula'];
                 $update_proposito->EjercicioFiscal = $ef;
                 $update_proposito->save();
