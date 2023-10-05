@@ -381,10 +381,15 @@ function Func_CalcularMeta(valor1, valor2, modulo){
         ;   
 
     // Evalúa la fórmula y devuelve el resultado
-    let resultado = eval(formula);
-    if(isNaN(resultado))
+    let resultado = 0;
+    try{
+        resultado = eval(formula);
+        if(isNaN(resultado))
+            resultado = 0;
+    }
+    catch(e){
         resultado = 0;
-
+    }
     resultado = resultado.toFixed(2);
     return resultado;
 }
