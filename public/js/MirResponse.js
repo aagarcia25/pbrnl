@@ -695,9 +695,6 @@ function ResponseGetMirFin(response) {
             $("#claseprogramatica_fin").val(response.data['ClasProgramatica']);
             $("#claveindicador_fin").val(response.data['ClaveIndicador']);
             $("#nombreindicar_fin").val(response.data['Indicador']);
-            
-            let contadorNombreIndicador = response.data['Indicador'].length;
-            $("#lblContIndicadorFin").text(`${contadorNombreIndicador}/200`);
 
             $("#descripcionformula_fin").val(response.data['Formula']);
             $("#variable1_fin").val(response.data['V1']);
