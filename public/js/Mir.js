@@ -760,7 +760,7 @@ function ResponseSaveMir(response) {
         //GetMir();
 
     } else {
-        Func_Aviso("Anomalía detectada", "Ha ocurrido una anomalía al realizar el proceso, favor de intentarlo nuevamente.", "error");
+        Func_Aviso("Anomalía detectada", response.result, "error");
     }
 }
 

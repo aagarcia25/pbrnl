@@ -628,10 +628,6 @@ function ResponseGetMirProposito(response) {
             $("#claveindicador_proposito").val(response.data['ClaveIndicador']);
             $("#nombreindicar_proposito").val(response.data['Indicador']);
 
-            let splitNombreIndicador = response.data['Indicador'].split(" ");
-            let contadorNombreIndicador = splitNombreIndicador.length;
-            $("#lblContIndicadorProp").text(`${contadorNombreIndicador}/30`);
-
             $("#descripcionformula_proposito").val(response.data['Formula']);
             $("#variable1_proposito").val(response.data['V1']);
             $("#variable2_proposito").val(response.data['V2']);
