@@ -27,9 +27,10 @@
                 <span id="numProgramas">0</span>
                 Programas presupuestarios -
                 <span id="numComponentes">0</span>
-                Componentes -
+                Componentes 
+                <!-- -
                 <span id="numIndicadores">0</span>
-                Indicadores
+                Indicadores -->
             </h6>
         </div>
     </div>

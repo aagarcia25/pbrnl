@@ -322,6 +322,10 @@ function Eventos() {
                 })
             })
     });
+    
+    $('#Modal').on('hidden.bs.modal', function (e) {
+        GetMir();
+      })
 }
 
 function OnClic_DenominadorFijo() {
