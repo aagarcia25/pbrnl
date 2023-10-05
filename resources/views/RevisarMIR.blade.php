@@ -931,7 +931,7 @@
                                         </div>
                                         <div class="col-2 FormUsr FontMsg mt-3">
                                             <label for="selectfrecuencia_componente" class="form-labelUsr3">Frecuencia</label>
-                                            <select id="selectfrecuencia_componente" class="TextBoxUsr select-frecuencia select-mir w-100" data-tipo="componente" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                            <select {{ $disabled }} id="selectfrecuencia_componente" class="TextBoxUsr select-frecuencia select-mir w-100" data-tipo="componente" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
                                                 <option value="-">-</option>
                                                 <option value="TRIMESTRAL">TRIMESTRAL</option>
                                                 <option value="SEMESTRAL">SEMESTRAL</option>
@@ -1556,7 +1556,7 @@
                                         </div>
                                         <div class="col-2 mb-1">
                                             <label for="selectfrecuencia_actividad" class="form-label">Frecuencia</label>
-                                            <select id="selectfrecuencia_actividad" class="selectpicker select-frecuencia show-tick form-control" data-tipo="actividad" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                            <select {{ $disabled }} id="selectfrecuencia_actividad" class="selectpicker select-frecuencia show-tick form-control" data-tipo="actividad" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
                                                 <option value="-">-</option>
                                                 <option value="TRIMESTRAL">TRIMESTRAL</option>
                                             </select>
