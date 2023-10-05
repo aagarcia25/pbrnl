@@ -263,7 +263,7 @@ function Eventos() {
                     else{
                         Func_Toast("", "Correcto", "La MIR se ha enviado a revisión correctamente");
                         $("#Modal").modal("hide");
-                        GetMir();
+                        //GetMir();
                     }
                 })
             })
@@ -291,7 +291,7 @@ function Eventos() {
                     else{
                         Func_Toast("", "Correcto", "La MIR se ha registrado correctamente");
                         $("#Modal").modal("hide");
-                        GetMir();
+                        //GetMir();
                     }
                 })
             })
@@ -317,15 +317,15 @@ function Eventos() {
                     else{
                         Func_Toast("", "Correcto", "La MIR se ha rechazado correctamente");
                         $("#Modal").modal("hide");
-                        GetMir();
+                        //GetMir();
                     }
                 })
             })
     });
     
-    $('#Modal').on('hidden.bs.modal', function (e) {
-        GetMir();
-      })
+    // $('#Modal').on('hidden.bs.modal', function (e) {
+    //     GetMir();
+    //   })
 }
 
 function OnClic_DenominadorFijo() {
@@ -735,24 +735,28 @@ function BtnGuardarMir(){
     $("#frmModal").on("submit", function(event) {
         event.preventDefault();
         //convertir todo a mayusculas
-        $('input[type=text], textarea').val (function () {
-            return this.value.toUpperCase();
-        });
-
-        var request = {
-            caratula: Func_GetRequestCaratual(),
-            fin: Func_GetRequestFin(),
-            proposito: Func_GetRequestProposito(),
-            componente: Func_GetRequestComponente(),
-            actividad: Func_GetRequestActividad(),
-            ejercicio_fiscal : $("#select_ef").val()
-        };
-
-        // Func_Cargando();
-        Func_Mensaje("Guardando MIR...");
-        repository.Mir.SaveMir(request)
-            .then(ResponseSaveMir);
+        guardarMir();
     });
+}
+
+function guardarMir() {
+    $('input[type=text], textarea').val (function () {
+        return this.value.toUpperCase();
+    });
+
+    var request = {
+        caratula: Func_GetRequestCaratual(),
+        fin: Func_GetRequestFin(),
+        proposito: Func_GetRequestProposito(),
+        componente: Func_GetRequestComponente(),
+        actividad: Func_GetRequestActividad(),
+        ejercicio_fiscal : $("#select_ef").val()
+    };
+
+    // Func_Cargando();
+    Func_Mensaje("Guardando MIR...");
+    repository.Mir.SaveMir(request)
+        .then(ResponseSaveMir);
 }
 
 function ResponseSaveMir(response) {
@@ -767,7 +771,7 @@ function ResponseSaveMir(response) {
         //$("#Modal").modal("hide");
 
         //GetMir();
-
+        GetMirComponentes();
     } else {
         Func_Aviso("Anomalía detectada", response.result, "error");
     }

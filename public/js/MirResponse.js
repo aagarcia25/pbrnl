@@ -218,6 +218,11 @@ function OnClic_TabsComponentes(){
         
         if (index_actual_superior == index_nuevo){
         }else{
+            //preguntar si desea guardar los cambios
+            if(confirm("¿Desea guardar los cambios realizados al componente?")) {
+                guardarMir();
+            }
+
             Func_Cargando();
             index_actividad = 0;
             let componente = info_componentes[index_nuevo];
@@ -344,7 +349,7 @@ function setComponente(componente) {
     $("#descripcionnumerador_componente").val(componente['DescripcionNumerador']);
     $("#descripciondenominador_componente").val(componente['DescripcionDenominador']);
 
-    $(".money").trigger("change");
+    $(".money").trigger("change").trigger("blur");
 }
 
 function OnClic_TabsActividades(){
