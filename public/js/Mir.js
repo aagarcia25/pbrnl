@@ -323,9 +323,9 @@ function Eventos() {
             })
     });
     
-    // $('#Modal').on('hidden.bs.modal', function (e) {
-    //     GetMir();
-    //   })
+    $('#Modal').on('hidden.bs.modal', function (e) {
+        GetMir();
+      })
 }
 
 //activar el denominador fijo
