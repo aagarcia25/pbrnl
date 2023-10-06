@@ -1293,7 +1293,7 @@ class MirController extends BaseController
                     'Trimestre2V2' => $request->actividad['metatrimestral2V2D_actividad'],
                     'Trimestre3V2' => $request->actividad['metatrimestral3V2D_actividad'],
                     'Trimestre4V2' => $request->actividad['metatrimestral4V2D_actividad'],
-                    'DenominadorFijo' => $request->componente['denominador_fijo']
+                    'DenominadorFijo' => $request->actividad['denominador_fijo']
                 )
             );
             
