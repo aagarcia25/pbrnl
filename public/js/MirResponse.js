@@ -187,6 +187,20 @@ function setActividad(actividad) {
     $("#descripcionnumerador_actividad").val(actividad['DescripcionNumerador']);
     $("#descripciondenominador_actividad").val(actividad['DescripcionDenominador']);
 
+    var fijo = actividad.DenominadorFijo;
+    $(`#checkDenominadorFijo_actividad`).attr("class","denominadorfijo ms-2");
+
+    if(fijo == "1"){
+        $(`#checkDenominadorFijo_actividad`).removeClass("DenominadorFijoInactivo");
+        $(`#checkDenominadorFijo_actividad`).addClass("DenominadorFijoActivo");
+    }
+    else{
+        $(`#checkDenominadorFijo_actividad`).addClass("DenominadorFijoInactivo");
+        $(`checkDenominadorFijo_actividad`).removeClass("DenominadorFijoActivo");
+    }
+
+    $(`#clicDenominador_componente`).val(fijo);
+
     if (actividad['Frecuencia'] == "SEMESTRAL"){
     }else if (actividad['Frecuencia'] == "TRIMESTRAL"){
         console.log("InicialTrimestral_Actividad")
@@ -222,9 +236,9 @@ function OnClic_TabsComponentes(){
         if (index_actual_superior == index_nuevo){
         }else{
             //preguntar si desea guardar los cambios
-            if(confirm("¿Desea guardar los cambios realizados al componente?")) {
-                guardarMir();
-            }
+            //if(confirm("¿Desea guardar los cambios realizados al componente?")) {
+            //}
+            guardarMir();
 
             Func_Cargando();
             index_actividad = 0;
@@ -247,9 +261,6 @@ function OnClic_TabsComponentes(){
 }
 
 function setComponente(componente) {
-    $(`#clicDenominador_componente`).val("1");
-    $(".denominadorfijo").trigger("click");
-
     $("#claseprogramatica_componente").val(componente['ClasProgramatica']);
     $("#id_componente").val(componente['idComponente']);
     $("#nombre_componente").val(componente['Componente']);
@@ -257,8 +268,6 @@ function setComponente(componente) {
     $("#nombre_componenteactividad").val(componente['Componente']);
     $("#claveindicador_componente").val(componente['ClaveIndicador']);
     $("#nombreindicar_componente").val(componente['Indicador']);
-    
-    //if(componente['Indicador']?.length > 0){
 
     $("#descripcionformula_componente").val(componente['Formula']);
     $("#variable1_componente").val(componente['V1']);
@@ -354,6 +363,20 @@ function setComponente(componente) {
     $("#descripcionindicador_componente").val(componente['DescripcionIndicador']);
     $("#descripcionnumerador_componente").val(componente['DescripcionNumerador']);
     $("#descripciondenominador_componente").val(componente['DescripcionDenominador']);
+
+    var fijo = componente.DenominadorFijo;
+    $(`#checkDenominadorFijo_componente`).attr("class","denominadorfijo ms-2");
+
+    if(fijo == "1"){
+        $(`#checkDenominadorFijo_componente`).removeClass("DenominadorFijoInactivo");
+        $(`#checkDenominadorFijo_componente`).addClass("DenominadorFijoActivo");
+    }
+    else{
+        $(`#checkDenominadorFijo_componente`).addClass("DenominadorFijoInactivo");
+        $(`checkDenominadorFijo_componente`).removeClass("DenominadorFijoActivo");
+    }
+
+    $(`#clicDenominador_componente`).val(fijo);
 
     $(".money").trigger("change").trigger("blur");
 }

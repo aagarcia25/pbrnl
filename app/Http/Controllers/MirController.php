@@ -199,7 +199,7 @@ class MirController extends BaseController
         `TipoFormula`, 
         `MetaAnualOriginal`, 
         `LineaBaseOriginal`, 
-        `DenominadorFijo`, 
+        `DenominadorFijo`,
         `ComponenteId`, 
         c1.`Id`, 
         cc.`EjercicioFiscal`
@@ -737,7 +737,6 @@ class MirController extends BaseController
 
         // C O M P O N E N T E
         try {
-            
             $update_verify_componente = MirComponente::
                 where('ClasProgramatica', '=', $request->componente['claseprogramatica_componente'])
                 ->where('EjercicioFiscal', '=', $ef)
@@ -747,7 +746,7 @@ class MirController extends BaseController
             if (is_null($update_verify_componente)) {
                 return response()->json(array('error' => true, 'result' => "No se ha encontrado la información del componente.", 'code' => 404));
             }
-
+/*
             // Validaciones de componente
             $consecutivo_carga = $request->componente['claseprogramatica_componente'];
             $idelemento_carga = $request->componente['id_componente'];
@@ -952,9 +951,10 @@ class MirController extends BaseController
             if ($request->componente['aportemarginal_componente'] == "N"){
                 $this->addCarga($consecutivo_carga, $idelemento_carga, $seccion_carga, "APORTE MARGINAL", "REVISAR REGISTRO");
             }
-
+*/
             $update_componente = DB::table('COMPONENTE1')
                 ->where('ClasProgramatica', '=', $request->componente['claseprogramatica_componente'])
+                ->where('EjercicioFiscal', '=', $ef)
                 ->where('idComponente', '=', $request->componente['id_componente'])
                 ->limit(1)
                 ->update(
@@ -1010,7 +1010,8 @@ class MirController extends BaseController
                     'Trimestre3V1' => $request->componente['metatrimestral3V1D_componente'],
                     'Trimestre3V2' => $request->componente['metatrimestral3V2D_componente'],
                     'Trimestre4V1' => $request->componente['metatrimestral4V1D_componente'],
-                    'Trimestre4V2' => $request->componente['metatrimestral4V2D_componente']
+                    'Trimestre4V2' => $request->componente['metatrimestral4V2D_componente'],
+                    'DenominadorFijo' => $request->componente['denominador_fijo'],
                 )
             );
             
@@ -1031,7 +1032,7 @@ class MirController extends BaseController
             if (is_null($update_verify_actividad)) {
                 return response()->json(array('error' => true, 'result' => "No se ha encontrado la información de la actividad.", 'code' => 404));
             }
-
+/*
             // Validaciones de actividad
             $consecutivo_carga = $request->actividad['claseprogramatica_actividad'];
             $idelemento_carga = $request->actividad['id_actividad'];
@@ -1236,11 +1237,12 @@ class MirController extends BaseController
             if ($request->actividad['aportemarginal_actividad'] == "N"){
                 $this->addCarga($consecutivo_carga, $idelemento_carga, $seccion_carga, "APORTE MARGINAL", "REVISAR REGISTRO");
             }
-
+*/
             $update_actividad = DB::table('ACTIVIDAD')
                 ->where('ClasProgramatica', '=', $request->actividad['claseprogramatica_actividad'])
                 ->where('idComponente', '=', $request->actividad['idcomponente_actividad'])
                 ->where('idActividad', '=', $request->actividad['id_actividad'])
+                ->where('EjercicioFiscal', '=', $ef)
                 ->limit(1)
                 ->update(
                 array(
@@ -1290,7 +1292,8 @@ class MirController extends BaseController
                     'Trimestre1V2' => $request->actividad['metatrimestral1V2D_actividad'],
                     'Trimestre2V2' => $request->actividad['metatrimestral2V2D_actividad'],
                     'Trimestre3V2' => $request->actividad['metatrimestral3V2D_actividad'],
-                    'Trimestre4V2' => $request->actividad['metatrimestral4V2D_actividad']
+                    'Trimestre4V2' => $request->actividad['metatrimestral4V2D_actividad'],
+                    'DenominadorFijo' => $request->componente['denominador_fijo']
                 )
             );
             

@@ -14,14 +14,14 @@ class BaseController extends Controller {
     }
 
     public function validarEjercicioFiscal($e) {
-        $ejercicio = DB::table("EJERCICIOS_FISCALES")
-            ->where("Id","=",$e)
-            ->first();
+        // $ejercicio = DB::table("EJERCICIOS_FISCALES")
+        //     ->where("Id","=",$e)
+        //     ->first();
 
-        if($ejercicio->Estatus != "A")
-        {
-            return false;
-        }
+        // if($ejercicio->Estatus != "A")
+        // {
+        //     return false;
+        // }
 
         return true;
     }

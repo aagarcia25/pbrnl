@@ -166,7 +166,7 @@
                                     </div>
                                     <div class="col-12 mb-1 FormUsr FontMsg mt-3">
                                         <label for="select_lineaaccion2" class="form-labelUsr3">Id Línea Acción 2</label>
-                                        <select {{ $disabled }} id="select_lineaaccion2" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                        <select {{ $disabled }} id="select_lineaaccion2" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true">
                                         </select>
                                     </div>
                                     <div class="col-12 mb-1 FormUsr FontMsg mt-3">
@@ -187,7 +187,7 @@
                                             </div>
                                             <div class="col-12 mb-1 FormUsr FontMsg mt-3">
                                                 <label for="select_descripcionampliabeneficiario2" class="form-labelUsr3">Descripción Amplia del Beneficiario 2 (Población o Area de Enfoque Objetivo)</label>
-                                                <select {{$disabled}} id="select_descripcionampliabeneficiario2" name="select_descripcionampliabeneficiario2" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true" required>
+                                                <select {{$disabled}} id="select_descripcionampliabeneficiario2" name="select_descripcionampliabeneficiario2" class="TextBoxUsr select-mir w-100" title="-" data-none-results-text="No se encontraron resultados de {0}" data-show-tick="true" data-size="7" data-live-search="true" data-actions-box="true">
                                                 </select>
                                             </div>
                                         </div>

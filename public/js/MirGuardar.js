@@ -171,7 +171,8 @@ function Func_GetRequestComponente() {
         select_unidadresponsablereportar_componente: $("#select_unidadresponsablereportar_componente").val(),
         descripcionindicador_componente: $("#descripcionindicador_componente").val(),
         descripcionnumerador_componente: $("#descripcionnumerador_componente").val(),
-        descripciondenominador_componente: $("#descripciondenominador_componente").val()
+        descripciondenominador_componente: $("#descripciondenominador_componente").val(),
+        denominador_fijo: $("#clicDenominador_componente").val()
     }
 
     return request_componente;
@@ -244,7 +245,8 @@ function Func_GetRequestActividad() {
         select_unidadresponsablereportar_actividad: $("#select_unidadresponsablereportar_actividad").val(),
         descripcionindicador_actividad: $("#descripcionindicador_actividad").val(),
         descripcionnumerador_actividad: $("#descripcionnumerador_actividad").val(),
-        descripciondenominador_actividad: $("#descripciondenominador_actividad").val()
+        descripciondenominador_actividad: $("#descripciondenominador_actividad").val(),
+        denominador_fijo: $(`#clicDenominador_actividad`).val()
     }
 
     return request_actividad;

@@ -301,7 +301,7 @@ function Eventos() {
 
         Func_DespliegaConfirmacion(
             "Confirmación",
-            "¿Seguro que quiere rechazar los cambios de la MIR? El enlace PBR podrá ajustar los datos y deberá enviarla nuevamente a registro","",
+            "¿Seguro que quiere rechazar los cambios de la MIR? El Enlace PBR podrá ajustar los datos y deberá enviarla nuevamente a revisión.","",
             "Aceptar",
             "Cancelar", (response)=> {
                 if(!response)
