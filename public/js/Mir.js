@@ -328,6 +328,7 @@ function Eventos() {
     //   })
 }
 
+//activar el denominador fijo
 function OnClic_DenominadorFijo() {
     $(".denominadorfijo").on("click", function() {
         var tipo = $(this).data("tipo");

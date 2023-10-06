@@ -199,7 +199,7 @@ function setActividad(actividad) {
         $(`checkDenominadorFijo_actividad`).removeClass("DenominadorFijoActivo");
     }
 
-    $(`#clicDenominador_componente`).val(fijo);
+    $(`#clicDenominador_actividad`).val(fijo);
 
     if (actividad['Frecuencia'] == "SEMESTRAL"){
     }else if (actividad['Frecuencia'] == "TRIMESTRAL"){
@@ -207,7 +207,7 @@ function setActividad(actividad) {
         InicialTrimestral_Actividad();
     }
 }
-
+//cambiar de componente
 function OnClic_TabsComponentes(){
     $(".tabs-select-componente").on("click", function(){
         var tipo = $(this).data("tipo");
@@ -235,15 +235,13 @@ function OnClic_TabsComponentes(){
         
         if (index_actual_superior == index_nuevo){
         }else{
-            //preguntar si desea guardar los cambios
-            //if(confirm("¿Desea guardar los cambios realizados al componente?")) {
-            //}
-            guardarMir();
-
-            Func_Cargando();
             index_actividad = 0;
             let componente = info_componentes[index_nuevo];
             let id_componente = componente['idComponente'];
+
+            Func_Cargando();
+
+            guardarMir();
 
             setComponente(componente);
             if(id_componente != null){
@@ -255,7 +253,6 @@ function OnClic_TabsComponentes(){
             }
 
             $("#select_unidadresponsablereportar_componente").selectpicker("val", componente.idUA);
-            swal.close();
         }
     });
 }
@@ -365,6 +362,7 @@ function setComponente(componente) {
     $("#descripciondenominador_componente").val(componente['DescripcionDenominador']);
 
     var fijo = componente.DenominadorFijo;
+    $(`#clicDenominador_componente`).val(fijo);
     $(`#checkDenominadorFijo_componente`).attr("class","denominadorfijo ms-2");
 
     if(fijo == "1"){
@@ -375,8 +373,6 @@ function setComponente(componente) {
         $(`#checkDenominadorFijo_componente`).addClass("DenominadorFijoInactivo");
         $(`checkDenominadorFijo_componente`).removeClass("DenominadorFijoActivo");
     }
-
-    $(`#clicDenominador_componente`).val(fijo);
 
     $(".money").trigger("change").trigger("blur");
 }
